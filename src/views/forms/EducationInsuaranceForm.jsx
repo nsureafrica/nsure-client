@@ -16,7 +16,7 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.jsx";
 
-class MotorInsuaranceForm extends React.Component {
+class EducationInsuaranceForm extends React.Component {
   render() {
     return (
       <>
@@ -226,4 +226,4 @@ class MotorInsuaranceForm extends React.Component {
   }
 }
 
-export default MotorInsuaranceForm;
+export default EducationInsuaranceForm;
