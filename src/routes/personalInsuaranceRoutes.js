@@ -1,40 +1,51 @@
-import Index from "../views/Index.jsx";
-import MotorInsuaranceForm from "../views/MotorInsuaranceForm"
+import Index from "../views/Index.jsx"; 
+import MotorInsuaranceForm from "../views/forms/MotorInsuaranceForm"
+import MedicalInsuaranceForm from "../views/forms/MedicalInsuaranceForm"
+import EducationInsuaranceForm from "../views/forms/EducationInsuaranceForm"
+import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm"
+import TravelInsuranceCoverForm from "../views/forms/TravelInsuaranceForm"
 
 var PersonalInsuaranceRoutes = [
   {
-    path: "/index",
-    name: "Motor Insuarance",
+    path: "/dashboard",
+    name: "Dashboard",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin"
   },
   {
     path: "/MotorInsuaranceForm",
+    name: "Motor Insuarance",
+    icon: "ni ni-tv-2 text-primary",
+    component: MotorInsuaranceForm,
+    layout: "/admin"
+  },
+  {
+    path: "/MedicalInsuaranceForm",
     name: "Medical Insurance",
     icon: "ni ni-tv-2 text-primary",
-    component: MotorInsuaranceForm,
+    component: MedicalInsuaranceForm,
     layout: "/admin"
   },
   {
-    path: "/MotorInsuaranceForm",
+    path: "/EducationInsuaranceForm",
     name: "Education Insurance",
     icon: "ni ni-tv-2 text-primary",
-    component: MotorInsuaranceForm,
+    component: EducationInsuaranceForm,
     layout: "/admin"
   },
   {
-    path: "/MotorInsuaranceForm",
+    path: "/TravelInsuranceCoverForm",
     name: "Travel Insurance",
     icon: "ni ni-tv-2 text-primary",
-    component: MotorInsuaranceForm,
+    component: TravelInsuranceCoverForm,
     layout: "/admin"
   },
   {
-    path: "/MotorInsuaranceForm",
+    path: "/SalamahTransitionCoverForm",
     name: "Salamah Transition Cover",
     icon: "ni ni-tv-2 text-primary",
-    component: MotorInsuaranceForm,
+    component: SalamahTransitionCoverForm,
     layout: "/admin"
   },
 ];

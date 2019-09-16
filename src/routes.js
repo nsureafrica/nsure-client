@@ -1,11 +1,6 @@
 import Index from "views/Index.jsx";
-import Profile from "views/examples/Profile.jsx";
 import Maps from "views/examples/Maps.jsx";
-import Register from "views/examples/Register.jsx";
-import Login from "views/examples/Login.jsx";
-import Tables from "views/examples/Tables.jsx";
-import Icons from "views/examples/Icons.jsx";
-import MotorInsuaranceForm from "./views/MotorInsuaranceForm"
+import SalamahTransitionCoverForm from "./views/forms/SalamahTransitionCoverForm"
 
 var routes = [
   {
@@ -16,10 +11,10 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/icons",
+    path: "/SalamahTransitionCoverForm",
     name: "Salamah Transition Cover",
     icon: "ni ni-planet text-blue",
-    component: MotorInsuaranceForm,
+    component: SalamahTransitionCoverForm,
     layout: "/admin"
   },
   {
