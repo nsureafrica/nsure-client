@@ -14,13 +14,13 @@ import {
   Col
 } from "reactstrap";
 // core components
-import UserHeader from "components/Headers/UserHeader.jsx";
+import EducationInsuaranceFormHeader from "../../components/Headers/formHeaders/EducationInsuaranceFormHeader"
 
 class EducationInsuaranceForm extends React.Component {
   render() {
     return (
       <>
-        <UserHeader />
+        <EducationInsuaranceFormHeader />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -29,7 +29,7 @@ class EducationInsuaranceForm extends React.Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Motor insurance thingy</h3>
+                      <h3 className="mb-0">Education insurance form</h3>
                     </Col>
                     <Col className="text-right" xs="4">
                       <Button
