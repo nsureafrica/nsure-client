@@ -38,7 +38,7 @@ class EducationInsuaranceForm extends React.Component {
                         onClick={e => e.preventDefault()}
                         size="sm"
                       >
-                        Settings
+                        Submit form
                       </Button>
                     </Col>
                   </Row>
@@ -46,17 +46,17 @@ class EducationInsuaranceForm extends React.Component {
                 <CardBody>
                   <Form>
                     <h6 className="heading-small text-muted mb-4">
-                      Automobile information
+                      Client information
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        <Col lg="6">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-username"
                             >
-                              Motor estimate value (KES)
+                              First Name
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -67,13 +67,13 @@ class EducationInsuaranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="6">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-email"
                             >
-                              Email address
+                              Second Name
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -84,83 +84,150 @@ class EducationInsuaranceForm extends React.Component {
                           </FormGroup>
                         </Col>
                       </Row>
+                    </div>
+                    <hr className="my-4" />
+                    {/* Core cover */}
+                    <h6 className="heading-small text-muted mb-4">
+                      Core cover
+                    </h6>
+                    <div className="pl-lg-4">
                       <Row>
-                        <Col lg="6">
+                      <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-first-name"
+                              htmlFor="input-email"
                             >
-                              First name
+                              Principal age(18-65 years)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
-                              id="input-first-name"
-                              placeholder="First name"
-                              type="text"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="6">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-last-name"
+                              htmlFor="input-email"
                             >
-                              Last name
+                              Age of the spouse (18-65 years)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Last name"
-                              type="text"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Number of children(1 month - 17 years)
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
                             />
                           </FormGroup>
                         </Col>
                       </Row>
                     </div>
                     <hr className="my-4" />
-                    {/* Address */}
-                    <h6 className="heading-small text-muted mb-4">
-                      Contact information
-                    </h6>
+                    {/* Optional benefits */}
+                    <h6 className="heading-small text-muted mb-4">Optional Benefits</h6>
                     <div className="pl-lg-4">
                       <Row>
+                      <Col md="12">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-address"
+                            >
+                              Outpatient per person
+                            </label>
+                            <div className="custom-control custom-radio mb-3">
+                            <input
+                              className="custom-control-input"
+                              id="customRadio5"
+                              name="custom-radio-2"
+                              type="radio"
+                            />
+                            <label className="custom-control-label" htmlFor="customRadio5">
+                              Yes
+                            </label>
+                          </div>
+                          <div className="custom-control custom-radio mb-3">
+                            <input
+                              className="custom-control-input"
+                              defaultChecked
+                              id="customRadio6"
+                              name="custom-radio-2"
+                              type="radio"
+                            />
+                            <label className="custom-control-label" htmlFor="customRadio6">
+                              No
+                            </label>
+                          </div>
+                          </FormGroup>
+                        </Col>
                         <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-address"
                             >
-                              Address
+                              Maternity cover
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                              id="input-address"
-                              placeholder="Home Address"
-                              type="text"
+                            <div className="custom-control custom-radio mb-3">
+                            <input
+                              className="custom-control-input"
+                              id="customRadio5"
+                              name="custom-radio-2"
+                              type="radio"
                             />
+                            <label className="custom-control-label" htmlFor="customRadio5">
+                              Yes
+                            </label>
+                          </div>
+                          <div className="custom-control custom-radio mb-3">
+                            <input
+                              className="custom-control-input"
+                              defaultChecked
+                              id="customRadio6"
+                              name="custom-radio-2"
+                              type="radio"
+                            />
+                            <label className="custom-control-label" htmlFor="customRadio6">
+                              No
+                            </label>
+                          </div>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
-                        <Col lg="4">
+                      <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-city"
+                              htmlFor="input-email"
                             >
-                              City
+                              Enter number of people to receive dental cover(Optional)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
-                              id="input-city"
-                              placeholder="City"
-                              type="text"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
                             />
                           </FormGroup>
                         </Col>
@@ -168,16 +235,15 @@ class EducationInsuaranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-country"
+                              htmlFor="input-email"
                             >
-                              Country
+                              Enter number of people to receive optical cover(Optional)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="United States"
-                              id="input-country"
-                              placeholder="Country"
-                              type="text"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
                             />
                           </FormGroup>
                         </Col>
@@ -185,35 +251,35 @@ class EducationInsuaranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-country"
+                              htmlFor="input-email"
                             >
-                              Postal code
+                              Number of members to be covered under last expense(Optional)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-postal-code"
-                              placeholder="Postal code"
-                              type="number"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Number of members to be covered under personal accident(Optional) - (18 and over)
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="jesse@example.com"
+                              type="email"
                             />
                           </FormGroup>
                         </Col>
                       </Row>
-                    </div>
-                    <hr className="my-4" />
-                    {/* Description */}
-                    <h6 className="heading-small text-muted mb-4">About me</h6>
-                    <div className="pl-lg-4">
-                      <FormGroup>
-                        <label>About Me</label>
-                        <Input
-                          className="form-control-alternative"
-                          placeholder="A few words about you ..."
-                          rows="4"
-                          defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and
-                          Open Source."
-                          type="textarea"
-                        />
-                      </FormGroup>
                     </div>
                   </Form>
                 </CardBody>

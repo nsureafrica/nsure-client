@@ -38,7 +38,7 @@ class MedicalInsuaranceForm extends React.Component {
                         onClick={e => e.preventDefault()}
                         size="sm"
                       >
-                        Settings
+                        Submit form
                       </Button>
                     </Col>
                   </Row>
