@@ -11,13 +11,6 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/SalamahTransitionCoverForm",
-    name: "Salamah Transition Cover",
-    icon: "ni ni-planet text-blue",
-    component: SalamahTransitionCoverForm,
-    layout: "/admin"
-  },
-  {
     path: "/maps",
     name: "Premiums,Policies and Claims",
     icon: "ni ni-pin-3 text-orange",
