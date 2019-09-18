@@ -32,7 +32,7 @@ class LifeInsuaranceFormHeader extends React.Component {
                   href="#pablo"
                   onClick={e => e.preventDefault()}
                 >
-                  Edit profile
+                  Bring existing policy on board
                 </Button>
               </Col>
             </Row>

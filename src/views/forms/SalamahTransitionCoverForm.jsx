@@ -46,7 +46,7 @@ class SalamahTransitionCoverForm extends React.Component {
                 <CardBody>
                   <Form>
                     <h6 className="heading-small text-muted mb-4">
-                      Automobile information
+                      Spouse Information
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
@@ -56,13 +56,13 @@ class SalamahTransitionCoverForm extends React.Component {
                               className="form-control-label"
                               htmlFor="input-username"
                             >
-                              Motor estimate value (KES)
+                              Name of spouse
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
+                              // defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder="Spouse Name"
                               type="text"
                             />
                           </FormGroup>
@@ -73,48 +73,12 @@ class SalamahTransitionCoverForm extends React.Component {
                               className="form-control-label"
                               htmlFor="input-email"
                             >
-                              Email address
+                              ID number of spouse
                             </label>
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
-                            >
-                              First name
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Lucky"
-                              id="input-first-name"
-                              placeholder="First name"
-                              type="text"
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                              Last name
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="0123456789"
                               type="text"
                             />
                           </FormGroup>

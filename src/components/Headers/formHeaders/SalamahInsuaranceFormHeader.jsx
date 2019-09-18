@@ -25,14 +25,14 @@ class SalamahInsuaranceFormHeader extends React.Component {
               <Col lg="7" md="10">
                 <h1 className="display-2 text-white">Hello User</h1>
                 <p className="text-white mt-0 mb-5">
-                null
+                A funeral cover to plan for costs arising from the loss of loved ones.
                 </p>
                 <Button
                   color="info"
                   href="#pablo"
                   onClick={e => e.preventDefault()}
                 >
-                  Edit profile
+                  Bring existing policy on board
                 </Button>
               </Col>
             </Row>
