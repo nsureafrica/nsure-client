@@ -90,9 +90,10 @@ class Maps extends React.Component {
   render() {
     return (
       <>
-        <Header />
+\
         {/* Page content */}
-        <Container className="mt--7" fluid>
+        <Container className="mt-2" fluid>
+        <h3 className="" style={{textAlign:'center', color:'#001996', letterSpacing:'1px',}}>Select your delivery point</h3>
           <Row>
             <div className="col">
               <Card className="shadow border-0">

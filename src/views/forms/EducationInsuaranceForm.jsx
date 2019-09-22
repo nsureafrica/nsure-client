@@ -34,8 +34,8 @@ class EducationInsuaranceForm extends React.Component {
                     <Col className="text-right" xs="4">
                       <Button
                         color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        href="delivery"
+                        // onClick={e => e.preventDefault()}
                         size="sm"
                       >
                         Submit form
