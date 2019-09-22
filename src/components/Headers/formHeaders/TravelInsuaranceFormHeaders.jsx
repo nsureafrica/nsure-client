@@ -8,25 +8,23 @@ class TravelInsuaranceFormHeader extends React.Component {
     return (
       <>
         <div
-          className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+          className="header pb-8  pt-lg-8 d-flex align-items-center"
           style={{
-            minHeight: "600px",
+            minHeight: "250px",
             backgroundImage:
-              "url(https://source.unsplash.com/collection/4429411/1600x900)",
+              "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM)",
             backgroundSize: "cover",
             backgroundPosition: "center top"
           }}
         >
           {/* Mask */}
-          <span className="mask bg-gradient-default opacity-8" />
+          <span className="mask opacity-5" style={{backgroundColor:'rgb(69, 162, 240)', filter:'blur(11px)'}} />
           {/* Header container */}
-          <Container className="d-flex align-items-center" fluid>
-            <Row>
-              <Col lg="7" md="10">
-                <h1 className="display-2 text-white">Hello User</h1>
-                <p className="text-white mt-0 mb-5">
-                Travel insurance is insurance coverage for risks associated with traveling such as loss of luggage, delays, and death or injury while in a foreign country.
-                </p>
+          <Container className=" align-items-right" fluid style={{textAlign:'right'}}>
+            <div>
+              <Col lg="7" md="10" style={{float:'right'}}>
+                <h1 className="text-white">Travel Insurance</h1>
+              
                 <Button
                   color="info"
                   href="#pablo"
@@ -35,7 +33,7 @@ class TravelInsuaranceFormHeader extends React.Component {
                   Bring existing policy on board
                 </Button>
               </Col>
-            </Row>
+            </div>
           </Container>
         </div>
       </>

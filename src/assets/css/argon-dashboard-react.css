@@ -79,7 +79,14 @@ body {
   color: #525f7f;
   text-align: left;
   background-color: #f8f9fe; }
-
+  .nsure-icons
+  {
+    background: -webkit-linear-gradient(#d52535, #0f3b5f);
+    font-size: '3rem';
+     color: 'rgba(213, 37, 53, 0.71)';
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
@@ -13226,3 +13233,6 @@ button:focus, :focus {
 
 .table .badge i {
   margin-right: 10px; }
+
+
+

@@ -29,7 +29,7 @@ class MedicalInsuaranceForm extends React.Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Education Insuarance Form</h3>
+                      <h3 className="mb-0">Medical Insuarance Form</h3>
                     </Col>
                     <Col className="text-right" xs="4">
                       <Button

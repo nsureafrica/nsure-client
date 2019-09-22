@@ -62,7 +62,7 @@ class Index extends React.Component {
         {/* Page content */}
 
         <Container className="mt--7" fluid>
-        <h2 className="" style={{textAlign:'center', color:'rgba(17, 61, 96, 0.49)', textTransform:'uppercase'}}>Current Covers</h2>
+        <h2 className="" style={{textAlign:'center', color:'#001996', letterSpacing:'3px',  textTransform:'uppercase'}}>Current Covers</h2>
           <Row className="mt-3">
             <Col className="mb-5 mb-xl-0" >
               <Card className="shadow">

@@ -8,25 +8,23 @@ class MotorInsuaranceFormHeader extends React.Component {
     return (
       <>
         <div
-          className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+          className="header pb-8  pt-lg-8 d-flex align-items-center"
           style={{
-            minHeight: "600px",
+            minHeight: "250px",
             backgroundImage:
-              "url(https://source.unsplash.com/collection/4429411/1600x900)",
+              "url(https://i.roamcdn.net/hz/pi/og-image-category/312b0538e2660e8c604a7f23d89748c2/-/hzfiles/pi/og_image/q10dk3/de0486672589668c4785ef6d9165689ac266cd2e.jpeg)",
             backgroundSize: "cover",
             backgroundPosition: "center top"
           }}
         >
           {/* Mask */}
-          <span className="mask bg-gradient-default opacity-8" />
+          <span className="mask opacity-5" style={{backgroundColor:'rgb(69, 162, 240)', filter:'blur(11px)'}} />
           {/* Header container */}
-          <Container className="d-flex align-items-center" fluid>
-            <Row>
-              <Col lg="7" md="10">
-                <h1 className="display-2 text-white">Hello User</h1>
-                <p className="text-white mt-0 mb-5">
-                A motor insurance is an agreement between the insurer and the policyholder (owner of the vehicle), where the insurer promises to protect the policyholder from financial liabilities that may arise due to any mishap while driving one's vehicle. Motor insurance can be availed for a premium, as determined by the insurer.
-                </p>
+          <Container className=" align-items-right" fluid style={{textAlign:'right'}}>
+            <div>
+              <Col lg="7" md="10" style={{float:'right'}}>
+                <h1 className="text-white">Motor Insurance</h1>
+              
                 <Button
                   color="info"
                   href="#pablo"
@@ -35,7 +33,7 @@ class MotorInsuaranceFormHeader extends React.Component {
                   Bring existing policy on board
                 </Button>
               </Col>
-            </Row>
+            </div>
           </Container>
         </div>
       </>

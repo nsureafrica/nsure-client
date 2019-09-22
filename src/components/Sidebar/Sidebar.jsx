@@ -71,8 +71,9 @@ class Sidebar extends React.Component {
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
+            
           >
-            <i className={prop.icon} />
+            <i className={prop.icon} style={prop.style} />
             {prop.name}
           </NavLink>
         </NavItem>

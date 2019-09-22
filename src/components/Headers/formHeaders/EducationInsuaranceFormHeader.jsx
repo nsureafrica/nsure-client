@@ -10,23 +10,25 @@ class EducationInsuaranceFormHeader extends React.Component {
         <div
           className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
           style={{
-            minHeight: "600px",
+            minHeight: "250px",
             backgroundImage:
-              "url(https://source.unsplash.com/collection/4429411/1600x900)",
+              "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwrybLv0bBwV98kkY0zp1yKiopc7vA52HBKbEsPRX9CrBI9c6y)",
             backgroundSize: "cover",
-            backgroundPosition: "center top"
+            backgroundPosition: "center top",
+            backgroundColor:'transparent',
+            opacity:'1',
+
+           
           }}
         >
           {/* Mask */}
-          <span className="mask bg-gradient-default opacity-8" />
+          <span className="mask opacity-5" style={{backgroundColor:'rgb(69, 162, 240)', filter:'blur(11px)'}}  />
           {/* Header container */}
           <Container className="d-flex align-items-center" fluid>
             <Row>
               <Col lg="7" md="10">
-                <h1 className="display-2 text-white">Hello User</h1>
-                <p className="text-white mt-0 mb-5">
-                An educational fund, in the context of insurance, refers to the use of a life insurance policy to pay for the education of the insured's child.
-                </p>
+                <h1 className="text-white">Education Insurance</h1>
+             
                 <Button
                   color="info"
                   href="#pablo"

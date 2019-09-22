@@ -11,109 +11,115 @@ class Header extends React.Component {
           <Container fluid>
             <div className="header-body">
               {/* Card stats */}
-              <h2 className="" style={{ textAlign: 'center', color: 'rgba(17, 61, 96, 0.49)', textTransform: 'uppercase' }}>ADD Insurance</h2>
+              <h2 className="" style={{marginBottom:'1em', textAlign: 'center', color: '#001996', letterSpacing:'3px', textTransform: 'uppercase' }}>Add Insurance</h2>
               <Row>
-                <Col lg="3" xl="3" sm="6" xs="6">
+                <Col lg="3" xl="3" sm="4" xs="4">
                   <a href="EducationInsuaranceForm">
-                    <Card className="card-stats mb-4 mb-xl-0">
-                      <CardBody style={{ textAlign: 'center' }}>
+                    <Card className="card-stats mb-4 mb-xl-0" style={{backgroundColor:'rgba(255, 255, 255, 0.2)', border:'none'}}>
+                      <CardBody style={{ textAlign: 'center', color:'#F44336' }}>
 
                         <div className="">
-                          <i className="fa fa-graduation-cap " style={{ fontSize: '3rem', color: 'rgba(213, 37, 53, 0.71)', }} />
+                          <i className="fa fa-graduation-cap nsure-icons "  style={{ fontSize: '2rem',
+}}/>
                         </div>
 
-                        <CardTitle
-                          tag="h4"
+                        <div
+                          tag="h5"
                           className=" "
-                          style={{ color: '#797d87', textAlign: 'center', marginTop: '15px' }}
+                          style={{ textAlign: 'center', marginTop: '7px', fontWeight:'bold', fontSize:'11px' }}
                         >
                           Education
-                          </CardTitle>
+                          </div>
                       </CardBody>
                     </Card>
                   </a>
                 </Col>
-                <Col lg="3" xl="3" sm="6" xs="6">
+                <Col lg="3" xl="3" sm="4" xs="4">
                   <a href="MedicalInsuaranceForm">
-                    <Card className="card-stats mb-4 mb-xl-0">
-                      <CardBody style={{ textAlign: 'center' }}>
+                    <Card className="card-stats mb-4 mb-xl-0" style={{backgroundColor:'rgba(255, 255, 255, 0.2)', border:'none'}}>
+                      <CardBody style={{ textAlign: 'center', color:'#00BCD4' }}>
 
                         <div className="">
-                          <i className="fa fa-medkit " style={{ fontSize: '3rem', color: 'rgba(213, 37, 53, 0.71)', }} />
+                          <i className="fa fa-medkit " style={{  fontSize: '2rem',
+     }} />
                         </div>
 
-                        <CardTitle
-                          tag="h4"
+                        <div
+                          tag="h5"
                           className=" "
-                          style={{ color: '#797d87', textAlign: 'center', marginTop: '15px' }}
+                          style={{textAlign: 'center', marginTop: '7px', fontWeight:'bold', fontSize:'11px' }}
                         >
                           Medical
-                          </CardTitle>
+                          </div>
                       </CardBody>
                     </Card>
                   </a>
                 </Col>
 
 
-                <Col lg="3" xl="3" sm="6" xs="6">
+                <Col lg="3" xl="3" sm="4" xs="4">
                   <a href="MotorInsuaranceForm">
-                    <Card className="card-stats mb-4 mb-xl-0">
-                      <CardBody style={{ textAlign: 'center' }}>
+                    <Card className="card-stats mb-4 mb-xl-0" style={{backgroundColor:'rgba(255, 255, 255, 0.2)', border:'none'}}>
+                      <CardBody style={{ textAlign: 'center', color:'#8BC34A' }}>
 
                         <div className="">
-                          <i className="fa fa-car " style={{ fontSize: '3rem', color: 'rgba(213, 37, 53, 0.71)', }} />
+                          <i className="fa fa-car " style={{ fontSize: '2rem',}} />
                         </div>
 
-                        <CardTitle
-                          tag="h4"
+                        <div
+                          tag="h5"
                           className=" "
-                          style={{ color: '#797d87', textAlign: 'center', marginTop: '15px' }}
+                          style={{ textAlign: 'center', marginTop: '7px', fontWeight:'bold', fontSize:'11px' }}
                         >
                           Motor
-                          </CardTitle>
+                          </div>
                       </CardBody>
                     </Card>
                   </a>
                 </Col>
 
-                <Col lg="3" xl="3" sm="6" xs="6">
+                <Col lg="3" xl="3" sm="4" xs="4">
                   <a href="TravelInsuranceCoverForm">
-                    <Card className="card-stats mb-4 mb-xl-0">
-                      <CardBody style={{ textAlign: 'center' }}>
+                    <Card className="card-stats mb-4 mb-xl-0" style={{backgroundColor:'rgba(255, 255, 255, 0.2)', border:'none'}}>
+                      <CardBody style={{ textAlign: 'center', color:'#FF9800' }}>
 
                         <div className="">
-                          <i className="fa fa-globe " style={{ fontSize: '3rem', color: 'rgba(213, 37, 53, 0.71)', }} />
+                          <i className="fa fa-globe " style={{
+    fontSize: '2rem',
+}} />
                         </div>
 
-                        <CardTitle
-                          tag="h4"
+                        <div
+                          tag="h5"
                           className=" "
-                          style={{ color: '#797d87', textAlign: 'center', marginTop: '15px' }}
+                          style={{ textAlign: 'center', marginTop: '7px',fontWeight:'bold', fontSize:'11px' }}
                         >
                           Travel
-                          </CardTitle>
+                          </div>
                       </CardBody>
                     </Card>
                   </a>
                 </Col>
 
 
-                <Col lg="3" xl="3" sm="6" xs="6">
+                <Col lg="3" xl="3" sm="4" xs="4">
                   <a href="SalamahTransitionCoverForm">
-                    <Card className="card-stats mb-4 mb-xl-0">
-                      <CardBody style={{ textAlign: 'center' }}>
+                    <Card className="card-stats mb-4 mb-xl-0" style={{backgroundColor:'rgba(255, 255, 255, 0.2)', border:'none'}}>
+                      <CardBody style={{ textAlign: 'center', color:'#9C27B0' }}>
 
                         <div className="">
-                          <i className="fa fa-thumbs-up" style={{ fontSize: '3rem', color: 'rgba(213, 37, 53, 0.71)', }} />
+                          <i className="fa fa-thumbs-up" style={{
+    fontSize: '2rem',
+}} />
                         </div>
 
-                        <CardTitle
-                          tag="h4"
+                        <div
+                          tag="h5"
                           className=" "
-                          style={{ color: '#797d87', textAlign: 'center', marginTop: '15px' }}
+                          style={{ textAlign: 'center', marginTop: '7px', fontWeight:'bold', fontSize:'11px' }}
                         >
                           Salamah
-                          </CardTitle>
+                          </div>
                       </CardBody>
                     </Card>
                   </a>
