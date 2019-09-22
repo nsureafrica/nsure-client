@@ -71,9 +71,9 @@ class Sidebar extends React.Component {
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
-            
+           
           >
-            <i className={prop.icon} style={prop.style} />
+            <i className={prop.icon}  style={prop.style} />
             {prop.name}
           </NavLink>
         </NavItem>
@@ -227,8 +227,8 @@ class Sidebar extends React.Component {
             {/* Divider */}
             <hr className="my-3" />
             {/* Heading */}
-            <h6 className="navbar-heading text-muted">Other Services</h6>
-            <Nav navbar>{this.createLinks(routes)}</Nav>
+            {/* <h6 className="navbar-heading text-muted">Other Services</h6>
+            <Nav navbar>{this.createLinks(routes)}</Nav> */}
             {/* Divider */}
             {/* <hr className="my-3" /> */}
             {/* Navigation */}

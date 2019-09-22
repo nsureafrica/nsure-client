@@ -1,7 +1,8 @@
 import Index from "views/Index.jsx";
 import Maps from "views/examples/Maps.jsx";
-import SalamahTransitionCoverForm from "./views/forms/SalamahTransitionCoverForm"
-
+import Delivery from "views/delivery/delivery.jsx";
+import PickUpPoints from "views/delivery/pickup.jsx";
+import Invoice from "views/invoices/invoice.jsx";
 var routes = [
   {
     path: "/index",
@@ -15,6 +16,27 @@ var routes = [
     name: "Premiums,Policies and Claims",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
+    layout: "/admin"
+  },
+  {
+    path: "/delivery",
+    name: "Delivery",
+    icon: "ni ni-pin-3 text-orange",
+    component: Delivery,
+    layout: "/admin"
+  },
+  {
+    path: "/pickup",
+    name: "pickup",
+    icon: "ni ni-pin-3 text-orange",
+    component: PickUpPoints,
+    layout: "/admin"
+  },
+  {
+    path: "/invoice",
+    name: "invoice",
+    icon: "ni ni-pin-3 text-orange",
+    component: Invoice,
     layout: "/admin"
   },
 ];

@@ -32,10 +32,10 @@ class SalamahTransitionCoverForm extends React.Component {
                       <h3 className="mb-0">Salamah Transition Cover Form</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                      <Button
+                    <Button
                         color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        href="delivery"
+                        // onClick={e => e.preventDefault()}
                         size="sm"
                       >
                         Submit form
