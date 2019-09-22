@@ -423,23 +423,23 @@ $blockquote-font-size:        ($font-size-base * 1.25) !default;
 $hr-border-color:             rgba($black, .1);
 $hr-border-width:             $border-width !default;
 
-#{$mark-padding}:                .2em !default;
+$mark-padding:                .2em !default;
 
-#{$dt-font-weight}:              $font-weight-bold !default;
+$dt-font-weight:              $font-weight-bold !default;
 
-#{$list-inline-padding}:         .5rem !default;
+$list-inline-padding:         .5rem !default;
 
-#{$mark-bg}:                     #fcf8e3 !default;
+$mark-bg:                     #fcf8e3 !default;
 
-#{$hr-margin-y}                 $spacer * 2 !default;
+$hr-margin-y:                 $spacer * 2 !default;
 
 
 // Icons
 
-#{$icon-size} : 3rem !default;
-#{$icon-size-xl} : 5rem !default;
-#{$icon-size-lg} : 4rem !default;
-#{$icon-size-sm}: 2rem !default;
+$icon-size: 3rem !default;
+$icon-size-xl: 5rem !default;
+$icon-size-lg: 4rem !default;
+$icon-size-sm: 2rem !default;
 
 
 // Tables

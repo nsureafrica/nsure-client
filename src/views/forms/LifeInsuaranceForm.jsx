@@ -60,9 +60,8 @@ class LifeInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder=" First Name"
                               type="text"
                             />
                           </FormGroup>

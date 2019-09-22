@@ -301,18 +301,18 @@ $blockquote-font-size:        ($font-size-base * 1.25) !default;
 $hr-border-color:             rgba($black, .1) !default;
 $hr-border-width:             $border-width !default;
 
-#{$mark-padding}:                .2em !default;
+$mark-padding:                .2em !default;
 
-#{$dt-font-weight}:              $font-weight-bold !default;
+$dt-font-weight:              $font-weight-bold !default;
 
 $kbd-box-shadow:              inset 0 -.1rem 0 rgba($black, .25) !default;
 $nested-kbd-font-weight:      $font-weight-bold !default;
 
-#{$list-inline-padding}:         .5rem !default;
+$list-inline-padding:         .5rem !default;
 
-#{$mark-bg}:                     #fcf8e3 !default;
+$mark-bg:                     #fcf8e3 !default;
 
-#{$hr-margin-y}                 $spacer !default;
+$hr-margin-y:                 $spacer !default;
 
 
 // Tables

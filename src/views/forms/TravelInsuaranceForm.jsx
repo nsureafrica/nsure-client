@@ -77,8 +77,8 @@ class TravelInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="treatment in country of residence"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>

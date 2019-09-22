@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 :root {
   --blue: #5e72e4;
   --indigo: #5603ad;
@@ -79,14 +62,7 @@ body {
   color: #525f7f;
   text-align: left;
   background-color: #f8f9fe; }
-  .nsure-icons
-  {
-    background: -webkit-linear-gradient(#d52535, #0f3b5f);
-    font-size: '3rem';
-     color: 'rgba(213, 37, 53, 0.71)';
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
@@ -10745,8 +10721,7 @@ textarea[resize="horizontal"] {
   .icon-xl i, .icon-xl svg {
     font-size: 4.25rem; }
   .icon-xl + .icon-text {
-    width: calc(100% - #{$icon-size-xl} - 1); 
-  }
+    width: calc(100% - #{$icon-size-xl} - 1); }
 
 .icon-lg {
   width: 4rem;
@@ -13234,6 +13209,11 @@ button:focus, :focus {
 
 .table .badge i {
   margin-right: 10px; }
-
-
-
+  .nsure-icons
+  {
+    background: -webkit-linear-gradient(#d52535, #0f3b5f);
+    font-size: '3rem';
+     color: 'rgba(213, 37, 53, 0.71)';
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

@@ -60,9 +60,8 @@ class EducationInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder=" First Name"
                               type="text"
                             />
                           </FormGroup>
@@ -78,8 +77,8 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="Second Name"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -103,8 +102,8 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="Principal age(18-65 years)"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -119,8 +118,8 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="Age of the spouse (18-65 years)"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -135,7 +134,7 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
+                              placeholder="Number of children(1 month - 17 years)"
                               type="email"
                             />
                           </FormGroup>
@@ -226,8 +225,8 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="number of people to receive dental cover"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -242,8 +241,8 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="Number of people to receive optical cover"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -258,7 +257,7 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
+                              placeholder="members to be covered under last expense"
                               type="email"
                             />
                           </FormGroup>
@@ -274,7 +273,7 @@ class EducationInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
+                              placeholder=" members to be covered under personal accident"
                               type="email"
                             />
                           </FormGroup>
