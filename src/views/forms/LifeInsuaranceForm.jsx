@@ -79,9 +79,8 @@ class LifeInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
                               id="input-first-name"
-                              placeholder="First name"
+                              placeholder="Second name"
                               type="text"
                             />
                           </FormGroup>
@@ -96,7 +95,6 @@ class LifeInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
                               placeholder="Last name"
                               type="text"

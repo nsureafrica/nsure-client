@@ -24,7 +24,7 @@ class MotorInsuaranceForm extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-1" xl="8">
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
@@ -60,9 +60,8 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder="Motor estimate value (KES)"
                               type="text"
                             />
                           </FormGroup>
@@ -78,7 +77,7 @@ class MotorInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
+                              placeholder="johndoe@example.com"
                               type="email"
                             />
                           </FormGroup>
@@ -95,7 +94,6 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
                               id="input-first-name"
                               placeholder="First name"
                               type="text"
@@ -112,7 +110,6 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
                               placeholder="Last name"
                               type="text"
@@ -157,7 +154,6 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
                               id="input-city"
                               placeholder="City"
                               type="text"
@@ -174,7 +170,6 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="United States"
                               id="input-country"
                               placeholder="Country"
                               type="text"
@@ -198,22 +193,6 @@ class MotorInsuaranceForm extends React.Component {
                           </FormGroup>
                         </Col>
                       </Row>
-                    </div>
-                    <hr className="my-4" />
-                    {/* Description */}
-                    <h6 className="heading-small text-muted mb-4">About me</h6>
-                    <div className="pl-lg-4">
-                      <FormGroup>
-                        <label>About Me</label>
-                        <Input
-                          className="form-control-alternative"
-                          placeholder="A few words about you ..."
-                          rows="4"
-                          defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and
-                          Open Source."
-                          type="textarea"
-                        />
-                      </FormGroup>
                     </div>
                   </Form>
                 </CardBody>
