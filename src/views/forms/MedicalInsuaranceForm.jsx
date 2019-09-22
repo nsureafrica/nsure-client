@@ -24,7 +24,7 @@ class MedicalInsuaranceForm extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-1" xl="8">
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
@@ -60,9 +60,8 @@ class MedicalInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Full name"
                               type="text"
                             />
                           </FormGroup>
@@ -77,9 +76,8 @@ class MedicalInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder="Age next birthday"
                               type="text"
                             />
                           </FormGroup>
@@ -95,8 +93,8 @@ class MedicalInsuaranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
+                              placeholder="Full name of child"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -112,9 +110,8 @@ class MedicalInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
                               id="input-first-name"
-                              placeholder="First name"
+                              placeholder="Age of child"
                               type="text"
                             />
                           </FormGroup>
@@ -129,9 +126,8 @@ class MedicalInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Policy term"
                               type="text"
                             />
                           </FormGroup>
@@ -147,9 +143,8 @@ class MedicalInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Monthly payable premium"
                               type="text"
                             />
                           </FormGroup>

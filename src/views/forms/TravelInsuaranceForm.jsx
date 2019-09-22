@@ -24,7 +24,7 @@ class TravelInsuaranceForm extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-1" xl="8">
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
@@ -60,9 +60,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder="Medical expenses"
                               type="text"
                             />
                           </FormGroup>
@@ -95,9 +94,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
                               id="input-first-name"
-                              placeholder="First name"
+                              placeholder=" Medical evaluation expenses"
                               type="text"
                             />
                           </FormGroup>
@@ -112,9 +110,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Repartriation of mortal remains"
                               type="text"
                             />
                           </FormGroup>
@@ -132,9 +129,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
                               id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Accompanying family member"
                               type="text"
                             />
                           </FormGroup>
@@ -158,9 +154,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              // placeholder="Home Address"
                               type="text"
                             />
                           </FormGroup>
@@ -177,9 +172,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
                               id="input-city"
-                              placeholder="City"
+                              placeholder="Legal Assisntace"
                               type="text"
                             />
                           </FormGroup>
@@ -201,9 +195,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="Loss or theft"
                               type="text"
                             />
                           </FormGroup>
@@ -220,9 +213,8 @@ class TravelInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
                               id="input-city"
-                              placeholder="City"
+                              placeholder="Luggage delay"
                               type="text"
                             />
                           </FormGroup>

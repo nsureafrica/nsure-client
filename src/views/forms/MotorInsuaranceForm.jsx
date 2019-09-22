@@ -135,9 +135,8 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="Address"
                               type="text"
                             />
                           </FormGroup>

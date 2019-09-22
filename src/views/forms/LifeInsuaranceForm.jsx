@@ -24,7 +24,7 @@ class LifeInsuaranceForm extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-1" xl="8">
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">

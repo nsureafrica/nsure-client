@@ -24,7 +24,7 @@ class SalamahTransitionCoverForm extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-1" xl="8">
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
@@ -60,7 +60,6 @@ class SalamahTransitionCoverForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              // defaultValue="lucky.jesse"
                               id="input-username"
                               placeholder="Spouse Name"
                               type="text"
@@ -102,9 +101,8 @@ class SalamahTransitionCoverForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="Name"
                               type="text"
                             />
                           </FormGroup>
@@ -119,9 +117,8 @@ class SalamahTransitionCoverForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="ID"
                               type="text"
                             />
                           </FormGroup>
@@ -145,9 +142,8 @@ class SalamahTransitionCoverForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="Name"
                               type="text"
                             />
                           </FormGroup>
@@ -171,9 +167,8 @@ class SalamahTransitionCoverForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="Name"
                               type="text"
                             />
                           </FormGroup>
@@ -188,9 +183,8 @@ class SalamahTransitionCoverForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="ID"
                               type="text"
                             />
                           </FormGroup>
