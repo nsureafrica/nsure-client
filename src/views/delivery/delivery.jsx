@@ -24,7 +24,7 @@ class Delivery extends React.Component {
        
                 <Col lg="3" xl="3" sm="5" xs="5">
                   <div onClick={()=> {this.setState({delivery:'sendy'})}}>
-                    <Card className="card-stats mb-4 mb-xl-0" style={this.state.delivery == 'sendy' ? this.butActive : this.but}>
+                    <Card className="card-stats mb-4 mb-xl-0" style={this.state.delivery === 'sendy' ? this.butActive : this.but}>
                       <CardBody style={{ textAlign: 'center', color:'rgb(181, 0, 50)' }}>
 
                         <div className="">
@@ -74,10 +74,10 @@ class Delivery extends React.Component {
 
 
               </Row>
-              {this.state.delivery == 'sendy' &&
+              {this.state.delivery === 'sendy' &&
                   <Maps/>
               }
-                {this.state.delivery == 'pickup' &&
+                {this.state.delivery === 'pickup' &&
                    <PickUpPoints/>
               }
                
