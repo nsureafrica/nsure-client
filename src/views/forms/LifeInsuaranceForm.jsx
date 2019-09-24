@@ -66,8 +66,6 @@ class LifeInsuaranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        
-                      
                         <Col lg="6">
                           <FormGroup>
                             <label
