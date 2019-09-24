@@ -24,21 +24,21 @@ class MedicalInsuaranceForm extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-1" xl="8">
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Medical Insuarance Form</h3>
+                      <h3 className="mb-0">Medical Insurance Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                    <Button
+                      <Button
                         color="primary"
                         href="delivery"
                         // onClick={e => e.preventDefault()}
                         size="sm"
                       >
-                        Submit form
+                        Submit details
                       </Button>
                     </Col>
                   </Row>
@@ -46,110 +46,38 @@ class MedicalInsuaranceForm extends React.Component {
                 <CardBody>
                   <Form>
                     <h6 className="heading-small text-muted mb-4">
-                     Details
+                      Client information
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                               Full name of life assured
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Last name"
-                              type="text"
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-username"
                             >
-                              Age next birthday
+                              First Name
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
                               id="input-username"
-                              placeholder="Username"
+                              placeholder=" First Name"
                               type="text"
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="6">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-email"
                             >
-                              Full name of child
+                              Second Name
                             </label>
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
-                            >
-                              Age of child
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Lucky"
-                              id="input-first-name"
-                              placeholder="First name"
-                              type="text"
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                              Policy Term (in years)
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Last name"
-                              type="text"
-                            />
-                          </FormGroup>
-                          
-                        </Col>
-                        <Col lg="6">
-                        <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                              Monthly payable premium
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Second Name"
                               type="text"
                             />
                           </FormGroup>
@@ -157,28 +85,116 @@ class MedicalInsuaranceForm extends React.Component {
                       </Row>
                     </div>
                     <hr className="my-4" />
-                    {/* Address */}
+                    {/* Core cover */}
                     <h6 className="heading-small text-muted mb-4">
-                      Riders(Optional)
+                      Core cover
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
+                      <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Principal age(18-65 years)
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="Principal age(18-65 years)"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Age of the spouse (18-65 years)
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="Age of the spouse (18-65 years)"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Number of children(1 month - 17 years)
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="Number of children(1 month - 17 years)"
+                              type="email"
+                            />
+                          </FormGroup>
+                        </Col>
+                      </Row>
+                    </div>
+                    <hr className="my-4" />
+                    {/* Optional benefits */}
+                    <h6 className="heading-small text-muted mb-4">Optional Benefits</h6>
+                    <div className="pl-lg-4">
+                      <Row>
+                      <Col md="12">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-address"
+                            >
+                              Outpatient per person
+                            </label>
+                            <div className="custom-control custom-radio mb-3">
+                            <input
+                              className="custom-control-input"
+                              id="outpatientPerPerson"
+                              name="outPatientPerPerson"
+                              type="radio"
+                            />
+                            <label className="custom-control-label" htmlFor="outPatientPerPerson">
+                              Yes
+                            </label>
+                          </div>
+                          <div className="custom-control custom-radio mb-3">
+                            <input
+                              className="custom-control-input"
+                              defaultChecked
+                              id="outpatientPerPerson"
+                              name="outPatientPerPerson"
+                              type="radio"
+                            />
+                            <label className="custom-control-label" htmlFor="outPatientPerPerson">
+                              No
+                            </label>
+                          </div>
+                          </FormGroup>
+                        </Col>
                         <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-address"
                             >
-                              Total and Permanent Disability
+                              Maternity cover
                             </label>
                             <div className="custom-control custom-radio mb-3">
                             <input
                               className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
+                              id="maternityCover"
+                              name="maternityCover"
                               type="radio"
                             />
-                            <label className="custom-control-label" htmlFor="customRadio5">
+                            <label className="custom-control-label" htmlFor="maternityCover">
                               Yes
                             </label>
                           </div>
@@ -186,11 +202,11 @@ class MedicalInsuaranceForm extends React.Component {
                             <input
                               className="custom-control-input"
                               defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
+                              id="maternityCover"
+                              name="maternityCover"
                               type="radio"
                             />
-                            <label className="custom-control-label" htmlFor="customRadio6">
+                            <label className="custom-control-label" htmlFor="maternityCover">
                               No
                             </label>
                           </div>
@@ -198,177 +214,68 @@ class MedicalInsuaranceForm extends React.Component {
                         </Col>
                       </Row>
                       <Row>
-                      <Col md="12">
+                      <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-address"
+                              htmlFor="input-email"
                             >
-                             Waiver of premium
+                              Enter number of people to receive dental cover(Optional)
                             </label>
-                            <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="number of people to receive dental cover"
+                              type="text"
                             />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
                           </FormGroup>
                         </Col>
-                      </Row>
-                      <Row>
-                      <Col md="12">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-address"
+                              htmlFor="input-email"
                             >
-                              Child Accident Hospitalization Rider
+                              Enter number of people to receive optical cover(Optional)
                             </label>
-                            <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="Number of people to receive optical cover"
+                              type="text"
                             />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
                           </FormGroup>
                         </Col>
-                      </Row>
-                      <Row>
-                      <Col md="12">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-address"
+                              htmlFor="input-email"
                             >
-                              Adult Accident Hospitalization Rider
+                              Number of members to be covered under last expense(Optional)
                             </label>
-                            <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="members to be covered under last expense"
+                              type="email"
                             />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
                           </FormGroup>
                         </Col>
-                      </Row>
-                      <Row>
-                      <Col md="12">
+                        <Col lg="4">
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-address"
+                              htmlFor="input-email"
                             >
-                              Last Expense - Life Assured
+                              Number of members to be covered under personal accident(Optional) - (18 and over)
                             </label>
-                            <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder=" members to be covered under personal accident"
+                              type="email"
                             />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                      <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Last Expense - Beneficiary child
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
                           </FormGroup>
                         </Col>
                       </Row>

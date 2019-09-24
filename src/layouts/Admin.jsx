@@ -52,7 +52,7 @@ class Admin extends React.Component {
           PersonalInsuaranceRoutes={PersonalInsuaranceRoutes}
           logo={{
             innerLink: "/admin/index",
-            imgSrc: require("assets/img/brand/argon-react.png"),
+            imgSrc: require("assets/img/brand/spire.png"),
             imgAlt: "..."
           }}
         />

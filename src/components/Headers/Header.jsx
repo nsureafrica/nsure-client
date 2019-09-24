@@ -11,7 +11,7 @@ class Header extends React.Component {
           <Container fluid>
             <div className="header-body">
               {/* Card stats */}
-              <h2 className="" style={{marginBottom:'1em', textAlign: 'center', color: '#001996', letterSpacing:'3px', textTransform: 'uppercase' }}>Add Insurance</h2>
+              <h2 className="" style={{marginBottom:'1em', textAlign: 'center', color: '#001996', letterSpacing:'3px', textTransform: 'uppercase' }}>Compare and purchase insurance</h2>
               <Row>
                 <Col lg="3" xl="3" sm="4" xs="4">
                   <a href="EducationInsuaranceForm">
