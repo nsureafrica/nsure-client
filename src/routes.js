@@ -3,6 +3,8 @@ import Maps from "views/examples/Maps.jsx";
 import Delivery from "views/delivery/delivery.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 import Invoice from "views/invoices/invoice.jsx";
+import Login from "views/login/login.jsx";
+
 var routes = [
   {
     path: "/index",
@@ -38,6 +40,12 @@ var routes = [
     icon: "ni ni-pin-3 text-orange",
     component: Invoice,
     layout: "/admin"
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    layout: "/auth"
   },
 ];
 export default routes;
