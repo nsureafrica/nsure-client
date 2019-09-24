@@ -29,7 +29,7 @@ class SalamahTransitionCoverForm extends React.Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Salamah Transition Cover Form</h3>
+                      <h3 className="mb-0">Salamah Transition Cover Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
                     <Button
@@ -38,7 +38,7 @@ class SalamahTransitionCoverForm extends React.Component {
                         // onClick={e => e.preventDefault()}
                         size="sm"
                       >
-                        Submit form
+                        Submit details
                       </Button>
                     </Col>
                   </Row>

@@ -38,7 +38,7 @@ class MotorInsuaranceForm extends React.Component {
                         // onClick={e => e.preventDefault()}
                         size="sm"
                       >
-                        Submit form
+                        Submit details
                       </Button>
                     </Col>
                   </Row>
