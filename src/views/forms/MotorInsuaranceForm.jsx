@@ -29,7 +29,7 @@ class MotorInsuaranceForm extends React.Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Motor insurance form</h3>
+                      <h3 className="mb-0">Motor Insurance Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
                     <Button
@@ -60,7 +60,7 @@ class MotorInsuaranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-username"
+                              id="input-motor-estimate-value"
                               placeholder="Motor estimate value (KES)"
                               type="text"
                             />
@@ -72,18 +72,112 @@ class MotorInsuaranceForm extends React.Component {
                               className="form-control-label"
                               htmlFor="input-email"
                             >
-                              Email address
+                              Car Model
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-email"
-                              placeholder="johndoe@example.com"
-                              type="email"
+                              id="input-car-model"
+                              placeholder="BMW"
+                              type="text"
                             />
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-username"
+                            >
+                              Number plate or registration number
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-Number-plate-or-registration-number"
+                              placeholder="Number plate or registration number"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Chassis Number
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-chassis-number"
+                              placeholder="Chasis number"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-username"
+                            >
+                              Engine Number
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-engine-number"
+                              placeholder="Engine Number"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Year of manufacture
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-year-of-manufacture"
+                              placeholder="Year of manufacture"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-username"
+                            >
+                              Upload Logbook
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-username"
+                              placeholder="Motor estimate value (KES)"
+                              type="file"
+                            />
+                          </FormGroup>
+                        </Col>
+                        
+                      </Row>
+                    </div>
+                    <hr className="my-4" />
+                    {/* Address */}
+                    <h6 className="heading-small text-muted mb-4">
+                      Contact information
+                    </h6>
+                    <div className="pl-lg-4">
+                    <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label
@@ -117,15 +211,8 @@ class MotorInsuaranceForm extends React.Component {
                           </FormGroup>
                         </Col>
                       </Row>
-                    </div>
-                    <hr className="my-4" />
-                    {/* Address */}
-                    <h6 className="heading-small text-muted mb-4">
-                      Contact information
-                    </h6>
-                    <div className="pl-lg-4">
                       <Row>
-                        <Col md="12">
+                        <Col md="6">
                           <FormGroup>
                             <label
                               className="form-control-label"
@@ -138,6 +225,22 @@ class MotorInsuaranceForm extends React.Component {
                               id="input-address"
                               placeholder="Address"
                               type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-email"
+                            >
+                              Email address
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="input-email"
+                              placeholder="johndoe@example.com"
+                              type="email"
                             />
                           </FormGroup>
                         </Col>

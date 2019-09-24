@@ -1,5 +1,5 @@
 import Index from "../views/Index.jsx"; 
-import MotorInsuaranceForm from "../views/forms/MotorInsuaranceForm"
+import MotorInsuranceForm from "../views/forms/MotorInsuaranceForm"
 import MedicalInsuaranceForm from "../views/forms/MedicalInsuaranceForm"
 import EducationInsuaranceForm from "../views/forms/EducationInsuaranceForm"
 import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm"
@@ -15,10 +15,10 @@ var PersonalInsuaranceRoutes = [
     layout: "/admin"
   },
   {
-    path: "/MotorInsuaranceForm",
-    name: "Motor Insuarance",
+    path: "/MotorInsuranceForm",
+    name: "Motor Insurance",
     icon: "fa fa-car",
-    component: MotorInsuaranceForm,
+    component: MotorInsuranceForm,
     style:{color:'#8BC34A'},
     layout: "/admin"
   },

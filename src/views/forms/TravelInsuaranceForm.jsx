@@ -29,7 +29,7 @@ class TravelInsuaranceForm extends React.Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Travel Insuarance form</h3>
+                      <h3 className="mb-0">Travel Insuarance Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
                     <Button
@@ -140,7 +140,7 @@ class TravelInsuaranceForm extends React.Component {
                     <hr className="my-4" />
                     {/* Address */}
                     <h6 className="heading-small text-muted mb-4">
-                      Travel Assisntace Services
+                      Travel Assistance Services
                     </h6>
                     <div className="pl-lg-4">
                       <Row>

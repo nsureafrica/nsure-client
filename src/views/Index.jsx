@@ -30,11 +30,13 @@ import {
 } from "variables/charts.jsx";
 
 import Header from "components/Headers/Header.jsx";
+import ClaimForm from "./forms/ClaimForm";
 
 class Index extends React.Component {
   state = {
     activeNav: 1,
-    chartExample1Data: "data1"
+    chartExample1Data: "data1",
+    open:false
   };
   toggleNavs = (e, index) => {
     e.preventDefault();
@@ -55,7 +57,11 @@ class Index extends React.Component {
       parseOptions(Chart, chartOptions());
     }
   }
+  openModal(){
+    this.setState({open:true})
+  }
   render() {
+    console.log(this.state.open);
     return (
       <>
         <Header />
@@ -125,7 +131,7 @@ class Index extends React.Component {
                           <span className="text-danger" style={{marginRight:'12px'}}>●</span>
                           <span>Expired</span>
                         </div>
-                        <button type="button" class="btn btn-secondary disabled">Claim</button>
+                        <button type="button" class="btn btn-secondary" onCick = {this.openModal}>Claim</button>
                       </Row>
 
                     </li>
@@ -138,6 +144,7 @@ class Index extends React.Component {
          
           </Row>
         </Container>
+        {this.state.open &&<ClaimForm/>}
       </>
     );
   }
