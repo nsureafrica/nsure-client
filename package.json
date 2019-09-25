@@ -22,6 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "rm -rf ../nsure-core/build && mv build ../nsure-core/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
@@ -39,6 +40,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "axios": "^0.19.0",
     "chart.js": "2.7.3",
     "classnames": "2.2.6",
     "moment": "2.24.0",
