@@ -24,7 +24,7 @@ class EducationInsuaranceFormHeader extends React.Component {
           <Container className=" align-items-right" fluid style={{textAlign:'right'}}>
             <div>
               <Col lg="7" md="10" style={{float:'right'}}>
-                <h1 className="text-white">Medical Insurance</h1>
+                <h1 className="text-white">Education Insurance</h1>
               
                 <Button
                   color="info"

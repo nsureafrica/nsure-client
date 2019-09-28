@@ -31,7 +31,6 @@ import {
 } from "variables/charts.jsx";
 
 import Header from "components/Headers/Header.jsx";
-import ClaimForm from "./forms/ClaimForm";
 
 class Index extends React.Component {
 
@@ -80,7 +79,7 @@ class Index extends React.Component {
         {/* Page content */}
 
         <Container className="mt--7" fluid>
-          <h2 className="" style={{ textAlign: 'center', color: '#001996', letterSpacing: '3px', textTransform: 'uppercase' }}>Current Covers</h2>
+          <h2 className="" style={{ textAlign: 'center', color: '#001996', letterSpacing: '3px', textTransform: 'uppercase' }}>My Current Covers</h2>
           <Row className="mt-3">
             <Col className="mb-5 mb-xl-0" >
               <Card className="shadow">
@@ -120,7 +119,7 @@ class Index extends React.Component {
                           <span className="text-success" style={{ marginRight: '12px' }}>●</span>
                           <span>Active</span>
                         </div>
-                        <button type="button" class="btn btn-secondary">Claim</button>
+                        <button type="button" class="btn btn-secondary" onClick={this.toggle}>Claim</button>
                       </Row>
 
                     </li>
@@ -143,7 +142,7 @@ class Index extends React.Component {
                           <span className="text-danger" style={{ marginRight: '12px' }}>●</span>
                           <span>Expired</span>
                         </div>
-                        <button type="button" class="btn btn-secondary" onClick={this.toggle}>Claim</button>
+                        <button type="button" class="btn btn-secondary" >Renew</button>
                       </Row>
 
                     </li>
