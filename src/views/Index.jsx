@@ -125,22 +125,17 @@ class Index extends React.Component {
                           <span className="text-danger" style={{marginRight:'12px'}}>●</span>
                           <span>Expired</span>
                         </div>
-                        <button type="button" class="btn btn-secondary disabled">Claim</button>
+                        <button type="button" class="btn btn-secondary disabled" onClick={e=>this.props.history.push("/admin/MotorInsuaranceForm")}>Claim</button>
                       </Row>
-
                     </li>
-
                   </ul>
                 </CardBody>
               </Card>
             </Col>
-           
-         
           </Row>
         </Container>
       </>
     );
   }
 }
-
 export default Index;
