@@ -222,7 +222,7 @@ class Sidebar extends React.Component {
               </InputGroup>
             </Form>
             {/* Navigation */}
-            <h6 className="navbar-heading text-muted">Personal Insuarance</h6>
+            <h6 className="navbar-heading text-muted">Personal Insurance</h6>
             <Nav navbar>{this.createLinks(PersonalInsuaranceRoutes)}</Nav>
             {/* Divider */}
             <hr className="my-3" />
