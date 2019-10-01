@@ -3,7 +3,7 @@ import React from "react";
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-class SalamahInsuaranceFormHeader extends React.Component {
+class SalamahInsuranceFormHeader extends React.Component {
   render() {
     return (
       <>
@@ -41,4 +41,4 @@ class SalamahInsuaranceFormHeader extends React.Component {
   }
 }
 
-export default SalamahInsuaranceFormHeader;
+export default SalamahInsuranceFormHeader;

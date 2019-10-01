@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by NSURE AFRICA
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 
 // reactstrap components
@@ -103,8 +86,8 @@ class Login extends React.Component {
             <Col className="text-right" xs="6">
               <a
                 className="text-light"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
+                href="register"
+                onClick={e =>this.props.history.push("/auth/register")}
               >
                 <small>Create new account</small>
               </a>

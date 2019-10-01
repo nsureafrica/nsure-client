@@ -3,7 +3,7 @@ import React from "react";
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-class MedicalInsuaranceFormHeader extends React.Component {
+class TravelInsuranceFormHeader extends React.Component {
   render() {
     return (
       <>
@@ -12,7 +12,7 @@ class MedicalInsuaranceFormHeader extends React.Component {
           style={{
             minHeight: "250px",
             backgroundImage:
-              "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBmXiTO2oAlqyGzfMp_NDH0_a9hig45Y3SoF4D47SXYgHWMDbF)",
+              "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM)",
             backgroundSize: "cover",
             backgroundPosition: "center top"
           }}
@@ -23,7 +23,7 @@ class MedicalInsuaranceFormHeader extends React.Component {
           <Container className=" align-items-right" fluid style={{textAlign:'right'}}>
             <div>
               <Col lg="7" md="10" style={{float:'right'}}>
-                <h1 className="text-white">Medical Insurance</h1>
+                <h1 className="text-white">Travel Insurance</h1>
               
                 <Button
                   color="info"
@@ -41,4 +41,4 @@ class MedicalInsuaranceFormHeader extends React.Component {
   }
 }
 
-export default MedicalInsuaranceFormHeader;
+export default TravelInsuranceFormHeader;

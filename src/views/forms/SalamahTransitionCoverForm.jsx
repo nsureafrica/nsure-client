@@ -14,7 +14,7 @@ import {
   Col
 } from "reactstrap";
 // core components
-import SalamahTransitionCoverFormHeader from "../../components/Headers/formHeaders/SalamahInsuaranceFormHeader"
+import SalamahTransitionCoverFormHeader from "../../components/Headers/formHeaders/SalamahInsuranceFormHeader"
 
 class SalamahTransitionCoverForm extends React.Component {
   render() {

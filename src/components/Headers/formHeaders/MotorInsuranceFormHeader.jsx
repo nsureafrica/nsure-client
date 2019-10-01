@@ -3,7 +3,7 @@ import React from "react";
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-class MotorInsuaranceFormHeader extends React.Component {
+class MotorInsuranceFormHeader extends React.Component {
   render() {
     return (
       <>
@@ -41,4 +41,4 @@ class MotorInsuaranceFormHeader extends React.Component {
   }
 }
 
-export default MotorInsuaranceFormHeader;
+export default MotorInsuranceFormHeader;

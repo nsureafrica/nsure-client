@@ -61,7 +61,7 @@ class Header extends React.Component {
                 </Col>
 
                 <Col lg="3" xl="2" sm="6" xs="6">
-                  <a href="MedicalInsuaranceForm">
+                  <a href="MedicalInsuranceForm">
                     <Card
                       className="card-stats mb-4 mb-xl-0"
                       style={{
@@ -97,7 +97,7 @@ class Header extends React.Component {
                 </Col>
                 
                 <Col lg="3" xl="2" sm="6" xs="6">
-                  <a href="EducationInsuaranceForm">
+                  <a href="EducationInsuranceForm">
                     <Card
                       className="card-stats mb-4 mb-xl-0"
                       style={{

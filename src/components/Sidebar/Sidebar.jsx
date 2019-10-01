@@ -81,7 +81,7 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { bgColor, routes, logo,PersonalInsuaranceRoutes } = this.props;
+    const { bgColor, routes, logo,PersonalInsuranceRoutes } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -223,7 +223,7 @@ class Sidebar extends React.Component {
             </Form>
             {/* Navigation */}
             <h6 className="navbar-heading text-muted">Personal Insurance</h6>
-            <Nav navbar>{this.createLinks(PersonalInsuaranceRoutes)}</Nav>
+            <Nav navbar>{this.createLinks(PersonalInsuranceRoutes)}</Nav>
             {/* Divider */}
             <hr className="my-3" />
             {/* Heading */}

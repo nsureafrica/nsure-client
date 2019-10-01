@@ -14,13 +14,13 @@ import {
   Col
 } from "reactstrap";
 // core components
-import TravelInsuaranceFormHeader from "../../components/Headers/formHeaders/TravelInsuaranceFormHeaders"
+import TravelInsuranceFormHeader from "../../components/Headers/formHeaders/TravelInsuranceFormHeaders"
 
-class TravelInsuaranceForm extends React.Component {
+class TravelInsuranceForm extends React.Component {
   render() {
     return (
       <>
-        <TravelInsuaranceFormHeader />
+        <TravelInsuranceFormHeader />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -232,4 +232,4 @@ class TravelInsuaranceForm extends React.Component {
   }
 }
 
-export default TravelInsuaranceForm;
+export default TravelInsuranceForm;

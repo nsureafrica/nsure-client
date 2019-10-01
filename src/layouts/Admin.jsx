@@ -8,7 +8,7 @@ import AdminFooter from "components/Footers/AdminFooter.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
-import PersonalInsuaranceRoutes from "../routes/personalInsuaranceRoutes"
+import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes"
 
 class Admin extends React.Component {
   componentDidUpdate(e) {
@@ -49,7 +49,7 @@ class Admin extends React.Component {
         <Sidebar
           {...this.props}
           routes={routes}
-          PersonalInsuaranceRoutes={PersonalInsuaranceRoutes}
+          PersonalInsuranceRoutes={PersonalInsuranceRoutes}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/spire.png"),
@@ -62,7 +62,7 @@ class Admin extends React.Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>{this.getRoutes(routes)}</Switch>
-          <Switch>{this.getRoutes(PersonalInsuaranceRoutes)}</Switch>
+          <Switch>{this.getRoutes(PersonalInsuranceRoutes)}</Switch>
           <Container fluid>
             <AdminFooter />
           </Container>

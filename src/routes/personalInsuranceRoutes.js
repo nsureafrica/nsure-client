@@ -1,11 +1,11 @@
 import Index from "../views/Index.jsx"; 
-import MotorInsuranceForm from "../views/forms/MotorInsuaranceForm"
-import MedicalInsuaranceForm from "../views/forms/MedicalInsuaranceForm"
-import EducationInsuaranceForm from "../views/forms/EducationInsuaranceForm"
+import MotorInsuranceForm from "../views/forms/MotorInsuranceForm"
+import MedicalInsuranceForm from "../views/forms/MedicalInsuranceForm"
+import EducationInsuranceForm from "../views/forms/EducationInsuranceForm"
 import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm"
-import TravelInsuranceCoverForm from "../views/forms/TravelInsuaranceForm"
+import TravelInsuranceCoverForm from "../views/forms/TravelInsuranceForm"
 
-var PersonalInsuaranceRoutes = [
+var PersonalInsuranceRoutes = [
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -23,19 +23,19 @@ var PersonalInsuaranceRoutes = [
     layout: "/admin"
   },
   {
-    path: "/MedicalInsuaranceForm",
+    path: "/MedicalInsuranceForm",
     name: "Medical Insurance",
     icon: "fa fa-medkit",
-    component: MedicalInsuaranceForm,
+    component: MedicalInsuranceForm,
     style:{color:'#00BCD4'},
     layout: "/admin"
   },
   {
-    path: "/EducationInsuaranceForm",
+    path: "/EducationInsuranceForm",
     name: "Education Insurance",
     icon: "fa fa-graduation-cap",
     style:{color:'#F44336'},
-    component: EducationInsuaranceForm,
+    component: EducationInsuranceForm,
     layout: "/admin"
   },
   {
@@ -55,4 +55,4 @@ var PersonalInsuaranceRoutes = [
     layout: "/admin"
   },
 ];
-export default PersonalInsuaranceRoutes;
+export default PersonalInsuranceRoutes;

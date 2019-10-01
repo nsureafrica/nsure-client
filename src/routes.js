@@ -4,7 +4,7 @@ import Delivery from "views/delivery/delivery.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 import Invoice from "views/invoices/invoice.jsx";
 import Login from "views/login/login.jsx";
-
+import Register from "views/login/Register.jsx";
 var routes = [
   {
     path: "/index",
@@ -47,5 +47,11 @@ var routes = [
     component: Login,
     layout: "/auth"
   },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
+    layout: "/auth"
+  }
 ];
 export default routes;
