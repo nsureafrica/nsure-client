@@ -65,7 +65,7 @@ class Login extends React.Component {
                     className="my-4"
                     color="primary"
                     type="button"
-                    onClick={e=>this.props.history.push("/admin/index")}
+                    onClick={e=>this.props.history.push("/client/index")}
                   >
                     Sign in
                   </Button>

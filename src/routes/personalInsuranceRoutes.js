@@ -12,7 +12,7 @@ var PersonalInsuranceRoutes = [
     icon: "ni ni-tv-2 ",
     style:{color:'#8BCCBA'},
     component: Index,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/MotorInsuranceForm",
@@ -20,7 +20,7 @@ var PersonalInsuranceRoutes = [
     icon: "fa fa-car",
     component: MotorInsuranceForm,
     style:{color:'#8BC34A'},
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/MedicalInsuranceForm",
@@ -28,7 +28,7 @@ var PersonalInsuranceRoutes = [
     icon: "fa fa-medkit",
     component: MedicalInsuranceForm,
     style:{color:'#00BCD4'},
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/EducationInsuranceForm",
@@ -36,7 +36,7 @@ var PersonalInsuranceRoutes = [
     icon: "fa fa-graduation-cap",
     style:{color:'#F44336'},
     component: EducationInsuranceForm,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/TravelInsuranceCoverForm",
@@ -44,7 +44,7 @@ var PersonalInsuranceRoutes = [
     icon: "fa fa-globe",
     style:{color:'#FF9800'},
     component: TravelInsuranceCoverForm,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/SalamahTransitionCoverForm",
@@ -52,7 +52,7 @@ var PersonalInsuranceRoutes = [
     icon: "fa fa-thumbs-up",
     style:{color:'#9C27B0'},
     component: SalamahTransitionCoverForm,
-    layout: "/admin"
+    layout: "/client"
   },
 ];
 export default PersonalInsuranceRoutes;

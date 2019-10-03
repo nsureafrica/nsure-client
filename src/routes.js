@@ -4,42 +4,42 @@ import Delivery from "views/delivery/delivery.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 import Invoice from "views/invoices/invoice.jsx";
 import Login from "views/login/login.jsx";
-import Register from "views/login/Register.jsx";
+import Register from "views/login/register.jsx";
 var routes = [
   {
     path: "/index",
     name: "Business Insuarance",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/maps",
     name: "Premiums,Policies and Claims",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/delivery",
     name: "Delivery",
     icon: "ni ni-pin-3 text-orange",
     component: Delivery,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/pickup",
     name: "pickup",
     icon: "ni ni-pin-3 text-orange",
     component: PickUpPoints,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/invoice",
     name: "invoice",
     icon: "ni ni-pin-3 text-orange",
     component: Invoice,
-    layout: "/admin"
+    layout: "/client"
   },
   {
     path: "/login",

@@ -97,7 +97,7 @@ class Register extends React.Component {
                   </Col>
                 </Row>
                 <div className="text-center">
-                  <Button className="mt-4" color="primary" type="button" onClick={this.props.history.push("/admin/index")}>
+                  <Button className="mt-4" color="primary" type="button" onClick={this.props.history.push("/client/index")}>
                     Create account
                   </Button>
                 </div>
