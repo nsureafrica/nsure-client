@@ -1,10 +1,9 @@
 import React from "react";
-
+import {handleLogIn} from "../../requests/authRequests"
 // reactstrap components
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
@@ -17,6 +16,18 @@ import {
 } from "reactstrap";
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+
+  handleClick(event) {
+    console.log(this.state.password);
+    console.log(this.state.email)
+  }
   render() {
     return (
       <>
@@ -34,7 +45,12 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="email" />
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={e => this.setState({ email: e.target.value })}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -44,7 +60,12 @@ class Login extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={e => this.setState({ password: e.target.value })}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
@@ -64,8 +85,7 @@ class Login extends React.Component {
                   <Button
                     className="my-4"
                     color="primary"
-                    type="button"
-                    onClick={e=>this.props.history.push("/client/index")}
+                    onClick={() => handleLogIn(this.state.password,this.state.email, this.props)}
                   >
                     Sign in
                   </Button>
@@ -87,7 +107,7 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="register"
-                onClick={e =>this.props.history.push("/auth/register")}
+                onClick={e => this.props.history.push("/auth/register")}
               >
                 <small>Create new account</small>
               </a>

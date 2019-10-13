@@ -14,9 +14,32 @@ import {
   Col
 } from "reactstrap";
 // core components
-import TravelInsuranceFormHeader from "../../components/Headers/formHeaders/TravelInsuranceFormHeaders"
+import TravelInsuranceFormHeader from "../../components/Headers/formHeaders/TravelInsuranceFormHeaders";
 
 class TravelInsuranceForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      medicalExpenses:"",
+      followUpTreatmentInCountryOfResidence:"",
+      medicalEvaluationExpenses:"",
+      repartriationOfMortalRemains:"",
+      accompanyingFamilyMember:"",
+      prematureReturnInCaseOfDeath:"",
+      legalAssistance:"",
+      lossOrTheft:"",
+      luggageDelay:""
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
   render() {
     return (
       <>
@@ -32,7 +55,7 @@ class TravelInsuranceForm extends React.Component {
                       <h3 className="mb-0">Travel Insurance Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                    <Button
+                      <Button
                         color="primary"
                         href="delivery"
                         // onClick={e => e.preventDefault()}
@@ -52,33 +75,33 @@ class TravelInsuranceForm extends React.Component {
                       <Row>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-username"
-                            >
+                            <label className="form-control-label">
                               Medical expenses ($450 excess)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-username"
+                              name="medicalExpenses"
                               placeholder="Medical expenses"
-                              type="text"
+                              type="number"
+                              value={this.state.medicalExpenses}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-email"
-                            >
+                            <label className="form-control-label">
                               Follow up treatment in country of residence
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-email"
-                              placeholder="treatment in country of residence"
+                              name="followUpTreatmentInCountryOfResidence"
+                              placeholder="Treatment in country of residence"
                               type="text"
+                              value={
+                                this.state.followUpTreatmentInCountryOfResidence
+                              }
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -86,52 +109,48 @@ class TravelInsuranceForm extends React.Component {
                       <Row>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
-                            >
+                            <label className="form-control-label">
                               Medical evaluation expenses
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-first-name"
+                              name="medicalEvaluationExpenses"
                               placeholder=" Medical evaluation expenses"
                               type="text"
+                              value={this.state.medicalEvaluationExpenses}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
+                            <label className="form-control-label">
                               Repartriation of mortal remains
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-last-name"
+                              name="repartriationOfMortalRemains"
                               placeholder="Repartriation of mortal remains"
                               type="text"
+                              value={this.state.repartriationOfMortalRemains}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
-                        
                       </Row>
                       <Row>
-                      <Col lg="6">
+                        <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                             Accompanying family member
+                            <label className="form-control-label">
+                              Accompanying family member
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-last-name"
+                              name="accompanyingFamilyMember"
                               placeholder="Accompanying family member"
                               type="text"
+                              value={this.state.accompanyingFamilyMember}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -146,17 +165,16 @@ class TravelInsuranceForm extends React.Component {
                       <Row>
                         <Col md="12">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Premature return in case of death or imminent death of a relative or a business associate 
+                            <label className="form-control-label">
+                              Premature return in case of death or imminent
+                              death of a relative or a business associate
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
-                              // placeholder="Home Address"
+                              name="prematureReturnInCaseOfDeath"
                               type="text"
+                              value={this.state.prematureReturnInCaseOfDeath}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -164,17 +182,16 @@ class TravelInsuranceForm extends React.Component {
                       <Row>
                         <Col lg="4">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-city"
-                            >
+                            <label className="form-control-label">
                               Legal Assisntace
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-city"
+                              name="legalAssistance"
                               placeholder="Legal Assisntace"
                               type="text"
+                              value={this.state.legalAssistance}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -182,22 +199,23 @@ class TravelInsuranceForm extends React.Component {
                     </div>
                     <hr className="my-4" />
                     {/* Description */}
-                    <h6 className="heading-small text-muted mb-4">Luggage,trade samples or personal effects</h6>
+                    <h6 className="heading-small text-muted mb-4">
+                      Luggage,trade samples or personal effects
+                    </h6>
                     <div className="pl-lg-4">
-                    <Row>
+                      <Row>
                         <Col md="12">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                                Loss or theft
+                            <label className="form-control-label">
+                              Loss or theft
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
+                              name="lossOrTheft"
                               placeholder="Loss or theft"
                               type="text"
+                              value={this.state.lossOrTheft}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -205,17 +223,16 @@ class TravelInsuranceForm extends React.Component {
                       <Row>
                         <Col lg="4">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-city"
-                            >
+                            <label className="form-control-label">
                               Luggage delay
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-city"
+                              name="luggageDelay"
                               placeholder="Luggage delay"
                               type="text"
+                              value={this.state.luggageDelay}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>

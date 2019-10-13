@@ -14,7 +14,7 @@ import {
   Col
 } from "reactstrap";
 // core components
-import EducationInsuranceFormHeader from "../../components/Headers/formHeaders/EducationInsuranceFormHeader"
+import EducationInsuranceFormHeader from "../../components/Headers/formHeaders/EducationInsuranceFormHeader";
 
 class EducationInsuranceForm extends React.Component {
   render() {
@@ -32,7 +32,7 @@ class EducationInsuranceForm extends React.Component {
                       <h3 className="mb-0">Education Insurance Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                    <Button
+                      <Button
                         color="primary"
                         href="delivery"
                         // onClick={e => e.preventDefault()}
@@ -45,18 +45,13 @@ class EducationInsuranceForm extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Form>
-                    <h6 className="heading-small text-muted mb-4">
-                     Details
-                    </h6>
+                    <h6 className="heading-small text-muted mb-4">Details</h6>
                     <div className="pl-lg-4">
                       <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                               Full name of life assured
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Full name of life assured
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -84,10 +79,7 @@ class EducationInsuranceForm extends React.Component {
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-email"
-                            >
+                            <label className="form-control-label">
                               Full name of child
                             </label>
                             <Input
@@ -102,10 +94,7 @@ class EducationInsuranceForm extends React.Component {
                       <Row>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
-                            >
+                            <label className="form-control-label">
                               Age of child
                             </label>
                             <Input
@@ -118,10 +107,7 @@ class EducationInsuranceForm extends React.Component {
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
+                            <label className="form-control-label">
                               Policy Term (in years)
                             </label>
                             <Input
@@ -131,14 +117,10 @@ class EducationInsuranceForm extends React.Component {
                               type="text"
                             />
                           </FormGroup>
-                          
                         </Col>
                         <Col lg="6">
-                        <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
+                          <FormGroup>
+                            <label className="form-control-label">
                               Monthly payable premium
                             </label>
                             <Input
@@ -167,68 +149,80 @@ class EducationInsuranceForm extends React.Component {
                               Total and Permanent Disability
                             </label>
                             <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
+                              <input
+                                className="custom-control-input"
+                                id="customRadio5"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio5"
+                              >
+                                Yes
+                              </label>
+                            </div>
+                            <div className="custom-control custom-radio mb-3">
+                              <input
+                                className="custom-control-input"
+                                defaultChecked
+                                id="customRadio6"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio6"
+                              >
+                                No
+                              </label>
+                            </div>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
-                      <Col md="12">
+                        <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
                               htmlFor="input-address"
                             >
-                             Waiver of premium
+                              Waiver of premium
                             </label>
                             <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
+                              <input
+                                className="custom-control-input"
+                                id="customRadio5"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio5"
+                              >
+                                Yes
+                              </label>
+                            </div>
+                            <div className="custom-control custom-radio mb-3">
+                              <input
+                                className="custom-control-input"
+                                defaultChecked
+                                id="customRadio6"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio6"
+                              >
+                                No
+                              </label>
+                            </div>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
-                      <Col md="12">
+                        <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
@@ -237,33 +231,39 @@ class EducationInsuranceForm extends React.Component {
                               Child Accident Hospitalization Rider
                             </label>
                             <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
+                              <input
+                                className="custom-control-input"
+                                id="customRadio5"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio5"
+                              >
+                                Yes
+                              </label>
+                            </div>
+                            <div className="custom-control custom-radio mb-3">
+                              <input
+                                className="custom-control-input"
+                                defaultChecked
+                                id="customRadio6"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio6"
+                              >
+                                No
+                              </label>
+                            </div>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
-                      <Col md="12">
+                        <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
@@ -272,33 +272,39 @@ class EducationInsuranceForm extends React.Component {
                               Adult Accident Hospitalization Rider
                             </label>
                             <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
+                              <input
+                                className="custom-control-input"
+                                id="customRadio5"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio5"
+                              >
+                                Yes
+                              </label>
+                            </div>
+                            <div className="custom-control custom-radio mb-3">
+                              <input
+                                className="custom-control-input"
+                                defaultChecked
+                                id="customRadio6"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio6"
+                              >
+                                No
+                              </label>
+                            </div>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
-                      <Col md="12">
+                        <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
@@ -307,33 +313,39 @@ class EducationInsuranceForm extends React.Component {
                               Last Expense - Life Assured
                             </label>
                             <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="customRadio5"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
+                              <input
+                                className="custom-control-input"
+                                id="customRadio5"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio5"
+                              >
+                                Yes
+                              </label>
+                            </div>
+                            <div className="custom-control custom-radio mb-3">
+                              <input
+                                className="custom-control-input"
+                                defaultChecked
+                                id="customRadio6"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio6"
+                              >
+                                No
+                              </label>
+                            </div>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
-                      <Col md="12">
+                        <Col md="12">
                           <FormGroup>
                             <label
                               className="form-control-label"
@@ -342,28 +354,34 @@ class EducationInsuranceForm extends React.Component {
                               Last Expense - Beneficiary child
                             </label>
                             <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              id="lastExpense"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio5">
-                              Yes
-                            </label>
-                          </div>
-                          <div className="custom-control custom-radio mb-3">
-                            <input
-                              className="custom-control-input"
-                              defaultChecked
-                              id="customRadio6"
-                              name="custom-radio-2"
-                              type="radio"
-                            />
-                            <label className="custom-control-label" htmlFor="customRadio6">
-                              No
-                            </label>
-                          </div>
+                              <input
+                                className="custom-control-input"
+                                id="lastExpense"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio5"
+                              >
+                                Yes
+                              </label>
+                            </div>
+                            <div className="custom-control custom-radio mb-3">
+                              <input
+                                className="custom-control-input"
+                                defaultChecked
+                                id="customRadio6"
+                                name="custom-radio-2"
+                                type="radio"
+                              />
+                              <label
+                                className="custom-control-label"
+                                htmlFor="customRadio6"
+                              >
+                                No
+                              </label>
+                            </div>
                           </FormGroup>
                         </Col>
                       </Row>

@@ -159,10 +159,10 @@ class Sidebar extends React.Component {
                   <i className="ni ni-settings-gear-65" />
                   <span>Settings</span>
                 </DropdownItem>
-                <DropdownItem to="/client/user-profile" tag={Link}>
+                {/* <DropdownItem to="/client/user-profile" tag={Link}>
                   <i className="ni ni-calendar-grid-58" />
                   <span>Activity</span>
-                </DropdownItem>
+                </DropdownItem> */}
                 <DropdownItem to="/client/user-profile" tag={Link}>
                   <i className="ni ni-support-16" />
                   <span>Support</span>

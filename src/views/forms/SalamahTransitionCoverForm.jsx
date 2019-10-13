@@ -14,9 +14,31 @@ import {
   Col
 } from "reactstrap";
 // core components
-import SalamahTransitionCoverFormHeader from "../../components/Headers/formHeaders/SalamahInsuranceFormHeader"
+import SalamahTransitionCoverFormHeader from "../../components/Headers/formHeaders/SalamahInsuranceFormHeader";
 
 class SalamahTransitionCoverForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameOfSpouse: "",
+      idNumberOfSpouse: "",
+      name: "",
+      parentsId: "",
+      parentsName: "",
+      childName: "",
+      additionalMemberName:"",
+      additionalMemeberId:""
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
   render() {
     return (
       <>
@@ -32,7 +54,7 @@ class SalamahTransitionCoverForm extends React.Component {
                       <h3 className="mb-0">Salamah Transition Cover Details</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                    <Button
+                      <Button
                         color="primary"
                         href="delivery"
                         // onClick={e => e.preventDefault()}
@@ -52,33 +74,31 @@ class SalamahTransitionCoverForm extends React.Component {
                       <Row>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-username"
-                            >
+                            <label className="form-control-label">
                               Name of spouse
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-username"
+                              name="nameOfSpouse"
                               placeholder="Spouse Name"
                               type="text"
+                              value={this.state.nameOfSpouse}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-email"
-                            >
+                            <label className="form-control-label">
                               ID number of spouse
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-email"
+                              name="idNumberOfSpouse"
                               placeholder="0123456789"
-                              type="text"
+                              type="number"
+                              value={this.state.idNumberOfSpouse}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -93,33 +113,27 @@ class SalamahTransitionCoverForm extends React.Component {
                       <Row>
                         <Col md="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Name
-                            </label>
+                            <label className="form-control-label">Name</label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
+                              name="parentsName"
                               placeholder="Name"
                               type="text"
+                              value={this.state.parentsName}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col md="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              ID
-                            </label>
+                            <label className="form-control-label">ID</label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
+                              name="id"
                               placeholder="ID"
-                              type="text"
+                              type="number"
+                              value={this.state.parentsId}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -134,15 +148,10 @@ class SalamahTransitionCoverForm extends React.Component {
                       <Row>
                         <Col md="12">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Name
-                            </label>
+                            <label className="form-control-label">Name</label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
+                              name="childName"
                               placeholder="Name"
                               type="text"
                             />
@@ -159,15 +168,10 @@ class SalamahTransitionCoverForm extends React.Component {
                       <Row>
                         <Col md="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Name
-                            </label>
+                            <label className="form-control-label">Name</label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
+                              name="additionalMemberName"
                               placeholder="Name"
                               type="text"
                             />
@@ -175,15 +179,10 @@ class SalamahTransitionCoverForm extends React.Component {
                         </Col>
                         <Col md="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              ID
-                            </label>
+                            <label className="form-control-label">ID</label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
+                              name="additionalMemeberId"
                               placeholder="ID"
                               type="text"
                             />
