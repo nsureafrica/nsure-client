@@ -20,6 +20,10 @@ import {
 
 class AdminNavbar extends React.Component {
   render() {
+    const token = localStorage.getItem("token");
+    const jwtDecode = require('jwt-decode');
+    const userData = jwtDecode(token);
+    console.log(userData);
     return (
       <>
         <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -54,7 +58,7 @@ class AdminNavbar extends React.Component {
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm font-weight-bold">
-                        Jane Doe
+                        {userData.firstName + " " + userData.lastName}
                       </span>
                     </Media>
                   </Media>

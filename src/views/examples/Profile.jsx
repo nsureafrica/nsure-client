@@ -18,6 +18,10 @@ import UserHeader from "components/Headers/UserHeader.jsx";
 
 class Profile extends React.Component {
   render() {
+    const token = localStorage.getItem("token");
+    const jwtDecode = require('jwt-decode');
+    const userData = jwtDecode(token);
+    console.log(userData);
     return (
       <>
         <UserHeader />
@@ -82,8 +86,8 @@ class Profile extends React.Component {
                   </Row>
                   <div className="text-center">
                     <h3>
-                      Jessica Jones
-                      <span className="font-weight-light">, 27</span>
+                      {userData.firstName + " " + userData.lastName}
+                      <span className="font-weight-light"></span>
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2" />
@@ -95,7 +99,7 @@ class Profile extends React.Component {
                     </div>
                     <div>
                       <i className="ni education_hat mr-2" />
-                      University of Computer Science
+                      University of Nairobi
                     </div>
                     <hr className="my-4" />
                     <p>
@@ -146,7 +150,7 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
+                              defaultValue={userData.email}
                               id="input-username"
                               placeholder="Username"
                               type="text"
@@ -164,7 +168,7 @@ class Profile extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
+                              placeholder={userData.email}
                               type="email"
                             />
                           </FormGroup>
@@ -181,7 +185,7 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
+                              defaultValue={userData.firstName}
                               id="input-first-name"
                               placeholder="First name"
                               type="text"
@@ -198,7 +202,7 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
+                              defaultValue={userData.lastName}
                               id="input-last-name"
                               placeholder="Last name"
                               type="text"
