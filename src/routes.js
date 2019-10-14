@@ -5,6 +5,7 @@ import PickUpPoints from "views/delivery/pickup.jsx";
 import Invoice from "views/invoices/invoice.jsx";
 import Login from "views/login/login.jsx";
 import Register from "views/login/register.jsx";
+import Profile from "./views/examples/Profile"
 var routes = [
   {
     path: "/index",
@@ -42,6 +43,12 @@ var routes = [
     layout: "/client"
   },
   {
+    path: "/user-profile",
+    name: "Profile",
+    component: Profile,
+    layout: "/client"
+  },
+  {
     path: "/login",
     name: "login",
     component: Login,
@@ -53,5 +60,6 @@ var routes = [
     component: Register,
     layout: "/auth"
   }
+
 ];
 export default routes;
