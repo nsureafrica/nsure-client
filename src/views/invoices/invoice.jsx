@@ -13,72 +13,147 @@ class Invoice extends React.Component {
           <Container fluid>
             <div className="header-body">
               {/* Card stats */}
-              <h2 className="" style={{marginBottom:'1em', textAlign: 'center', color: '#001996', letterSpacing:'3px', textTransform: 'uppercase' }}>INVOICE</h2>
-              <Card style={{padding:'20px'}}>
-                  <div style={{textAlign:'right', color:"#333",borderBottom:'2px dotted', marginBottom:'20px',}}>
-                
-                  <h5>Winfred Qubo<br/>Phone: 07234567896 <br/>Pick Up: SIB - Lenana Branch</h5>
-                  </div>
-                
-                  
-                <Row style={{ marginBottom:'10px',fontWeight:"bold", textAlign:"lwft",color:"rgb(0, 43, 170)", }}>
-                    <Col lg="7" xl="7" sm="7" xs="7">
-                        PRODUCT
-                    </Col>
+              <h2
+                className=""
+                style={{
+                  marginBottom: "1em",
+                  textAlign: "center",
+                  color: "#001996",
+                  letterSpacing: "3px",
+                  textTransform: "uppercase"
+                }}
+              >
+                INVOICE
+              </h2>
+              <Card style={{ padding: "20px" }}>
+                <div
+                  style={{
+                    textAlign: "right",
+                    color: "#333",
+                    borderBottom: "2px dotted",
+                    marginBottom: "20px"
+                  }}
+                >
+                  <h5>
+                    Winfred Qubo
+                    <br />
+                    Phone: 07234567896 <br />
+                    Pick Up: SIB - Lenana Branch
+                  </h5>
+                </div>
 
-                    <Col lg="5" xl="5" sm="5" xs="5" style={{textAlign:'right'}}>
-                        COST
-                    </Col>
-                </Row> 
+                <Row
+                  style={{
+                    marginBottom: "10px",
+                    fontWeight: "bold",
+                    textAlign: "lwft",
+                    color: "rgb(0, 43, 170)"
+                  }}
+                >
+                  <Col lg="7" xl="7" sm="7" xs="7">
+                    PRODUCT
+                  </Col>
 
-                     
-                <Row className="mb-2" style={{fontSize:"13px", textAlign:"left",color:"#333", }}>
-                    <Col lg="7" xl="7" sm="7" xs="7">
-                       APA Medical Insurance
-                    </Col>
+                  <Col
+                    lg="5"
+                    xl="5"
+                    sm="5"
+                    xs="5"
+                    style={{ textAlign: "right" }}
+                  >
+                    COST
+                  </Col>
+                </Row>
 
-                    <Col lg="5" xl="5" sm="5" xs="5" style={{textAlign:'right'}}>
-                        12000.00
-                    </Col>
-                </Row> 
-                <Row className="mb-2" style={{fontSize:"13px", textAlign:"lwft",color:"#333", }}>
-                    <Col lg="7" xl="7" sm="7" xs="7">
-                        Delivery Fee
-                    </Col>
+                <Row
+                  className="mb-2"
+                  style={{ fontSize: "13px", textAlign: "left", color: "#333" }}
+                >
+                  <Col lg="7" xl="7" sm="7" xs="7">
+                    Motor Insurance Policy
+                  </Col>
 
-                    <Col lg="5" xl="5" sm="5" xs="5" style={{textAlign:'right'}}>
-                        0.00
-                    </Col>
-                </Row> 
+                  <Col
+                    lg="5"
+                    xl="5"
+                    sm="5"
+                    xs="5"
+                    style={{ textAlign: "right" }}
+                  >
+                    Kes{" "}
+                    {localStorage
+                      .getItem("quoteAmount")
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </Col>
+                </Row>
+                <Row
+                  className="mb-2"
+                  style={{ fontSize: "13px", textAlign: "lwft", color: "#333" }}
+                >
+                  <Col lg="7" xl="7" sm="7" xs="7">
+                    Delivery Fee
+                  </Col>
 
-                <Row className="mb-3 mt-2" style={{borderTop:'1px dashed #ccc',fontWeight:'bold',fontSize:"15px", textAlign:"lwft",color:"#333", }}>
-                    <Col lg="7" xl="7" sm="7" xs="7">
-                        TOTAL
-                    </Col>
+                  <Col
+                    lg="5"
+                    xl="5"
+                    sm="5"
+                    xs="5"
+                    style={{ textAlign: "right" }}
+                  >
+                    0.00
+                  </Col>
+                </Row>
 
-                    <Col lg="5" xl="5" sm="5" xs="5" style={{textAlign:'right'}}>
-                        12000.00
-                    </Col>
-                </Row> 
-                <div className="mt-3 mb-3" style={{justifyContent:'center', textAlign:'center'}}>
-                    <button
+                <Row
+                  className="mb-3 mt-2"
+                  style={{
+                    borderTop: "1px dashed #ccc",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                    textAlign: "lwft",
+                    color: "#333"
+                  }}
+                >
+                  <Col lg="7" xl="7" sm="7" xs="7">
+                    TOTAL
+                  </Col>
+
+                  <Col
+                    lg="5"
+                    xl="5"
+                    sm="5"
+                    xs="5"
+                    style={{ textAlign: "right" }}
+                  >
+                    Kes{" "}
+                    {localStorage
+                      .getItem("quoteAmount")
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </Col>
+                </Row>
+                <div
+                  className="mt-3 mb-3"
+                  style={{ justifyContent: "center", textAlign: "center" }}
+                >
+                  <button
                     style={{
-                        padding:'11px 35px',
-                        background:'linear-gradient(101deg, #ff4b4b, #5b33f9)',
-                        fontWeight:'bold',
-                        color:'white',
-                        textTransform:'uppercase',
-                        borderRadius:'26px',
-                        letterSpacing:'2px',
-                        border:'none',
-
+                      padding: "11px 35px",
+                      background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
+                      fontWeight: "bold",
+                      color: "white",
+                      textTransform: "uppercase",
+                      borderRadius: "26px",
+                      letterSpacing: "2px",
+                      border: "none"
                     }}
-                    >Pay Now</button>
+                  >
+                    Pay Now
+                  </button>
                 </div>
               </Card>
-
-
-
             </div>
           </Container>
         </div>
