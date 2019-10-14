@@ -98,11 +98,11 @@ class Index extends React.Component {
                           </a>
                         </div>
                         <div className="col ml--2">
-                          <h4 className="mb-0">
-                            <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>APA INSURANCE</a>
-                          </h4>
+                          {/* <h4 className="mb-0">
+                            <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>SIB</a>
+                          </h4> */}
                           <h5>
-                            <a href="#!" style={{ color: '#e16470' }}>Medical Insurance</a>
+                            <a href="#!" style={{ color: '#e16470' }}>Medical Policy</a>
                           </h5>
                           <span className="text-success" style={{ marginRight: '12px' }}>●</span>
                           <span>Active</span>
@@ -121,11 +121,11 @@ class Index extends React.Component {
                           </a>
                         </div>
                         <div className="col ml--2">
-                          <h4 className="mb-0">
+                          {/* <h4 className="mb-0">
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>HERITAGE INSURANCE</a>
-                          </h4>
+                          </h4> */}
                           <h5>
-                            <a href="#!" style={{ color: '#e16470' }}>Motor Insurance</a>
+                            <a href="#!" style={{ color: '#e16470' }}>Motor Policy</a>
                           </h5>
                           <span className="text-danger" style={{ marginRight: '12px' }}>●</span>
                           <span>Expired</span>

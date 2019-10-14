@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 import { onlyAllowNNumericalInput } from "../../miscFunctions";
 import { getMotorQuote } from "../../requests/quoteRequests";
+import { postRequest } from "../../requests/requests";
 
 // core components
 import MotorInsuranceFormHeader from "../../components/Headers/formHeaders/MotorInsuranceFormHeader";
@@ -23,7 +24,7 @@ import MotorInsuranceFormHeader from "../../components/Headers/formHeaders/Motor
 class MotorInsuranceForm extends React.Component {
   categories = [
     {
-      value: "motorcycles",
+      value: "motorcycle",
       label: "Motorcycles"
     },
     {
@@ -67,16 +68,16 @@ class MotorInsuranceForm extends React.Component {
     {
       value: "thirdParty",
       label: "Third Party"
-    },
-    {
-      value: "ownGoods",
-      label: "Own Goods"
-    },
-    {
-      value: "generalCartage",
-      label: "General Cartage"
-    },
-    { value: "passengers", label: "Passengers" }
+    }
+    // {
+    //   value: "ownGoods",
+    //   label: "Own Goods"
+    // },
+    // {
+    //   value: "generalCartage",
+    //   label: "General Cartage"
+    // },
+    // { value: "passengers", label: "Passengers" }
   ];
   vehicleTypes = [
     { value: "private", label: "Private" },
@@ -109,6 +110,7 @@ class MotorInsuranceForm extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.getQuote = this.getQuote.bind(this);
   }
   onChange(e) {
     if (onlyAllowNNumericalInput(e.target.value)) {
@@ -125,7 +127,31 @@ class MotorInsuranceForm extends React.Component {
     });
   }
 
+  getQuote() {
+    const motorQuoteEndpoint = "/quotes/motor";
+    const payload = {
+      category: this.state.motorCategory,
+      vehicleType: this.state.vehicleType,
+      coverType: this.state.coverType,
+      vehicleEstimatedValue: this.state.motorEstimateValue,
+      courtesyCarOption: this.state.courtesyCarOption,
+      politicalViolence: false,
+      excessProtector: false
+    };
+    const quotePromise = postRequest(motorQuoteEndpoint, payload);
+    quotePromise.then(response => {
+      console.log(response.data);
+      localStorage.setItem(
+        "quoteAmount",
+        JSON.stringify(response.data.quoteAmount)
+      );
+      localStorage.setItem("optionsSelected", JSON.stringify(payload));
+      this.props.history.push("quote");
+    });
+  }
+
   render() {
+    console.log(this.state);
     return (
       <>
         <MotorInsuranceFormHeader />
@@ -142,19 +168,20 @@ class MotorInsuranceForm extends React.Component {
                     <Col className="text-right" xs="4">
                       <Button
                         color="primary"
-                        href="delivery"
-                        onClick={() =>
-                          getMotorQuote(
-                            this.state.motorCategory,
-                            this.state.vehicleType,
-                            this.state.coverType,
-                            this.state.motorEstimateValue,
-                            this.state.courtesyCarOption,
-                            this.state.politicalViolence,
-                            this.state.excessProtector,
-                            this.props
-                          )
-                        }
+                        // href="delivery"
+                        onClick={this.getQuote}
+                        // onClick={() =>
+                        //   getMotorQuote(
+                        //     this.state.motorCategory,
+                        //     this.state.vehicleType,
+                        //     this.state.coverType,
+                        //     this.state.motorEstimateValue,
+                        //     this.state.courtesyCarOption,
+                        //     this.state.politicalViolence,
+                        //     this.state.excessProtector,
+                        //     this.props
+                        //   )
+                        // }
                         size="sm"
                       >
                         Submit details

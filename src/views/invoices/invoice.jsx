@@ -17,7 +17,7 @@ class Invoice extends React.Component {
               <Card style={{padding:'20px'}}>
                   <div style={{textAlign:'right', color:"#333",borderBottom:'2px dotted', marginBottom:'20px',}}>
                 
-                  <h5>Winfred Qubo<br/>Phone: 07234567896 <br/>Pick Up: APA Insurance - Lenana Branch</h5>
+                  <h5>Winfred Qubo<br/>Phone: 07234567896 <br/>Pick Up: SIB - Lenana Branch</h5>
                   </div>
                 
                   

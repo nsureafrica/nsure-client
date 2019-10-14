@@ -78,7 +78,7 @@ class PickUpPoints extends React.Component {
                         </div>
                         <div className="col ml--2">
                           <h4 className="mb-0">
-                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>APA INSURANCE</a>
+                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>SIB</a>
                            </h4>
                             <h5>
                             <a href="#!" style={{color:'#e16470'}}>Lenana Road
@@ -102,7 +102,7 @@ class PickUpPoints extends React.Component {
                         </div>
                         <div className="col ml--2">
                           <h4 className="mb-0">
-                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>APA INSURANCE</a>
+                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>SIB</a>
                            </h4>
                             <h5>
                             <a href="#!" style={{color:'#e16470'}}>Kenyatta Road
@@ -126,7 +126,7 @@ class PickUpPoints extends React.Component {
                         </div>
                         <div className="col ml--2">
                           <h4 className="mb-0">
-                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>APA INSURANCE</a>
+                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>SIB</a>
                            </h4>
                             <h5>
                             <a href="#!" style={{color:'#e16470'}}>Chiromo Road

@@ -28,9 +28,11 @@ class MedicalInsuranceForm extends React.Component {
       numberOfPeopleToReceiveOpticalCover: "",
       numberOfPeopleToReceiveDentalCover: "",
       numberOfMembersToBeCoveredUnderPersonalAccident: "",
-      numberofMembersToBeCoveredUnderLastExpense: ""
+      numberofMembersToBeCoveredUnderLastExpense: "",
+      outpatientPerPerson: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleRadioChange = this.handleRadioChange.bind(this);
   }
   handleInputChange(event) {
     const target = event.target;
@@ -40,7 +42,12 @@ class MedicalInsuranceForm extends React.Component {
       [name]: value
     });
   }
+  handleRadioChange(event) {
+    console.log(event.target.value);
+    this.setState({ outpatientPerPerson: event.target.value });
+  }
   render() {
+    console.log(this.state.outpatientPerPerson);
     return (
       <>
         <MedicalInsuranceFormHeader />
@@ -174,9 +181,13 @@ class MedicalInsuranceForm extends React.Component {
                             <div className="custom-control custom-radio mb-3">
                               <input
                                 className="custom-control-input"
-                                id="outpatientPerPerson"
+                                checked={this.state.outpatientPerPerson}
+                                onChange={event =>
+                                  this.handleRadioChange(event)
+                                }
                                 name="outPatientPerPerson"
                                 type="radio"
+                                value={true}
                               />
                               <label className="custom-control-label">
                                 Yes
@@ -185,9 +196,13 @@ class MedicalInsuranceForm extends React.Component {
                             <div className="custom-control custom-radio mb-3">
                               <input
                                 className="custom-control-input"
-                                defaultChecked
+                                checked={!this.state.outpatientPerPerson}
+                                onChange={event =>
+                                  this.handleRadioChange(event)
+                                }
                                 name="outPatientPerPerson"
                                 type="radio"
+                                value={false}
                               />
                               <label
                                 className="custom-control-label"
