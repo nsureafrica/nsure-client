@@ -94,6 +94,7 @@ class MotorInsuranceForm extends React.Component {
       carModel: "",
       motorCategory: "motorcycle",
       vehicleType: "private",
+      value: "comprehensive",
       coverType: "",
       courtesyCarOption: "6",
       numberPlateOrRegistrationNumber: "",
@@ -333,7 +334,7 @@ class MotorInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="chassisNumber"
+                              name="chasisNumber"
                               placeholder="Chasis number"
                               type="text"
                               value={this.state.chasisNumber}
