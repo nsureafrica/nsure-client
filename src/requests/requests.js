@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8080";
+const baseURL = "https://nsure-252213.appspot.com/";
 
 function getRequest(endpoint) {
   const requestUrl = baseURL + endpoint;

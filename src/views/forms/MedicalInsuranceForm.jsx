@@ -32,19 +32,31 @@ class MedicalInsuranceForm extends React.Component {
       outpatientPerPerson: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
   }
+  item = [
+    {
+      value: true,
+      text: "Yes"
+    },
+    {
+      value: false,
+      text: "No"
+    }
+  ];
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === "radio" ? target.value : target.value;
     const name = target.name;
     this.setState({
       [name]: value
     });
   }
-  handleRadioChange(event) {
-    console.log(event.target.value);
-    this.setState({ outpatientPerPerson: event.target.value });
+
+  handleOptionChange(changeEvent) {
+    this.setState({
+      outpatientPerPerson: changeEvent.target.value
+    });
   }
   render() {
     console.log(this.state.outpatientPerPerson);
@@ -178,69 +190,54 @@ class MedicalInsuranceForm extends React.Component {
                             <label className="form-control-label">
                               Outpatient per person
                             </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                checked={this.state.outpatientPerPerson}
-                                onChange={event =>
-                                  this.handleRadioChange(event)
-                                }
-                                name="outPatientPerPerson"
-                                type="radio"
-                                value={true}
-                              />
-                              <label className="custom-control-label">
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                checked={!this.state.outpatientPerPerson}
-                                onChange={event =>
-                                  this.handleRadioChange(event)
-                                }
-                                name="outPatientPerPerson"
-                                type="radio"
-                                value={false}
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="outPatientPerPerson"
+                            {this.item.map(item => (
+                              <div
+                                className="custom-control custom-radio mb-3"
+                                key={item.text}
                               >
-                                No
-                              </label>
-                            </div>
+                                <label className="custom-control-label">
+                                  <input
+                                    type="radio"
+                                    className="custom-control-input"
+                                    value={item.value}
+                                    key={item.text}
+                                    checked={
+                                      this.state.outpatientPerPerson ==
+                                      item.value
+                                    }
+                                    onChange={this.handleOptionChange}
+                                  />
+                                  {item.text}
+                                </label>
+                              </div>
+                            ))}
                           </FormGroup>
                         </Col>
                         <Col md="12">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Maternity cover
+                            <label className="form-control-label">
+                              Maternity Cover
                             </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="maternityCover"
-                                name="maternityCover"
-                                type="radio"
-                              />
-                              <label className="custom-control-label">
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                name="maternityCover"
-                                type="radio"
-                              />
-                              <label className="custom-control-label">No</label>
-                            </div>
+                            {this.item.map(item => (
+                              <div
+                                className="custom-control custom-radio mb-3"
+                                key={item.text}
+                              >
+                                <label className="custom-control-label">
+                                  <input
+                                    type="radio"
+                                    className="custom-control-input"
+                                    value={item.value}
+                                    key={item.text}
+                                    checked={
+                                      this.state.maternityCover == item.value
+                                    }
+                                    onChange={this.handleInputChange}
+                                  />
+                                  {item.text}
+                                </label>
+                              </div>
+                            ))}
                           </FormGroup>
                         </Col>
                       </Row>

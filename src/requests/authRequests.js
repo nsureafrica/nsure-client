@@ -1,5 +1,5 @@
 const axios = require("axios").default;
-const baseUrl = "http://localhost:8080/";
+const baseUrl = "https://nsure-252213.appspot.com/";
 
 function handleLogIn(password, email, props) {
   console.log(password);

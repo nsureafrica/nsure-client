@@ -45,7 +45,7 @@ class Auth extends React.Component {
                     <img
                       alt="Spire Logo"
                       className="navbar-brand-img"
-                      // src={logo.imgSrc}
+                      src={require("assets/img/brand/spire.png")}
                     />
                     <p className="text-lead text-light">
                       Compare and purchase your insurance cover today.
