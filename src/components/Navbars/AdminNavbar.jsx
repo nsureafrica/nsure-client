@@ -27,7 +27,7 @@ class AdminNavbar extends React.Component {
       userData = jwtDecode(token);
       console.log(userData);
     } else {
-      this.props.history.push("login");
+      this.props.history.push("/auth/login");
     }
     console.log(userData);
     return (
@@ -64,7 +64,8 @@ class AdminNavbar extends React.Component {
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm font-weight-bold">
-                        {userData.firstName + " " + userData.lastName}
+                        {userData &&
+                          userData.firstName + " " + userData.lastName}
                       </span>
                     </Media>
                   </Media>

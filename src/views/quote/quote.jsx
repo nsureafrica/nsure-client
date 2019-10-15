@@ -99,7 +99,7 @@ class Quote extends React.Component {
                   }}
                 >
                   <h3>Selected options</h3>
-                  Vehicle category : {selectedCategory.label}
+                  Vehicle category : {selectedCategory&& selectedCategory.label}
                   <br />
                   Estimated value of vehicle : Kes{" "}
                   {this.state.selectedOptions.vehicleEstimatedValue
