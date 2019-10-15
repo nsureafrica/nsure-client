@@ -23,9 +23,14 @@ import { Button, Container, Row, Col } from "reactstrap";
 class UserHeader extends React.Component {
   render() {
     const token = localStorage.getItem("token");
-    const jwtDecode = require('jwt-decode');
-    const userData = jwtDecode(token);
-    console.log(userData);
+    const jwtDecode = require("jwt-decode");
+    var userData;
+    if (token) {
+    userData = jwtDecode(token);
+      console.log(userData);
+    }else{
+      this.props.history.push('login');
+    }
     return (
       <>
         <div
@@ -44,7 +49,9 @@ class UserHeader extends React.Component {
           <Container className="d-flex align-items-center" fluid>
             <Row>
               <Col lg="7" md="10">
-                <h1 className="display-2 text-white">Hello {userData.firstName}</h1>
+                <h1 className="display-2 text-white">
+                  Hello {userData.firstName}
+                </h1>
                 <p className="text-white mt-0 mb-5">
                   This is your profile page. You can see the progress you've
                   made with your work and manage your projects or assigned tasks

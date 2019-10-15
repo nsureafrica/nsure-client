@@ -21,8 +21,14 @@ import {
 class AdminNavbar extends React.Component {
   render() {
     const token = localStorage.getItem("token");
-    const jwtDecode = require('jwt-decode');
-    const userData = jwtDecode(token);
+    const jwtDecode = require("jwt-decode");
+    var userData;
+    if (token) {
+      userData = jwtDecode(token);
+      console.log(userData);
+    } else {
+      this.props.history.push("login");
+    }
     console.log(userData);
     return (
       <>
