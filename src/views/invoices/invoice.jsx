@@ -7,6 +7,16 @@ import PickUpPoints from "views/delivery/pickup.jsx";
 
 class Invoice extends React.Component {
   render() {
+    const token = localStorage.getItem("token");
+    const jwtDecode = require("jwt-decode");
+    var userData;
+    if (token) {
+      userData = jwtDecode(token);
+      console.log(userData);
+    } else {
+      this.props.history.push("login");
+    }
+    console.log(userData);
     return (
       <>
         <div className="header pb-8 pt-5 pt-md-8">
@@ -35,9 +45,9 @@ class Invoice extends React.Component {
                   }}
                 >
                   <h5>
-                    Winfred Qubo
+                    {userData.firstName + " " + userData.lastName}
                     <br />
-                    Phone: 07234567896 <br />
+                    Phone: {userData.phoneNumber} <br />
                     Pick Up: SIB - Lenana Branch
                   </h5>
                 </div>
