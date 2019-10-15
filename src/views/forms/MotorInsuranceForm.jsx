@@ -25,7 +25,7 @@ class MotorInsuranceForm extends React.Component {
   categories = [
     {
       value: "motorcycle",
-      label: "Motorcycles"
+      label: "Motorcycle"
     },
     {
       value: "motorPrivate",
@@ -92,10 +92,10 @@ class MotorInsuranceForm extends React.Component {
     this.state = {
       motorEstimateValue: "",
       carModel: "",
-      motorCategory: "",
-      vehicleType: "",
+      motorCategory: "motorcycle",
+      vehicleType: "private",
       coverType: "",
-      courtesyCarOption: "",
+      courtesyCarOption: "6",
       numberPlateOrRegistrationNumber: "",
       chasisNumber: "",
       engineNumber: "",
