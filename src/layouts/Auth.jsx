@@ -41,7 +41,12 @@ class Auth extends React.Component {
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
                   <Col lg="5" md="6">
-                    <h1 className="text-white">Welcome to Nsure!</h1>
+                    <h1 className="text-white">Welcome to Spiresure</h1>
+                    <img
+                      alt="Spire Logo"
+                      className="navbar-brand-img"
+                      // src={logo.imgSrc}
+                    />
                     <p className="text-lead text-light">
                       Compare and purchase your insurance cover today.
                     </p>

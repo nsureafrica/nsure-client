@@ -71,9 +71,8 @@ class Sidebar extends React.Component {
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
-           
           >
-            <i className={prop.icon}  style={prop.style} />
+            <i className={prop.icon} style={prop.style} />
             {prop.name}
           </NavLink>
         </NavItem>
@@ -81,7 +80,7 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { bgColor, routes, logo,PersonalInsuranceRoutes } = this.props;
+    const { bgColor, routes, logo, PersonalInsuranceRoutes } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -168,7 +167,10 @@ class Sidebar extends React.Component {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                <DropdownItem
+                  href="#"
+                  onClick={()=>this.props.history.push("/auth/login")}
+                >
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
@@ -239,7 +241,6 @@ class Sidebar extends React.Component {
             {/* Navigation */}
             {/* <h6 className="navbar-heading text-muted">Premiums Policies and Claims</h6> */}
             {/* <Nav navbar>{this.createLinks(routes)}</Nav> */}
-
           </Collapse>
         </Container>
       </Navbar>

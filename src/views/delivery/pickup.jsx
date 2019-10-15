@@ -58,7 +58,7 @@ class PickUpPoints extends React.Component {
                     <div className="col text-right">
                       <Button
                         color="primary"
-                        href="#pablo"
+                        href="#"
                         onClick={e => e.preventDefault()}
                         size="sm"
                       >

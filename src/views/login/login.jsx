@@ -1,5 +1,5 @@
 import React from "react";
-import {handleLogIn} from "../../requests/authRequests"
+import { handleLogIn } from "../../requests/authRequests";
 // reactstrap components
 import {
   Button,
@@ -26,9 +26,10 @@ class Login extends React.Component {
 
   handleClick(event) {
     console.log(this.state.password);
-    console.log(this.state.email)
+    console.log(this.state.email);
   }
   render() {
+    localStorage.removeItem("token");
     return (
       <>
         <Col lg="5" md="7">
@@ -64,7 +65,9 @@ class Login extends React.Component {
                       placeholder="Password"
                       type="password"
                       value={this.state.password}
-                      onChange={e => this.setState({ password: e.target.value })}
+                      onChange={e =>
+                        this.setState({ password: e.target.value })
+                      }
                     />
                   </InputGroup>
                 </FormGroup>
@@ -85,7 +88,13 @@ class Login extends React.Component {
                   <Button
                     className="my-4"
                     color="primary"
-                    onClick={() => handleLogIn(this.state.password,this.state.email, this.props)}
+                    onClick={() =>
+                      handleLogIn(
+                        this.state.password,
+                        this.state.email,
+                        this.props
+                      )
+                    }
                   >
                     Sign in
                   </Button>
@@ -97,7 +106,7 @@ class Login extends React.Component {
             <Col xs="6">
               <a
                 className="text-light"
-                href="#pablo"
+                href="#"
                 onClick={e => e.preventDefault()}
               >
                 <small>Forgot password?</small>
@@ -106,7 +115,7 @@ class Login extends React.Component {
             <Col className="text-right" xs="6">
               <a
                 className="text-light"
-                href = "#"
+                href="#"
                 onClick={e => this.props.history.push("/register")}
               >
                 <small>Create new account</small>

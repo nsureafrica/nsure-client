@@ -47,7 +47,7 @@ class Login extends React.Component {
                 <Button
                   className="btn-neutral btn-icon"
                   color="default"
-                  href="#pablo"
+                  href="#"
                   onClick={e => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
@@ -61,7 +61,7 @@ class Login extends React.Component {
                 <Button
                   className="btn-neutral btn-icon"
                   color="default"
-                  href="#pablo"
+                  href="#"
                   onClick={e => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
@@ -124,7 +124,7 @@ class Login extends React.Component {
             <Col xs="6">
               <a
                 className="text-light"
-                href="#pablo"
+                href="#"
                 onClick={e => e.preventDefault()}
               >
                 <small>Forgot password?</small>
