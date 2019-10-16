@@ -14,13 +14,13 @@ import {
   Col
 } from "reactstrap";
 // core components
-import EducationInsuranceFormHeader from "../../components/Headers/formHeaders/EducationInsuranceFormHeader";
+import FormHeader from "../../components/Headers/FormHeader"
 
 class EducationInsuranceForm extends React.Component {
   render() {
     return (
       <>
-        <EducationInsuranceFormHeader />
+        <FormHeader name="Education Insurance" image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwrybLv0bBwV98kkY0zp1yKiopc7vA52HBKbEsPRX9CrBI9c6y"/>
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>

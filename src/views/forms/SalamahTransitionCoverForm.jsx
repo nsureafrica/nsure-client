@@ -14,8 +14,7 @@ import {
   Col
 } from "reactstrap";
 // core components
-import SalamahTransitionCoverFormHeader from "../../components/Headers/formHeaders/SalamahInsuranceFormHeader";
-
+import FormHeader from "../../components/Headers/FormHeader"
 class SalamahTransitionCoverForm extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +41,10 @@ class SalamahTransitionCoverForm extends React.Component {
   render() {
     return (
       <>
-        <SalamahTransitionCoverFormHeader />
+      <FormHeader
+          name="Salamah Insurance"
+          image="https://images.unsplash.com/photo-1544813545-4827b64fcacb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>

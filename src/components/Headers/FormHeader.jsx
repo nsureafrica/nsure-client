@@ -1,9 +1,9 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Container, Col } from "reactstrap";
 
-class TravelInsuranceFormHeader extends React.Component {
+class FormHeader extends React.Component {
   render() {
     return (
       <>
@@ -11,8 +11,7 @@ class TravelInsuranceFormHeader extends React.Component {
           className="header pb-8  pt-lg-8 d-flex align-items-center"
           style={{
             minHeight: "250px",
-            backgroundImage:
-              "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM)",
+            backgroundImage: `url(${this.props.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center top"
           }}
@@ -23,7 +22,7 @@ class TravelInsuranceFormHeader extends React.Component {
           <Container className=" align-items-right" fluid style={{textAlign:'right'}}>
             <div>
               <Col lg="7" md="10" style={{float:'right'}}>
-                <h1 className="text-white">Travel Insurance</h1>
+                <h1 className="text-white">{this.props.name}</h1>
               
                 <Button
                   color="info"
@@ -41,4 +40,4 @@ class TravelInsuranceFormHeader extends React.Component {
   }
 }
 
-export default TravelInsuranceFormHeader;
+export default FormHeader;

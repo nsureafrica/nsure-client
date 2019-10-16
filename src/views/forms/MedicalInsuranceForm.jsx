@@ -14,7 +14,7 @@ import {
   Col
 } from "reactstrap";
 // core components
-import MedicalInsuranceFormHeader from "../../components/Headers/formHeaders/MedicalInsuranceFormHeader";
+import FormHeader from "../../components/Headers/FormHeader"
 
 class MedicalInsuranceForm extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class MedicalInsuranceForm extends React.Component {
     console.log(this.state.outpatientPerPerson);
     return (
       <>
-        <MedicalInsuranceFormHeader />
+      <FormHeader name="Medical Insurance" image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBmXiTO2oAlqyGzfMp_NDH0_a9hig45Y3SoF4D47SXYgHWMDbF"/>
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>

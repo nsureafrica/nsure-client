@@ -19,7 +19,7 @@ import { getMotorQuote } from "../../requests/quoteRequests";
 import { postRequest } from "../../requests/requests";
 
 // core components
-import MotorInsuranceFormHeader from "../../components/Headers/formHeaders/MotorInsuranceFormHeader";
+import FormHeader from "../../components/Headers/FormHeader";
 
 class MotorInsuranceForm extends React.Component {
   categories = [
@@ -155,7 +155,10 @@ class MotorInsuranceForm extends React.Component {
     console.log(this.state);
     return (
       <>
-        <MotorInsuranceFormHeader />
+        <FormHeader
+          name="Motor Insurance"
+          image="https://i.roamcdn.net/hz/pi/og-image-category/312b0538e2660e8c604a7f23d89748c2/-/hzfiles/pi/og_image/q10dk3/de0486672589668c4785ef6d9165689ac266cd2e.jpeg"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>

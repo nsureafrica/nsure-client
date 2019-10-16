@@ -14,8 +14,7 @@ import {
   Col
 } from "reactstrap";
 // core components
-import TravelInsuranceFormHeader from "../../components/Headers/formHeaders/TravelInsuranceFormHeaders";
-
+import FormHeader from "../../components/Headers/FormHeader"
 class TravelInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +42,10 @@ class TravelInsuranceForm extends React.Component {
   render() {
     return (
       <>
-        <TravelInsuranceFormHeader />
+      <FormHeader
+          name="Travel Insurance"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>

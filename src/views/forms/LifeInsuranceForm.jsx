@@ -14,13 +14,16 @@ import {
   Col
 } from "reactstrap";
 // core components
-import LifeInsuranceFormHeader from "../../components/Headers/formHeaders/LifeInsuranceFormHeader"
+import FormHeader from "../../components/Headers/FormHeader";
 
 class LifeInsuranceForm extends React.Component {
   render() {
     return (
       <>
-        <LifeInsuranceFormHeader />
+        <FormHeader
+          name="Life Insurance"
+          image="https://source.unsplash.com/collection/4429411/1600x900"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -32,7 +35,7 @@ class LifeInsuranceForm extends React.Component {
                       <h3 className="mb-0">Life insurance form</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                    <Button
+                      <Button
                         color="primary"
                         href="delivery"
                         // onClick={e => e.preventDefault()}
@@ -88,7 +91,7 @@ class LifeInsuranceForm extends React.Component {
                               className="form-control-label"
                               htmlFor="input-last-name"
                             >
-                                Type of cover
+                              Type of cover
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -113,11 +116,10 @@ class LifeInsuranceForm extends React.Component {
                               className="form-control-label"
                               htmlFor="input-address"
                             >
-                             Principal age
+                              Principal age
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
                               placeholder="Home Address"
                               type="text"
@@ -159,7 +161,7 @@ class LifeInsuranceForm extends React.Component {
                               type="text"
                             />
                           </FormGroup>
-                        </Col> 
+                        </Col>
                       </Row>
                     </div>
                   </Form>
