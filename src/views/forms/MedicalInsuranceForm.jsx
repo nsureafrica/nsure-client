@@ -13,8 +13,10 @@ import {
   Row,
   Col
 } from "reactstrap";
+import Switch from "../../components/Switch";
+
 // core components
-import FormHeader from "../../components/Headers/FormHeader"
+import FormHeader from "../../components/Headers/FormHeader";
 
 class MedicalInsuranceForm extends React.Component {
   constructor(props) {
@@ -33,7 +35,9 @@ class MedicalInsuranceForm extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
   item = [
     {
       value: true,
@@ -58,11 +62,18 @@ class MedicalInsuranceForm extends React.Component {
       outpatientPerPerson: changeEvent.target.value
     });
   }
+
+  handleClick(event) {
+    console.log(event.target.type);
+    this.setState({ outpatientPerPerson: !this.state.outpatientPerPerson });
+  }
   render() {
-    console.log(this.state.outpatientPerPerson);
     return (
       <>
-      <FormHeader name="Medical Insurance" image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBmXiTO2oAlqyGzfMp_NDH0_a9hig45Y3SoF4D47SXYgHWMDbF"/>
+        <FormHeader
+          name="Medical Insurance"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBmXiTO2oAlqyGzfMp_NDH0_a9hig45Y3SoF4D47SXYgHWMDbF"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -185,7 +196,7 @@ class MedicalInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        <Col md="12">
+                        {/* <Col md="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Outpatient per person
@@ -212,6 +223,19 @@ class MedicalInsuranceForm extends React.Component {
                               </div>
                             ))}
                           </FormGroup>
+                        </Col> */}
+                        <Col md="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Outpatient per person
+                            </label>
+                            <div className="custom-control custom-radio mb-3">
+                              <Switch
+                                isOn={this.state.outpatientPerPerson}
+                                onClick={this.handleClick}
+                              />
+                            </div>
+                          </FormGroup>
                         </Col>
                         <Col md="12">
                           <FormGroup>
@@ -230,7 +254,7 @@ class MedicalInsuranceForm extends React.Component {
                                     value={item.value}
                                     key={item.text}
                                     checked={
-                                      this.state.maternityCover == item.value
+                                      this.state.maternityCover === item.value
                                     }
                                     onChange={this.handleInputChange}
                                   />

@@ -7,6 +7,7 @@ import Login from "views/login/login.jsx";
 import Register from "views/login/register.jsx";
 import Quote from "views/quote/quote.jsx";
 import Profile from "./views/examples/Profile"
+import LOL from "./views/login/lol"
 var routes = [
   {
     path: "/index",
@@ -62,6 +63,12 @@ var routes = [
     component: Login,
     layout: "/auth"
   },
+{
+  path: "/lol",
+  name: "lol",
+  component: LOL,
+  layout: "/auth"
+},
   {
     path: "/register",
     name: "register",

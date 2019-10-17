@@ -1,21 +1,10 @@
 import React from "react";
 import Chart from "chart.js";
 
-import {
-  Card,
-  CardBody,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardBody, Container, Row, Col } from "reactstrap";
 
 // core components
-import {
-  chartOptions,
-  parseOptions,
-} from "variables/charts.jsx";
-
-
+import { chartOptions, parseOptions } from "variables/charts.jsx";
 
 class PickUpPoints extends React.Component {
   state = {
@@ -44,11 +33,19 @@ class PickUpPoints extends React.Component {
   render() {
     return (
       <>
-
         <Container className="mt-2" fluid>
-        <h3 className="" style={{textAlign:'center', color:'#001996', letterSpacing:'1px',}}>Select a pickup point</h3>
+          <h3
+            className=""
+            style={{
+              textAlign: "center",
+              color: "#001996",
+              letterSpacing: "1px"
+            }}
+          >
+            Select a pickup point
+          </h3>
           <Row className="mt-3">
-            <Col className="mb-5 mb-xl-0" >
+            <Col className="mb-5 mb-xl-0">
               <Card className="shadow">
                 {/* <CardHeader className="border-0">
                   <Row className="align-items-center">
@@ -72,84 +69,91 @@ class PickUpPoints extends React.Component {
                     <li className="list-group-item px-0">
                       <Row className="align-items-center">
                         <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle">
-                            
-                          </a>
+                          <a href="#" className="avatar rounded-circle"></a>
                         </div>
                         <div className="col ml--2">
                           <h4 className="mb-0">
-                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>SIB</a>
-                           </h4>
-                            <h5>
-                            <a href="#!" style={{color:'#e16470'}}>Lenana Road
-                            <br></br>
-                            <small>9am to 5pm</small>
+                            <a
+                              href="#!"
+                              style={{
+                                color: "#115894cc",
+                                marginBottom: "10px"
+                              }}
+                            >
+                              SIB
+                            </a>
+                          </h4>
+                          <h5>
+                            <a href="#!" style={{ color: "#e16470" }}>
+                              Lenana Road
+                              <br></br>
+                              <small>9am to 5pm</small>
                             </a>
                             <br></br>
                           </h5>
-                      
                         </div>
-
                       </Row>
-
                     </li>
                     <li className="list-group-item px-0">
                       <Row className="align-items-center">
                         <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle">
-                            
-                          </a>
+                          <a href="#" className="avatar rounded-circle"></a>
                         </div>
                         <div className="col ml--2">
                           <h4 className="mb-0">
-                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>SIB</a>
-                           </h4>
-                            <h5>
-                            <a href="#!" style={{color:'#e16470'}}>Kenyatta Road
-                            <br></br>
-                            <small>9am to 5pm</small>
+                            <a
+                              href="#!"
+                              style={{
+                                color: "#115894cc",
+                                marginBottom: "10px"
+                              }}
+                            >
+                              SIB
+                            </a>
+                          </h4>
+                          <h5>
+                            <a href="#!" style={{ color: "#e16470" }}>
+                              Kenyatta Road
+                              <br></br>
+                              <small>9am to 5pm</small>
                             </a>
                             <br></br>
                           </h5>
-                      
                         </div>
-
                       </Row>
-
                     </li>
                     <li className="list-group-item px-0">
                       <Row className="align-items-center">
                         <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle">
-                            
-                          </a>
+                          <a href="#" className="avatar rounded-circle"></a>
                         </div>
                         <div className="col ml--2">
                           <h4 className="mb-0">
-                            <a href="#!" style={{color:'#115894cc', marginBottom:'10px',}}>SIB</a>
-                           </h4>
-                            <h5>
-                            <a href="#!" style={{color:'#e16470'}}>Chiromo Road
-                            <br></br>
-                            <small>9am to 5pm</small>
+                            <a
+                              href="#!"
+                              style={{
+                                color: "#115894cc",
+                                marginBottom: "10px"
+                              }}
+                            >
+                              SIB
+                            </a>
+                          </h4>
+                          <h5>
+                            <a href="#!" style={{ color: "#e16470" }}>
+                              Chiromo Road
+                              <br></br>
+                              <small>9am to 5pm</small>
                             </a>
                             <br></br>
                           </h5>
-                      
                         </div>
-
                       </Row>
-
                     </li>
-
-
-                  
                   </ul>
                 </CardBody>
               </Card>
             </Col>
-           
-         
           </Row>
         </Container>
       </>

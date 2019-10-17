@@ -1,21 +1,16 @@
 {
-  "name": "argon-dashboard-react",
+  "name": "spiresure",
   "version": "1.0.0",
-  "description": "React version of Argon Dashboard by Creative Tim",
+  "description": "An insurance application ",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/creativetimofficial/argon-dashboard-react.git"
   },
   "keywords": [
-    "react",
-    "reactjs",
-    "argon",
-    "argon-react",
-    "dashboard",
-    "dashboard-react",
-    "argon-dashboard",
-    "argon-dashboard-react"
+    "Spire",
+    "Spiresure",
+    "Insuarance"
   ],
   "author": "Adah , Tony and Allan",
   "license": "MIT",

@@ -9,19 +9,21 @@ import {
   Container,
   Row,
   Col,
-  Form, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter
+  Form,
+  FormGroup,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 // core components
-import {
-  chartOptions,
-  parseOptions,
-} from "variables/charts.jsx";
+import { chartOptions, parseOptions } from "variables/charts.jsx";
 
 import Header from "components/Headers/Header.jsx";
 
 class Index extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -67,9 +69,19 @@ class Index extends React.Component {
         {/* Page content */}
 
         <Container className="mt--7" fluid>
-          <h2 className="" style={{ textAlign: 'center', color: '#001996', letterSpacing: '3px', textTransform: 'uppercase' }}>My Current Covers</h2>
+          <h2
+            className=""
+            style={{
+              textAlign: "center",
+              color: "#001996",
+              letterSpacing: "3px",
+              textTransform: "uppercase"
+            }}
+          >
+            My Current Covers
+          </h2>
           <Row className="mt-3">
-            <Col className="mb-5 mb-xl-0" >
+            <Col className="mb-5 mb-xl-0">
               <Card className="shadow">
                 {/* <CardHeader className="border-0">
                   <Row className="align-items-center">
@@ -93,57 +105,73 @@ class Index extends React.Component {
                     <li className="list-group-item px-0">
                       <Row className="align-items-center">
                         <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle">
-
-                          </a>
+                          <a href="#" className="avatar rounded-circle"></a>
                         </div>
                         <div className="col ml--2">
                           {/* <h4 className="mb-0">
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>SIB</a>
                           </h4> */}
                           <h5>
-                            <a href="#!" style={{ color: '#e16470' }}>Medical Policy</a>
+                            <a href="#!" style={{ color: "#e16470" }}>
+                              Medical Policy
+                            </a>
                           </h5>
-                          <span className="text-success" style={{ marginRight: '12px' }}>●</span>
+                          <span
+                            className="text-success"
+                            style={{ marginRight: "12px" }}
+                          >
+                            ●
+                          </span>
                           <span>Active</span>
                         </div>
-                        <button type="button" class="btn btn-secondary" onClick={this.toggle}>Claim</button>
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          onClick={this.toggle}
+                        >
+                          Claim
+                        </button>
                       </Row>
-
                     </li>
-
 
                     <li className="list-group-item px-0">
                       <Row className="align-items-center">
                         <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle">
-
-                          </a>
+                          <a href="#" className="avatar rounded-circle"></a>
                         </div>
                         <div className="col ml--2">
                           {/* <h4 className="mb-0">
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>HERITAGE INSURANCE</a>
                           </h4> */}
                           <h5>
-                            <a href="#!" style={{ color: '#e16470' }}>Motor Policy</a>
+                            <a href="#!" style={{ color: "#e16470" }}>
+                              Motor Policy
+                            </a>
                           </h5>
-                          <span className="text-danger" style={{ marginRight: '12px' }}>●</span>
+                          <span
+                            className="text-danger"
+                            style={{ marginRight: "12px" }}
+                          >
+                            ●
+                          </span>
                           <span>Expired</span>
                         </div>
-                        <button type="button" class="btn btn-secondary" >Renew</button>
+                        <button type="button" class="btn btn-secondary" onClick={()=>this.props.history.push("MotorInsuranceForm")}>
+                          Renew
+                        </button>
                       </Row>
-
                     </li>
-
                   </ul>
                 </CardBody>
               </Card>
             </Col>
-
-
           </Row>
         </Container>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>Claim Form</ModalHeader>
           <ModalBody>
             <Form>
@@ -157,7 +185,7 @@ class Index extends React.Component {
                         htmlFor="input-username"
                       >
                         Upload photo
-                            </label>
+                      </label>
                       <Input
                         className="form-control-alternative"
                         id="input-username"
@@ -175,7 +203,7 @@ class Index extends React.Component {
                         htmlFor="input-username"
                       >
                         Upload form
-                            </label>
+                      </label>
                       <Input
                         className="form-control-alternative"
                         id="input-username"
@@ -193,7 +221,7 @@ class Index extends React.Component {
                         htmlFor="input-first-name"
                       >
                         Description of the accident
-                            </label>
+                      </label>
                       <Input
                         className="form-control-alternative"
                         id="input-first-name"
@@ -204,12 +232,15 @@ class Index extends React.Component {
                   </Col>
                 </Row>
               </div>
-
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Submit Details</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button color="primary" onClick={this.toggle}>
+              Submit Details
+            </Button>{" "}
+            <Button color="secondary" onClick={this.toggle}>
+              Cancel
+            </Button>
           </ModalFooter>
         </Modal>
       </>

@@ -15,7 +15,6 @@ import {
   Col
 } from "reactstrap";
 import { onlyAllowNNumericalInput } from "../../miscFunctions";
-import { getMotorQuote } from "../../requests/quoteRequests";
 import { postRequest } from "../../requests/requests";
 
 // core components
@@ -90,12 +89,12 @@ class MotorInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      motorEstimateValue: "",
+      motorEstimateValue: "0",
       carModel: "",
       motorCategory: "motorcycle",
       vehicleType: "private",
-      value: "comprehensive",
-      coverType: "",
+      value: "",
+      coverType: "comprehensive",
       courtesyCarOption: "6",
       numberPlateOrRegistrationNumber: "",
       chasisNumber: "",
@@ -172,20 +171,7 @@ class MotorInsuranceForm extends React.Component {
                     <Col className="text-right" xs="4">
                       <Button
                         color="primary"
-                        // href="delivery"
-                        onClick={this.getQuote}
-                        // onClick={() =>
-                        //   getMotorQuote(
-                        //     this.state.motorCategory,
-                        //     this.state.vehicleType,
-                        //     this.state.coverType,
-                        //     this.state.motorEstimateValue,
-                        //     this.state.courtesyCarOption,
-                        //     this.state.politicalViolence,
-                        //     this.state.excessProtector,
-                        //     this.props
-                        //   )
-                        // }
+                        onClick={this.getQuote}                       
                         size="sm"
                       >
                         Submit details
