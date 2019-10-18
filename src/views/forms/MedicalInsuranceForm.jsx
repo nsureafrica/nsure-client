@@ -13,7 +13,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import Switch from "../../components/Switch";
+import ToggleButton from "react-toggle-button";
 
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -196,46 +196,30 @@ class MedicalInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        {/* <Col md="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Outpatient per person
-                            </label>
-                            {this.item.map(item => (
-                              <div
-                                className="custom-control custom-radio mb-3"
-                                key={item.text}
-                              >
-                                <label className="custom-control-label">
-                                  <input
-                                    type="radio"
-                                    className="custom-control-input"
-                                    value={item.value}
-                                    key={item.text}
-                                    checked={
-                                      this.state.outpatientPerPerson ==
-                                      item.value
-                                    }
-                                    onChange={this.handleOptionChange}
-                                  />
-                                  {item.text}
-                                </label>
-                              </div>
-                            ))}
-                          </FormGroup>
-                        </Col> */}
                         <Col md="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Outpatient per person
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <Switch
-                                isOn={this.state.outpatientPerPerson}
-                                onClick={this.handleClick}
-                              />
-                            </div>
-                          </FormGroup>
+                          <label className="form-control-label">
+                            Outpatient per person
+                          </label>
+                          <ToggleButton
+                            inactiveLabel="Yes"
+                            activeLabel="No"
+                            colors={{
+                              active: {
+                                base: "rgb(207,221,245)",
+                                hover: "rgb(177, 191, 215)"
+                              },
+                              inactive: {
+                                base: "rgb(65,66,68)",
+                                hover: "rgb(95,96,98)"
+                              }
+                            }}
+                            value={this.state.outpatientPerPerson || false}
+                            onToggle={value => {
+                              this.setState({
+                                outpatientPerPerson: !value
+                              });
+                            }}
+                          />
                         </Col>
                         <Col md="12">
                           <FormGroup>
