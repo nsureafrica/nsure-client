@@ -1,7 +1,7 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 // reactstrap components
-import { Container, Row, Col } from "reactstrap";
+import {Container, Row, Col} from "reactstrap";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.jsx";
@@ -16,7 +16,7 @@ class Auth extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove("bg-default");
   }
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/auth") {
         return (

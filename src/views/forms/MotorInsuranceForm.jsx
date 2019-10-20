@@ -12,10 +12,10 @@ import {
   Container,
   Row,
   Label,
-  Col
+  Col,
 } from "reactstrap";
-import { onlyAllowNNumericalInput } from "../../miscFunctions";
-import { postRequest } from "../../requests/requests";
+import {onlyAllowNNumericalInput} from "../../miscFunctions";
+import {postRequest} from "../../requests/requests";
 
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -24,50 +24,50 @@ class MotorInsuranceForm extends React.Component {
   categories = [
     {
       value: "motorcycle",
-      label: "Motorcycle"
+      label: "Motorcycle",
     },
     {
       value: "motorPrivate",
-      label: "Motor Private"
+      label: "Motor Private",
     },
     {
       value: "motorCommercial",
-      label: "Motor Commercial"
+      label: "Motor Commercial",
     },
     {
       value: "heavyMachinery",
-      label: "Heavy Machinery"
+      label: "Heavy Machinery",
     },
     {
       value: "tankers",
-      label: "Tankers"
+      label: "Tankers",
     },
     {
       value: "PMO",
-      label: "PMO"
+      label: "PMO",
     },
     {
       value: "specialTypes",
-      label: "specialTypes"
+      label: "specialTypes",
     },
     {
       value: "PSV",
-      label: "PSV"
+      label: "PSV",
     },
     {
       value: "drivingSchools",
-      label: "Driving Schools"
-    }
+      label: "Driving Schools",
+    },
   ];
   coverTypes = [
     {
       value: "comprehensive",
-      label: "Comprehensive"
+      label: "Comprehensive",
     },
     {
       value: "thirdParty",
-      label: "Third Party"
-    }
+      label: "Third Party",
+    },
     // {
     //   value: "ownGoods",
     //   label: "Own Goods"
@@ -79,12 +79,12 @@ class MotorInsuranceForm extends React.Component {
     // { value: "passengers", label: "Passengers" }
   ];
   vehicleTypes = [
-    { value: "private", label: "Private" },
-    { value: "commercial", label: "Commercial" }
+    {value: "private", label: "Private"},
+    {value: "commercial", label: "Commercial"},
   ];
   courtesyCarOptions = [
-    { value: "6", label: "Six Days" },
-    { value: "10", label: "Ten Days" }
+    {value: "6", label: "Six Days"},
+    {value: "10", label: "Ten Days"},
   ];
   constructor(props) {
     super(props);
@@ -106,7 +106,7 @@ class MotorInsuranceForm extends React.Component {
       emailAddress: "",
       city: "",
       country: "",
-      postalCode: ""
+      postalCode: "",
     };
     this.onChange = this.onChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -114,7 +114,7 @@ class MotorInsuranceForm extends React.Component {
   }
   onChange(e) {
     if (onlyAllowNNumericalInput(e.target.value)) {
-      this.setState({ motorEstimateValue: e.target.value });
+      this.setState({motorEstimateValue: e.target.value});
     }
   }
 
@@ -123,7 +123,7 @@ class MotorInsuranceForm extends React.Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -136,14 +136,14 @@ class MotorInsuranceForm extends React.Component {
       vehicleEstimatedValue: this.state.motorEstimateValue,
       courtesyCarOption: this.state.courtesyCarOption,
       politicalViolence: false,
-      excessProtector: false
+      excessProtector: false,
     };
     const quotePromise = postRequest(motorQuoteEndpoint, payload);
-    quotePromise.then(response => {
+    quotePromise.then((response) => {
       console.log(response.data);
       localStorage.setItem(
-        "quoteAmount",
-        JSON.stringify(response.data.quoteAmount)
+          "quoteAmount",
+          JSON.stringify(response.data.quoteAmount)
       );
       localStorage.setItem("optionsSelected", JSON.stringify(payload));
       this.props.history.push("quote");
@@ -171,7 +171,7 @@ class MotorInsuranceForm extends React.Component {
                     <Col className="text-right" xs="4">
                       <Button
                         color="primary"
-                        onClick={this.getQuote}                       
+                        onClick={this.getQuote}
                         size="sm"
                       >
                         Submit details
@@ -233,7 +233,7 @@ class MotorInsuranceForm extends React.Component {
                               value={this.state.motorCategory}
                               onChange={this.handleInputChange}
                             >
-                              {this.categories.map(option => (
+                              {this.categories.map((option) => (
                                 <option key={option.value} value={option.value}>
                                   {option.label}
                                 </option>
@@ -251,7 +251,7 @@ class MotorInsuranceForm extends React.Component {
                               value={this.state.vehicleType}
                               onChange={this.handleInputChange}
                             >
-                              {this.vehicleTypes.map(option => (
+                              {this.vehicleTypes.map((option) => (
                                 <option key={option.value} value={option.value}>
                                   {option.label}
                                 </option>
@@ -271,7 +271,7 @@ class MotorInsuranceForm extends React.Component {
                               value={this.state.coverType}
                               onChange={this.handleInputChange}
                             >
-                              {this.coverTypes.map(option => (
+                              {this.coverTypes.map((option) => (
                                 <option key={option.value} value={option.value}>
                                   {option.label}
                                 </option>
@@ -291,7 +291,7 @@ class MotorInsuranceForm extends React.Component {
                               value={this.state.courtesyCarOption}
                               onChange={this.handleInputChange}
                             >
-                              {this.courtesyCarOptions.map(option => (
+                              {this.courtesyCarOptions.map((option) => (
                                 <option key={option.value} value={option.value}>
                                   {option.label}
                                 </option>

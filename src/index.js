@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import "assets/vendor/nucleo/css/nucleo.css";
@@ -11,13 +11,13 @@ import ClientLayout from "layouts/Client.jsx";
 import AuthLayout from "layouts/Auth.jsx";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path="/client" render={props => <ClientLayout {...props} />} />
-      <Route path="/auth" render={props => <AuthLayout {...props} />} />
-      <Redirect from="/" to="/auth/login" />
-    </Switch>
-  </BrowserRouter>,
-  document.getElementById("root")
+    <BrowserRouter>
+      <Switch>
+        <Route path="/client" render={(props) => <ClientLayout {...props} />} />
+        <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+        <Redirect from="/" to="/auth/login" />
+      </Switch>
+    </BrowserRouter>,
+    document.getElementById("root")
 );
 serviceWorker.register();

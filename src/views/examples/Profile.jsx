@@ -11,7 +11,7 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 // core components
 import UserHeader from "components/Headers/UserHeader.jsx";
@@ -20,7 +20,7 @@ class Profile extends React.Component {
   render() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
-    var userData;
+    let userData;
     if (token) {
       userData = jwtDecode(token);
       console.log(userData);
@@ -45,7 +45,7 @@ class Profile extends React.Component {
                       <Button
                         color="primary"
                         href="#"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         size="sm"
                       >
                         Settings

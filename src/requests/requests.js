@@ -12,4 +12,4 @@ function postRequest(endpoint, payload) {
   return axios.post(requestUrl, payload);
 }
 
-export { getRequest, postRequest };
+export {getRequest, postRequest};

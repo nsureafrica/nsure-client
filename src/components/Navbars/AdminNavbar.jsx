@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 // reactstrap components
 import {
   DropdownMenu,
@@ -15,14 +15,14 @@ import {
   Navbar,
   Nav,
   Container,
-  Media
+  Media,
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {
   render() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
-    var userData;
+    let userData;
     if (token) {
       userData = jwtDecode(token);
       console.log(userData);
@@ -91,7 +91,7 @@ class AdminNavbar extends React.Component {
                     <span>Support</span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem href="#" onClick={()=>this.props.history.push('/auth/login')}>
+                  <DropdownItem href="#" onClick={()=>this.props.history.push("/auth/login")}>
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>

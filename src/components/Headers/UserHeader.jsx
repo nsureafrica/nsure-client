@@ -1,18 +1,18 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
+import {Button, Container, Row, Col} from "reactstrap";
 
 class UserHeader extends React.Component {
   render() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
-    var userData;
+    let userData;
     if (token) {
-    userData = jwtDecode(token);
+      userData = jwtDecode(token);
       console.log(userData);
-    }else{
-      this.props.history.push('login');
+    } else {
+      this.props.history.push("login");
     }
     return (
       <>
@@ -23,7 +23,7 @@ class UserHeader extends React.Component {
             backgroundImage:
               "url(" + require("assets/img/theme/profile-cover.jpg") + ")",
             backgroundSize: "cover",
-            backgroundPosition: "center top"
+            backgroundPosition: "center top",
           }}
         >
           {/* Mask */}
@@ -42,7 +42,7 @@ class UserHeader extends React.Component {
                 <Button
                   color="info"
                   href="#"
-                  onClick={e => e.preventDefault()}
+                  onClick={(e) => e.preventDefault()}
                 >
                   Edit profile
                 </Button>

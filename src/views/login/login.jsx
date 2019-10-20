@@ -1,5 +1,5 @@
 import React from "react";
-import { handleLogIn } from "../../requests/authRequests";
+import {handleLogIn} from "../../requests/authRequests";
 // reactstrap components
 import {
   Button,
@@ -12,7 +12,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class Login extends React.Component {
@@ -20,7 +20,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
   }
 
@@ -50,7 +50,7 @@ class Login extends React.Component {
                       placeholder="Email"
                       type="email"
                       value={this.state.email}
-                      onChange={e => this.setState({ email: e.target.value })}
+                      onChange={(e) => this.setState({email: e.target.value})}
                     />
                   </InputGroup>
                 </FormGroup>
@@ -65,8 +65,8 @@ class Login extends React.Component {
                       placeholder="Password"
                       type="password"
                       value={this.state.password}
-                      onChange={e =>
-                        this.setState({ password: e.target.value })
+                      onChange={(e) =>
+                        this.setState({password: e.target.value})
                       }
                     />
                   </InputGroup>
@@ -90,9 +90,9 @@ class Login extends React.Component {
                     color="primary"
                     onClick={() =>
                       handleLogIn(
-                        this.state.password,
-                        this.state.email,
-                        this.props
+                          this.state.password,
+                          this.state.email,
+                          this.props
                       )
                     }
                   >
@@ -107,7 +107,7 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={e => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
               >
                 <small>Forgot password?</small>
               </a>
@@ -116,7 +116,7 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={e => this.props.history.push("/register")}
+                onClick={(e) => this.props.history.push("/register")}
               >
                 <small>Create new account</small>
               </a>

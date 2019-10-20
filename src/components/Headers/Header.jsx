@@ -1,7 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import {Card, CardBody, CardTitle, Container, Row, Col} from "reactstrap";
 
 class Header extends React.Component {
   render() {
@@ -18,28 +18,28 @@ class Header extends React.Component {
                   textAlign: "center",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase"
+                  textTransform: "uppercase",
                 }}
               >
                 Compare and purchase insurance
               </h2>
               <Row>
-              <Col lg="3" xl="2" sm="6" xs="6">
+                <Col lg="3" xl="2" sm="6" xs="6">
                   <a href="MotorInsuranceForm">
                     <Card
                       className="card-stats mb-4 mb-xl-0"
                       style={{
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        border: "none"
+                        border: "none",
                       }}
                     >
                       <CardBody
-                        style={{ textAlign: "center", color: "#8BC34A" }}
+                        style={{textAlign: "center", color: "#8BC34A"}}
                       >
                         <div className="">
                           <i
                             className="fa fa-car "
-                            style={{ fontSize: "2rem" }}
+                            style={{fontSize: "2rem"}}
                           />
                         </div>
 
@@ -50,7 +50,7 @@ class Header extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "11px"
+                            fontSize: "11px",
                           }}
                         >
                           Motor
@@ -66,16 +66,16 @@ class Header extends React.Component {
                       className="card-stats mb-4 mb-xl-0"
                       style={{
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        border: "none"
+                        border: "none",
                       }}
                     >
                       <CardBody
-                        style={{ textAlign: "center", color: "#00BCD4" }}
+                        style={{textAlign: "center", color: "#00BCD4"}}
                       >
                         <div className="">
                           <i
                             className="fa fa-medkit "
-                            style={{ fontSize: "2rem" }}
+                            style={{fontSize: "2rem"}}
                           />
                         </div>
 
@@ -86,7 +86,7 @@ class Header extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "11px"
+                            fontSize: "11px",
                           }}
                         >
                           Medical
@@ -95,23 +95,23 @@ class Header extends React.Component {
                     </Card>
                   </a>
                 </Col>
-                
+
                 <Col lg="3" xl="2" sm="6" xs="6">
                   <a href="EducationInsuranceForm">
                     <Card
                       className="card-stats mb-4 mb-xl-0"
                       style={{
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        border: "none"
+                        border: "none",
                       }}
                     >
                       <CardBody
-                        style={{ textAlign: "center", color: "#F44336" }}
+                        style={{textAlign: "center", color: "#F44336"}}
                       >
                         <div className="">
                           <i
                             className="fa fa-graduation-cap nsure-icons "
-                            style={{ fontSize: "2rem" }}
+                            style={{fontSize: "2rem"}}
                           />
                         </div>
 
@@ -122,7 +122,7 @@ class Header extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "11px"
+                            fontSize: "11px",
                           }}
                         >
                           Education
@@ -137,17 +137,17 @@ class Header extends React.Component {
                       className="card-stats mb-4 mb-xl-0"
                       style={{
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        border: "none"
+                        border: "none",
                       }}
                     >
                       <CardBody
-                        style={{ textAlign: "center", color: "#FF9800" }}
+                        style={{textAlign: "center", color: "#FF9800"}}
                       >
                         <div className="">
                           <i
                             className="fa fa-globe "
                             style={{
-                              fontSize: "2rem"
+                              fontSize: "2rem",
                             }}
                           />
                         </div>
@@ -159,7 +159,7 @@ class Header extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "11px"
+                            fontSize: "11px",
                           }}
                         >
                           Travel
@@ -175,17 +175,17 @@ class Header extends React.Component {
                       className="card-stats mb-4 mb-xl-0"
                       style={{
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        border: "none"
+                        border: "none",
                       }}
                     >
                       <CardBody
-                        style={{ textAlign: "center", color: "#9C27B0" }}
+                        style={{textAlign: "center", color: "#9C27B0"}}
                       >
                         <div className="">
                           <i
                             className="fa fa-thumbs-up"
                             style={{
-                              fontSize: "2rem"
+                              fontSize: "2rem",
                             }}
                           />
                         </div>
@@ -197,7 +197,7 @@ class Header extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "11px"
+                            fontSize: "11px",
                           }}
                         >
                           Salamah

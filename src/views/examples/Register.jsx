@@ -13,7 +13,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class Register extends React.Component {
@@ -31,7 +31,7 @@ class Register extends React.Component {
                   className="btn-neutral btn-icon mr-4"
                   color="default"
                   href="#"
-                  onClick={e => e.preventDefault()}
+                  onClick={(e) => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
                     <img
@@ -45,7 +45,7 @@ class Register extends React.Component {
                   className="btn-neutral btn-icon"
                   color="default"
                   href="#"
-                  onClick={e => e.preventDefault()}
+                  onClick={(e) => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
                     <img
@@ -112,7 +112,7 @@ class Register extends React.Component {
                       >
                         <span className="text-muted">
                           I agree with the{" "}
-                          <a href="#" onClick={e => e.preventDefault()}>
+                          <a href="#" onClick={(e) => e.preventDefault()}>
                             Privacy Policy
                           </a>
                         </span>

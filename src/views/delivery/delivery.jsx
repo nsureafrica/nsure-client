@@ -1,20 +1,20 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import {Card, CardBody, CardTitle, Container, Row, Col} from "reactstrap";
 import Maps from "views/examples/Maps.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 
 class Delivery extends React.Component {
   state = {
-    delivery: "sendy"
+    delivery: "sendy",
   };
 
-  but = { backgroundColor: "rgba(255, 255, 255, 0.2)", border: "none" };
+  but = {backgroundColor: "rgba(255, 255, 255, 0.2)", border: "none"};
   butActive = {
     boxShadow: "rgba(101, 63, 75, 0.44) 0px 0px 8px 1px",
     backgroundColor: "rgba(255, 255, 255, 0.2)",
-    border: "none"
+    border: "none",
   };
   render() {
     return (
@@ -30,36 +30,36 @@ class Delivery extends React.Component {
                   textAlign: "center",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase"
+                  textTransform: "uppercase",
                 }}
               >
                 Select Delivery Type
               </h2>
-              <Row style={{ justifyContent: "center" }}>
+              <Row style={{justifyContent: "center"}}>
                 <Col lg="3" xl="3" sm="5" xs="5">
                   <div
                     onClick={() => {
-                      this.setState({ delivery: "sendy" });
+                      this.setState({delivery: "sendy"});
                     }}
                   >
                     <Card
                       className="card-stats mb-4 mb-xl-0"
                       style={
-                        this.state.delivery === "sendy"
-                          ? this.butActive
-                          : this.but
+                        this.state.delivery === "sendy" ?
+                          this.butActive :
+                          this.but
                       }
                     >
                       <CardBody
                         style={{
                           textAlign: "center",
-                          color: "rgb(181, 0, 50)"
+                          color: "rgb(181, 0, 50)",
                         }}
                       >
                         <div className="">
                           <i
                             className="fa fa-motorcycle "
-                            style={{ fontSize: "4rem" }}
+                            style={{fontSize: "4rem"}}
                           />
                         </div>
 
@@ -70,7 +70,7 @@ class Delivery extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "12px"
+                            fontSize: "12px",
                           }}
                         >
                           Sendy Delivery <br></br>
@@ -83,24 +83,24 @@ class Delivery extends React.Component {
                 <Col lg="3" xl="3" sm="5" xs="5">
                   <div
                     onClick={() => {
-                      this.setState({ delivery: "pickup" });
+                      this.setState({delivery: "pickup"});
                     }}
                   >
                     <Card
                       className="card-stats  mb-4 mb-xl-0"
                       style={
-                        this.state.delivery == "pickup"
-                          ? this.butActive
-                          : this.but
+                        this.state.delivery == "pickup" ?
+                          this.butActive :
+                          this.but
                       }
                     >
                       <CardBody
-                        style={{ textAlign: "center", color: "rgb(0, 84, 95)" }}
+                        style={{textAlign: "center", color: "rgb(0, 84, 95)"}}
                       >
                         <div className="">
                           <i
                             className="fa fa-map-marked "
-                            style={{ fontSize: "4rem" }}
+                            style={{fontSize: "4rem"}}
                           />
                         </div>
 
@@ -111,7 +111,7 @@ class Delivery extends React.Component {
                             textAlign: "center",
                             marginTop: "7px",
                             fontWeight: "bold",
-                            fontSize: "12px"
+                            fontSize: "12px",
                           }}
                         >
                           Pickup Point
@@ -126,7 +126,7 @@ class Delivery extends React.Component {
 
               <div
                 className="mt-3 mb-3"
-                style={{ justifyContent: "center", textAlign: "center" }}
+                style={{justifyContent: "center", textAlign: "center"}}
               >
                 <a
                   href="invoice"
@@ -138,7 +138,7 @@ class Delivery extends React.Component {
                     textTransform: "uppercase",
                     borderRadius: "26px",
                     letterSpacing: "2px",
-                    border: "none"
+                    border: "none",
                   }}
                 >
                   Next

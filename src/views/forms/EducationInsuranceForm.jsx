@@ -11,10 +11,10 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 // core components
-import FormHeader from "../../components/Headers/FormHeader"
+import FormHeader from "../../components/Headers/FormHeader";
 
 class EducationInsuranceForm extends React.Component {
   render() {

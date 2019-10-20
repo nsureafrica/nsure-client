@@ -1,4 +1,4 @@
-/*!
+/* !
 
 =========================================================
 * Argon Dashboard React - v1.0.0
@@ -30,7 +30,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class Login extends React.Component {
@@ -48,7 +48,7 @@ class Login extends React.Component {
                   className="btn-neutral btn-icon"
                   color="default"
                   href="#"
-                  onClick={e => e.preventDefault()}
+                  onClick={(e) => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
                     <img
@@ -62,7 +62,7 @@ class Login extends React.Component {
                   className="btn-neutral btn-icon"
                   color="default"
                   href="#"
-                  onClick={e => e.preventDefault()}
+                  onClick={(e) => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
                     <img
@@ -125,7 +125,7 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={e => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
               >
                 <small>Forgot password?</small>
               </a>
@@ -134,7 +134,7 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={e => e.preventDefault(this.props.history.push('/register'))}
+                onClick={(e) => e.preventDefault(this.props.history.push("/register"))}
               >
                 <small>Create new account</small>
               </a>

@@ -1,4 +1,4 @@
-/*!
+/* !
 
 =========================================================
 * Argon Dashboard React - v1.0.0
@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -27,7 +27,7 @@ import {
   Nav,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {

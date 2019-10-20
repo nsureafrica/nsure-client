@@ -15,11 +15,11 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 
 // core components
-import { chartOptions, parseOptions } from "variables/charts.jsx";
+import {chartOptions, parseOptions} from "variables/charts.jsx";
 
 import Header from "components/Headers/Header.jsx";
 
@@ -27,7 +27,7 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
     };
 
     this.toggle = this.toggle.bind(this);
@@ -35,16 +35,16 @@ class Index extends React.Component {
   state = {
     activeNav: 1,
     chartExample1Data: "data1",
-    open: false
+    open: false,
   };
   toggleNavs = (e, index) => {
     e.preventDefault();
     this.setState({
       activeNav: index,
       chartExample1Data:
-        this.state.chartExample1Data === "data1" ? "data2" : "data1"
+        this.state.chartExample1Data === "data1" ? "data2" : "data1",
     });
-    let wow = () => {
+    const wow = () => {
       console.log(this.state);
     };
     wow.bind(this);
@@ -57,8 +57,8 @@ class Index extends React.Component {
     }
   }
   toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
+    this.setState((prevState) => ({
+      modal: !prevState.modal,
     }));
   }
 
@@ -75,7 +75,7 @@ class Index extends React.Component {
               textAlign: "center",
               color: "#001996",
               letterSpacing: "3px",
-              textTransform: "uppercase"
+              textTransform: "uppercase",
             }}
           >
             My Current Covers
@@ -112,13 +112,13 @@ class Index extends React.Component {
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>SIB</a>
                           </h4> */}
                           <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
+                            <a href="#!" style={{color: "#e16470"}}>
                               Medical Policy
                             </a>
                           </h5>
                           <span
                             className="text-success"
-                            style={{ marginRight: "12px" }}
+                            style={{marginRight: "12px"}}
                           >
                             ●
                           </span>
@@ -126,7 +126,7 @@ class Index extends React.Component {
                         </div>
                         <button
                           type="button"
-                          class="btn btn-secondary"
+                          className="btn btn-secondary"
                           onClick={this.toggle}
                         >
                           Claim
@@ -144,19 +144,19 @@ class Index extends React.Component {
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>HERITAGE INSURANCE</a>
                           </h4> */}
                           <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
+                            <a href="#!" style={{color: "#e16470"}}>
                               Motor Policy
                             </a>
                           </h5>
                           <span
                             className="text-danger"
-                            style={{ marginRight: "12px" }}
+                            style={{marginRight: "12px"}}
                           >
                             ●
                           </span>
                           <span>Expired</span>
                         </div>
-                        <button type="button" class="btn btn-secondary" onClick={()=>this.props.history.push("MotorInsuranceForm")}>
+                        <button type="button" className="btn btn-secondary" onClick={()=>this.props.history.push("MotorInsuranceForm")}>
                           Renew
                         </button>
                       </Row>

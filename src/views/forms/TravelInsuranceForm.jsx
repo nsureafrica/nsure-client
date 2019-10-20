@@ -11,23 +11,23 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 // core components
-import FormHeader from "../../components/Headers/FormHeader"
+import FormHeader from "../../components/Headers/FormHeader";
 class TravelInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      medicalExpenses:"",
-      followUpTreatmentInCountryOfResidence:"",
-      medicalEvaluationExpenses:"",
-      repartriationOfMortalRemains:"",
-      accompanyingFamilyMember:"",
-      prematureReturnInCaseOfDeath:"",
-      legalAssistance:"",
-      lossOrTheft:"",
-      luggageDelay:""
+      medicalExpenses: "",
+      followUpTreatmentInCountryOfResidence: "",
+      medicalEvaluationExpenses: "",
+      repartriationOfMortalRemains: "",
+      accompanyingFamilyMember: "",
+      prematureReturnInCaseOfDeath: "",
+      legalAssistance: "",
+      lossOrTheft: "",
+      luggageDelay: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -36,16 +36,16 @@ class TravelInsuranceForm extends React.Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
   render() {
     return (
       <>
       <FormHeader
-          name="Travel Insurance"
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM"
-        />
+        name="Travel Insurance"
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM"
+      />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>

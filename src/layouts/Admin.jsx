@@ -1,14 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 // reactstrap components
-import { Container } from "reactstrap";
+import {Container} from "reactstrap";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import AdminFooter from "components/Footers/AdminFooter.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
-import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes"
+import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
 
 class Admin extends React.Component {
   componentDidUpdate(e) {
@@ -16,7 +16,7 @@ class Admin extends React.Component {
     document.scrollingElement.scrollTop = 0;
     this.refs.mainContent.scrollTop = 0;
   }
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/client") {
         return (
@@ -31,11 +31,11 @@ class Admin extends React.Component {
       }
     });
   };
-  getBrandText = path => {
+  getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
-          routes[i].layout + routes[i].path
+            routes[i].layout + routes[i].path
         ) !== -1
       ) {
         return routes[i].name;
@@ -53,7 +53,7 @@ class Admin extends React.Component {
           logo={{
             innerLink: "/client/index",
             imgSrc: require("assets/img/brand/spire.png"),
-            imgAlt: "..."
+            imgAlt: "...",
           }}
         />
         <div className="main-content" ref="mainContent">

@@ -4,7 +4,6 @@ import React from "react";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
@@ -13,7 +12,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class Register extends React.Component {
@@ -22,7 +21,6 @@ class Register extends React.Component {
       <>
         <Col lg="6" md="8">
           <Card className="bg-secondary shadow border-0">
-            
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
                 <small>Sign up with credentials</small>
@@ -88,7 +86,7 @@ class Register extends React.Component {
                       >
                         <span className="text-muted">
                           I agree with the{" "}
-                          <a href="#" onClick={e => e.preventDefault()}>
+                          <a href="#" onClick={(e) => e.preventDefault()}>
                             Privacy Policy
                           </a>
                         </span>
@@ -97,7 +95,13 @@ class Register extends React.Component {
                   </Col>
                 </Row>
                 <div className="text-center">
-                  <Button className="mt-4" color="primary" type="button" onClick={this.props.history.push("/client/index")}>
+                  <Button
+                    className="mt-4"
+                    color="primary"
+                    type="button"
+                    // eslint-disable-next-line react/prop-types
+                    onClick={this.props.history.push("/client/index")}
+                  >
                     Create account
                   </Button>
                 </div>

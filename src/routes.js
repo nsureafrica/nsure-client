@@ -6,68 +6,68 @@ import Invoice from "views/invoices/invoice.jsx";
 import Login from "views/login/login.jsx";
 import Register from "views/login/register.jsx";
 import Quote from "views/quote/quote.jsx";
-import Profile from "./views/examples/Profile"
-var routes = [
+import Profile from "./views/examples/Profile";
+const routes = [
   {
     path: "/index",
     name: "Business Insuarance",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/maps",
     name: "Premiums,Policies and Claims",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/delivery",
     name: "Delivery",
     icon: "ni ni-pin-3 text-orange",
     component: Delivery,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/quote",
     name: "Quote",
     icon: "ni ni-pin-3 text-orange",
     component: Quote,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/pickup",
     name: "pickup",
     icon: "ni ni-pin-3 text-orange",
     component: PickUpPoints,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/invoice",
     name: "invoice",
     icon: "ni ni-pin-3 text-orange",
     component: Invoice,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/user-profile",
     name: "Profile",
     component: Profile,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/login",
     name: "login",
     component: Login,
-    layout: "/auth"
+    layout: "/auth",
   },
   {
     path: "/register",
     name: "register",
     component: Register,
-    layout: "/auth"
-  }
+    layout: "/auth",
+  },
 
 ];
 export default routes;

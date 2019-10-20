@@ -1,24 +1,24 @@
 import React from "react";
 import Chart from "chart.js";
 
-import { Card, CardBody, Container, Row, Col } from "reactstrap";
+import {Card, CardBody, Container, Row, Col} from "reactstrap";
 
 // core components
-import { chartOptions, parseOptions } from "variables/charts.jsx";
+import {chartOptions, parseOptions} from "variables/charts.jsx";
 
 class PickUpPoints extends React.Component {
   state = {
     activeNav: 1,
-    chartExample1Data: "data1"
+    chartExample1Data: "data1",
   };
   toggleNavs = (e, index) => {
     e.preventDefault();
     this.setState({
       activeNav: index,
       chartExample1Data:
-        this.state.chartExample1Data === "data1" ? "data2" : "data1"
+        this.state.chartExample1Data === "data1" ? "data2" : "data1",
     });
-    let wow = () => {
+    const wow = () => {
       console.log(this.state);
     };
     wow.bind(this);
@@ -39,7 +39,7 @@ class PickUpPoints extends React.Component {
             style={{
               textAlign: "center",
               color: "#001996",
-              letterSpacing: "1px"
+              letterSpacing: "1px",
             }}
           >
             Select a pickup point
@@ -77,14 +77,14 @@ class PickUpPoints extends React.Component {
                               href="#!"
                               style={{
                                 color: "#115894cc",
-                                marginBottom: "10px"
+                                marginBottom: "10px",
                               }}
                             >
                               SIB
                             </a>
                           </h4>
                           <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
+                            <a href="#!" style={{color: "#e16470"}}>
                               Lenana Road
                               <br></br>
                               <small>9am to 5pm</small>
@@ -105,14 +105,14 @@ class PickUpPoints extends React.Component {
                               href="#!"
                               style={{
                                 color: "#115894cc",
-                                marginBottom: "10px"
+                                marginBottom: "10px",
                               }}
                             >
                               SIB
                             </a>
                           </h4>
                           <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
+                            <a href="#!" style={{color: "#e16470"}}>
                               Kenyatta Road
                               <br></br>
                               <small>9am to 5pm</small>
@@ -133,14 +133,14 @@ class PickUpPoints extends React.Component {
                               href="#!"
                               style={{
                                 color: "#115894cc",
-                                marginBottom: "10px"
+                                marginBottom: "10px",
                               }}
                             >
                               SIB
                             </a>
                           </h4>
                           <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
+                            <a href="#!" style={{color: "#e16470"}}>
                               Chiromo Road
                               <br></br>
                               <small>9am to 5pm</small>
