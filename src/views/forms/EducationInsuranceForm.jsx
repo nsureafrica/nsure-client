@@ -11,16 +11,25 @@ import {
   Input,
   Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
+import Thingy from "./sss";
 
 class EducationInsuranceForm extends React.Component {
+  state = { message: "" }
+
+  callbackFunction = (childData) => {
+    this.setState({message: childData})
+}
   render() {
     return (
       <>
-        <FormHeader name="Education Insurance" image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwrybLv0bBwV98kkY0zp1yKiopc7vA52HBKbEsPRX9CrBI9c6y"/>
+        <FormHeader
+          name="Education Insurance"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwrybLv0bBwV98kkY0zp1yKiopc7vA52HBKbEsPRX9CrBI9c6y"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -139,252 +148,30 @@ class EducationInsuranceForm extends React.Component {
                       Riders(Optional)
                     </h6>
                     <div className="pl-lg-4">
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Total and Permanent Disability
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="customRadio5"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio5"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                id="customRadio6"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio6"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Waiver of premium
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="customRadio5"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio5"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                id="customRadio6"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio6"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Child Accident Hospitalization Rider
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="customRadio5"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio5"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                id="customRadio6"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio6"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Adult Accident Hospitalization Rider
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="customRadio5"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio5"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                id="customRadio6"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio6"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Last Expense - Life Assured
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="customRadio5"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio5"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                id="customRadio6"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio6"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Last Expense - Beneficiary child
-                            </label>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                id="lastExpense"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio5"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                            <div className="custom-control custom-radio mb-3">
-                              <input
-                                className="custom-control-input"
-                                defaultChecked
-                                id="customRadio6"
-                                name="custom-radio-2"
-                                type="radio"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="customRadio6"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
+                      <Thingy
+                        fieldName="Total and permanent disability"
+                        toggleValue={true}
+                      />
+                      <Thingy
+                        fieldName="Waiver of premium"
+                        toggleValue={true}
+                      />
+                      <Thingy
+                        fieldName="Child Accident Hospitalization Rider"
+                        toggleValue={true}
+                      />
+                      <Thingy
+                        fieldName="Adult Accident Hospitalization Rider"
+                        toggleValue={true}
+                      />
+                      <Thingy
+                        fieldName="Last Expense - Life Assured"
+                        toggleValue={true}
+                      />
+                      <Thingy
+                        fieldName="Last Expense - Beneficiary child"
+                        toggleValue={true}
+                      />
                     </div>
                   </Form>
                 </CardBody>

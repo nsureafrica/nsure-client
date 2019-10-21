@@ -1,7 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import {Card, CardBody, CardTitle, Container, Row, Col} from "reactstrap";
+import {Card, CardBody, Container, Row, Col} from "reactstrap";
 import Maps from "views/examples/Maps.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 
@@ -89,7 +89,7 @@ class Delivery extends React.Component {
                     <Card
                       className="card-stats  mb-4 mb-xl-0"
                       style={
-                        this.state.delivery == "pickup" ?
+                        this.state.delivery === "pickup" ?
                           this.butActive :
                           this.but
                       }

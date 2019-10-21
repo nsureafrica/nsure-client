@@ -14,6 +14,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import Thingy from "./sss"
 import ToggleButton from "react-toggle-button";
 
 // core components
@@ -104,7 +105,7 @@ class MedicalInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               First Name
@@ -119,7 +120,7 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Second Name
@@ -143,7 +144,7 @@ class MedicalInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Principal age(18-65 years)
@@ -158,7 +159,7 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Age of the spouse (18-65 years)
@@ -173,7 +174,9 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        </Row>
+                        <Row>
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Number of children(1 month - 17 years)
@@ -225,37 +228,11 @@ class MedicalInsuranceForm extends React.Component {
                             }}
                           />
                         </Col>
-
-                        <Col md="12">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Maternity Cover
-                            </label>
-                            {this.item.map((item) => (
-                              <div
-                                className="custom-control custom-radio mb-3"
-                                key={item.text}
-                              >
-                                <label className="custom-control-label">
-                                  <input
-                                    type="radio"
-                                    className="custom-control-input"
-                                    value={item.value}
-                                    key={item.text}
-                                    checked={
-                                      this.state.maternityCover === item.value
-                                    }
-                                    onChange={this.handleInputChange}
-                                  />
-                                  {item.text}
-                                </label>
-                              </div>
-                            ))}
-                          </FormGroup>
-                        </Col>
+                        
                       </Row>
+                      <Thingy fieldName="Maternity Cover" toggleValue={true}/>
                       <Row>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Enter number of people to receive dental
@@ -273,7 +250,7 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Enter number of people to receive optical
@@ -291,7 +268,7 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Number of members to be covered under last
@@ -310,7 +287,7 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Number of members to be covered under personal

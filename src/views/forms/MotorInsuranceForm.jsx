@@ -140,18 +140,17 @@ class MotorInsuranceForm extends React.Component {
     };
     const quotePromise = postRequest(motorQuoteEndpoint, payload);
     quotePromise.then((response) => {
-      console.log(response.data);
       localStorage.setItem(
           "quoteAmount",
           JSON.stringify(response.data.quoteAmount)
       );
       localStorage.setItem("optionsSelected", JSON.stringify(payload));
+      // eslint-disable-next-line react/prop-types
       this.props.history.push("quote");
     });
   }
 
   render() {
-    console.log(this.state);
     return (
       <>
         <FormHeader
@@ -451,7 +450,7 @@ class MotorInsuranceForm extends React.Component {
                         </Col>
                       </Row>
                       <Row>
-                        <Col lg="4">
+                        <Col md="6">
                           <FormGroup>
                             <label className="form-control-label">City</label>
                             <Input
@@ -464,7 +463,7 @@ class MotorInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col md="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Country
@@ -479,7 +478,7 @@ class MotorInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="4">
+                        <Col md="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Postal code
