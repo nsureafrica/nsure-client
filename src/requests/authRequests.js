@@ -2,8 +2,6 @@ const axios = require("axios").default;
 const baseUrl = "https://nsure-252213.appspot.com/";
 
 function handleLogIn(password, email, props) {
-  console.log(password);
-  console.log(email);
   return axios
       .post(baseUrl + "signin", {
         username: email,
