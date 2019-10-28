@@ -12,9 +12,9 @@ import {
   Input,
   Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
-import Thingy from "./sss"
+import Thingy from "./sss";
 import ToggleButton from "react-toggle-button";
 
 // core components
@@ -34,42 +34,48 @@ class MedicalInsuranceForm extends React.Component {
       numberOfMembersToBeCoveredUnderPersonalAccident: "",
       numberofMembersToBeCoveredUnderLastExpense: "",
       outpatientPerPerson: false,
+      maternityCover: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   item = [
     {
       value: true,
-      text: "Yes",
+      text: "Yes"
     },
     {
       value: false,
-      text: "No",
-    },
+      text: "No"
+    }
   ];
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === "radio" ? target.value : target.value;
     const name = target.name;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
 
   handleOptionChange(changeEvent) {
     this.setState({
-      outpatientPerPerson: changeEvent.target.value,
+      outpatientPerPerson: changeEvent.target.value
     });
+  }
+  handleToggle(identifier) {
+    this.setState(state => ({ [identifier]: !state[identifier] }));
   }
 
   handleClick(event) {
     console.log(event.target.type);
-    this.setState({outpatientPerPerson: !this.state.outpatientPerPerson});
+    this.setState({ outpatientPerPerson: !this.state.outpatientPerPerson });
   }
   render() {
+    console.log(this.state.maternityCover);
     return (
       <>
         <FormHeader
@@ -174,8 +180,8 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                        </Row>
-                        <Row>
+                      </Row>
+                      <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -207,30 +213,34 @@ class MedicalInsuranceForm extends React.Component {
                         </Col>
                         <Col md="6">
                           <ToggleButton
-                            style={{float: "right"}}
+                            style={{ float: "right" }}
                             inactiveLabel="Yes"
                             activeLabel="No"
                             colors={{
                               active: {
                                 base: "rgb(207,221,245)",
-                                hover: "rgb(177, 191, 215)",
+                                hover: "rgb(177, 191, 215)"
                               },
                               inactive: {
                                 base: "rgb(65,66,68)",
-                                hover: "rgb(95,96,98)",
-                              },
+                                hover: "rgb(95,96,98)"
+                              }
                             }}
                             value={this.state.outpatientPerPerson || false}
-                            onToggle={(value) => {
+                            onToggle={value => {
                               this.setState({
-                                outpatientPerPerson: !value,
+                                outpatientPerPerson: !value
                               });
                             }}
                           />
                         </Col>
-                        
                       </Row>
-                      <Thingy fieldName="Maternity Cover" toggleValue={true}/>
+                      <Thingy
+                        fieldName="Maternity Cover"
+                        identifier="maternityCover"
+                        toggleValue={this.state.maternityCover}
+                        toggleHandler={this.handleToggle}
+                      />
                       <Row>
                         <Col lg="6">
                           <FormGroup>
@@ -281,7 +291,7 @@ class MedicalInsuranceForm extends React.Component {
                               type="number"
                               value={
                                 this.state
-                                    .numberofMembersToBeCoveredUnderLastExpense
+                                  .numberofMembersToBeCoveredUnderLastExpense
                               }
                               onChange={this.handleInputChange}
                             />
@@ -300,7 +310,7 @@ class MedicalInsuranceForm extends React.Component {
                               type="number"
                               value={
                                 this.state
-                                    .numberOfMembersToBeCoveredUnderPersonalAccident
+                                  .numberOfMembersToBeCoveredUnderPersonalAccident
                               }
                               onChange={this.handleInputChange}
                             />
