@@ -33,11 +33,13 @@ class MedicalInsuranceForm extends React.Component {
       numberOfPeopleToReceiveDentalCover: "",
       numberOfMembersToBeCoveredUnderPersonalAccident: "",
       numberofMembersToBeCoveredUnderLastExpense: "",
-      outpatientPerPerson: false
+      outpatientPerPerson: false,
+      maternityCover: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   item = [
@@ -65,12 +67,16 @@ class MedicalInsuranceForm extends React.Component {
       outpatientPerPerson: changeEvent.target.value
     });
   }
+  handleToggle(identifier) {
+    this.setState(state => ({ [identifier]: !state[identifier] }));
+  }
 
   handleClick(event) {
     console.log(event.target.type);
     this.setState({ outpatientPerPerson: !this.state.outpatientPerPerson });
   }
   render() {
+    console.log(this.state.maternityCover);
     return (
       <>
         <FormHeader
@@ -230,7 +236,12 @@ class MedicalInsuranceForm extends React.Component {
                           />
                         </Col>
                       </Row>
-                      <Thingy fieldName="Maternity Cover" toggleValue={true} />
+                      <Thingy
+                        fieldName="Maternity Cover"
+                        identifier="maternityCover"
+                        toggleValue={this.state.maternityCover}
+                        toggleHandler={this.handleToggle}
+                      />
                       <Row>
                         <Col lg="6">
                           <FormGroup>

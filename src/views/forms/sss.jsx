@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Row,Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import ToggleButton from "react-toggle-button";
 
 // eslint-disable-next-line no-undef
@@ -9,18 +9,18 @@ class Thingy extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     return (
-        <Row>
+      <Row>
         <Col lg="6">
           <label className="form-control-label">{this.props.fieldName}</label>
         </Col>
         <Col lg="6">
           <ToggleButton
             style={{ float: "right", textTransform: "capitalize" }}
-            inactiveLabel="Yes"
-            activeLabel="No"
+            inactiveLabel="No"
+            activeLabel="Yes"
             trackStyle={{
               height: 20
             }}
@@ -34,14 +34,13 @@ class Thingy extends React.Component {
                 hover: "rgb(95,96,98)"
               }
             }}
-            value={this.props.toggleValue || false}
-            onToggle={()=>console.log("tumeshikwa")}
+            value={this.props.toggleValue}
+            onToggle={() => this.props.toggleHandler(this.props.identifier)}
           />
         </Col>
-        </Row>
+      </Row>
     );
   }
 }
-
 
 export default Thingy;
