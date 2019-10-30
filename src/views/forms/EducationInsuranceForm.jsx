@@ -18,11 +18,21 @@ import FormHeader from "../../components/Headers/FormHeader";
 import Thingy from "./sss";
 
 class EducationInsuranceForm extends React.Component {
-  state = { message: "" }
-
-  callbackFunction = (childData) => {
-    this.setState({message: childData})
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "",
+      fullNameOfLifeAssured: "",
+      fullNameOfChild: "",
+      ageOfChild: 0,
+      ageNextBirthday: 0,
+      policyTerm: "",
+      monthlyPayablePremium: 0
+    };
+  }
+  callbackFunction = childData => {
+    this.setState({ message: childData });
+  };
   render() {
     return (
       <>
@@ -43,7 +53,6 @@ class EducationInsuranceForm extends React.Component {
                     <Col className="text-right" xs="4">
                       <Button
                         color="primary"
-                        href="delivery"
                         // onClick={e => e.preventDefault()}
                         size="sm"
                       >
@@ -64,25 +73,26 @@ class EducationInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-last-name"
+                              name="fullNameOfLifeAssured"
                               placeholder="Full name"
                               type="text"
+                              value={this.state.fullNameOfLifeAssured}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-username"
-                            >
+                            <label className="form-control-label">
                               Age next birthday
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-username"
+                              name="ageNextBirthday"
                               placeholder="Age next birthday"
-                              type="text"
+                              type="number"
+                              value={this.state.ageNextBirthday}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -93,9 +103,11 @@ class EducationInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-email"
+                              name="fullNameOfChild"
                               placeholder="Full name of child"
                               type="text"
+                              value={this.state.fullNameOfChild}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -110,7 +122,9 @@ class EducationInsuranceForm extends React.Component {
                               className="form-control-alternative"
                               id="input-first-name"
                               placeholder="Age of child"
-                              type="text"
+                              type="number"
+                              value={this.state.ageOfChild}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -121,9 +135,11 @@ class EducationInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-last-name"
+                              name="policyTerm"
                               placeholder="Policy term"
-                              type="text"
+                              type="number"
+                              value={this.state.policyTerm}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>
@@ -134,9 +150,11 @@ class EducationInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-last-name"
+                              name="monthlyPayablePremium"
                               placeholder="Monthly payable premium"
-                              type="text"
+                              type="number"
+                              value={this.state.monthlyPayablePremium}
+                              onChange={this.handleInputChange}
                             />
                           </FormGroup>
                         </Col>

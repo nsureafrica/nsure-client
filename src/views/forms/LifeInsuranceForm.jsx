@@ -17,6 +17,15 @@ import {
 import FormHeader from "../../components/Headers/FormHeader";
 
 class LifeInsuranceForm extends React.Component {
+
+constructor(props){
+  super(props);
+  this.state = {
+    firstName: "",
+    secondName: "",
+    principalAge: "",
+  }
+}
   render() {
     return (
       <>
@@ -57,15 +66,15 @@ class LifeInsuranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-username"
                             >
                               First name
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-username"
+                              name="firstName"
                               placeholder=" First Name"
                               type="text"
+                              value={this.state.firstName}
                             />
                           </FormGroup>
                         </Col>
@@ -73,15 +82,16 @@ class LifeInsuranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-first-name"
                             >
                               Second Name
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-first-name"
+                              name="secondName"
                               placeholder="Second name"
                               type="text"
+                              value={this.state.secondName}
+
                             />
                           </FormGroup>
                         </Col>
@@ -89,7 +99,6 @@ class LifeInsuranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-last-name"
                             >
                               Type of cover
                             </label>
@@ -114,15 +123,15 @@ class LifeInsuranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-address"
                             >
                               Principal age
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="input-address"
-                              placeholder="Home Address"
-                              type="text"
+                              name="principalAge"
+                              placeholder="Principal Age"
+                              type="number"
+                              value={this.state.principalAge}
                             />
                           </FormGroup>
                         </Col>
@@ -132,14 +141,12 @@ class LifeInsuranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-city"
                             >
                               Spouse age
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
-                              id="input-city"
+                              name="input-city"
                               placeholder="City"
                               type="text"
                             />
@@ -149,7 +156,6 @@ class LifeInsuranceForm extends React.Component {
                           <FormGroup>
                             <label
                               className="form-control-label"
-                              htmlFor="input-country"
                             >
                               Number of children
                             </label>
