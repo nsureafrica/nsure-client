@@ -240,6 +240,13 @@ class TravelInsuranceForm extends React.Component {
                         </Col>
                       </Row>
                     </div>
+                    <hr className="my-4" />
+
+                    <div className="text-center">
+                      <Button className="my-4" color="primary">
+                        Submit details
+                      </Button>
+                    </div>
                   </Form>
                 </CardBody>
               </Card>

@@ -8,12 +8,12 @@ function handleLogIn(password, email, props) {
         password: password,
       })
       .then(function(response) {
-        console.log(response);
+        // console.log(response);
         localStorage.setItem("token", response.data.token);
         props.history.push("/client/index");
       })
       .catch(function(error) {
-        console.log(error);
+        // console.log(error);
       });
 }
 
@@ -27,7 +27,7 @@ function handleRegistration(firstName, lastName, phoneNumber, email, password) {
         password: password,
       })
       .then(function(response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function(error) {
         console.log(error);

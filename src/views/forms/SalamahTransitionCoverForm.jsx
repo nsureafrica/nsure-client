@@ -268,6 +268,13 @@ class SalamahTransitionCoverForm extends React.Component {
                         Add new Member
                       </Button>
                     </div>
+                    <hr className="my-4" />
+
+                    <div className="text-center">
+                      <Button className="my-4" color="primary">
+                        Submit details
+                      </Button>
+                    </div>
                   </Form>
                 </CardBody>
               </Card>

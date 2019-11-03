@@ -14,8 +14,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import Thingy from "./sss";
-import ToggleButton from "react-toggle-button";
+import Toggle from "../components/toggle";
 
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -37,21 +36,9 @@ class MedicalInsuranceForm extends React.Component {
       maternityCover: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleOptionChange = this.handleOptionChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
 
-  item = [
-    {
-      value: true,
-      text: "Yes"
-    },
-    {
-      value: false,
-      text: "No"
-    }
-  ];
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === "radio" ? target.value : target.value;
@@ -61,20 +48,10 @@ class MedicalInsuranceForm extends React.Component {
     });
   }
 
-  handleOptionChange(changeEvent) {
-    console.log(changeEvent.target.type);
-    this.setState({
-      outpatientPerPerson: changeEvent.target.value
-    });
-  }
   handleToggle(identifier) {
     this.setState(state => ({ [identifier]: !state[identifier] }));
   }
 
-  handleClick(event) {
-    console.log(event.target.type);
-    this.setState({ outpatientPerPerson: !this.state.outpatientPerPerson });
-  }
   render() {
     console.log(this.state.maternityCover);
     return (
@@ -207,36 +184,17 @@ class MedicalInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
+                        
                         <Col md="6">
-                          <label className="form-control-label">
-                            Outpatient per person
-                          </label>
-                        </Col>
-                        <Col md="6">
-                          <ToggleButton
-                            style={{ float: "right" }}
-                            inactiveLabel="Yes"
-                            activeLabel="No"
-                            colors={{
-                              active: {
-                                base: "rgb(207,221,245)",
-                                hover: "rgb(177, 191, 215)"
-                              },
-                              inactive: {
-                                base: "rgb(65,66,68)",
-                                hover: "rgb(95,96,98)"
-                              }
-                            }}
-                            value={this.state.outpatientPerPerson || false}
-                            onToggle={value => {
-                              this.setState({
-                                outpatientPerPerson: !value
-                              });
-                            }}
+                          <Toggle
+                            fieldName="Outpatient Per Person"
+                            identifier="outpatientPerPerson"
+                            toggleValue={this.state.outpatientPerPerson}
+                            toggleHandler={this.handleToggle}
                           />
                         </Col>
                       </Row>
-                      <Thingy
+                      <Toggle
                         fieldName="Maternity Cover"
                         identifier="maternityCover"
                         toggleValue={this.state.maternityCover}
@@ -288,7 +246,7 @@ class MedicalInsuranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               name="numberofMembersToBeCoveredUnderLastExpense"
-                              placeholder="members to be covered under last expense"
+                              placeholder="Members to be covered under last expense"
                               type="number"
                               value={
                                 this.state
@@ -318,6 +276,13 @@ class MedicalInsuranceForm extends React.Component {
                           </FormGroup>
                         </Col>
                       </Row>
+                    </div>
+                    <hr className="my-4" />
+
+                    <div className="text-center">
+                      <Button className="my-4" color="primary">
+                        Submit details
+                      </Button>
                     </div>
                   </Form>
                 </CardBody>

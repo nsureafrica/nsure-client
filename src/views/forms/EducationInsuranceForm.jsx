@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
-import Thingy from "./sss";
+import Toggle from "../components/toggle";
 
 class EducationInsuranceForm extends React.Component {
   constructor(props) {
@@ -27,12 +27,31 @@ class EducationInsuranceForm extends React.Component {
       ageOfChild: 0,
       ageNextBirthday: 0,
       policyTerm: "",
-      monthlyPayablePremium: 0
+      monthlyPayablePremium: 0,
+      totalAndPermanentDisability: false,
+      waiverOfPremium: false,
+      childAccidentHospitalizationRider: false,
+      adultAccidentHospitalizationRider: false,
+      lastExpenseLifeAssured: false,
+      lastExpenseBeneficiaryChild: false
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
-  callbackFunction = childData => {
-    this.setState({ message: childData });
-  };
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === "radio" ? target.value : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleToggle(identifier) {
+    this.setState(state => ({ [identifier]: !state[identifier] }));
+  }
+
   render() {
     return (
       <>
@@ -166,30 +185,53 @@ class EducationInsuranceForm extends React.Component {
                       Riders(Optional)
                     </h6>
                     <div className="pl-lg-4">
-                      <Thingy
+                      <Toggle
                         fieldName="Total and permanent disability"
-                        toggleValue={true}
+                        identifier="totalAndPermanentDisability"
+                        toggleValue={this.state.totalAndPermanentDisability}
+                        toggleHandler={this.handleToggle}
                       />
-                      <Thingy
+                      <Toggle
                         fieldName="Waiver of premium"
-                        toggleValue={true}
+                        identifier="waiverOfPremium"
+                        toggleValue={this.state.waiverOfPremium}
+                        toggleHandler={this.handleToggle}
                       />
-                      <Thingy
+                      <Toggle
                         fieldName="Child Accident Hospitalization Rider"
-                        toggleValue={true}
+                        identifier="childAccidentHospitalizationRider"
+                        toggleValue={
+                          this.state.childAccidentHospitalizationRider
+                        }
+                        toggleHandler={this.handleToggle}
                       />
-                      <Thingy
+                      <Toggle
                         fieldName="Adult Accident Hospitalization Rider"
-                        toggleValue={true}
+                        identifier="adultAccidentHospitalizationRider"
+                        toggleValue={
+                          this.state.adultAccidentHospitalizationRider
+                        }
+                        toggleHandler={this.handleToggle}
                       />
-                      <Thingy
+                      <Toggle
                         fieldName="Last Expense - Life Assured"
-                        toggleValue={true}
+                        identifier="lastExpenseLifeAssured"
+                        toggleValue={this.state.lastExpenseLifeAssured}
+                        toggleHandler={this.handleToggle}
                       />
-                      <Thingy
+                      <Toggle
                         fieldName="Last Expense - Beneficiary child"
-                        toggleValue={true}
+                        identifier="lastExpenseBeneficiaryChild"
+                        toggleValue={this.state.lastExpenseBeneficiaryChild}
+                        toggleHandler={this.handleToggle}
                       />
+                    </div>
+                    <hr className="my-4" />
+
+                    <div className="text-center">
+                      <Button className="my-4" color="primary">
+                        Submit details
+                      </Button>
                     </div>
                   </Form>
                 </CardBody>

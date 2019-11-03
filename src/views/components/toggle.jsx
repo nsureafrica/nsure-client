@@ -5,7 +5,7 @@ import { Row, Col } from "reactstrap";
 import ToggleButton from "react-toggle-button";
 
 // eslint-disable-next-line no-undef
-class Thingy extends React.Component {
+class Toggle extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -43,4 +43,4 @@ class Thingy extends React.Component {
   }
 }
 
-export default Thingy;
+export default Toggle;
