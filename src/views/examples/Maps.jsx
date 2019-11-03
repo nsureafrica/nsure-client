@@ -16,55 +16,14 @@ import {Card, Container, Row} from "reactstrap";
 const MapWrapper = withScriptjs(
     withGoogleMap((props) => (
       <GoogleMap
-        defaultZoom={12}
-        defaultCenter={{lat: 40.748817, lng: -73.985428}}
+        defaultZoom={15}
+        defaultCenter={{lat: -1.2884, lng: 36.8233}}
         defaultOptions={{
-          scrollwheel: false,
-          styles: [
-            {
-              featureType: "administrative",
-              elementType: "labels.text.fill",
-              stylers: [{color: "#444444"}],
-            },
-            {
-              featureType: "landscape",
-              elementType: "all",
-              stylers: [{color: "#f2f2f2"}],
-            },
-            {
-              featureType: "poi",
-              elementType: "all",
-              stylers: [{visibility: "off"}],
-            },
-            {
-              featureType: "road",
-              elementType: "all",
-              stylers: [{saturation: -100}, {lightness: 45}],
-            },
-            {
-              featureType: "road.highway",
-              elementType: "all",
-              stylers: [{visibility: "simplified"}],
-            },
-            {
-              featureType: "road.arterial",
-              elementType: "labels.icon",
-              stylers: [{visibility: "off"}],
-            },
-            {
-              featureType: "transit",
-              elementType: "all",
-              stylers: [{visibility: "off"}],
-            },
-            {
-              featureType: "water",
-              elementType: "all",
-              stylers: [{color: "#5e72e4"}, {visibility: "on"}],
-            },
-          ],
+          scrollwheel: true,
+          
         }}
       >
-        <Marker position={{lat: 40.748817, lng: -73.985428}} />
+        <Marker position={{lat: -1.2884, lng: 36.8233}} />
       </GoogleMap>
     ))
 );
@@ -73,7 +32,6 @@ class Maps extends React.Component {
   render() {
     return (
       <>
-\
         {/* Page content */}
         <Container className="mt-2" fluid>
           <h3 className="" style={{textAlign: "center", color: "#001996", letterSpacing: "1px"}}>Select your delivery point</h3>
@@ -81,7 +39,7 @@ class Maps extends React.Component {
             <div className="col">
               <Card className="shadow border-0">
                 <MapWrapper
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyA54E-_bhMeiJg_xYv8D3O5WtfvS5T9rm8"
                   loadingElement={<div style={{height: "100%"}} />}
                   containerElement={
                     <div
