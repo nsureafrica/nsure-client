@@ -43,16 +43,7 @@ constructor(props){
                     <Col xs="8">
                       <h3 className="mb-0">Life insurance form</h3>
                     </Col>
-                    <Col className="text-right" xs="4">
-                      <Button
-                        color="primary"
-                        href="delivery"
-                        // onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
-                        Submit details
-                      </Button>
-                    </Col>
+                   
                   </Row>
                 </CardHeader>
                 <CardBody>

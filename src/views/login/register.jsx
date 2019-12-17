@@ -1,5 +1,5 @@
 import React from "react";
-
+import { handleRegistration } from "../../requests/authRequests";
 // reactstrap components
 import {
   Button,

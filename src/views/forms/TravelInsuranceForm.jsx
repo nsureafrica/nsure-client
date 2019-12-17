@@ -11,7 +11,7 @@ import {
   Input,
   Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -27,7 +27,7 @@ class TravelInsuranceForm extends React.Component {
       prematureReturnInCaseOfDeath: "",
       legalAssistance: "",
       lossOrTheft: "",
-      luggageDelay: "",
+      luggageDelay: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -36,16 +36,16 @@ class TravelInsuranceForm extends React.Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
   render() {
     return (
       <>
-      <FormHeader
-        name="Travel Insurance"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM"
-      />
+        <FormHeader
+          name="Travel Insurance"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTAdwqrmR4XVcCTAQfJSKo_74FfH9Z7m8Dj2mzTL_iBBBpHpvM"
+        />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -55,16 +55,6 @@ class TravelInsuranceForm extends React.Component {
                   <Row className="align-items-center">
                     <Col xs="8">
                       <h3 className="mb-0">Travel Insurance Details</h3>
-                    </Col>
-                    <Col className="text-right" xs="4">
-                      <Button
-                        color="primary"
-                        href="delivery"
-                        // onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
-                        Submit details
-                      </Button>
                     </Col>
                   </Row>
                 </CardHeader>

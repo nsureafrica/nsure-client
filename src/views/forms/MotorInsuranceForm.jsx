@@ -141,8 +141,8 @@ class MotorInsuranceForm extends React.Component {
     const quotePromise = postRequest(motorQuoteEndpoint, payload);
     quotePromise.then(response => {
       localStorage.setItem(
-        "quoteAmount",
-        JSON.stringify(response.data.quoteAmount)
+        "quotes",
+        JSON.stringify(response.data)
       );
       localStorage.setItem("optionsSelected", JSON.stringify(payload));
       // eslint-disable-next-line react/prop-types
@@ -167,11 +167,7 @@ class MotorInsuranceForm extends React.Component {
                     <Col xs="8">
                       <h3 className="mb-0">Motor Insurance Details</h3>
                     </Col>
-                    <Col className="text-right" xs="4">
-                      <Button color="primary" onClick={this.getQuote} size="sm">
-                        Submit details
-                      </Button>
-                    </Col>
+                    
                   </Row>
                 </CardHeader>
                 <CardBody>

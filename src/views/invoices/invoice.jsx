@@ -1,7 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import {Card, CardBody, CardTitle, Container, Row, Col} from "reactstrap";
+import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 import Maps from "views/examples/Maps.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 
@@ -30,18 +30,18 @@ class Invoice extends React.Component {
                   textAlign: "center",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase",
+                  textTransform: "uppercase"
                 }}
               >
                 INVOICE
               </h2>
-              <Card style={{padding: "20px"}}>
+              <Card style={{ padding: "20px" }}>
                 <div
                   style={{
                     textAlign: "right",
                     color: "#333",
                     borderBottom: "2px dotted",
-                    marginBottom: "20px",
+                    marginBottom: "20px"
                   }}
                 >
                   <h5>
@@ -57,7 +57,7 @@ class Invoice extends React.Component {
                     marginBottom: "10px",
                     fontWeight: "bold",
                     textAlign: "lwft",
-                    color: "rgb(0, 43, 170)",
+                    color: "rgb(0, 43, 170)"
                   }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
@@ -69,7 +69,7 @@ class Invoice extends React.Component {
                     xl="5"
                     sm="5"
                     xs="5"
-                    style={{textAlign: "right"}}
+                    style={{ textAlign: "right" }}
                   >
                     COST
                   </Col>
@@ -77,7 +77,7 @@ class Invoice extends React.Component {
 
                 <Row
                   className="mb-2"
-                  style={{fontSize: "13px", textAlign: "left", color: "#333"}}
+                  style={{ fontSize: "13px", textAlign: "left", color: "#333" }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
                     Motor Insurance Policy
@@ -88,18 +88,17 @@ class Invoice extends React.Component {
                     xl="5"
                     sm="5"
                     xs="5"
-                    style={{textAlign: "right"}}
+                    style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {localStorage
-                        .getItem("quoteAmount")
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    {this.props.location.state.quote.amount
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
                 </Row>
                 <Row
                   className="mb-2"
-                  style={{fontSize: "13px", textAlign: "lwft", color: "#333"}}
+                  style={{ fontSize: "13px", textAlign: "lwft", color: "#333" }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
                     Delivery Fee
@@ -110,7 +109,7 @@ class Invoice extends React.Component {
                     xl="5"
                     sm="5"
                     xs="5"
-                    style={{textAlign: "right"}}
+                    style={{ textAlign: "right" }}
                   >
                     0.00
                   </Col>
@@ -123,7 +122,7 @@ class Invoice extends React.Component {
                     fontWeight: "bold",
                     fontSize: "15px",
                     textAlign: "lwft",
-                    color: "#333",
+                    color: "#333"
                   }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
@@ -135,18 +134,17 @@ class Invoice extends React.Component {
                     xl="5"
                     sm="5"
                     xs="5"
-                    style={{textAlign: "right"}}
+                    style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {localStorage
-                        .getItem("quoteAmount")
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    {this.props.location.state.quote.amount
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
                 </Row>
                 <div
                   className="mt-3 mb-3"
-                  style={{justifyContent: "center", textAlign: "center"}}
+                  style={{ justifyContent: "center", textAlign: "center" }}
                 >
                   <button
                     style={{
@@ -157,7 +155,7 @@ class Invoice extends React.Component {
                       textTransform: "uppercase",
                       borderRadius: "26px",
                       letterSpacing: "2px",
-                      border: "none",
+                      border: "none"
                     }}
                   >
                     Pay Now
