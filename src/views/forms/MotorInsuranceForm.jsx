@@ -128,6 +128,7 @@ class MotorInsuranceForm extends React.Component {
   }
 
   getQuote() {
+    console.log('im getting here')
     const motorQuoteEndpoint = "/quotes/motor";
     const payload = {
       category: this.state.motorCategory,
