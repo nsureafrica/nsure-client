@@ -7,23 +7,16 @@ import {
   Container,
   Row,
   Col,
-<<<<<<< HEAD
   Button,
   Table
-=======
-  Button
->>>>>>> f5a94fc43d6e9a9e7970bbc3911206178e9881ac
 } from "reactstrap";
 
 class Quote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       quotes: JSON.parse(localStorage.getItem("quotes")),
-=======
-      quoteAmount: localStorage.getItem("quoteAmount"),
->>>>>>> f5a94fc43d6e9a9e7970bbc3911206178e9881ac
+      // quoteAmount: localStorage.getItem("quoteAmount"),
       selectedOptions: JSON.parse(localStorage.getItem("optionsSelected"))
     };
     this.buyPolicy = this.buyPolicy.bind(this);
@@ -34,6 +27,7 @@ class Quote extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     const categories = [
       {
         value: "motorcycle",
@@ -134,12 +128,12 @@ class Quote extends React.Component {
                   <br />
                   <br />
                   <Table>
-                    <thead style = {{color:'black'}}>
+                    <thead style={{ color: "black" }}>
                       <td>Company Name</td>
                       <td>Quote Amount</td>
                       <td>Action</td>
                     </thead>
-                    <tbody style = {{color:'grey'}}>
+                    <tbody style={{ color: "grey" }}>
                       {this.state.quotes.map(quote => (
                         <tr>
                           <td>{quote.companyName}</td>
@@ -157,50 +151,6 @@ class Quote extends React.Component {
                       ))}
                     </tbody>
                   </Table>
-                  {/* <span style={{ float: "right" }}>
-                    <h4>
-                      {this.state.quotes.map(quote => (
-                        <>
-                          <span>Company Name: {quote.companyName}</span>
-                          <br />
-                          <span>Amount: {quote.amount}</span>
-                          <Button
-                            color="primary"
-                            size="sm"
-                            style={{ float: "right" }}
-                            onClick={this.buyPolicy}
-                          >
-                            Buy policy
-                          </Button>
-                          <br />
-                          <br />
-                        </>
-                      ))}
-                      {/* Quote amount : Kes{" "}
-                      {this.state.quoteAmount
-<<<<<<< HEAD
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} */}
-                  {/* </h4> */}
-                  {/* </span> */}
-                  <br />
-                  <br />
-=======
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    </h4>
-                  </span>
-                  <br />
-                  <br />
-                  <Button
-                    color="primary"
-                    size="sm"
-                    style={{ float: "right" }}
-                    onClick={this.buyPolicy}
-                  >
-                    Buy policy
-                  </Button>
->>>>>>> f5a94fc43d6e9a9e7970bbc3911206178e9881ac
                 </div>
               </CardBody>
             </Card>

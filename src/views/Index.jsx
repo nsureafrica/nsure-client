@@ -5,6 +5,7 @@ import Chart from "chart.js";
 import {
   Button,
   Card,
+  CardHeader,
   CardBody,
   Container,
   Row,
@@ -15,19 +16,20 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
+  ModalFooter
 } from "reactstrap";
 
 // core components
-import {chartOptions, parseOptions} from "variables/charts.jsx";
+import { chartOptions, parseOptions } from "variables/charts.jsx";
 
 import Header from "components/Headers/Header.jsx";
+import Claim from "./forms/claim";
 
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false,
+      modal: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -35,14 +37,14 @@ class Index extends React.Component {
   state = {
     activeNav: 1,
     chartExample1Data: "data1",
-    open: false,
+    open: false
   };
   toggleNavs = (e, index) => {
     e.preventDefault();
     this.setState({
       activeNav: index,
       chartExample1Data:
-        this.state.chartExample1Data === "data1" ? "data2" : "data1",
+        this.state.chartExample1Data === "data1" ? "data2" : "data1"
     });
     const wow = () => {
       console.log(this.state);
@@ -57,8 +59,8 @@ class Index extends React.Component {
     }
   }
   toggle() {
-    this.setState((prevState) => ({
-      modal: !prevState.modal,
+    this.setState(prevState => ({
+      modal: !prevState.modal
     }));
   }
 
@@ -69,7 +71,7 @@ class Index extends React.Component {
         {/* Page content */}
 
         <Container className="mt--7" fluid>
-          <h2
+          {/* <h2
             className=""
             style={{
               textAlign: "center",
@@ -79,27 +81,23 @@ class Index extends React.Component {
             }}
           >
             My Current Covers
-          </h2>
+          </h2> */}
           <Row className="mt-3">
             <Col className="mb-5 mb-xl-0">
               <Card className="shadow">
-                {/* <CardHeader className="border-0">
-                  <Row className="align-items-center">
-                    <div className="col">
-                      <h3 className="mb-0">Current Insurance Covers</h3>
-                    </div>
-                    <div className="col text-right">
-                      <Button
-                        color="primary"
-                        href="#"
-                        onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
-                        See all
-                      </Button>
-                    </div> *
-                  </Row>
-                </CardHeader> */}
+                <CardHeader className="border-0">
+                  <h3
+                    style={{
+                      textAlign: "center",
+                      color: "#001996",
+                      letterSpacing: "3px",
+                      textTransform: "uppercase"
+                    }}
+                    // className="mb-0"
+                  >
+                    My Current Covers
+                  </h3>
+                </CardHeader>
                 <CardBody>
                   <ul className="list-group list-group-flush list my--3">
                     <li className="list-group-item px-0">
@@ -112,13 +110,13 @@ class Index extends React.Component {
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>SIB</a>
                           </h4> */}
                           <h5>
-                            <a href="#!" style={{color: "#e16470"}}>
+                            <a href="#!" style={{ color: "#e16470" }}>
                               Medical Policy
                             </a>
                           </h5>
                           <span
                             className="text-success"
-                            style={{marginRight: "12px"}}
+                            style={{ marginRight: "12px" }}
                           >
                             ●
                           </span>
@@ -144,19 +142,25 @@ class Index extends React.Component {
                             <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>HERITAGE INSURANCE</a>
                           </h4> */}
                           <h5>
-                            <a href="#!" style={{color: "#e16470"}}>
+                            <a href="#!" style={{ color: "#e16470" }}>
                               Motor Policy
                             </a>
                           </h5>
                           <span
                             className="text-danger"
-                            style={{marginRight: "12px"}}
+                            style={{ marginRight: "12px" }}
                           >
                             ●
                           </span>
                           <span>Expired</span>
                         </div>
-                        <button type="button" className="btn btn-secondary" onClick={()=>this.props.history.push("MotorInsuranceForm")}>
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() =>
+                            this.props.history.push("MotorInsuranceForm")
+                          }
+                        >
                           Renew
                         </button>
                       </Row>
@@ -167,7 +171,8 @@ class Index extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Modal
+        <Claim isOpen = {this.state.modal} toggle = {this.toggle} className = {this.props.className}/>
+        {/* <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
@@ -242,7 +247,7 @@ class Index extends React.Component {
               Cancel
             </Button>
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </>
     );
   }

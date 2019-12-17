@@ -1,5 +1,7 @@
 const axios = require("axios").default;
-const baseUrl = "https://nsure-252213.appspot.com/";
+// const baseURL = "https://nsure-252213.appspot.com";
+const baseURL = "http://localhost:8080";
+
 
 function getMotorQuote(
     category,
@@ -11,7 +13,7 @@ function getMotorQuote(
     excessProtector,
     props
 ) {
-  return axios.post(baseUrl + "motor", {
+  return axios.post(baseURL + "motor", {
     category: category,
     vehicleType: vehicleType,
     coverType: coverType,

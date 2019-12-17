@@ -10,7 +10,7 @@ import {
 } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from "react-google-autocomplete";
-Geocode.setApiKey("AIzaSyA54E-_bhMeiJg_xYv8D3O5WtfvS5T9rm8");
+Geocode.setApiKey(process.env.mapsAPIKey);
 Geocode.enableDebug();
 
 class MapWrapper extends Component {
