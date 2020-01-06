@@ -16,4 +16,21 @@ function postRequest(endpoint, payload) {
   return axios.post(requestUrl, payload, options);
 }
 
-export { getRequest, postRequest };
+function getAllUserPolicies(policies) {
+  const jwtDecode = require("jwt-decode");
+  const token = localStorage.getItem("token");
+  let userData;
+  if (token) {
+    userData = jwtDecode(token);
+  } else {
+    // this.props.history.push("login");
+  }
+  var policyRequests = [];
+  for (var i = 0; i < policies.length; i++) {
+    policyRequests.push(
+      axios.get(`${baseURL}/policies/${policies[i]}/${userData.id}`)
+    );
+  }
+  return axios.all(policyRequests);
+}
+export { getRequest, postRequest, getAllUserPolicies };

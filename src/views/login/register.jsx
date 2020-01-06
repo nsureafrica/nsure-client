@@ -12,10 +12,58 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col,
+  Col
 } from "reactstrap";
+import { postRequest } from "../../requests/requests";
+import Notifier from "../../notifier";
 
 class Register extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      password: "",
+      confirmPassword: "",
+      email: "",
+      userCreated: undefined,
+      message: "",
+      showNotification: false
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+  }
+  componentDidMount() {
+    console.log("i got here okay");
+  }
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
+  }
+  handleRegister() {
+    this.setState({ showNotification: false });
+    let payload = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      phoneNumber: this.state.phoneNumber,
+      email: this.state.email,
+      password: this.state.password
+    };
+    postRequest("/signup", payload)
+      .then(response => {
+        this.setState({
+          userCreated: true,
+          message: "User created successfully"
+        });
+      })
+      .catch(error => {
+        this.setState({
+          userCreated: false,
+          message: "Unable to create user",
+          showNotification: true
+        });
+      });
+  }
   render() {
     return (
       <>
@@ -30,10 +78,48 @@ class Register extends React.Component {
                   <InputGroup className="input-group-alternative mb-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
-                        <i className="ni ni-hat-3" />
+                        <i className="ni ni-circle-08" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Name" type="text" />
+                    <Input
+                      placeholder="First name"
+                      type="text"
+                      onChange={this.handleChange}
+                      value={this.state.firstName}
+                      id="firstName"
+                    />
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup className="input-group-alternative mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-circle-08" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Last name"
+                      type="text"
+                      onChange={this.handleChange}
+                      value={this.state.lastName}
+                      id="lastName"
+                    />
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup className="input-group-alternative mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-mobile-button" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Phone number"
+                      type="text"
+                      onChange={this.handleChange}
+                      value={this.state.phoneNumber}
+                      id="phoneNumber"
+                    />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -43,7 +129,13 @@ class Register extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="email" />
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      onChange={this.handleChange}
+                      value={this.state.email}
+                      id="email"
+                    />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -53,7 +145,13 @@ class Register extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      onChange={this.handleChange}
+                      id="password"
+                      value={this.state.password}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -63,7 +161,13 @@ class Register extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Confirm Password" type="password" />
+                    <Input
+                      id="confirmPassword"
+                      value={this.state.confirmPassword}
+                      placeholder="Confirm Password"
+                      type="password"
+                      onChange={this.handleChange}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <div className="text-muted font-italic">
@@ -86,7 +190,7 @@ class Register extends React.Component {
                       >
                         <span className="text-muted">
                           I agree with the{" "}
-                          <a href="#" onClick={(e) => e.preventDefault()}>
+                          <a href="#" onClick={e => e.preventDefault()}>
                             Privacy Policy
                           </a>
                         </span>
@@ -100,7 +204,7 @@ class Register extends React.Component {
                     color="primary"
                     type="button"
                     // eslint-disable-next-line react/prop-types
-                    onClick={this.props.history.push("/client/index")}
+                    onClick={() => this.handleRegister()}
                   >
                     Create account
                   </Button>
@@ -109,6 +213,12 @@ class Register extends React.Component {
             </CardBody>
           </Card>
         </Col>
+        {this.state.showNotification && (
+          <Notifier
+            variant={this.state.userCreated ? "success" : "error"}
+            message={this.state.message}
+          />
+        )}
       </>
     );
   }

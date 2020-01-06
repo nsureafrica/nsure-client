@@ -1,6 +1,7 @@
 import React from "react";
 // javascipt plugin for creating charts
 import Chart from "chart.js";
+import lodash from "lodash";
 
 import {
   Button,
@@ -24,12 +25,21 @@ import { chartOptions, parseOptions } from "variables/charts.jsx";
 
 import Header from "components/Headers/Header.jsx";
 import Claim from "./forms/claim";
+import { getAllUserPolicies } from "../requests/requests";
 
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      userPolicies: [],
+      policyArr: [
+        "motor",
+        "medical",
+        "education",
+        "salamahTransition",
+        "travel"
+      ]
     };
 
     this.toggle = this.toggle.bind(this);
@@ -58,13 +68,33 @@ class Index extends React.Component {
       parseOptions(Chart, chartOptions());
     }
   }
+  componentDidMount() {
+    this.fetchUserPolicies();
+  }
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
   }
+  fetchUserPolicies() {
+    // // fetch motor policies
+    // // fetch medical policies
+    // var policyArr = [
+    //   "motor",
+    //   "medical",
+    //   "education",
+    //   "salamahTransition",
+    //   "travel"
+    // ];
+    getAllUserPolicies(this.state.policyArr).then(responseArr => {
+      this.setState({
+        userPolicies: responseArr
+      });
+    });
+  }
 
   render() {
+    console.log(this.state.userPolicies);
     return (
       <>
         <Header />
@@ -100,78 +130,65 @@ class Index extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <ul className="list-group list-group-flush list my--3">
-                    <li className="list-group-item px-0">
-                      <Row className="align-items-center">
-                        <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle"></a>
-                        </div>
-                        <div className="col ml--2">
-                          {/* <h4 className="mb-0">
-                            <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>SIB</a>
-                          </h4> */}
-                          <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
-                              Medical Policy
-                            </a>
-                          </h5>
-                          <span
-                            className="text-success"
-                            style={{ marginRight: "12px" }}
-                          >
-                            ●
-                          </span>
-                          <span>Active</span>
-                        </div>
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          onClick={this.toggle}
-                        >
-                          Claim
-                        </button>
-                      </Row>
-                    </li>
-
-                    <li className="list-group-item px-0">
-                      <Row className="align-items-center">
-                        <div className="col-auto">
-                          <a href="#" className="avatar rounded-circle"></a>
-                        </div>
-                        <div className="col ml--2">
-                          {/* <h4 className="mb-0">
-                            <a href="#!" style={{ color: '#115894cc', marginBottom: '10px', }}>HERITAGE INSURANCE</a>
-                          </h4> */}
-                          <h5>
-                            <a href="#!" style={{ color: "#e16470" }}>
-                              Motor Policy
-                            </a>
-                          </h5>
-                          <span
-                            className="text-danger"
-                            style={{ marginRight: "12px" }}
-                          >
-                            ●
-                          </span>
-                          <span>Expired</span>
-                        </div>
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          onClick={() =>
-                            this.props.history.push("MotorInsuranceForm")
-                          }
-                        >
-                          Renew
-                        </button>
-                      </Row>
-                    </li>
+                    {this.state.policyArr.map(
+                      (policyType, index) =>
+                        this.state.userPolicies.length > 0 &&
+                        this.state.userPolicies[index].data.length > 0 && (
+                          <li className="list-group-item px-0">
+                            <Row className="align-items-center">
+                              <div className="col ml--2">
+                                <h5>
+                                  <a href="#!" style={{ color: "#e16470" }}>
+                                    {lodash.startCase(policyType)}
+                                  </a>
+                                </h5>
+                                {this.state.userPolicies[index].data.map(
+                                  policy => (
+                                    <div
+                                      style={{
+                                        display: "block",
+                                        padding: "15px 0"
+                                      }}
+                                    >
+                                      <span
+                                        className="text-success"
+                                        style={{ marginRight: "12px" }}
+                                      >
+                                        ●
+                                      </span>
+                                      <span>
+                                        {policyType === "motor"
+                                          ? policy.registrationNumber
+                                          : null}
+                                        {" "}(Active)
+                                      </span>
+                                      <button
+                                        type="button"
+                                        className="btn btn-secondary"
+                                        style={{ float: "right" }}
+                                        onClick={this.toggle}
+                                      >
+                                        Claim
+                                      </button>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            </Row>
+                          </li>
+                        )
+                    )}
                   </ul>
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </Container>
-        <Claim isOpen = {this.state.modal} toggle = {this.toggle} className = {this.props.className}/>
+        <Claim
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        />
         {/* <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}

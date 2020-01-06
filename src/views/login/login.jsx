@@ -112,7 +112,7 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={e => this.props.history.push("/register")}
+                onClick={() => this.props.history.push("/auth/register")}
               >
                 <small>Create new account</small>
               </a>
