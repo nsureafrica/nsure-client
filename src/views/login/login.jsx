@@ -103,7 +103,11 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={e => e.preventDefault()}
+                onClick={e =>
+                  e.preventDefault(
+                    this.props.history.push("/auth/reset-password")
+                  )
+                }
               >
                 <small>Forgot password?</small>
               </a>
@@ -112,7 +116,11 @@ class Login extends React.Component {
               <a
                 className="text-light"
                 href="#"
-                onClick={() => this.props.history.push("/auth/register")}
+                onClick={e =>
+                  e.preventDefault(
+                    this.props.history.push("/auth/register")
+                  )
+                }
               >
                 <small>Create new account</small>
               </a>

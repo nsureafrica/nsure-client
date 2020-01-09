@@ -212,6 +212,30 @@ class Register extends React.Component {
               </Form>
             </CardBody>
           </Card>
+          <Row className="mt-3">
+            <Col xs="6">
+              <a
+                className="text-light"
+                href="#"
+                onClick={e =>
+                  e.preventDefault(this.props.history.push("/auth/login"))
+                }
+              >
+                <small>Login</small>
+              </a>
+            </Col>
+            <Col className="text-right" xs="6">
+              <a
+                className="text-light"
+                href="#"
+                onClick={e =>
+                  e.preventDefault(this.props.history.push("/auth/reset-password"))
+                }
+              >
+                <small>Forgot Password?</small>
+              </a>
+            </Col>
+          </Row>
         </Col>
         {this.state.showNotification && (
           <Notifier

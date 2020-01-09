@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // const baseURL = "https://nsure-252213.appspot.com";
-const baseURL = "http://localhost:8080";
+// const baseURL = "http://localhost:8080";
+const baseURL = "http://192.168.0.190:8080";
 
 function getRequest(endpoint) {
   const requestUrl = baseURL + endpoint;
@@ -14,6 +15,14 @@ function postRequest(endpoint, payload) {
   };
   const requestUrl = baseURL + endpoint;
   return axios.post(requestUrl, payload, options);
+}
+
+function putRequest(endpoint, payload) {
+  var options = {
+    headers: { "x-access-token": localStorage.getItem("token") }
+  };
+  const requestUrl = baseURL + endpoint;
+  return axios.put(requestUrl, payload, options);
 }
 
 function getAllUserPolicies(policies) {
@@ -33,4 +42,4 @@ function getAllUserPolicies(policies) {
   }
   return axios.all(policyRequests);
 }
-export { getRequest, postRequest, getAllUserPolicies };
+export { getRequest, postRequest, getAllUserPolicies, putRequest };
