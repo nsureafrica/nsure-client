@@ -86,11 +86,11 @@ class Index extends React.Component {
     //   "salamahTransition",
     //   "travel"
     // ];
-    getAllUserPolicies(this.state.policyArr).then(responseArr => {
-      this.setState({
-        userPolicies: responseArr
-      });
-    });
+    // getAllUserPolicies(this.state.policyArr).then(responseArr => {
+    //   this.setState({
+    //     userPolicies: responseArr
+    //   });
+    // });
   }
 
   render() {

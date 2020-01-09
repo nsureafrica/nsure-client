@@ -89,32 +89,52 @@ class MotorInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      motorEstimateValue: "0",
-      carModel: "",
-      motorCategory: "motorcycle",
+      vehicleEstimatedValue: "",
+      vehicleModel: "",
       vehicleType: "private",
-      value: "",
       coverType: "comprehensive",
+      category: "motorPrivate",
       courtesyCarOption: "6",
-      numberPlateOrRegistrationNumber: "",
+      registrationNumber: "",
       chasisNumber: "",
       engineNumber: "",
-      yearOfManufacture: "",
       firstName: "",
       lastName: "",
       address: "",
       emailAddress: "",
       city: "",
       country: "",
-      postalCode: ""
+      postalCOde: "",
+      yearOfManufacture: ""
     };
+    // this.state = {
+    //   motorEstimateValue: "0",
+    //   carModel: "",
+    //   motorCategory: "motorcycle",
+    //   vehicleType: "private",
+    //   value: "",
+    //   coverType: "comprehensive",
+    //   courtesyCarOption: "6",
+    //   numberPlateOrRegistrationNumber: "",
+    //   chasisNumber: "",
+    //   engineNumber: "",
+    //   yearOfManufacture: "",
+    //   firstName: "",
+    //   lastName: "",
+    //   address: "",
+    //   emailAddress: "",
+    //   city: "",
+    //   country: "",
+    //   postalCode: ""
+    // };
     this.onChange = this.onChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getQuote = this.getQuote.bind(this);
+    this.handleFile = this.handleFile.bind(this);
   }
   onChange(e) {
     if (onlyAllowNNumericalInput(e.target.value)) {
-      this.setState({ motorEstimateValue: e.target.value });
+      this.setState({ [e.target.name]: e.target.value });
     }
   }
 
@@ -126,27 +146,44 @@ class MotorInsuranceForm extends React.Component {
       [name]: value
     });
   }
+  handleFile(event) {
+    console.log(event.target.files[0]);
+    this.setState({ [event.target.name]: event.target.files });
+  }
 
   getQuote() {
-    console.log('im getting here')
-    const motorQuoteEndpoint = "/quotes/motor";
-    const payload = {
-      category: this.state.motorCategory,
+    let payload = new FormData();
+    // create form data with the payload
+    const payloadObject = {
+      vehicleEstimatedValue: this.state.vehicleEstimatedValue,
+      vehicleModel: this.state.vehicleModel,
       vehicleType: this.state.vehicleType,
       coverType: this.state.coverType,
-      vehicleEstimatedValue: this.state.motorEstimateValue,
+      category: this.state.category,
       courtesyCarOption: this.state.courtesyCarOption,
-      politicalViolence: false,
-      excessProtector: false
+      registrationNumber: this.state.registrationNumber,
+      chasisNumber: this.state.chasisNumber,
+      engineNumber: this.state.engineNumber,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address,
+      emailAddress: this.state.emailAddress,
+      city: this.state.city,
+      country: this.state.country,
+      postalCode: this.state.postalCode,
+      yearOfManufacture: this.state.yearOfManufacture
     };
-    const quotePromise = postRequest(motorQuoteEndpoint, payload);
-    quotePromise.then(response => {
-      localStorage.setItem(
-        "quotes",
-        JSON.stringify(response.data)
-      );
-      localStorage.setItem("optionsSelected", JSON.stringify(payload));
-      // eslint-disable-next-line react/prop-types
+    Object.keys(payloadObject).map(key => {
+      payload.append(key, payloadObject[key]);
+    });
+    // append files
+    for (var i = 0; i < this.state.logbook.length; i++) {
+      payload.append("logbook", this.state.logbook[i]);
+    }
+    console.log(payload);
+    postRequest("/policies/motor/policy", payload).then(response => {
+      localStorage.setItem("quotes", JSON.stringify(response.data));
+      localStorage.setItem("optionsSelected", JSON.stringify(payloadObject));
       this.props.history.push("quote");
     });
   }
@@ -168,7 +205,6 @@ class MotorInsuranceForm extends React.Component {
                     <Col xs="8">
                       <h3 className="mb-0">Motor Insurance Details</h3>
                     </Col>
-                    
                   </Row>
                 </CardHeader>
                 <CardBody>
@@ -181,29 +217,29 @@ class MotorInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Motor estimate value (KES)
+                              Vehicle's estimated value (KES)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              placeholder="Motor estimate value (KES)"
+                              placeholder="Vehicle's estimated value (KES)"
                               type="text"
-                              value={this.state.motorEstimateValue}
+                              value={this.state.vehicleEstimatedValue}
                               onChange={this.onChange}
-                              name="motorEstimateValue"
+                              name="vehicleEstimatedValue"
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Car Model
+                              Vehicle Model
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="carModel"
+                              name="vehicleModel"
                               placeholder="BMW"
                               type="text"
-                              value={this.state.carModel}
+                              value={this.state.vehicleModel}
                               onChange={this.handleInputChange}
                             />
                           </FormGroup>
@@ -220,9 +256,9 @@ class MotorInsuranceForm extends React.Component {
                             </Label>
                             <Input
                               type="select"
-                              name="motorCategory"
+                              name="category"
                               className="form-control-alternative"
-                              value={this.state.motorCategory}
+                              value={this.state.category}
                               onChange={this.handleInputChange}
                             >
                               {this.categories.map(option => (
@@ -300,10 +336,10 @@ class MotorInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="numberPlateOrRegistrationNumber"
+                              name="registrationNumber"
                               placeholder="Number plate or registration number"
                               type="text"
-                              value={this.state.numberPlateOrRegistrationNumber}
+                              value={this.state.registrationNumber}
                               onChange={this.handleInputChange}
                             />
                           </FormGroup>
@@ -311,7 +347,7 @@ class MotorInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Chassis Number
+                              Chasis Number
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -364,9 +400,10 @@ class MotorInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="uploadLogbook"
-                              placeholder="Motor estimate value (KES)"
+                              name="logbook"
+                              placeholder="Vehicle logbook"
                               type="file"
+                              onChange={this.handleFile}
                             />
                           </FormGroup>
                         </Col>
@@ -496,7 +533,7 @@ class MotorInsuranceForm extends React.Component {
                         color="primary"
                         onClick={this.getQuote}
                       >
-                        Submit details
+                        Get Quote
                       </Button>
                     </div>
                   </Form>

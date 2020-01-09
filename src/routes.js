@@ -8,6 +8,7 @@ import Register from "views/login/register.jsx";
 import Quote from "views/quote/quote.jsx";
 import Profile from "./views/examples/Profile";
 import ResetPassword from "./views/login/resetPassword";
+import ChangePassword from "./views/login/changePassword";
 const routes = [
   {
     path: "/index",
@@ -73,6 +74,12 @@ const routes = [
     path: "/reset-password",
     name: "Reset-password",
     component: ResetPassword,
+    layout: "/auth"
+  },
+  {
+    path: "/change-password",
+    name: "Change-password",
+    component: ChangePassword,
     layout: "/auth"
   }
 ];

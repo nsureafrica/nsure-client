@@ -23,7 +23,7 @@ class AdminNavbar extends React.Component {
       userData = jwtDecode(token);
       console.log(userData);
     } else {
-      this.props.history.push("/auth/login");
+      // this.props.history.push("/auth/login");
     }
     console.log(userData);
     return (

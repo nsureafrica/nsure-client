@@ -12,7 +12,7 @@ class UserHeader extends React.Component {
       userData = jwtDecode(token);
       console.log(userData);
     } else {
-      this.props.history.push("login");
+      // this.props.history.push("login");
     }
     return (
       <>

@@ -35,6 +35,7 @@ class ResetPassword extends Component {
     const payload = { email: this.state.emailAddress };
     putRequest("/forgotPassword", payload)
       .then(response => {
+        console.log(response);
         this.setState({
           notificationMessage: "Password reset successful",
           emailSent: true,
@@ -94,7 +95,7 @@ class ResetPassword extends Component {
             <Col xs="6">
               <a
                 className="text-light"
-                href="#"
+                href=""
                 onClick={e =>
                   e.preventDefault(this.props.history.push("/auth/login"))
                 }
@@ -105,7 +106,7 @@ class ResetPassword extends Component {
             <Col className="text-right" xs="6">
               <a
                 className="text-light"
-                href="#"
+                href=""
                 onClick={e =>
                   e.preventDefault(this.props.history.push("/auth/register"))
                 }
