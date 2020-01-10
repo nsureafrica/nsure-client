@@ -2,17 +2,24 @@ import axios from "axios";
 
 // const baseURL = "https://nsure-252213.appspot.com";
 // const baseURL = "http://localhost:8080";
-const baseURL = "http://192.168.0.33:8080";
+const baseURL = "http://192.168.43.200:8080";
+
+var options = {
+  headers: { "x-access-token": localStorage.getItem("token") }
+};
 
 function getRequest(endpoint) {
+  // var options = {
+  //   headers: { "x-access-token": localStorage.getItem("token") }
+  // };
   const requestUrl = baseURL + endpoint;
-  return axios.get(requestUrl);
+  return axios.get(requestUrl,options);
 }
 
 function postRequest(endpoint, payload) {
-  var options = {
-    headers: { "x-access-token": localStorage.getItem("token") }
-  };
+  // var options = {
+  //   headers: { "x-access-token": localStorage.getItem("token") }
+  // };
   const requestUrl = baseURL + endpoint;
   return axios.post(requestUrl, payload, options);
 }
