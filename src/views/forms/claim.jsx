@@ -16,8 +16,7 @@ import {
   ModalFooter
 } from "reactstrap";
 import { postRequest } from "../../requests/requests";
-import { Alert } from 'reactstrap';
-
+import { Alert } from "reactstrap";
 
 class Claim extends Component {
   constructor(props) {
@@ -58,6 +57,7 @@ class Claim extends Component {
     data.append("descriptionOfClaim", this.state.descriptionOfClaim);
     data.append("userId", userData.id);
     data.append("policyTypeId", 1);
+    data.append("policyId", this.props.policyID);
 
     postRequest("/createClaim", data)
       .then(response => {
@@ -69,6 +69,7 @@ class Claim extends Component {
   }
 
   render() {
+    // console.log(this.props.policyID)
     console.log(this.state);
     return (
       <div>
@@ -131,10 +132,11 @@ class Claim extends Component {
                         Description of the accident
                       </label>
                       <Input
+                        rows="10"
                         className="form-control-alternative"
                         id="descriptionOfClaim"
-                        placeholder="Second name"
-                        type="text"
+                        placeholder="Brief description of the claim"
+                        type="textarea"
                         onChange={this.handleChange}
                       />
                     </FormGroup>

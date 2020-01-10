@@ -9,6 +9,8 @@ import Quote from "views/quote/quote.jsx";
 import Profile from "./views/examples/Profile";
 import ResetPassword from "./views/login/resetPassword";
 import ChangePassword from "./views/login/changePassword";
+import UserClaims from "./views/userclaims/userclaims";
+import UserPolicies from "./views/userpolicies/userpolicies";
 const routes = [
   {
     path: "/index",
@@ -81,6 +83,18 @@ const routes = [
     name: "Change-password",
     component: ChangePassword,
     layout: "/auth"
+  },
+  {
+    path: "/claims",
+    name: "Claims",
+    component: UserClaims,
+    layout: "/client"
+  },
+  {
+    path: "/policies",
+    name: "Policies",
+    component: UserPolicies,
+    layout: "/client"
   }
 ];
 export default routes;

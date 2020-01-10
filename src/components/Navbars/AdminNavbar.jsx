@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 // reactstrap components
 import {
   DropdownMenu,
@@ -11,7 +11,7 @@ import {
   Navbar,
   Nav,
   Container,
-  Media,
+  Media
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {
@@ -75,9 +75,26 @@ class AdminNavbar extends React.Component {
                     <span>Support</span>
                   </DropdownItem> */}
                   <DropdownItem divider />
-                  <DropdownItem href="#" onClick={()=>this.props.history.push("/auth/login")}>
+                  <DropdownItem
+                    href="#"
+                    onClick={() => this.props.history.push("/auth/login")}
+                  >
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    onClick={() => this.props.history.push("/auth/myPolicies")}
+                  >
+                    <i className="ni ni-user-run" />
+                    <span>My policies</span>
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    onClick={() => this.props.history.push("/auth/myClaims")}
+                  >
+                    <i className="ni ni-user-run" />
+                    <span>My claims</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

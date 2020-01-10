@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const baseURL = "https://nsure-252213.appspot.com";
 // const baseURL = "http://localhost:8080";
-const baseURL = "http://192.168.0.190:8080";
+const baseURL = "http://192.168.0.33:8080";
 
 function getRequest(endpoint) {
   const requestUrl = baseURL + endpoint;
@@ -37,7 +37,7 @@ function getAllUserPolicies(policies) {
   var policyRequests = [];
   for (var i = 0; i < policies.length; i++) {
     policyRequests.push(
-      axios.get(`${baseURL}/policies/${policies[i]}/${userData.id}`)
+      axios.get(`${baseURL}/policies/${policies[i]}/${userData.email}`)
     );
   }
   return axios.all(policyRequests);

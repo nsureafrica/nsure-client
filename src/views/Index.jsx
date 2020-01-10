@@ -71,29 +71,30 @@ class Index extends React.Component {
   componentDidMount() {
     this.fetchUserPolicies();
   }
-  toggle() {
+  toggle(policyID) {
     this.setState(prevState => ({
-      modal: !prevState.modal
+      modal: !prevState.modal,
+      policyID:policyID
     }));
   }
   fetchUserPolicies() {
-    // // fetch motor policies
-    // // fetch medical policies
-    // var policyArr = [
-    //   "motor",
-    //   "medical",
-    //   "education",
-    //   "salamahTransition",
-    //   "travel"
-    // ];
-    // getAllUserPolicies(this.state.policyArr).then(responseArr => {
-    //   this.setState({
-    //     userPolicies: responseArr
-    //   });
-    // });
+    // fetch motor policies
+    // fetch medical policies
+    var policyArr = [
+      "motor",
+      "medical",
+      "education",
+      "salamahTransition",
+      "travel"
+    ];
+    getAllUserPolicies(this.state.policyArr).then(responseArr => {
+      this.setState({
+        userPolicies: responseArr
+      });
+    });
   }
 
-  render() {
+  render() {  
     console.log(this.state.userPolicies);
     return (
       <>
@@ -101,7 +102,7 @@ class Index extends React.Component {
         {/* Page content */}
 
         <Container className="mt--7" fluid>
-          {/* <h2
+          <h2
             className=""
             style={{
               textAlign: "center",
@@ -111,12 +112,12 @@ class Index extends React.Component {
             }}
           >
             My Current Covers
-          </h2> */}
+          </h2>
           <Row className="mt-3">
             <Col className="mb-5 mb-xl-0">
               <Card className="shadow">
                 <CardHeader className="border-0">
-                  <h3
+                  {/* <h3
                     style={{
                       textAlign: "center",
                       color: "#001996",
@@ -126,7 +127,7 @@ class Index extends React.Component {
                     // className="mb-0"
                   >
                     My Current Covers
-                  </h3>
+                  </h3> */}
                 </CardHeader>
                 <CardBody>
                   <ul className="list-group list-group-flush list my--3">
@@ -166,7 +167,7 @@ class Index extends React.Component {
                                         type="button"
                                         className="btn btn-secondary"
                                         style={{ float: "right" }}
-                                        onClick={this.toggle}
+                                        onClick={()=>this.toggle(policy.id)}
                                       >
                                         Claim
                                       </button>
@@ -188,6 +189,7 @@ class Index extends React.Component {
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
+          policyID = {this.state.policyID}
         />
         {/* <Modal
           isOpen={this.state.modal}
