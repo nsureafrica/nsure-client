@@ -17,7 +17,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "rm -rf ../nsure-core/build && mv build ../nsure-core/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js --ext .jsx .",
@@ -46,7 +45,7 @@
     "eslint-config-google": "^0.14.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
-    "node-sass": "4.12.0",
+    "node-sass": "^4.13.1",
     "nouislider": "13.1.1",
     "prop-types": "^15.7.2",
     "react": "16.8.4",

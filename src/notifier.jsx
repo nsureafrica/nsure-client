@@ -9,7 +9,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 class Notifier extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: true };
+    this.state = { open: this.props.showNotification || false };
     this.handleClose = this.handleClose.bind(this);
   }
 

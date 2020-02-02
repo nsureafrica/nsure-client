@@ -51,10 +51,12 @@ class Register extends React.Component {
     };
     postRequest("/signup", payload)
       .then(response => {
-        this.setState({
+        var notifyUser = {
           userCreated: true,
-          message: "User created successfully"
-        });
+          message: "User created successfully",
+          showNotification: true
+        };
+        this.props.history.push("login", notifyUser);
       })
       .catch(error => {
         this.setState({
@@ -229,7 +231,9 @@ class Register extends React.Component {
                 className="text-light"
                 href="#"
                 onClick={e =>
-                  e.preventDefault(this.props.history.push("/auth/reset-password"))
+                  e.preventDefault(
+                    this.props.history.push("/auth/reset-password")
+                  )
                 }
               >
                 <small>Forgot Password?</small>

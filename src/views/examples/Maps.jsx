@@ -23,6 +23,7 @@ class Maps extends React.Component {
             <div className="col">
               <Card className="shadow border-0">
                 <MapWrapper
+                  setCoordinates={this.props.setCoordinates}
                   google={this.props.google}
                   center={{ lat: -1.2883556, lng: 36.8232516 }}
                   height="300px"

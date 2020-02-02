@@ -7,6 +7,7 @@ import PickUpPoints from "views/delivery/pickup.jsx";
 
 class Invoice extends React.Component {
   render() {
+    console.log(this.props.location.state);
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
     let userData;
@@ -111,7 +112,10 @@ class Invoice extends React.Component {
                     xs="5"
                     style={{ textAlign: "right" }}
                   >
-                    0.00
+                    Kes{" "}
+                    {this.props.location.state.deliveryFee
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
                 </Row>
 
@@ -137,7 +141,10 @@ class Invoice extends React.Component {
                     style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {this.props.location.state.quote.amount
+                    {(
+                      this.props.location.state.quote.amount +
+                      this.props.location.state.deliveryFee + 30
+                    )
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>

@@ -4,11 +4,25 @@ import React from "react";
 import { Card, CardBody, Container, Row, Col } from "reactstrap";
 import Maps from "views/examples/Maps.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
+import { postRequest } from "../../requests/requests";
+import Notifier from "../../notifier";
 
 class Delivery extends React.Component {
-  state = {
-    delivery: "sendy"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      deliveryLocation: {},
+      delivery: "sendy",
+      showNotification: false,
+      message: "",
+      variant: ""
+    };
+    this.setCoordinates = this.setCoordinates.bind(this);
+    this.submitSendy = this.submitSendy.bind(this);
+  }
+  // state = {
+  //   delivery: "sendy"
+  // };
 
   but = { backgroundColor: "rgba(255, 255, 255, 0.2)", border: "none" };
   butActive = {
@@ -16,6 +30,42 @@ class Delivery extends React.Component {
     backgroundColor: "rgba(255, 255, 255, 0.2)",
     border: "none"
   };
+
+  setCoordinates(lat, lng) {
+    console.log(lat, lng);
+    this.setState({
+      deliveryLocation: {
+        to_lat: lat,
+        to_long: lng,
+        to_description: "",
+        policy_id: this.props.location.state.quote.policyId,
+        policy_type_id: 1
+      }
+    });
+  }
+  submitSendy() {
+    postRequest("/sendy/requestDelivery", this.state.deliveryLocation)
+      .then(response => {
+        // this.props.history.push(
+        //   "invoice",
+        //   this.props.location.state
+        // )
+        console.log(response);
+        var state = {
+          ...this.props.location.state,
+          deliveryFee: response.data.data.amount
+        };
+        this.props.history.push("invoice", state);
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          showNotification: true,
+          message: "Could not set delivery location",
+          variant: "error"
+        });
+      });
+  }
   render() {
     return (
       <>
@@ -121,7 +171,9 @@ class Delivery extends React.Component {
                   </div>
                 </Col>
               </Row>
-              {this.state.delivery === "sendy" && <Maps />}
+              {this.state.delivery === "sendy" && (
+                <Maps setCoordinates={this.setCoordinates} />
+              )}
               {this.state.delivery === "pickup" && <PickUpPoints />}
 
               <div
@@ -139,11 +191,12 @@ class Delivery extends React.Component {
                     letterSpacing: "2px",
                     border: "none"
                   }}
-                  onClick={() =>
-                    this.props.history.push(
-                      "invoice",
-                      this.props.location.state
-                    )
+                  onClick={
+                    () => this.submitSendy()
+                    // this.props.history.push(
+                    //   "invoice",
+                    //   this.props.location.state
+                    // )
                   }
                 >
                   Next
@@ -172,6 +225,9 @@ class Delivery extends React.Component {
             </div>
           </Container>
         </div>
+        {this.state.showNotification && (
+          <Notifier message={this.state.message} variant={this.state.variant} />
+        )}
       </>
     );
   }

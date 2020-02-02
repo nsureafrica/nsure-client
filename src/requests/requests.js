@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// const baseURL = "https://nsure-252213.appspot.com";
-// const baseURL = "http://localhost:8080";
-const baseURL = "http://192.168.43.200:8080";
+// const baseURL = "http://127.0.0.1:8080";
+// const baseURL = "http://127.0.0.1:8080";
+const baseURL = "http://127.0.0.1:8080";
 
 var options = {
   headers: { "x-access-token": localStorage.getItem("token") }

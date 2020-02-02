@@ -30,35 +30,40 @@ class MapWrapper extends Component {
         lng: this.props.center.lng
       }
     };
+    this.onMarkerDragEnd = this.onMarkerDragEnd.bind(this);
   }
   /**
    * Get the current address from the default map position and set those values in the state
    */
   componentDidMount() {
-    Geocode.fromLatLng(
+    this.props.setCoordinates(
       this.state.mapPosition.lat,
       this.state.mapPosition.lng
-    ).then(
-      response => {
-        const address = response.results[0].formatted_address,
-          addressArray = response.results[0].address_components,
-          city = this.getCity(addressArray),
-          area = this.getArea(addressArray),
-          state = this.getState(addressArray);
-
-        console.log("city", city, area, state);
-
-        this.setState({
-          address: address ? address : "",
-          area: area ? area : "",
-          city: city ? city : "",
-          state: state ? state : ""
-        });
-      },
-      error => {
-        console.error(error);
-      }
     );
+    // Geocode.fromLatLng(
+    //   this.state.mapPosition.lat,
+    //   this.state.mapPosition.lng
+    // ).then(
+    //   response => {
+    //     const address = response.results[0].formatted_address,
+    //       addressArray = response.results[0].address_components,
+    //       city = this.getCity(addressArray),
+    //       area = this.getArea(addressArray),
+    //       state = this.getState(addressArray);
+
+    //     console.log("city", city, area, state);
+
+    //     this.setState({
+    //       address: address ? address : "",
+    //       area: area ? area : "",
+    //       city: city ? city : "",
+    //       state: state ? state : ""
+    //     });
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   }
+    // );
   }
   /**
    * Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
@@ -162,35 +167,11 @@ class MapWrapper extends Component {
    * @param event
    */
   onMarkerDragEnd = event => {
+    console.log(event.latLng.lat(), event.latLng.lng());
     let newLat = event.latLng.lat(),
       newLng = event.latLng.lng();
-
-    Geocode.fromLatLng(newLat, newLng).then(
-      response => {
-        const address = response.results[0].formatted_address,
-          addressArray = response.results[0].address_components,
-          city = this.getCity(addressArray),
-          area = this.getArea(addressArray),
-          state = this.getState(addressArray);
-        this.setState({
-          address: address ? address : "",
-          area: area ? area : "",
-          city: city ? city : "",
-          state: state ? state : "",
-          markerPosition: {
-            lat: newLat,
-            lng: newLng
-          },
-          mapPosition: {
-            lat: newLat,
-            lng: newLng
-          }
-        });
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    this.setState({ markerPosition: { lat: newLat, lng: newLng } });
+    this.props.setCoordinates(newLat, newLng);
   };
 
   /**
@@ -224,6 +205,7 @@ class MapWrapper extends Component {
   };
 
   render() {
+    console.log(this.state.mapPosition);
     const AsyncMap = withScriptjs(
       withGoogleMap(props => (
         <GoogleMap
@@ -281,8 +263,6 @@ class MapWrapper extends Component {
     if (this.props.center.lat !== undefined) {
       map = (
         <div>
-          
-
           <AsyncMap
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyA54E-_bhMeiJg_xYv8D3O5WtfvS5T9rm8&libraries=places"
             loadingElement={<div style={{ height: `100%` }} />}
@@ -291,10 +271,11 @@ class MapWrapper extends Component {
                 style={{ height: `600px` }}
                 className="map-canvas"
                 id="map-canvas"
-              />}
-              mapElement={
-                <div style={{ height: `100%`, borderRadius: "inherit" }} />
-              }
+              />
+            }
+            mapElement={
+              <div style={{ height: `100%`, borderRadius: "inherit" }} />
+            }
           />
         </div>
       );

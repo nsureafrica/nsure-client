@@ -14,13 +14,17 @@ import {
   Row,
   Col
 } from "reactstrap";
+import Notifier from "../../notifier";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      message: "",
+      variant: "",
+      showNotification: false
     };
   }
 
@@ -90,6 +94,20 @@ class Login extends React.Component {
                         this.state.email,
                         this.props
                       )
+                        .then(response => {
+                          console.log(response);
+                          localStorage.setItem("token", response.data.token);
+                          this.props.history.push("index");
+                        })
+                        .catch(err => {
+                          console.log(err);
+                          this.setState({
+                            message:
+                              "Login failed. Please check your credentials and try again.",
+                            variant: "error",
+                            showNotification: true
+                          });
+                        })
                     }
                   >
                     Sign in
@@ -117,9 +135,7 @@ class Login extends React.Component {
                 className="text-light"
                 href="#"
                 onClick={e =>
-                  e.preventDefault(
-                    this.props.history.push("/auth/register")
-                  )
+                  e.preventDefault(this.props.history.push("/auth/register"))
                 }
               >
                 <small>Create new account</small>
@@ -127,6 +143,20 @@ class Login extends React.Component {
             </Col>
           </Row>
         </Col>
+        {this.props.history.location.state !== undefined &&
+          this.props.history.location.state.showNotification && (
+            <Notifier
+              variant={
+                this.props.history.location.state.userCreated
+                  ? "success"
+                  : "error"
+              }
+              message={this.props.history.location.state.message}
+            />
+          )}
+        {this.state.showNotification && (
+          <Notifier showNotification = {this.state.showNotification} variant={this.state.variant} message={this.state.message} />
+        )}
       </>
     );
   }
