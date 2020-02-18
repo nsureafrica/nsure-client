@@ -220,6 +220,12 @@ class MotorInsuranceForm extends React.Component {
     //   { name: "PSV", id: 3 },
     //   { name: "Tanker", id: 4 }
     // ];
+    var motorCommercial = this.state.vehicleClasses.find(
+      vehicleClass => vehicleClass.name === "Motor commercial"
+    );
+    var motorcycle = this.state.vehicleClasses.find(
+      vehicleClass => vehicleClass.name === "Motorcycle"
+    );
     return (
       <>
         <FormHeader
@@ -300,7 +306,7 @@ class MotorInsuranceForm extends React.Component {
                             </Input>
                           </FormGroup>
                         </Col>
-                        {this.state.vehicleClass === "1" && (
+                        {this.state.vehicleClass === motorcycle.id && (
                           <Col lg="6">
                             <FormGroup>
                               <Label className="form-control-label">
@@ -323,7 +329,7 @@ class MotorInsuranceForm extends React.Component {
                             </FormGroup>
                           </Col>
                         )}
-                        {this.state.vehicleClass === "6" && (
+                        {this.state.vehicleClass === motorCommercial.id && (
                           <Col lg="6">
                             <FormGroup>
                               <Label className="form-control-label">
