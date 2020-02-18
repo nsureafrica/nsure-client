@@ -82,16 +82,16 @@ class AdminNavbar extends React.Component {
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>
-                  <DropdownItem
+                  {/* <DropdownItem
                     href="#"
                     onClick={() => this.props.history.push("/auth/myPolicies")}
                   >
                     <i className="ni ni-user-run" />
                     <span>My policies</span>
-                  </DropdownItem>
+                  </DropdownItem> */}
                   <DropdownItem
                     href="#"
-                    onClick={() => this.props.history.push("/auth/myClaims")}
+                    onClick={() => this.props.history.push("/client/claims")}
                   >
                     <i className="ni ni-user-run" />
                     <span>My claims</span>

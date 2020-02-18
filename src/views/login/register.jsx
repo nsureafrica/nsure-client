@@ -51,17 +51,20 @@ class Register extends React.Component {
     };
     postRequest("/signup", payload)
       .then(response => {
+        console.log(response);
         var notifyUser = {
           userCreated: true,
           message: "User created successfully",
           showNotification: true
         };
-        this.props.history.push("login", notifyUser);
+        this.props.history.push("/auth/login", notifyUser);
       })
       .catch(error => {
         this.setState({
           userCreated: false,
-          message: "Unable to create user",
+          message: error.response.data.message
+            ? error.response.data.message
+            : "Unable to register user",
           showNotification: true
         });
       });
@@ -172,12 +175,12 @@ class Register extends React.Component {
                     />
                   </InputGroup>
                 </FormGroup>
-                <div className="text-muted font-italic">
+                {/* <div className="text-muted font-italic">
                   <small>
                     password strength:{" "}
                     <span className="text-success font-weight-700">strong</span>
                   </small>
-                </div>
+                </div> */}
                 <Row className="my-4">
                   <Col xs="12">
                     <div className="custom-control custom-control-alternative custom-checkbox">
@@ -243,6 +246,7 @@ class Register extends React.Component {
         </Col>
         {this.state.showNotification && (
           <Notifier
+            showNotification={this.state.showNotification}
             variant={this.state.userCreated ? "success" : "error"}
             message={this.state.message}
           />

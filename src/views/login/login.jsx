@@ -97,7 +97,7 @@ class Login extends React.Component {
                         .then(response => {
                           console.log(response);
                           localStorage.setItem("token", response.data.token);
-                          this.props.history.push("index");
+                          this.props.history.push("/client/index");
                         })
                         .catch(err => {
                           console.log(err);
