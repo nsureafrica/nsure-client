@@ -5,12 +5,15 @@ import PickUpPoints from "views/delivery/pickup.jsx";
 import Invoice from "views/invoices/invoice.jsx";
 import Login from "views/login/login.jsx";
 import Register from "views/login/register.jsx";
-import Quote from "views/quote/quote.jsx";
 import Profile from "./views/examples/Profile";
 import ResetPassword from "./views/login/resetPassword";
 import ChangePassword from "./views/login/changePassword";
 import UserClaims from "./views/userclaims/userclaims";
 import UserPolicies from "./views/userpolicies/userpolicies";
+import MotorQuote from "./views/quote/motorQuote";
+import Congratulations from "./views/Confirmation/confirmation";
+import Confirmation from "./views/Confirmation/confirmation";
+import Travel from "./views/Confirmation/travel";
 const routes = [
   {
     path: "/index",
@@ -26,32 +29,46 @@ const routes = [
     component: Maps,
     layout: "/client"
   },
+  // {
+  //   path: "/delivery",
+  //   name: "Delivery",
+  //   icon: "ni ni-pin-3 text-orange",
+  //   component: Delivery,
+  //   layout: "/client"
+  // },
   {
-    path: "/delivery",
-    name: "Delivery",
+    path: "/motor-quote",
+    name: "Motor Quote",
     icon: "ni ni-pin-3 text-orange",
-    component: Delivery,
+    component: MotorQuote,
     layout: "/client"
   },
-  {
-    path: "/quote",
-    name: "Quote",
-    icon: "ni ni-pin-3 text-orange",
-    component: Quote,
-    layout: "/client"
-  },
-  {
-    path: "/pickup",
-    name: "Pickup",
-    icon: "ni ni-pin-3 text-orange",
-    component: PickUpPoints,
-    layout: "/client"
-  },
+  // {
+  //   path: "/pickup",
+  //   name: "Pickup",
+  //   icon: "ni ni-pin-3 text-orange",
+  //   component: PickUpPoints,
+  //   layout: "/client"
+  // },
   {
     path: "/invoice",
     name: "Invoice",
     icon: "ni ni-pin-3 text-orange",
     component: Invoice,
+    layout: "/client"
+  },
+  {
+    path: "/confirmation",
+    name: "Confirmation",
+    icon: "ni ni-pin-3 text-orange",
+    component: Confirmation,
+    layout: "/client"
+  },
+  {
+    path: "/travel",
+    name: "travel",
+    icon: "ni ni-pin-3 text-orange",
+    component: Travel,
     layout: "/client"
   },
   {

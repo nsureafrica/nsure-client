@@ -4,20 +4,90 @@ import React from "react";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 import Maps from "views/examples/Maps.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
+import { postRequest } from "../../requests/requests";
 
 class Invoice extends React.Component {
-  render() {
-    console.log(this.props.location.state);
+  constructor(props) {
+    super(props);
+    this.state = { payNow: false };
+    this.handlePayNow = this.handlePayNow.bind(this);
+    this.handlePayment = this.handlePayment.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+  handlePayNow() {
+    this.setState({ payNow: true });
+  }
+  componentDidMount() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
     let userData;
     if (token) {
       userData = jwtDecode(token);
-      console.log(userData);
     } else {
       // this.props.history.push("/auth/login");
     }
-    console.log(userData);
+    console.log(this.props.location);
+    // create policy
+    const optionsSelected = JSON.parse(localStorage.getItem("optionsSelected"));
+    const payloadObject = {
+      vehicleEstimatedValue: optionsSelected.estimatedValue,
+      vehicleModelAndMake: optionsSelected.make_model,
+      vehicleType: optionsSelected.vehicleType,
+      coverType: optionsSelected.coverType,
+      courtesyCarOption: optionsSelected.courtesyCar,
+      registrationNumber: optionsSelected.registrationNumber,
+      chasisNumber: optionsSelected.chasisNumber,
+      engineNumber: optionsSelected.engineNumber,
+      firstName: optionsSelected.firstName,
+      lastName: optionsSelected.lastName,
+      address: optionsSelected.address,
+      emailAddress: optionsSelected.emailAddress,
+      city: optionsSelected.city,
+      country: optionsSelected.country,
+      postalCode: optionsSelected.postalCode,
+      UserId: userData.id,
+      yearOfManufacture: optionsSelected.yearOfManufacture,
+      numberOfSeats: optionsSelected.numberOfSeats,
+      engineCapacity: optionsSelected.engineCapacity,
+      kraPin: optionsSelected.KRAPin,
+      politicalViolenceTerrorism: optionsSelected.politicalViolenceTerrorism,
+      excessProtector: optionsSelected.excessProtector,
+      roadsideAssistance: optionsSelected.roadsideAssistance,
+      quoteAmount: this.props.location.state.quote.quoteAmount,
+      idNumber: optionsSelected.IDNumber,
+      underWriter: this.props.location.state.quote.underwriter.id,
+      vehicleClass: optionsSelected.vehicleClass
+    };
+    const logBook = this.props.location.state.logBook;
+    console.log(logBook);
+
+    let payload = new FormData();
+    Object.keys(payloadObject).map(key => {
+      payload.append(key, payloadObject[key]);
+    });
+    for (var i = 0; i < logBook.length; i++) {
+      payload.append("logbook", logBook[i]);
+    }
+    postRequest("/policies/motor/policy", payload).then(response => {
+      console.log(response);
+    });
+  }
+  handlePayment() {
+    // redirect to confirmation
+    this.props.history.push('/client/confirmation')
+  }
+  handleCancel() {
+    this.setState({ payNow: false });
+  }
+  render() {
+    const token = localStorage.getItem("token");
+    const jwtDecode = require("jwt-decode");
+    let userData;
+    if (token) {
+      userData = jwtDecode(token);
+    } else {
+      // this.props.history.push("/auth/login");
+    }
     return (
       <>
         <div className="header pb-8 pt-5 pt-md-8">
@@ -49,7 +119,6 @@ class Invoice extends React.Component {
                     {userData.firstName + " " + userData.lastName}
                     <br />
                     Phone: {userData.phoneNumber} <br />
-                    Pick Up: SIB - Lenana Branch
                   </h5>
                 </div>
 
@@ -92,17 +161,17 @@ class Invoice extends React.Component {
                     style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {this.props.location.state.quote.amount
+                    {this.props.location.state.quote.quoteAmount
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
                 </Row>
                 <Row
                   className="mb-2"
-                  style={{ fontSize: "13px", textAlign: "lwft", color: "#333" }}
+                  style={{ fontSize: "13px", textAlign: "left", color: "#333" }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
-                    Delivery Fee
+                    Convenience Fee
                   </Col>
 
                   <Col
@@ -112,13 +181,9 @@ class Invoice extends React.Component {
                     xs="5"
                     style={{ textAlign: "right" }}
                   >
-                    Kes{" "}
-                    {this.props.location.state.deliveryFee
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    Kes {"80".replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
                 </Row>
-
                 <Row
                   className="mb-3 mt-2"
                   style={{
@@ -141,33 +206,79 @@ class Invoice extends React.Component {
                     style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {(
-                      this.props.location.state.quote.amount +
-                      this.props.location.state.deliveryFee + 30
-                    )
+                    {(this.props.location.state.quote.quoteAmount + 80)
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
                 </Row>
-                <div
-                  className="mt-3 mb-3"
-                  style={{ justifyContent: "center", textAlign: "center" }}
-                >
-                  <button
+                {!this.state.payNow ? (
+                  <div
+                    className="mt-3 mb-3"
+                    style={{ justifyContent: "center", textAlign: "center" }}
+                  >
+                    <button
+                      style={{
+                        padding: "11px 35px",
+                        background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
+                        fontWeight: "bold",
+                        color: "white",
+                        textTransform: "uppercase",
+                        borderRadius: "26px",
+                        letterSpacing: "2px",
+                        border: "none"
+                      }}
+                      onClick={() => this.handlePayNow()}
+                    >
+                      Pay Now
+                    </button>
+                  </div>
+                ) : (
+                  <div
                     style={{
-                      padding: "11px 35px",
-                      background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
-                      fontWeight: "bold",
-                      color: "white",
-                      textTransform: "uppercase",
-                      borderRadius: "26px",
-                      letterSpacing: "2px",
-                      border: "none"
+                      justifyContent: "left",
+                      textAlign: "left",
+                      marginTop: "30px"
+                      // maxWidth:'30rem'
                     }}
                   >
-                    Pay Now
-                  </button>
-                </div>
+                    <span style={{ color: "#39b54a", fontWeight: "600" }}>
+                      Safaricom - LIPA NA M-PESA
+                    </span>
+                    <ul>
+                      <li>On the M-PESA Menu Go to "Lipa Na M-Pesa"</li>
+                      <li>Select "Pay Bill" option</li>
+                      <li>
+                        Enter Business No: <b>498100</b>
+                      </li>
+                      <li>Enter Account Number: <b>0403276202</b></li>
+                      <li>
+                        Enter Amount:{" "}
+                        <b>
+                          Kes{" "}
+                          {(this.props.location.state.quote.quoteAmount + 80)
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        </b>
+                      </li>
+                      <li>Enter Your M-PESA PIN</li>
+                      <li>Confirm that all details are correct and press OK</li>
+                      <li>You will receive a confirmation SMS from M-PESA</li>
+                    </ul>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      <button onClick={() => this.handleCancel()}>
+                        Cancel
+                      </button>
+                      <button onClick={() => this.handlePayment()}>
+                        Continue
+                      </button>
+                    </div>
+                  </div>
+                )}
               </Card>
             </div>
           </Container>

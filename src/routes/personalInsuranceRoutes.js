@@ -4,7 +4,7 @@ import MedicalInsuranceForm from "../views/forms/MedicalInsuranceForm";
 import EducationInsuranceForm from "../views/forms/EducationInsuranceForm";
 import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm";
 import TravelInsuranceCoverForm from "../views/forms/TravelInsuranceForm";
-
+import MedicalPlans from "./../views/Plans/medicalPlans"
 const PersonalInsuranceRoutes = [
   {
     path: "/dashboard",
@@ -23,10 +23,10 @@ const PersonalInsuranceRoutes = [
     layout: "/client",
   },
   {
-    path: "/MedicalInsuranceForm",
+    path: "/MedicalPlans",
     name: "Medical Insurance",
     icon: "fa fa-medkit",
-    component: MedicalInsuranceForm,
+    component: MedicalPlans,
     style: {color: "#00BCD4"},
     layout: "/client",
   },

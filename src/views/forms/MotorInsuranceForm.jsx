@@ -1,3 +1,4 @@
+//@ts-check
 import React from "react";
 
 // reactstrap components
@@ -16,22 +17,24 @@ import {
 } from "reactstrap";
 import { onlyAllowNNumericalInput } from "../../miscFunctions";
 import { postRequest, getRequest } from "../../requests/requests";
+import Toggle from "../components/toggle";
 
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
 import Notifier from "../../notifier";
+import { pluginService } from "chart.js";
 
 class MotorInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
-    this.getMotorClasses();
     var jwtDecode = require("jwt-decode");
     var user;
     if (localStorage.getItem("token")) {
       user = jwtDecode(localStorage.getItem("token"));
     }
+    this.getMotorClasses();
     this.state = {
-      estimatedValue: 0,
+      estimatedValue: null,
       make_model: "",
       vehicleClass: 2,
       vehicleType: "private",
@@ -51,57 +54,24 @@ class MotorInsuranceForm extends React.Component {
       city: "",
       country: "",
       postalCode: "",
-      vehicleClasses: []
+      KRAPin: "",
+      IDNumber: "",
+      roadsideAssistance: false,
+      courtesyCar: false,
+      excessProtector: false,
+      politicalViolenceTerrorism: false,
+      passengerLegalLiability: false,
+      vehicleClasses: [],
+      variant: "",
+      message: "",
+      showNotification: false
     };
+
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleFile = this.handleFile.bind(this);
-    // this.state = {
-    //   vehicleEstimatedValue: "",
-    //   vehicleModel: "",
-    //   vehicleUse: "private",
-    //   coverType: "comprehensive",
-    //   category: "motorPrivate",
-    //   courtesyCarOption: "6",
-    //   registrationNumber: "",
-    //   chasisNumber: "",
-    //   engineNumber: "",
-    //   firstName: "",
-    //   lastName: "",
-    //   address: "",
-    //   emailAddress: "",
-    //   city: "",
-    //   country: "",
-    //   postalCOde: "",
-    //   yearOfManufacture: "",
-    //   logbook: [],
-    //   showNotification: false,
-    //   message: ""
-    // };
-    // this.state = {
-    //   motorEstimateValue: "0",
-    //   carModel: "",
-    //   motorCategory: "motorcycle",
-    //   vehicleType: "private",
-    //   value: "",
-    //   coverType: "comprehensive",
-    //   courtesyCarOption: "6",
-    //   numberPlateOrRegistrationNumber: "",
-    //   chasisNumber: "",
-    //   engineNumber: "",
-    //   yearOfManufacture: "",
-    //   firstName: "",
-    //   lastName: "",
-    //   address: "",
-    //   emailAddress: "",
-    //   city: "",
-    //   country: "",
-    //   postalCode: ""
-    // };
-    // this.onChange = this.onChange.bind(this);
-    // this.handleInputChange = this.handleInputChange.bind(this);
-    // this.getQuote = this.getQuote.bind(this);
-    // this.handleFile = this.handleFile.bind(this);
+    this.getQuote = this.getQuote.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   getMotorClasses() {
@@ -125,15 +95,24 @@ class MotorInsuranceForm extends React.Component {
     var motorCommercial = this.state.vehicleClasses.find(
       vehicleClass => vehicleClass.name === "Motor commercial"
     );
-    console.log(motorPrivate);
+    var psv = this.state.vehicleClasses.find(
+      vehicleClass => vehicleClass.name === "PSV"
+    );
+    console.log(motorCommercial.id, event.target.value);
     if (event.target.id === "vehicleClass") {
-      if (event.target.value === motorPrivate.id) {
+      if (event.target.value == motorPrivate.id) {
         this.setState({ vehicleType: "private" });
-      } else if (event.target.value !== motorcycle.id) {
+      } else if (event.target.value != motorcycle.id) {
         this.setState({ vehicleType: "commercial" });
+      } else {
+        this.setState({ vehicleType: "private" });
       }
 
-      if (event.target.value !== motorCommercial.id) {
+      if (event.target.value == psv.id) {
+        this.setState({ passengerLegalLiability: true });
+      }
+
+      if (event.target.value != motorCommercial.id) {
         this.setState({ natureOfGoods: "" });
       } else {
         this.setState({ natureOfGoods: "generalCartage" });
@@ -141,91 +120,73 @@ class MotorInsuranceForm extends React.Component {
     }
   }
 
+  handleToggle(identifier) {
+    this.setState(state => ({ [identifier]: !state[identifier] }));
+  }
+
   handleFile(event) {
     this.setState({ [event.target.id]: event.target.files });
   }
+  handleValidation(){}
 
-  // onChange(e) {
-  //   if (onlyAllowNNumericalInput(e.target.value)) {
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   }
-  // }
+  getQuote() {
+    // validate fields
+    console.log(this.state);
+    const payloadObject = {
+      classId: this.state.vehicleClass,
+      vehicleType: this.state.vehicleType,
+      coverType: this.state.coverType,
+      natureOfGoods: this.state.natureOfGoods,
+      estimatedCarValue: this.state.estimatedValue,
+      roadsideAssistance: this.state.roadsideAssistance,
+      courtesyCar: this.state.courtesyCar,
+      excessProtector: this.state.excessProtector,
+      politicalViolenceTerrorism: this.state.politicalViolenceTerrorism,
+      noOfSeats: this.state.numberOfSeats
+    };
 
-  // handleInputChange(event) {
-  //   const target = event.target;
-  //   const value = target.type === "checkbox" ? target.checked : target.value;
-  //   const name = target.name;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
-  // handleFile(event) {
-  //   console.log(event.target.files[0]);
-  //   this.setState({ [event.target.name]: event.target.files });
-  // }
+    var optionsSelected = this.state;
+    delete optionsSelected.showNotification;
+    delete optionsSelected.message;
+    delete optionsSelected.variant;
+    delete optionsSelected.vehicleClasses;
 
-  // getQuote() {
-  //   let payload = new FormData();
-  //   // create form data with the payload
-  //   const payloadObject = {
-  //     vehicleEstimatedValue: this.state.vehicleEstimatedValue,
-  //     vehicleModel: this.state.vehicleModel,
-  //     vehicleType: this.state.vehicleType,
-  //     coverType: this.state.coverType,
-  //     category: this.state.category,
-  //     courtesyCarOption: this.state.courtesyCarOption,
-  //     registrationNumber: this.state.registrationNumber,
-  //     chasisNumber: this.state.chasisNumber,
-  //     engineNumber: this.state.engineNumber,
-  //     firstName: this.state.firstName,
-  //     lastName: this.state.lastName,
-  //     address: this.state.address,
-  //     emailAddress: this.state.emailAddress,
-  //     city: this.state.city,
-  //     country: this.state.country,
-  //     postalCode: this.state.postalCode,
-  //     yearOfManufacture: this.state.yearOfManufacture
-  //   };
-  //   Object.keys(payloadObject).map(key => {
-  //     payload.append(key, payloadObject[key]);
-  //   });
-  //   // append files
-  //   for (var i = 0; i < this.state.logbook.length; i++) {
-  //     payload.append("logbook", this.state.logbook[i]);
-  //   }
-  //   console.log(payload);
-  //   postRequest("/policies/motor/policy", payload)
-  //     .then(response => {
-  //       localStorage.setItem("quotes", JSON.stringify(response.data));
-  //       localStorage.setItem("optionsSelected", JSON.stringify(payloadObject));
-  //       this.props.history.push("quote");
-  //     })
-  //     .catch(error => {
-  //       this.setState({
-  //         message: error.response.data.message
-  //           ? error.response.data.message
-  //           : "Error, Unable to generate quote",
-  //         showNotification: true
-  //       });
-  //     });
-  // }
+    postRequest("/quotes/motor", payloadObject).then(response => {
+      console.log(response);
+      // set options selected
+      localStorage.setItem("optionsSelected", JSON.stringify(optionsSelected));
+      // set quote array
+      localStorage.setItem("quoteArray", JSON.stringify(response.data));
+      if (response.data.length == 0) {
+        this.setState({
+          message:
+            "We were unable to find underwriters offering the options you selected",
+          showNotification: true,
+          variant: "warning"
+        });
+      } else {
+        this.props.history.push("/client/motor-quote", {
+          quoteArray: response.data,
+          logBook: this.state.logBook
+        });
+      }
+    });
+  }
 
   render() {
     const { vehicleClasses } = this.state;
-    // const vehicleClasses = [
-    //   { name: "Motor Private", id: 5 },
-    //   { name: "Motor Commercial", id: 6 },
-    //   { name: "Motorcycle", id: 1 },
-    //   { name: "School Bus", id: 2 },
-    //   { name: "PSV", id: 3 },
-    //   { name: "Tanker", id: 4 }
-    // ];
-    var motorCommercial = this.state.vehicleClasses.find(
-      vehicleClass => vehicleClass.name === "Motor commercial"
-    );
-    var motorcycle = this.state.vehicleClasses.find(
-      vehicleClass => vehicleClass.name === "Motorcycle"
-    );
+    var motorCommercial, motorcycle, motorPrivate;
+    if (vehicleClasses.length > 0) {
+      motorCommercial = this.state.vehicleClasses.find(
+        vehicleClass => vehicleClass.name === "Motor commercial"
+      );
+      motorcycle = this.state.vehicleClasses.find(
+        vehicleClass => vehicleClass.name === "Motorcycle"
+      );
+      motorPrivate = this.state.vehicleClasses.find(
+        vehicleClass => vehicleClass.name === "Motor private"
+      );
+    }
     return (
       <>
         <FormHeader
@@ -244,12 +205,16 @@ class MotorInsuranceForm extends React.Component {
                     </Col>
                   </Row>
                 </CardHeader>
+
                 <CardBody>
-                  <Form>
+                  <Form onSubmit = {()=>this.getQuote()}>
                     <h6 className="heading-small text-muted mb-4">
-                      Vehicle information
+                      Vehicle information{" "}
                     </h6>
-                    <div className="pl-lg-4">
+                    <span style={{ fontSize: ".8rem", color:'orange'}}>
+                        Please fill in all the fields *
+                      </span>
+                    <div className="pl-lg-4" style = {{marginTop:'1rem'}}>
                       <Row>
                         <Col lg="6">
                           <FormGroup>
@@ -258,11 +223,12 @@ class MotorInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              placeholder="Vehicle's estimated value (KES)"
+                              // placeholder="Vehicle's estimated value (KES)"
                               type="text"
                               value={this.state.estimatedValue}
                               onChange={this.handleChange}
                               id="estimatedValue"
+                              required
                             />
                           </FormGroup>
                         </Col>
@@ -278,11 +244,10 @@ class MotorInsuranceForm extends React.Component {
                               type="text"
                               value={this.state.make_model}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
-                        {/* </Row>
-                      <Row> */}
                         <Col lg="6">
                           <FormGroup>
                             <Label className="form-control-label">
@@ -294,6 +259,7 @@ class MotorInsuranceForm extends React.Component {
                               className="form-control-alternative"
                               value={this.state.vehicleClass}
                               onChange={this.handleSelect}
+                              required
                             >
                               {vehicleClasses.map(vehicleClass => (
                                 <option
@@ -306,58 +272,59 @@ class MotorInsuranceForm extends React.Component {
                             </Input>
                           </FormGroup>
                         </Col>
-                        {this.state.vehicleClass === motorcycle.id && (
-                          <Col lg="6">
-                            <FormGroup>
-                              <Label className="form-control-label">
-                                Vehicle Type
-                              </Label>
-                              <Input
-                                type="select"
-                                id="vehicleType"
-                                className="form-control-alternative"
-                                value={this.state.vehicleType}
-                                onChange={this.handleSelect}
-                              >
-                                <option key="private" value="private">
-                                  Private
-                                </option>
-                                <option key="commercial" value="commercial">
-                                  Commercial
-                                </option>
-                              </Input>
-                            </FormGroup>
-                          </Col>
-                        )}
-                        {this.state.vehicleClass === motorCommercial.id && (
-                          <Col lg="6">
-                            <FormGroup>
-                              <Label className="form-control-label">
-                                Nature of Goods
-                              </Label>
-                              <Input
-                                type="select"
-                                id="natureOfGoods"
-                                className="form-control-alternative"
-                                value={this.state.natureOfGoods}
-                                onChange={this.handleSelect}
-                              >
-                                <option key="ownGoods" value="ownGoods">
-                                  Own Goods
-                                </option>
-                                <option
-                                  key="generalCartage"
-                                  value="generalCartage"
+                        {motorcycle !== undefined &&
+                          this.state.vehicleClass == motorcycle.id && (
+                            <Col lg="6">
+                              <FormGroup>
+                                <Label className="form-control-label">
+                                  Vehicle Type
+                                </Label>
+                                <Input
+                                  type="select"
+                                  id="vehicleType"
+                                  className="form-control-alternative"
+                                  value={this.state.vehicleType}
+                                  onChange={this.handleSelect}
+                                  required
                                 >
-                                  General Cartage
-                                </option>
-                              </Input>
-                            </FormGroup>
-                          </Col>
-                        )}
-
-                        {/* </Row>
-                      <Row> */}
+                                  <option key="private" value="private">
+                                    Private
+                                  </option>
+                                  <option key="commercial" value="commercial">
+                                    Commercial (Boda boda)
+                                  </option>
+                                </Input>
+                              </FormGroup>
+                            </Col>
+                          )}
+                        {motorCommercial !== undefined &&
+                          this.state.vehicleClass == motorCommercial.id && (
+                            <Col lg="6">
+                              <FormGroup>
+                                <Label className="form-control-label">
+                                  Nature of Goods
+                                </Label>
+                                <Input
+                                  type="select"
+                                  id="natureOfGoods"
+                                  className="form-control-alternative"
+                                  value={this.state.natureOfGoods}
+                                  onChange={this.handleSelect}
+                                  required
+                                >
+                                  <option key="ownGoods" value="ownGoods">
+                                    Own Goods
+                                  </option>
+                                  <option
+                                    key="generalCartage"
+                                    value="generalCartage"
+                                  >
+                                    General Cartage
+                                  </option>
+                                </Input>
+                              </FormGroup>
+                            </Col>
+                          )}
                         <Col lg="6">
                           <FormGroup>
                             <Label className="form-control-label">
@@ -369,6 +336,7 @@ class MotorInsuranceForm extends React.Component {
                               className="form-control-alternative"
                               value={this.state.coverType}
                               onChange={this.handleSelect}
+                              required
                             >
                               <option key="comprehensive" value="comprehensive">
                                 Comprehensive
@@ -379,8 +347,6 @@ class MotorInsuranceForm extends React.Component {
                             </Input>
                           </FormGroup>
                         </Col>
-                        {/* </Row>
-                      <Row> */}
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -389,10 +355,11 @@ class MotorInsuranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="registrationNumber"
-                              placeholder="KCZ 123Z"
+                              // placeholder="KCZ 123Z"
                               type="text"
                               value={this.state.registrationNumber}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
@@ -404,15 +371,14 @@ class MotorInsuranceForm extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="chasisNumber"
-                              placeholder="Chasis Number"
+                              // placeholder="Chasis Number"
                               type="text"
                               value={this.state.chasisNumber}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
-                        {/* </Row>
-                      <Row> */}
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -425,6 +391,7 @@ class MotorInsuranceForm extends React.Component {
                               type="text"
                               value={this.state.engineNumber}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
@@ -440,11 +407,10 @@ class MotorInsuranceForm extends React.Component {
                               type="text"
                               value={this.state.yearOfManufacture}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
-                        {/* </Row>
-                      <Row> */}
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -457,6 +423,7 @@ class MotorInsuranceForm extends React.Component {
                               type="number"
                               value={this.state.numberOfSeats}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
@@ -472,11 +439,10 @@ class MotorInsuranceForm extends React.Component {
                               type="number"
                               value={this.state.engineCapacity}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
-                        {/* </Row>
-                      <Row> */}
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -484,13 +450,48 @@ class MotorInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="logbook"
+                              id="logBook"
                               placeholder="Vehicle logbook"
                               type="file"
                               onChange={this.handleFile}
+                              required
                             />
                           </FormGroup>
                         </Col>
+                        {motorPrivate !== undefined &&
+                          this.state.vehicleClass == motorPrivate.id && (
+                            <Col lg="6">
+                              <label className="form-control-label">
+                                Riders (optional)
+                              </label>
+                              <Toggle
+                                fieldName="Courtesy Car"
+                                identifier="courtesyCar"
+                                toggleValue={this.state.courtesyCar}
+                                toggleHandler={this.handleToggle}
+                              />
+                              <Toggle
+                                fieldName="Road-side Assistance"
+                                identifier="roadsideAssistance"
+                                toggleValue={this.state.roadsideAssistance}
+                                toggleHandler={this.handleToggle}
+                              />
+                              <Toggle
+                                fieldName="Excess Protector"
+                                identifier="excessProtector"
+                                toggleValue={this.state.excessProtector}
+                                toggleHandler={this.handleToggle}
+                              />
+                              <Toggle
+                                fieldName="Political Violence and Terrorism Protector"
+                                identifier="politicalViolenceTerrorism"
+                                toggleValue={
+                                  this.state.politicalViolenceTerrorism
+                                }
+                                toggleHandler={this.handleToggle}
+                              />
+                            </Col>
+                          )}
                       </Row>
                     </div>
                     <hr className="my-4" />
@@ -512,6 +513,7 @@ class MotorInsuranceForm extends React.Component {
                               type="text"
                               value={this.state.firstName}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
@@ -527,12 +529,41 @@ class MotorInsuranceForm extends React.Component {
                               type="text"
                               value={this.state.lastName}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
-                      </Row>
-                      <Row>
-                        <Col md="6">
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              National ID
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="IDNumber"
+                              type="text"
+                              value={this.state.IDNumber}
+                              onChange={this.handleChange}
+                              required
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              KRA Pin
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="KRAPin"
+                              type="text"
+                              value={this.state.KRAPin}
+                              onChange={this.handleChange}
+                              required
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
                               Address
@@ -544,6 +575,7 @@ class MotorInsuranceForm extends React.Component {
                               type="text"
                               value={this.state.address}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
@@ -559,11 +591,10 @@ class MotorInsuranceForm extends React.Component {
                               type="email"
                               value={this.state.emailAddress}
                               onChange={this.handleChange}
+                              required
                             />
                           </FormGroup>
                         </Col>
-                      </Row>
-                      <Row>
                         <Col md="6">
                           <FormGroup>
                             <label className="form-control-label">City</label>
@@ -629,7 +660,7 @@ class MotorInsuranceForm extends React.Component {
         {this.state.showNotification && (
           <Notifier
             showNotification={this.state.showNotification}
-            variant={this.state.userCreated ? "success" : "error"}
+            variant={this.state.variant}
             message={this.state.message}
           />
         )}

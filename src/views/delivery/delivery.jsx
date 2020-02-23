@@ -37,25 +37,26 @@ class Delivery extends React.Component {
       deliveryLocation: {
         to_lat: lat,
         to_long: lng,
-        to_description: "",
-        policy_id: this.props.location.state.quote.policyId,
-        policy_type_id: 1
+        to_description: ""
       }
     });
+  }
+  submitPickupPoint() {
+    var state = {
+      ...this.props.location.state,
+      deliveryLocation: "SIB Upper Hill"
+    };
+    this.props.history.push("/client/invoice", state);
   }
   submitSendy() {
     postRequest("/sendy/requestDelivery", this.state.deliveryLocation)
       .then(response => {
-        // this.props.history.push(
-        //   "invoice",
-        //   this.props.location.state
-        // )
         console.log(response);
         var state = {
           ...this.props.location.state,
-          deliveryFee: response.data.data.amount
+          deliveryFee: response.data.amount
         };
-        this.props.history.push("invoice", state);
+        this.props.history.push("/client/invoice", state);
       })
       .catch(err => {
         console.log(err);
@@ -67,6 +68,7 @@ class Delivery extends React.Component {
       });
   }
   render() {
+    console.log(this.props);
     return (
       <>
         <div className="header pb-8 pt-3 pt-md-8">
@@ -180,47 +182,23 @@ class Delivery extends React.Component {
                 className="mt-3 mb-3"
                 style={{ justifyContent: "center", textAlign: "center" }}
               >
-                <button
-                  style={{
-                    padding: "11px 35px",
-                    background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
-                    fontWeight: "bold",
-                    color: "white",
-                    textTransform: "uppercase",
-                    borderRadius: "26px",
-                    letterSpacing: "2px",
-                    border: "none"
-                  }}
-                  onClick={
-                    () => this.submitSendy()
-                    // this.props.history.push(
-                    //   "invoice",
-                    //   this.props.location.state
-                    // )
-                  }
-                >
-                  Next
-                </button>
-                {/* <a
-                  // href="invoice"
-                  href="#"
-                  onClick={()=>this.props.history.push(
-                    "invoice",
-                    this.props.location.state
-                  )}
-                  style={{
-                    padding: "11px 35px",
-                    background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
-                    fontWeight: "bold",
-                    color: "white",
-                    textTransform: "uppercase",
-                    borderRadius: "26px",
-                    letterSpacing: "2px",
-                    border: "none"
-                  }}
-                >
-                  Next
-                </a> */}
+                {this.state.delivery === "sendy" && (
+                  <button
+                    style={{
+                      padding: "11px 35px",
+                      background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
+                      fontWeight: "bold",
+                      color: "white",
+                      textTransform: "uppercase",
+                      borderRadius: "26px",
+                      letterSpacing: "2px",
+                      border: "none"
+                    }}
+                    onClick={() => this.submitSendy()}
+                  >
+                    Next
+                  </button>
+                )}
               </div>
             </div>
           </Container>

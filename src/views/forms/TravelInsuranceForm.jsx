@@ -15,30 +15,74 @@ import {
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
+import Toggle from "../components/toggle";
+import { postRequest } from "../../requests/requests";
+
 class TravelInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      firstName: "",
+      lastName: "",
+      nationalId: "",
+      kraPin: "",
+      passportNumber: "",
+      destination: "",
+      travelDate: Date.now(),
+      returnDate: Date.now(),
+      accompaniedByFamilyMember: false,
       medicalExpenses: "",
-      followUpTreatmentInCountryOfResidence: "",
       medicalEvaluationExpenses: "",
-      repartriationOfMortalRemains: "",
-      accompanyingFamilyMember: "",
-      prematureReturnInCaseOfDeath: "",
-      legalAssistance: "",
-      lossOrTheft: "",
-      luggageDelay: ""
+      followUpTreatmentInCountryOfResidence: false,
+      repartriationOfMortalRemains: false,
+      prematureReturnInCaseOfDeath: false,
+      legalAssistance: false,
+      lossOrTheft: false,
+      luggageDelay: false
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
+  }
+  handleToggle(identifier) {
+    this.setState(state => ({ [identifier]: !state[identifier] }));
+  }
+  submitDetails() {
+    const token = localStorage.getItem("token");
+    const jwtDecode = require("jwt-decode");
+    let userData;
+    if (token) {
+      userData = jwtDecode(token);
+    } else {
+      // this.props.history.push("/auth/login");
+    }
+    const payload = {
+      medicalExpenses: this.state.medicalExpenses,
+      followUpTreatmentInCountryOfResidence: this.state
+        .followUpTreatmentInCountryOfResidence,
+      medicalEvaluationExpenses: this.state.medicalEvaluationExpenses,
+      repartriationOfMortalRemains: this.state.repartriationOfMortalRemains,
+      accompaniedByFamilyMember: this.state.accompaniedByFamilyMember,
+      prematureReturn: this.state.prematureReturnInCaseOfDeath,
+      legalAssistance: this.state.legalAssistance,
+      lossOrTheft: this.state.lossOrTheft,
+      luggageDelay: this.state.luggageDelay,
+      destination: this.state.destination,
+      nationalId: this.state.nationalId,
+      kraPin: this.state.kraPin,
+      startDate: this.state.travelDate,
+      endDate: this.state.returnDate,
+      passportNumber: this.state.passportNumber,
+      UserId: userData.id
+    };
+    postRequest("/policies/travel/policy", payload).then(response => {
+      console.log(response);
+      this.props.history.push('/client/travel')
     });
   }
+
   render() {
     return (
       <>
@@ -60,9 +104,140 @@ class TravelInsuranceForm extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Form>
-                    <h6 className="heading-small text-muted mb-4">
-                      Medical expenses
-                    </h6>
+                    <h6 className="heading-small text-muted mb-4">General</h6>
+                    <div className="pl-lg-4">
+                      <Row>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              First Name
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="firstName"
+                              placeholder="First name"
+                              type="text"
+                              value={this.state.firstName}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Last Name
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="lastName"
+                              placeholder="Last name"
+                              type="text"
+                              value={this.state.lastName}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              National ID
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="nationalId"
+                              type="number"
+                              value={this.state.nationalId}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              KRA Pin
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="kraPin"
+                              type="text"
+                              value={this.state.kraPin}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Passport Number
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="passportNumber"
+                              type="text"
+                              value={this.state.passportNumber}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Destination
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="destination"
+                              type="text"
+                              value={this.state.destination}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+
+                        <Col lg="6">
+                          <Row>
+                            <Col lg={6}>
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  Travel date
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="travelDate"
+                                  type="date"
+                                  value={this.state.travelDate}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                            <Col lg={6}>
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  Return date
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="returnDate"
+                                  type="date"
+                                  value={this.state.returnDate}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                          </Row>
+                        </Col>
+                        <Col lg="6">
+                          <Toggle
+                            fieldName="Accompanied by Family Member? (Minor)"
+                            identifier="accompaniedByFamilyMember"
+                            toggleValue={this.state.accompaniedByFamilyMember}
+                            toggleHandler={this.handleToggle}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                    <hr className="my-4" />
+                    <h6 className="heading-small text-muted mb-4">Medical</h6>
                     <div className="pl-lg-4">
                       <Row>
                         <Col lg="6">
@@ -72,33 +247,14 @@ class TravelInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="medicalExpenses"
+                              id="medicalExpenses"
                               placeholder="Medical expenses"
                               type="number"
                               value={this.state.medicalExpenses}
-                              onChange={this.handleInputChange}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Follow up treatment in country of residence
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="followUpTreatmentInCountryOfResidence"
-                              placeholder="Treatment in country of residence"
-                              type="text"
-                              value={
-                                this.state.followUpTreatmentInCountryOfResidence
-                              }
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -106,45 +262,31 @@ class TravelInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="medicalEvaluationExpenses"
+                              id="medicalEvaluationExpenses"
                               placeholder=" Medical evaluation expenses"
                               type="text"
                               value={this.state.medicalEvaluationExpenses}
-                              onChange={this.handleInputChange}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Repartriation of mortal remains
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="repartriationOfMortalRemains"
-                              placeholder="Repartriation of mortal remains"
-                              type="text"
-                              value={this.state.repartriationOfMortalRemains}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Accompanying family member
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="accompanyingFamilyMember"
-                              placeholder="Accompanying family member"
-                              type="text"
-                              value={this.state.accompanyingFamilyMember}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
+                        <Col lg="12">
+                          <Toggle
+                            fieldName="Follow up treatment in country of residence"
+                            identifier="followUpTreatmentInCountryOfResidence"
+                            toggleValue={
+                              this.state.followUpTreatmentInCountryOfResidence
+                            }
+                            toggleHandler={this.handleToggle}
+                          />
+                          <Toggle
+                            fieldName="Repartriation of mortal remains (in case of death)"
+                            identifier="repartriationOfMortalRemains"
+                            toggleValue={
+                              this.state.repartriationOfMortalRemains
+                            }
+                            toggleHandler={this.handleToggle}
+                          />
                         </Col>
                       </Row>
                     </div>
@@ -155,85 +297,58 @@ class TravelInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Premature return in case of death or imminent
-                              death of a relative or a business associate
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="prematureReturnInCaseOfDeath"
-                              type="text"
-                              value={this.state.prematureReturnInCaseOfDeath}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
+                        <Col lg="12">
+                          <Toggle
+                            fieldName="Premature return in case of death or imminent death of a relative or a business associate"
+                            identifier="prematureReturnInCaseOfDeath"
+                            toggleValue={
+                              this.state.prematureReturnInCaseOfDeath
+                            }
+                            toggleHandler={this.handleToggle}
+                          />
                         </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Legal Assisntace
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="legalAssistance"
-                              placeholder="Legal Assisntace"
-                              type="text"
-                              value={this.state.legalAssistance}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
+                        <Col lg="12">
+                          <Toggle
+                            fieldName="Legal Assistance"
+                            identifier="legalAssistance"
+                            toggleValue={this.state.legalAssistance}
+                            toggleHandler={this.handleToggle}
+                          />
                         </Col>
                       </Row>
                     </div>
                     <hr className="my-4" />
-                    {/* Description */}
                     <h6 className="heading-small text-muted mb-4">
                       Luggage,trade samples or personal effects
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Loss or theft
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="lossOrTheft"
-                              placeholder="Loss or theft"
-                              type="text"
-                              value={this.state.lossOrTheft}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
+                        <Col lg="12">
+                          <Toggle
+                            fieldName="Loss or Theft"
+                            identifier="lossOrTheft"
+                            toggleValue={this.state.lossOrTheft}
+                            toggleHandler={this.handleToggle}
+                          />
                         </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Luggage delay
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="luggageDelay"
-                              placeholder="Luggage delay"
-                              type="text"
-                              value={this.state.luggageDelay}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
+                        <Col lg="12">
+                          <Toggle
+                            fieldName="Luggage Delay"
+                            identifier="luggageDelay"
+                            toggleValue={this.state.luggageDelay}
+                            toggleHandler={this.handleToggle}
+                          />
                         </Col>
                       </Row>
                     </div>
                     <hr className="my-4" />
 
                     <div className="text-center">
-                      <Button className="my-4" color="primary">
+                      <Button
+                        className="my-4"
+                        color="primary"
+                        onClick={() => this.submitDetails()}
+                      >
                         Submit details
                       </Button>
                     </div>

@@ -1,6 +1,6 @@
 const axios = require("axios").default;
-// const baseURL = "http://192.168.1.161:8080";
-const baseURL = "http://192.168.1.161:8080";
+// const baseURL = "http://34.67.92.190:8080";
+const baseURL = "http://34.67.92.190:8080";
 
 
 function getMotorQuote(

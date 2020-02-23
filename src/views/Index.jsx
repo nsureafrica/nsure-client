@@ -117,17 +117,6 @@ class Index extends React.Component {
             <Col className="mb-5 mb-xl-0">
               <Card className="shadow">
                 <CardHeader className="border-0">
-                  {/* <h3
-                    style={{
-                      textAlign: "center",
-                      color: "#001996",
-                      letterSpacing: "3px",
-                      textTransform: "uppercase"
-                    }}
-                    // className="mb-0"
-                  >
-                    My Current Covers
-                  </h3> */}
                 </CardHeader>
                 <CardBody>
                   <ul className="list-group list-group-flush list my--3">
