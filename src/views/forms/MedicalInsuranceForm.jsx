@@ -18,42 +18,60 @@ import Toggle from "../components/toggle";
 
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
+import { postRequest } from "../../requests/requests";
 
 class MedicalInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      secondName: "",
+      principalFirstName: "",
+      principalLastName: "",
       principalAge: "",
-      ageOfSpouse: "",
-      numberOfChildren: "",
-      numberOfPeopleToReceiveOpticalCover: "",
-      numberOfPeopleToReceiveDentalCover: "",
-      numberOfMembersToBeCoveredUnderPersonalAccident: "",
-      numberofMembersToBeCoveredUnderLastExpense: "",
+      principalIdNumber: "",
+      principalKraPin: "",
+      married: false,
+      numberOfChildren: 0,
+      spouseFirstName: "",
+      spouseLastName: "",
+      spouseAge: "",
+      spouseIdNumber: "",
+      spouseKraPin: "",
       outpatientPerPerson: false,
-      maternityCover: false
+      maternityCover: false,
+      dentalCover: false,
+      opticalCover: false
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === "radio" ? target.value : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
   }
 
   handleToggle(identifier) {
     this.setState(state => ({ [identifier]: !state[identifier] }));
   }
-
+  getQuote() {
+    const payload = {
+      medicalPlanId: this.props.location.state.plan.id,
+      outPatientPerPerson: this.state.outpatientPerPerson,
+      principalAge: this.state.principalAge,
+      spouseAge: this.state.spouseAge,
+      numberOfChildren: this.state.numberOfChildren
+    };
+    var selectedOptions_medical = { ...this.state };
+    postRequest("/quotes/medical", payload).then(response => {
+      localStorage.setItem(
+        "optionsSelected_Medical",
+        JSON.stringify(selectedOptions_medical)
+      );
+      console.log(response);
+    });
+  }
   render() {
-    console.log(this.state.maternityCover);
+    console.log(this.props);
+    console.log(this.state);
     return (
       <>
         <FormHeader
@@ -74,9 +92,7 @@ class MedicalInsuranceForm extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Form>
-                    <h6 className="heading-small text-muted mb-4">
-                      Client information
-                    </h6>
+                    <h6 className="heading-small text-muted mb-4">Principal</h6>
                     <div className="pl-lg-4">
                       <Row>
                         <Col lg="6">
@@ -86,87 +102,189 @@ class MedicalInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="firstName"
-                              placeholder=" First Name"
+                              id="principalFirstName"
+                              // placeholder=" First Name"
                               type="text"
-                              value={this.state.firstName}
-                              onChange={this.handleInputChange}
+                              value={this.state.principalFirstName}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Second Name
+                              Last Name
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="secondName"
-                              placeholder="Second Name"
+                              id="principalLastName"
+                              // placeholder="Second Name"
                               type="text"
-                              value={this.state.secondName}
-                              onChange={this.handleInputChange}
+                              value={this.state.principalLastName}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
-                      </Row>
-                    </div>
-                    <hr className="my-4" />
-                    {/* Core cover */}
-                    <h6 className="heading-small text-muted mb-4">
-                      Core cover
-                    </h6>
-                    <div className="pl-lg-4">
-                      <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Principal age(18-65 years)
+                              Age (18-65 years)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="principalAge"
-                              placeholder="Principal age(18-65 years)"
+                              id="principalAge"
+                              // placeholder="Second Name"
                               type="number"
                               value={this.state.principalAge}
-                              onChange={this.handleInputChange}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Age of the spouse (18-65 years)
+                              ID Number
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="ageOfSpouse"
-                              placeholder="Age of the spouse (18-65 years)"
+                              id="principalIdNumber"
+                              // placeholder="Second Name"
                               type="number"
-                              value={this.state.ageOfSpouse}
-                              onChange={this.handleInputChange}
+                              value={this.state.principalIdNumber}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
-                      </Row>
-                      <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Number of children(1 month - 17 years)
+                              KRA Pin
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="numberOfChildren"
-                              placeholder="Number of children(1 month - 17 years)"
-                              type="number"
-                              value={this.state.numberOfChildren}
-                              onChange={this.handleInputChange}
+                              id="principalKraPin"
+                              // placeholder="Second Name"
+                              type="text"
+                              value={this.state.principalKraPin}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
+                        <Col lg="6">
+                          <label className="form-control-label"></label>
+                          <Toggle
+                            fieldName="Married"
+                            identifier="married"
+                            toggleValue={this.state.married}
+                            toggleHandler={this.handleToggle}
+                          />
+                        </Col>
+                        {this.state.married && (
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Number of children (1month - 17Yrs)
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="numberOfChildren"
+                                // placeholder="Second Name"
+                                type="number"
+                                value={this.state.numberOfChildren}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                        )}
                       </Row>
                     </div>
+                    {this.state.married && (
+                      <>
+                        <hr className="my-4" />
+                        <h6 className="heading-small text-muted mb-4">
+                          Spouse
+                        </h6>
+                        <div className="pl-lg-4">
+                          <Row>
+                            <Col lg="6">
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  First Name
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="spouseFirstName"
+                                  // placeholder=" First Name"
+                                  type="text"
+                                  value={this.state.spouseFirstName}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                            <Col lg="6">
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  Last Name
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="spouseLastName"
+                                  // placeholder="Second Name"
+                                  type="text"
+                                  value={this.state.spouseLastName}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                            <Col lg="6">
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  Age (18-65 years)
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="spouseAge"
+                                  // placeholder="Second Name"
+                                  type="number"
+                                  value={this.state.spouseAge}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                            <Col lg="6">
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  ID Number
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="spouseIdNumber"
+                                  // placeholder="Second Name"
+                                  type="text"
+                                  value={this.state.spouseIdNumber}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                            <Col lg="6">
+                              <FormGroup>
+                                <label className="form-control-label">
+                                  KRA Pin
+                                </label>
+                                <Input
+                                  className="form-control-alternative"
+                                  id="spouseKraPin"
+                                  // placeholder="Second Name"
+                                  type="text"
+                                  value={this.state.spouseKraPin}
+                                  onChange={this.handleChange}
+                                />
+                              </FormGroup>
+                            </Col>
+                          </Row>
+                        </div>
+                      </>
+                    )}
                     <hr className="my-4" />
                     {/* Optional benefits */}
                     <h6 className="heading-small text-muted mb-4">
@@ -174,7 +292,6 @@ class MedicalInsuranceForm extends React.Component {
                     </h6>
                     <div className="pl-lg-4">
                       <Row>
-                        
                         <Col md="6">
                           <Toggle
                             fieldName="Outpatient Per Person"
@@ -182,15 +299,28 @@ class MedicalInsuranceForm extends React.Component {
                             toggleValue={this.state.outpatientPerPerson}
                             toggleHandler={this.handleToggle}
                           />
+
+                          <Toggle
+                            fieldName="Maternity Cover"
+                            identifier="maternityCover"
+                            toggleValue={this.state.maternityCover}
+                            toggleHandler={this.handleToggle}
+                          />
+                          <Toggle
+                            fieldName="Dental Cover"
+                            identifier="dentalCover"
+                            toggleValue={this.state.dentalCover}
+                            toggleHandler={this.handleToggle}
+                          />
+                          <Toggle
+                            fieldName="Optical Cover"
+                            identifier="opticalCover"
+                            toggleValue={this.state.opticalCover}
+                            toggleHandler={this.handleToggle}
+                          />
                         </Col>
                       </Row>
-                      <Toggle
-                        fieldName="Maternity Cover"
-                        identifier="maternityCover"
-                        toggleValue={this.state.maternityCover}
-                        toggleHandler={this.handleToggle}
-                      />
-                      <Row>
+                      {/* <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
@@ -265,12 +395,16 @@ class MedicalInsuranceForm extends React.Component {
                             />
                           </FormGroup>
                         </Col>
-                      </Row>
+                      </Row> */}
                     </div>
                     <hr className="my-4" />
 
                     <div className="text-center">
-                      <Button className="my-4" color="primary">
+                      <Button
+                        className="my-4"
+                        color="primary"
+                        onClick={() => this.getQuote()}
+                      >
                         Submit details
                       </Button>
                     </div>

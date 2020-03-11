@@ -1,26 +1,14 @@
 import React, { Component } from "react";
 import { CardHeader, Table, Card, Container } from "reactstrap";
-import { getRequest } from "../../requests/requests";
-import "./medicalPlans.css";
-class MedicalPlans extends Component {
+
+class AdminLastExpensePolicies extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      medicalPlans: []
-    };
-  }
-  componentDidMount() {
-    getRequest("/medicalPlans/getAllMedicalPlans").then(response => {
-      console.log(response);
-      this.setState({ medicalPlans: response.data });
-    });
-  }
-  handleRowClick(plan) {
-    this.props.history.push('/client/MedicalInsuranceForm', {plan:plan})
+    this.state = {};
   }
   render() {
-    console.log(this.state.medicalPlans);
     return (
+      <>
       <div className="header pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">
@@ -34,9 +22,8 @@ class MedicalPlans extends Component {
                 textTransform: "uppercase"
               }}
             >
-              Available Medical Plans
+                Last Expense Policies
             </h2>
-            {/* {this.state.medicalPlans.map()} */}
             <Card style={{ padding: "20px" }} className="shadow">
               <CardHeader className="border-0">
                 <span style={{ fontSize: ".8rem", color: "orange" }}>
@@ -55,28 +42,17 @@ class MedicalPlans extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.medicalPlans.map(plan => (
-                    <tr
-                      onClick={() => this.handleRowClick(plan)}
-                      className="rowStyle"
-                    >
-                      <td>{plan.name}</td>
-                      <td>{plan.Underwriter.name}</td>
-                      <td>{plan.inpatientCoverLimit}</td>
-                      <td>{plan.limitPerFamilyPerAnnum}</td>
-                      <td>{plan.chronicCases}</td>
-                      <td>{plan.maternityCoverLimit}</td>
-                    </tr>
-                  ))}
+                  
                 </tbody>
                 <tbody></tbody>
               </Table>
             </Card>
           </div>
         </Container>
-      </div>
+        </div>
+      </>
     );
   }
 }
 
-export default MedicalPlans;
+export default AdminLastExpensePolicies;

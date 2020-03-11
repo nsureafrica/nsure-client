@@ -71,7 +71,7 @@ class SalamahTransitionCoverForm extends React.Component {
     return (
       <>
         <FormHeader
-          name="Salamah Insurance"
+          name="Last Expense Cover"
           image="https://images.unsplash.com/photo-1544813545-4827b64fcacb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
         />
         {/* Page content */}
@@ -82,7 +82,7 @@ class SalamahTransitionCoverForm extends React.Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Salamah Transition Cover Details</h3>
+                      <h3 className="mb-0">Last Expense Cover Details</h3>
                     </Col>                   
                   </Row>
                 </CardHeader>

@@ -97,7 +97,15 @@ class Login extends React.Component {
                         .then(response => {
                           console.log(response);
                           localStorage.setItem("token", response.data.token);
-                          this.props.history.push("/client/index");
+                          const jwtDecode = require("jwt-decode");
+                          let userData =jwtDecode(response.data.token);
+                            console.log(userData);
+                          if(userData.UserCategory.name!=='Administrator'){
+                            this.props.history.push("/client/index");
+                          }else{
+                            this.props.history.push("/admin/motor-policies");
+                          }
+                          
                         })
                         .catch(err => {
                           console.log(err);

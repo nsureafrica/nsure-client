@@ -63,6 +63,7 @@ class Sidebar extends React.Component {
   };
   // creates the links that appear in the left menu / Sidebar
   createLinks = routes => {
+    console.log(routes);
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -80,7 +81,22 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { bgColor, routes, logo, PersonalInsuranceRoutes } = this.props;
+    const token = localStorage.getItem("token");
+    const jwtDecode = require("jwt-decode");
+    let userData;
+    if (token) {
+      userData = jwtDecode(token);
+      console.log(userData);
+    } else {
+      // this.props.history.push("login");
+    }
+    const {
+      bgColor,
+      routes,
+      logo,
+      PersonalInsuranceRoutes,
+      AdminRoutes
+    } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -139,10 +155,7 @@ class Sidebar extends React.Component {
               <DropdownToggle nav>
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
-                    <img
-                      alt="..."
-                      src={require("assets/img/theme/user.png")}
-                    />
+                    <img alt="..." src={require("assets/img/theme/user.png")} />
                   </span>
                 </Media>
               </DropdownToggle>
@@ -169,7 +182,7 @@ class Sidebar extends React.Component {
                 <DropdownItem divider />
                 <DropdownItem
                   href="#"
-                  onClick={()=>this.props.history.push("/auth/login")}
+                  onClick={() => this.props.history.push("/auth/login")}
                 >
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
@@ -207,10 +220,22 @@ class Sidebar extends React.Component {
                 </Col>
               </Row>
             </div>
-            
+
             {/* Navigation */}
-            <h6 className="navbar-heading text-muted">Personal Insurance</h6>
-            <Nav navbar>{this.createLinks(PersonalInsuranceRoutes)}</Nav>
+            {userData.UserCategory.name !== "Administrator" ? (
+              <>
+                <h6 className="navbar-heading text-muted">
+                  Personal Insurance
+                </h6>
+                <Nav navbar>{this.createLinks(PersonalInsuranceRoutes)}</Nav>
+              </>
+            ) : (
+              <>
+                <h6 className="navbar-heading text-muted">Admin Panel</h6>
+                <Nav navbar>{this.createLinks(AdminRoutes)}</Nav>
+              </>
+            )}
+
             {/* Divider */}
             <hr className="my-3" />
             {/* Heading */}

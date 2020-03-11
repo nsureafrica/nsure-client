@@ -14,7 +14,7 @@ import {
   Media
 } from "reactstrap";
 
-class AdminNavbar extends React.Component {
+class ClientNavbar extends React.Component {
   render() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
@@ -58,13 +58,43 @@ class AdminNavbar extends React.Component {
                   <DropdownItem className="noti-title" header tag="div">
                     <h6 className="text-overflow m-0">Welcome!</h6>
                   </DropdownItem>
-                 
+                  {/* <DropdownItem to="/client/user-profile" tag={Link}>
+                    <i className="ni ni-single-02" />
+                    <span>My profile</span>
+                  </DropdownItem> */}
+                  {/* <DropdownItem to="/client/user-profile" tag={Link}>
+                    <i className="ni ni-settings-gear-65" />
+                    <span>Settings</span>
+                  </DropdownItem> */}
+                  {/* <DropdownItem to="/client/user-profile" tag={Link}>
+                    <i className="ni ni-calendar-grid-58" />
+                    <span>Activity</span>
+                  </DropdownItem> */}
+                  {/* <DropdownItem to="/client/user-profile" tag={Link}>
+                    <i className="ni ni-support-16" />
+                    <span>Support</span>
+                  </DropdownItem> */}
                   <DropdownItem divider />
                   <DropdownItem
                     href="#"
                     onClick={() => this.props.history.push("/auth/login")}
                   >
+                    {/* <i className="ni ni-user-run" /> */}
                     <span>Logout</span>
+                  </DropdownItem>
+                  {/* <DropdownItem
+                    href="#"
+                    onClick={() => this.props.history.push("/auth/myPolicies")}
+                  >
+                    <i className="ni ni-user-run" />
+                    <span>My policies</span>
+                  </DropdownItem> */}
+                  <DropdownItem
+                    href="#"
+                    onClick={() => this.props.history.push("/client/claims")}
+                  >
+                    {/* <i className="ni ni-user-run" /> */}
+                    <span>My claims</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -76,4 +106,4 @@ class AdminNavbar extends React.Component {
   }
 }
 
-export default AdminNavbar;
+export default ClientNavbar;

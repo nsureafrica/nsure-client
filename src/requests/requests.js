@@ -1,25 +1,25 @@
 import axios from "axios";
 
-// const baseURL = "http://34.67.92.190:8080";
-// const baseURL = "http://34.67.92.190:8080";
-const baseURL = "http://34.67.92.190:8080";
+// const baseURL = "http://34.67.92.190:3030";
+// const baseURL = "http://34.67.92.190:3030";
+const baseURL = "http://34.67.92.190:3030";
 
 var options = {
   headers: { "x-access-token": localStorage.getItem("token") }
 };
 
 function getRequest(endpoint) {
-  // var options = {
-  //   headers: { "x-access-token": localStorage.getItem("token") }
-  // };
+  var options = {
+    headers: { "x-access-token": localStorage.getItem("token") }
+  };
   const requestUrl = baseURL + endpoint;
   return axios.get(requestUrl,options);
 }
 
 function postRequest(endpoint, payload) {
-  // var options = {
-  //   headers: { "x-access-token": localStorage.getItem("token") }
-  // };
+  var options = {
+    headers: { "x-access-token": localStorage.getItem("token") }
+  };
   const requestUrl = baseURL + endpoint;
   return axios.post(requestUrl, payload, options);
 }

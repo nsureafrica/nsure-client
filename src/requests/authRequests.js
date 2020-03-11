@@ -1,7 +1,7 @@
 const axios = require("axios").default;
-// const baseURL = "http://34.67.92.190:8080";
-// const baseURL = "http://34.67.92.190:8080";
-const baseURL = "http://34.67.92.190:8080";
+// const baseURL = "http://34.67.92.190:3030";
+// const baseURL = "http://34.67.92.190:3030";
+const baseURL = "http://34.67.92.190:3030";
 
 function handleLogIn(password, email, props) {
   return axios

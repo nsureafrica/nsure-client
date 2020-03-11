@@ -15,44 +15,43 @@ import {
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
-import Toggle from "../components/toggle";
+import { postRequest } from "../../requests/requests";
 
 class EducationInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "",
-      fullNameOfLifeAssured: "",
-      fullNameOfChild: "",
-      ageOfChild: 0,
-      ageNextBirthday: 0,
+      firstName: "",
+      lastName: "",
+      dob: Date.now(),
+      expectedCommencementDate: Date.now(),
+      ageNextBirthday: "",
       policyTerm: "",
-      monthlyPayablePremium: 0,
-      totalAndPermanentDisability: false,
-      waiverOfPremium: false,
-      childAccidentHospitalizationRider: false,
-      adultAccidentHospitalizationRider: false,
-      lastExpenseLifeAssured: false,
-      lastExpenseBeneficiaryChild: false
+      sumAssured: "",
+      premium: "",
+      frequency: "",
+      targetAmount: undefined
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === "radio" ? target.value : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
   }
-
-  handleToggle(identifier) {
-    this.setState(state => ({ [identifier]: !state[identifier] }));
+  handleSubmit() {
+    const payload = this.state;
+    // post to endpoint
+    postRequest("/policies/education/policy", payload).then(response => {
+      console.log(response);
+      this.props.history.push("/client/notified");
+    }).catch(err=>{
+      // handle err
+      this.props.history.push("/client/notified");
+    })
   }
 
   render() {
+    console.log(this.state);
     return (
       <>
         <FormHeader
@@ -79,62 +78,75 @@ class EducationInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Full name of life assured
+                              First name
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="fullNameOfLifeAssured"
-                              placeholder="Full name"
+                              id="firstName"
+                              placeholder=""
                               type="text"
-                              value={this.state.fullNameOfLifeAssured}
-                              onChange={this.handleInputChange}
+                              value={this.state.firstName}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Age next birthday
+                              Last name
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="ageNextBirthday"
-                              placeholder="Age next birthday"
+                              id="lastName"
+                              placeholder=""
+                              type="text"
+                              value={this.state.lastName}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Date of Birth
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="dob"
+                              placeholder=""
+                              type="date"
+                              value={this.state.dob}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Expected commemcement date
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="expectedCommencementDate"
+                              placeholder=""
+                              type="date"
+                              value={this.state.expectedCommencementDate}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Age of child (Next birthday)
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="ageNextBirthday"
+                              placeholder=""
                               type="number"
                               value={this.state.ageNextBirthday}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Full name of child
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              name="fullNameOfChild"
-                              placeholder="Full name of child"
-                              type="text"
-                              value={this.state.fullNameOfChild}
-                              onChange={this.handleInputChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Age of child
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="input-first-name"
-                              placeholder="Age of child"
-                              type="number"
-                              value={this.state.ageOfChild}
-                              onChange={this.handleInputChange}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
@@ -145,37 +157,91 @@ class EducationInsuranceForm extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="policyTerm"
+                              id="policyTerm"
                               placeholder="Policy term"
                               type="number"
                               value={this.state.policyTerm}
-                              onChange={this.handleInputChange}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Monthly payable premium
+                              Sum assured
                             </label>
                             <Input
                               className="form-control-alternative"
-                              name="monthlyPayablePremium"
-                              placeholder="Monthly payable premium"
+                              id="sumAssured"
+                              placeholder=""
                               type="number"
-                              value={this.state.monthlyPayablePremium}
-                              onChange={this.handleInputChange}
+                              value={this.state.sumAssured}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Payable premium
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="premium"
+                              placeholder=""
+                              type="number"
+                              value={this.state.premium}
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Frequency
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="frequency"
+                              placeholder=""
+                              type="select"
+                              value={this.state.frequency}
+                              onChange={this.handleChange}
+                            >
+                              <option value="monthly">Monthly</option>
+                              <option value="quarterly">Quarterly</option>
+                              <option value="halfAnnually">
+                                Half annually
+                              </option>
+                              <option value="annually">
+                                Annually (Yearly)
+                              </option>
+                            </Input>
+                          </FormGroup>
+                        </Col>
+                        <Col lg="6">
+                          <FormGroup>
+                            <label className="form-control-label">
+                              Target amount
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              id="targetAmount"
+                              placeholder=""
+                              type="number"
+                              value={this.state.targetAmount}
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
                       </Row>
                     </div>
-                    <hr className="my-4" />
+                    {/* <hr className="my-4" /> */}
                     {/* Address */}
-                    <h6 className="heading-small text-muted mb-4">
+                    {/* <h6 className="heading-small text-muted mb-4">
                       Riders(Optional)
-                    </h6>
-                    <div className="pl-lg-4">
+                    </h6> */}
+                    {/* <div className="pl-lg-4">
                       <Toggle
                         fieldName="Total and permanent disability"
                         identifier="totalAndPermanentDisability"
@@ -216,11 +282,15 @@ class EducationInsuranceForm extends React.Component {
                         toggleValue={this.state.lastExpenseBeneficiaryChild}
                         toggleHandler={this.handleToggle}
                       />
-                    </div>
-                    <hr className="my-4" />
+                    </div> */}
+                    {/* <hr className="my-4" /> */}
 
                     <div className="text-center">
-                      <Button className="my-4" color="primary">
+                      <Button
+                        className="my-4"
+                        color="primary"
+                        onClick={() => this.handleSubmit()}
+                      >
                         Submit details
                       </Button>
                     </div>

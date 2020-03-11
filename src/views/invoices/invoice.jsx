@@ -1,7 +1,20 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+// import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  FormGroup,
+  Form,
+  Input,
+  Container,
+  Row,
+  Label,
+  Col
+} from "reactstrap";
 import Maps from "views/examples/Maps.jsx";
 import PickUpPoints from "views/delivery/pickup.jsx";
 import { postRequest } from "../../requests/requests";
@@ -9,10 +22,14 @@ import { postRequest } from "../../requests/requests";
 class Invoice extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { payNow: false };
+    this.state = { payNow: false, confirmationNumber: "", policyDetails: {} };
+    this.handleChange = this.handleChange.bind(this);
     this.handlePayNow = this.handlePayNow.bind(this);
     this.handlePayment = this.handlePayment.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
   }
   handlePayNow() {
     this.setState({ payNow: true });
@@ -49,17 +66,18 @@ class Invoice extends React.Component {
       yearOfManufacture: optionsSelected.yearOfManufacture,
       numberOfSeats: optionsSelected.numberOfSeats,
       engineCapacity: optionsSelected.engineCapacity,
-      kraPin: optionsSelected.KRAPin,
+      // kraPin: optionsSelected.KRAPin,
       politicalViolenceTerrorism: optionsSelected.politicalViolenceTerrorism,
       excessProtector: optionsSelected.excessProtector,
       roadsideAssistance: optionsSelected.roadsideAssistance,
       quoteAmount: this.props.location.state.quote.quoteAmount,
-      idNumber: optionsSelected.IDNumber,
+      // idNumber: optionsSelected.IDNumber,
       underWriter: this.props.location.state.quote.underwriter.id,
       vehicleClass: optionsSelected.vehicleClass
     };
     const logBook = this.props.location.state.logBook;
-    console.log(logBook);
+    const nationalIdScan = this.props.location.state.nationalIdScan;
+    const KRAPinScan = this.props.location.state.KRAPinScan;
 
     let payload = new FormData();
     Object.keys(payloadObject).map(key => {
@@ -68,13 +86,34 @@ class Invoice extends React.Component {
     for (var i = 0; i < logBook.length; i++) {
       payload.append("logbook", logBook[i]);
     }
+    for (var i = 0; i < nationalIdScan.length; i++) {
+      payload.append("nationalID", nationalIdScan[i]);
+    }
+    for (var i = 0; i < KRAPinScan.length; i++) {
+      payload.append("kraPin", KRAPinScan[i]);
+    }
     postRequest("/policies/motor/policy", payload).then(response => {
       console.log(response);
+      this.setState({ policyDetails: response.data });
     });
   }
   handlePayment() {
+    console.log(this.state.policyDetails);
     // redirect to confirmation
-    this.props.history.push('/client/confirmation')
+    if (this.state.confirmationNumber !== "") {
+      const transactionPayload = {
+        transactionType: "MPESA",
+        transactionRef: this.state.confirmationNumber,
+        amount: 0,
+        BillId: this.state.policyDetails.BillId
+      };
+      postRequest("/transactions/createTransactions",transactionPayload).then(response => {
+        console.log(response);
+        this.props.history.push("/client/confirmation");
+      });
+    } else {
+      // ask user to enter confirmation number and try again
+    }
   }
   handleCancel() {
     this.setState({ payNow: false });
@@ -250,7 +289,9 @@ class Invoice extends React.Component {
                       <li>
                         Enter Business No: <b>498100</b>
                       </li>
-                      <li>Enter Account Number: <b>0403276202</b></li>
+                      <li>
+                        Enter Account Number: <b>0403276202</b>
+                      </li>
                       <li>
                         Enter Amount:{" "}
                         <b>
@@ -264,6 +305,24 @@ class Invoice extends React.Component {
                       <li>Confirm that all details are correct and press OK</li>
                       <li>You will receive a confirmation SMS from M-PESA</li>
                     </ul>
+                    <Row>
+                      <Col lg="6">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Enter your payment confirmation number
+                          </label>
+                          <Input
+                            // className="form-control-alternative"
+                            // placeholder="Vehicle's estimated value (KES)"
+                            type="text"
+                            value={this.state.confirmationNumber}
+                            onChange={this.handleChange}
+                            id="confirmationNumber"
+                            required
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
                     <div
                       style={{
                         display: "flex",

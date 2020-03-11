@@ -27,7 +27,7 @@ class UserPolicies extends Component {
       "motor",
       "medical",
       "education",
-      "salamahTransition",
+      "lastExpense",
       "travel"
     ];
     getAllUserPolicies(policyArr).then(response => {

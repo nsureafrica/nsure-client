@@ -8,6 +8,8 @@ import AdminFooter from "components/Footers/AdminFooter.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
+// import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
+import AdminRoutes from "../routes/adminRoutes";
 import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
 
 class Admin extends React.Component {
@@ -17,8 +19,9 @@ class Admin extends React.Component {
     this.refs.mainContent.scrollTop = 0;
   }
   getRoutes = (routes) => {
+    console.log(routes)
     return routes.map((prop, key) => {
-      if (prop.layout === "/client") {
+      if (prop.layout === "/admin") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -32,13 +35,13 @@ class Admin extends React.Component {
     });
   };
   getBrandText = (path) => {
-    for (let i = 0; i < routes.length; i++) {
+    for (let i = 0; i < AdminRoutes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
-            routes[i].layout + routes[i].path
+            AdminRoutes[i].layout + AdminRoutes[i].path
         ) !== -1
       ) {
-        return routes[i].name;
+        return AdminRoutes[i].name;
       }
     }
     return "Brand";
@@ -50,8 +53,9 @@ class Admin extends React.Component {
           {...this.props}
           routes={routes}
           PersonalInsuranceRoutes={PersonalInsuranceRoutes}
+          AdminRoutes={AdminRoutes}
           logo={{
-            innerLink: "/client/index",
+            innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/spire.png"),
             imgAlt: "...",
           }}
@@ -62,7 +66,7 @@ class Admin extends React.Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>{this.getRoutes(routes)}</Switch>
-          <Switch>{this.getRoutes(PersonalInsuranceRoutes)}</Switch>
+          <Switch>{this.getRoutes(AdminRoutes)}</Switch>
           <Container fluid>
             <AdminFooter />
           </Container>

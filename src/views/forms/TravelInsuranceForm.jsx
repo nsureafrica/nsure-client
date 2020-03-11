@@ -79,7 +79,7 @@ class TravelInsuranceForm extends React.Component {
     };
     postRequest("/policies/travel/policy", payload).then(response => {
       console.log(response);
-      this.props.history.push('/client/travel')
+      this.props.history.push('/client/notified')
     });
   }
 

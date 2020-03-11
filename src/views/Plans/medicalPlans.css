@@ -1,0 +1,6 @@
+.rowStyle{
+    cursor: pointer;
+}
+.rowStyle:hover{
+    background-color: #e2e6f1;
+}

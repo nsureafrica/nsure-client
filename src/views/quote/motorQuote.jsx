@@ -26,7 +26,9 @@ class MotorQuote extends React.Component {
   buyPolicy(quote) {
     this.props.history.push("/client/invoice", {
       quote,
-      logBook: this.props.location.state.logBook
+      logBook: this.props.location.state.logBook,
+      nationalIdScan:this.props.location.state.nationalIdScan,
+      KRAPinScan:this.props.location.state.KRAPinScan
     });
   }
 
@@ -93,25 +95,33 @@ class MotorQuote extends React.Component {
                             <td>Basic Premium</td>
                             <td>{quote.basic}</td>
                           </tr>
-                          <tr style={{ color: "black", fontWeight: "400" }}>
+                          {quote.excessProtector>0&&<tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Excess Protector</td>
                             <td>{quote.excessProtector}</td>
-                          </tr>
-                          <tr style={{ color: "black", fontWeight: "400" }}>
+                          </tr>}
+                          {quote.politicalViolenceTerrorism>0&&<tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Political Violence & Terrorism</td>
                             <td>{quote.politicalViolenceTerrorism}</td>
-                          </tr>
-                          <tr style={{ color: "black", fontWeight: "400" }}>
+                          </tr>}
+                          {quote.passengerLegalLiability>0&&<tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Passenger Legal Liability</td>
                             <td>{quote.passengerLegalLiability}</td>
-                          </tr>
-                          <tr style={{ color: "black", fontWeight: "400" }}>
+                          </tr>}
+                          {quote.roadsideAssistance>0&&<tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Roadside Assistance</td>
                             <td>{quote.roadsideAssistance}</td>
-                          </tr>
-                          <tr style={{ color: "black", fontWeight: "400" }}>
+                          </tr>}
+                          {quote.courtesyCar>0&&<tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Courtesy Car Option</td>
                             <td>{quote.courtesyCar}</td>
+                          </tr>}
+                          <tr style={{ color: "black", fontWeight: "400" }}>
+                            <td>Levies</td>
+                            <td>{quote.levies}</td>
+                          </tr>
+                          <tr style={{ color: "black", fontWeight: "400" }}>
+                            <td>Stamp duty</td>
+                            <td>{quote.stampDuty}</td>
                           </tr>
                           <tr
                             style={{

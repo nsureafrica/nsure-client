@@ -9,6 +9,8 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
 import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
+import ClientNavbar from "../components/Navbars/ClientNavbar";
+import AdminRoutes from "../routes/adminRoutes";
 
 class Admin extends React.Component {
   componentDidUpdate(e) {
@@ -50,6 +52,7 @@ class Admin extends React.Component {
           {...this.props}
           routes={routes}
           PersonalInsuranceRoutes={PersonalInsuranceRoutes}
+          AdminRoutes={AdminRoutes}
           logo={{
             innerLink: "/client/index",
             imgSrc: require("assets/img/brand/spire.png"),
@@ -57,10 +60,13 @@ class Admin extends React.Component {
           }}
         />
         <div className="main-content" ref="mainContent">
-          <AdminNavbar
+          <ClientNavbar
+           {...this.props}
+           brandText={this.getBrandText(this.props.location.pathname)}/>
+          {/* <AdminNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
-          />
+          /> */}
           <Switch>{this.getRoutes(routes)}</Switch>
           <Switch>{this.getRoutes(PersonalInsuranceRoutes)}</Switch>
           <Container fluid>

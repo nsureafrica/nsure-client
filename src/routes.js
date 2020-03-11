@@ -14,6 +14,9 @@ import MotorQuote from "./views/quote/motorQuote";
 import Congratulations from "./views/Confirmation/confirmation";
 import Confirmation from "./views/Confirmation/confirmation";
 import Travel from "./views/Confirmation/travel";
+import Dashboard from "./views/Dashboard/dashboard";
+import MedicalInsuranceForm from "./views/forms/MedicalInsuranceForm";
+import PolicyDetail from "./views/Admin/Policies/motorPolicyDetail.jsx";
 const routes = [
   {
     path: "/index",
@@ -65,7 +68,7 @@ const routes = [
     layout: "/client"
   },
   {
-    path: "/travel",
+    path: "/notified",
     name: "travel",
     icon: "ni ni-pin-3 text-orange",
     component: Travel,
@@ -112,6 +115,23 @@ const routes = [
     name: "Policies",
     component: UserPolicies,
     layout: "/client"
-  }
+  },{
+    path: "/dashboard",
+    name: "Dashboard",
+    component: Dashboard,
+    layout: "/auth"
+  },
+  {
+    path: "/MedicalInsuranceForm",
+    name: "Medical Insurance",
+    component: MedicalInsuranceForm,
+    layout: "/client",
+  },
+  {
+    path: "/PolicyDetail",
+    name: "Policy Detail",
+    component: PolicyDetail,
+    layout: "/admin",
+  },
 ];
 export default routes;

@@ -56,6 +56,8 @@ class MotorInsuranceForm extends React.Component {
       postalCode: "",
       KRAPin: "",
       IDNumber: "",
+      nationalIdScan: [],
+      KRAPinScan: [],
       roadsideAssistance: false,
       courtesyCar: false,
       excessProtector: false,
@@ -127,7 +129,7 @@ class MotorInsuranceForm extends React.Component {
   handleFile(event) {
     this.setState({ [event.target.id]: event.target.files });
   }
-  handleValidation(){}
+  handleValidation() {}
 
   getQuote() {
     // validate fields
@@ -167,16 +169,18 @@ class MotorInsuranceForm extends React.Component {
       } else {
         this.props.history.push("/client/motor-quote", {
           quoteArray: response.data,
-          logBook: this.state.logBook
+          logBook: this.state.logBook,
+          nationalIdScan: this.state.nationalIdScan,
+          KRAPinScan: this.state.KRAPinScan
         });
       }
     });
   }
 
   render() {
-    const { vehicleClasses } = this.state;
+    const vehicleClasses = this.state.vehicleClasses;
     var motorCommercial, motorcycle, motorPrivate;
-    if (vehicleClasses.length > 0) {
+    if (this.state.vehicleClasses.length > 0) {
       motorCommercial = this.state.vehicleClasses.find(
         vehicleClass => vehicleClass.name === "Motor commercial"
       );
@@ -207,14 +211,14 @@ class MotorInsuranceForm extends React.Component {
                 </CardHeader>
 
                 <CardBody>
-                  <Form onSubmit = {()=>this.getQuote()}>
+                  <Form onSubmit={() => this.getQuote()}>
                     <h6 className="heading-small text-muted mb-4">
                       Vehicle information{" "}
                     </h6>
-                    <span style={{ fontSize: ".8rem", color:'orange'}}>
-                        Please fill in all the fields *
-                      </span>
-                    <div className="pl-lg-4" style = {{marginTop:'1rem'}}>
+                    <span style={{ fontSize: ".8rem", color: "orange" }}>
+                      Please fill in all the fields *
+                    </span>
+                    <div className="pl-lg-4" style={{ marginTop: "1rem" }}>
                       <Row>
                         <Col lg="6">
                           <FormGroup>
@@ -536,14 +540,14 @@ class MotorInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              National ID
+                              National ID. (Colored scanned document)
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="IDNumber"
-                              type="text"
-                              value={this.state.IDNumber}
-                              onChange={this.handleChange}
+                              id="nationalIdScan"
+                              type="file"
+                              // value={this.state.nationalIdScan}
+                              onChange={this.handleFile}
                               required
                             />
                           </FormGroup>
@@ -551,14 +555,14 @@ class MotorInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              KRA Pin
+                              KRA Pin Certificate.
                             </label>
                             <Input
                               className="form-control-alternative"
-                              id="KRAPin"
-                              type="text"
-                              value={this.state.KRAPin}
-                              onChange={this.handleChange}
+                              id="KRAPinScan"
+                              type="file"
+                              // value={this.state.KRAPinScan}
+                              onChange={this.handleFile}
                               required
                             />
                           </FormGroup>

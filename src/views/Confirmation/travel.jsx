@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card, Container } from "reactstrap";
 
 
-class Travel extends Component {
+class Notified extends Component {
   state = {};
   render() {
     return (
@@ -48,4 +48,4 @@ class Travel extends Component {
   }
 }
 
-export default Travel;
+export default Notified;

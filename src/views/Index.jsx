@@ -37,7 +37,7 @@ class Index extends React.Component {
         "motor",
         "medical",
         "education",
-        "salamahTransition",
+        "lastExpense",
         "travel"
       ]
     };
@@ -84,7 +84,7 @@ class Index extends React.Component {
       "motor",
       "medical",
       "education",
-      "salamahTransition",
+      "lastExpense",
       "travel"
     ];
     getAllUserPolicies(this.state.policyArr).then(responseArr => {

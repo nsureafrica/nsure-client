@@ -1,6 +1,6 @@
 import Index from "../views/Index.jsx";
 import MotorInsuranceForm from "../views/forms/MotorInsuranceForm";
-import MedicalInsuranceForm from "../views/forms/MedicalInsuranceForm";
+// import MedicalInsuranceForm from "../views/forms/MedicalInsuranceForm";
 import EducationInsuranceForm from "../views/forms/EducationInsuranceForm";
 import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm";
 import TravelInsuranceCoverForm from "../views/forms/TravelInsuranceForm";
@@ -48,7 +48,7 @@ const PersonalInsuranceRoutes = [
   },
   {
     path: "/SalamahTransitionCoverForm",
-    name: "Salamah Transition Cover",
+    name: "Last Expense",
     icon: "fa fa-thumbs-up",
     style: {color: "#9C27B0"},
     component: SalamahTransitionCoverForm,
