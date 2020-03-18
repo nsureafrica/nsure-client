@@ -67,6 +67,7 @@ class MedicalInsuranceForm extends React.Component {
         JSON.stringify(selectedOptions_medical)
       );
       console.log(response);
+      this.props.history.push('/client/medical-quote', {quoteArray:response.data})
     });
   }
   render() {

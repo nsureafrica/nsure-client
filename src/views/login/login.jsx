@@ -103,7 +103,7 @@ class Login extends React.Component {
                           if(userData.UserCategory.name!=='Administrator'){
                             this.props.history.push("/client/index");
                           }else{
-                            this.props.history.push("/admin/motor-policies");
+                            this.props.history.push("/admin/dashboard");
                           }
                           
                         })

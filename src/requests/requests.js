@@ -41,10 +41,13 @@ function getAllUserPolicies(policies) {
   } else {
     // this.props.history.push("login");
   }
+  var options = {
+    headers: { "x-access-token": token }
+  };
   var policyRequests = [];
   for (var i = 0; i < policies.length; i++) {
     policyRequests.push(
-      axios.get(`${baseURL}/policies/${policies[i]}/${userData.email}`)
+      axios.get(`${baseURL}/policies/${policies[i]}/${userData.id}`, options)
     );
   }
   return axios.all(policyRequests);

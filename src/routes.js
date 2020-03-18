@@ -17,6 +17,10 @@ import Travel from "./views/Confirmation/travel";
 import Dashboard from "./views/Dashboard/dashboard";
 import MedicalInsuranceForm from "./views/forms/MedicalInsuranceForm";
 import PolicyDetail from "./views/Admin/Policies/motorPolicyDetail.jsx";
+import MedicalQuote from "./views/quote/medicalquote";
+import MedicalInvoice from "./views/invoices/medical_invoice";
+import LastExpenseQuote from "./views/quote/lastExpenseQuote";
+import LastExpenseInvoice from "./views/invoices/last_expense";
 const routes = [
   {
     path: "/index",
@@ -46,6 +50,21 @@ const routes = [
     component: MotorQuote,
     layout: "/client"
   },
+  {
+    path: "/medical-quote",
+    name: "Medical Quote",
+    icon: "ni ni-pin-3 text-orange",
+    component: MedicalQuote,
+    layout: "/client"
+  },
+  {
+    path: "/last-expense-quote",
+    name: "Last Expense Quote",
+    component: LastExpenseQuote,
+    layout: "/client"
+  },
+  
+
   // {
   //   path: "/pickup",
   //   name: "Pickup",
@@ -58,6 +77,20 @@ const routes = [
     name: "Invoice",
     icon: "ni ni-pin-3 text-orange",
     component: Invoice,
+    layout: "/client"
+  },
+  {
+    path: "/invoice-medical",
+    name: "Medical Invoice",
+    icon: "ni ni-pin-3 text-orange",
+    component: MedicalInvoice,
+    layout: "/client"
+  },
+  {
+    path: "/invoice-last-expense",
+    name: "Last Expense Invoice",
+    icon: "ni ni-pin-3 text-orange",
+    component: LastExpenseInvoice,
     layout: "/client"
   },
   {
@@ -104,12 +137,12 @@ const routes = [
     component: ChangePassword,
     layout: "/auth"
   },
-  {
-    path: "/claims",
-    name: "Claims",
-    component: UserClaims,
-    layout: "/client"
-  },
+  // {
+  //   path: "/claims",
+  //   name: "Claims",
+  //   component: UserClaims,
+  //   layout: "/client"
+  // },
   {
     path: "/policies",
     name: "Policies",

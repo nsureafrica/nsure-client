@@ -5,6 +5,9 @@ import EducationInsuranceForm from "../views/forms/EducationInsuranceForm";
 import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm";
 import TravelInsuranceCoverForm from "../views/forms/TravelInsuranceForm";
 import MedicalPlans from "./../views/Plans/medicalPlans"
+import UserClaims from "../views/userclaims/userclaims.jsx";
+import Login from "../views/login/login.jsx";
+
 const PersonalInsuranceRoutes = [
   {
     path: "/dashboard",
@@ -53,6 +56,24 @@ const PersonalInsuranceRoutes = [
     style: {color: "#9C27B0"},
     component: SalamahTransitionCoverForm,
     layout: "/client",
-  },
+  }
 ];
-export default PersonalInsuranceRoutes;
+const OtherRoutes = [
+  {
+    path: "/claims",
+    name: "My Claims",
+    icon: "ni ni-archive-2 ",
+    style: {color: "#8BCCBA"},
+    component: UserClaims,
+    layout: "/client",
+  },
+  {
+    path: "/login",
+    name: "Log Out",
+    icon: "ni ni-user-run",
+    style: {color: "#8BCCBA"},
+    component: Login,
+    layout: "/auth",
+  }
+]
+export {PersonalInsuranceRoutes, OtherRoutes};

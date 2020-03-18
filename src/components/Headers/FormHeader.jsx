@@ -24,13 +24,13 @@ class FormHeader extends React.Component {
               <Col lg="7" md="10" style={{float: "right"}}>
                 <h1 className="text-white">{this.props.name}</h1>
 
-                <Button
+                {/* <Button
                   color="info"
                   href="#"
                   onClick={(e) => e.preventDefault()}
                 >
                   Bring existing policy on board
-                </Button>
+                </Button> */}
               </Col>
             </div>
           </Container>

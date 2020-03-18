@@ -10,7 +10,7 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 import routes from "routes.js";
 // import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
 import AdminRoutes from "../routes/adminRoutes";
-import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
+import {PersonalInsuranceRoutes} from "../routes/personalInsuranceRoutes";
 
 class Admin extends React.Component {
   componentDidUpdate(e) {

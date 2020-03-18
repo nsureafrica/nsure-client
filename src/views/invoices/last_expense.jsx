@@ -1,7 +1,4 @@
-import React from "react";
-
-// reactstrap components
-// import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import React, { Component } from "react";
 import {
   Button,
   Card,
@@ -15,11 +12,9 @@ import {
   Label,
   Col
 } from "reactstrap";
-import Maps from "views/examples/Maps.jsx";
-import PickUpPoints from "views/delivery/pickup.jsx";
 import { postRequest } from "../../requests/requests";
 
-class Invoice extends React.Component {
+class LastExpenseInvoice extends Component {
   constructor(props) {
     super(props);
     this.state = { payNow: false, confirmationNumber: "", policyDetails: {} };
@@ -28,6 +23,7 @@ class Invoice extends React.Component {
     this.handlePayment = this.handlePayment.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
+
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
@@ -45,57 +41,40 @@ class Invoice extends React.Component {
     }
     console.log(this.props.location);
     // create policy
-    const optionsSelected = JSON.parse(localStorage.getItem("optionsSelected"));
+    const optionsSelected = JSON.parse(
+      localStorage.getItem("optionsSelected_LastExpense")
+    );
+    console.log(optionsSelected);
+    const beneficiaries = [
+      ...optionsSelected.parents,
+      ...optionsSelected.children,
+      {
+        firstName: optionsSelected.spouseFirstName,
+        lastName: optionsSelected.spouseLastName,
+        DOB: optionsSelected.spouseDOB,
+        idNumber: optionsSelected.spouseIDNumber,
+        relationship: "spouse"
+      }
+    ];
     const payloadObject = {
-      vehicleEstimatedValue: optionsSelected.estimatedValue,
-      vehicleModelAndMake: optionsSelected.make_model,
-      vehicleType: optionsSelected.vehicleType,
-      coverType: optionsSelected.coverType,
-      courtesyCarOption: optionsSelected.courtesyCar,
-      registrationNumber: optionsSelected.registrationNumber,
-      chasisNumber: optionsSelected.chasisNumber,
-      engineNumber: optionsSelected.engineNumber,
-      firstName: optionsSelected.firstName,
-      lastName: optionsSelected.lastName,
-      address: optionsSelected.address,
-      emailAddress: optionsSelected.emailAddress,
-      city: optionsSelected.city,
-      country: optionsSelected.country,
-      postalCode: optionsSelected.postalCode,
-      UserId: userData.id,
-      yearOfManufacture: optionsSelected.yearOfManufacture,
-      numberOfSeats: optionsSelected.numberOfSeats,
-      engineCapacity: optionsSelected.engineCapacity,
-      // kraPin: optionsSelected.KRAPin,
-      politicalViolenceTerrorism: optionsSelected.politicalViolenceTerrorism,
-      excessProtector: optionsSelected.excessProtector,
-      roadsideAssistance: optionsSelected.roadsideAssistance,
-      quoteAmount: this.props.location.state.quote.quoteAmount,
-      // idNumber: optionsSelected.IDNumber,
-      underWriter: this.props.location.state.quote.underwriter.id,
-      vehicleClass: optionsSelected.vehicleClass
+      firstName: optionsSelected.principalFirstName,
+      lastName: optionsSelected.principalLastName,
+      dateOfBirth: optionsSelected.principalDOB,
+      idNumber: optionsSelected.principalIDNumber,
+      kraPin: optionsSelected.principalKraPin,
+      medicalHealthDeclaration: false,
+      notHealthyBeneficiaries:'',
+      principalAgeDateOfBirth: optionsSelected.principalDOB,
+      notHealthyBeneficiaries: "",
+      beneficiaries: JSON.stringify(beneficiaries),
+      numberOfChildren: optionsSelected.children.length,
     };
-    const logBook = this.props.location.state.logBook;
-    const nationalIdScan = this.props.location.state.nationalIdScan;
-    const KRAPinScan = this.props.location.state.KRAPinScan;
-
-    let payload = new FormData();
-    Object.keys(payloadObject).map(key => {
-      payload.append(key, payloadObject[key]);
-    });
-    for (var i = 0; i < logBook.length; i++) {
-      payload.append("logbook", logBook[i]);
-    }
-    for (var i = 0; i < nationalIdScan.length; i++) {
-      payload.append("nationalID", nationalIdScan[i]);
-    }
-    for (var i = 0; i < KRAPinScan.length; i++) {
-      payload.append("kraPin", KRAPinScan[i]);
-    }
-    postRequest("/policies/motor/policy", payload).then(response => {
-      console.log(response);
-      this.setState({ policyDetails: response.data });
-    });
+    postRequest("/policies/lastexpense/createpolicy", payloadObject).then(
+      response => {
+        console.log(response);
+        this.setState({ policyDetails: response.data });
+      }
+    );
   }
   handlePayment() {
     console.log(this.state.policyDetails);
@@ -107,10 +86,12 @@ class Invoice extends React.Component {
         amount: 0,
         BillId: this.state.policyDetails.BillId
       };
-      postRequest("/transactions/createTransactions",transactionPayload).then(response => {
-        console.log(response);
-        this.props.history.push("/client/confirmation", {motor:true});
-      });
+      postRequest("/transactions/createTransactions", transactionPayload).then(
+        response => {
+          console.log(response);
+          this.props.history.push("/client/confirmation", { motor: false });
+        }
+      );
     } else {
       // ask user to enter confirmation number and try again
     }
@@ -118,6 +99,7 @@ class Invoice extends React.Component {
   handleCancel() {
     this.setState({ payNow: false });
   }
+
   render() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
@@ -189,7 +171,7 @@ class Invoice extends React.Component {
                   style={{ fontSize: "13px", textAlign: "left", color: "#333" }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
-                    Motor Insurance Policy
+                    Last Expense Insurance Policy
                   </Col>
 
                   <Col
@@ -200,7 +182,7 @@ class Invoice extends React.Component {
                     style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {this.props.location.state.quote.quoteAmount
+                    {this.props.location.state.quote.quoteTotal
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
@@ -245,7 +227,7 @@ class Invoice extends React.Component {
                     style={{ textAlign: "right" }}
                   >
                     Kes{" "}
-                    {(this.props.location.state.quote.quoteAmount + 80)
+                    {(this.props.location.state.quote.quoteTotal + 80)
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Col>
@@ -347,4 +329,4 @@ class Invoice extends React.Component {
   }
 }
 
-export default Invoice;
+export default LastExpenseInvoice;

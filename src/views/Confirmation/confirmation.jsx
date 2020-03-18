@@ -3,6 +3,7 @@ import { Card, Container } from "reactstrap";
 
 class Confirmation extends Component {
   render() {
+    console.log(this.props)
     return (
       <div className="header pb-8 pt-5 pt-md-8">
         <Container fluid>
@@ -47,10 +48,10 @@ class Confirmation extends Component {
                 >
                   Please note that this is NOT a policy document
                 </span>
-                <span style={{ display: "block", margin: "2rem 0" }}>
+               {this.props.location.state.motor && <span style={{ display: "block", margin: "2rem 0" }}>
                   You will receive your digital insurance sticker within{" "}
                   <b>12Hrs</b>
-                </span>
+                </span>}
               </div>
             </Card>
           </div>

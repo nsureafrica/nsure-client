@@ -89,13 +89,12 @@ class ClientNavbar extends React.Component {
                     <i className="ni ni-user-run" />
                     <span>My policies</span>
                   </DropdownItem> */}
-                  <DropdownItem
+                  {/* <DropdownItem
                     href="#"
                     onClick={() => this.props.history.push("/client/claims")}
                   >
-                    {/* <i className="ni ni-user-run" /> */}
                     <span>My claims</span>
-                  </DropdownItem>
+                  </DropdownItem> */}
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

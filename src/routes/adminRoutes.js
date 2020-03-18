@@ -4,16 +4,17 @@ import AdminClaims from "../views/Admin/Policies/claims";
 import AdminMedicalPolicies from "../views/Admin/Policies/medicalPolicies";
 import AdminLastExpensePolicies from "../views/Admin/Policies/lastExpensePolicies";
 import BlastEmail from "../views/Admin/BlastEmail/blastEmail";
+import Login from "../views/login/login.jsx";
 
 const AdminRoutes = [
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   icon: "ni ni-tv-2 ",
-  //   style: {color: "#8BCCBA"},
-  //   component: AdminDashboard,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    icon: "ni ni-tv-2 ",
+    style: {color: "#8BCCBA"},
+    component: AdminDashboard,
+    layout: "/admin",
+  },
   {
     path: "/motor-policies",
     name: "Motor Policies",
@@ -53,6 +54,14 @@ const AdminRoutes = [
     style: {color: "#8BCCBA"},
     component: BlastEmail,
     layout: "/admin",
+  },
+  {
+    path: "/login",
+    name: "Log Out",
+    icon: "ni ni-user-run",
+    style: {color: "#8BCCBA"},
+    component: Login,
+    layout: "/auth",
   }
   
 //   {

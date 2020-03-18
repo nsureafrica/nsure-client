@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-key */
-import React from "react";
+import React, { Component } from "react";
 import {
   Card,
   CardBody,
@@ -12,29 +11,23 @@ import {
 } from "reactstrap";
 import "./quotes.css";
 
-class MotorQuote extends React.Component {
+class MedicalQuote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: JSON.parse(localStorage.getItem("quotes")),
-      // quoteAmount: localStorage.getItem("quoteAmount"),
-      selectedOptions: JSON.parse(localStorage.getItem("optionsSelected"))
+      selectedOptions: JSON.parse(
+        localStorage.getItem("optionsSelected_Medical")
+      )
     };
     this.buyPolicy = this.buyPolicy.bind(this);
   }
-
   buyPolicy(quote) {
-    this.props.history.push("/client/invoice", {
-      quote,
-      logBook: this.props.location.state.logBook,
-      nationalIdScan: this.props.location.state.nationalIdScan,
-      KRAPinScan: this.props.location.state.KRAPinScan
+    this.props.history.push("/client/invoice-medical", {
+      quote
     });
   }
-
   render() {
     const quoteArray = this.props.location.state.quoteArray;
-    console.log(this.props);
     return (
       <div className="header pb-8 pt-3 pt-md-8">
         <Container fluid>
@@ -92,63 +85,67 @@ class MotorQuote extends React.Component {
                             </button>
                           </tr>
                           <tr style={{ color: "black", fontWeight: "400" }}>
-                            <td>Basic Premium</td>
+                            <td>Principal Basic</td>
                             <td>
-                              {quote.basic.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.principalRate.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
-                          {quote.excessProtector > 0 && (
+                          {quote.principalRateOutpatient > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
-                              <td>Excess Protector</td>
+                              <td>Principal Outpatient</td>
                               <td>
-                                {quote.excessProtector.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.principalRateOutpatient.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
-                          {quote.politicalViolenceTerrorism > 0 && (
+                          {quote.spouseRate > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
-                              <td>Political Violence & Terrorism</td>
+                              <td>Spouse Basic</td>
                               <td>
-                                {quote.politicalViolenceTerrorism.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.spouseRate.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
-                          {quote.passengerLegalLiability > 0 && (
+                          {quote.spouseRateOutpatient > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
-                              <td>Passenger Legal Liability</td>
+                              <td>Spouse Outpatient</td>
                               <td>
-                                {quote.passengerLegalLiability.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.spouseRateOutpatient.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
-                          {quote.roadsideAssistance > 0 && (
+                          {quote.childrenRate > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
-                              <td>Roadside Assistance</td>
+                              <td>Children Basic</td>
                               <td>
-                                {quote.roadsideAssistance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.childrenRate.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
-                          {quote.courtesyCar > 0 && (
+                          {quote.childrenRateOutpatient > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
-                              <td>Courtesy Car Option</td>
+                              <td>Children Outpatient</td>
                               <td>
-                                {quote.courtesyCar.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.childrenRateOutpatient.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
-                          <tr style={{ color: "black", fontWeight: "400" }}>
-                            <td>Levies</td>
-                            <td>
-                              {quote.levies.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                            </td>
-                          </tr>
-                          <tr style={{ color: "black", fontWeight: "400" }}>
-                            <td>Stamp duty</td>
-                            <td>
-                              {quote.stampDuty.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                            </td>
-                          </tr>
+                          {quote.levies > 0 && (
+                            <tr style={{ color: "black", fontWeight: "400" }}>
+                              <td>Levies</td>
+                              <td>
+                                {quote.levies.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              </td>
+                            </tr>
+                          )}
+                          {quote.stampDuty > 0 && (
+                            <tr style={{ color: "black", fontWeight: "400" }}>
+                              <td>Stamp duty</td>
+                              <td>
+                                {quote.stampDuty.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              </td>
+                            </tr>
+                          )}
                           <tr
                             style={{
                               color: "black",
@@ -157,7 +154,7 @@ class MotorQuote extends React.Component {
                           >
                             <td>Total Amount</td>
                             <td>
-                              {quote.quoteAmount.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.quoteTotal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                         </Table>
@@ -174,4 +171,4 @@ class MotorQuote extends React.Component {
   }
 }
 
-export default MotorQuote;
+export default MedicalQuote;

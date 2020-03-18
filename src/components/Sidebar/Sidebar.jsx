@@ -95,6 +95,7 @@ class Sidebar extends React.Component {
       routes,
       logo,
       PersonalInsuranceRoutes,
+      OtherRoutes,
       AdminRoutes
     } = this.props;
     let navbarBrandProps;
@@ -228,6 +229,9 @@ class Sidebar extends React.Component {
                   Personal Insurance
                 </h6>
                 <Nav navbar>{this.createLinks(PersonalInsuranceRoutes)}</Nav>
+                <hr className="my-3" />
+                <Nav navbar>{this.createLinks(OtherRoutes)}
+                </Nav>
               </>
             ) : (
               <>
@@ -237,7 +241,7 @@ class Sidebar extends React.Component {
             )}
 
             {/* Divider */}
-            <hr className="my-3" />
+            {/* <hr className="my-3" /> */}
             {/* Heading */}
             {/* <h6 className="navbar-heading text-muted">Other Services</h6>
             <Nav navbar>{this.createLinks(routes)}</Nav> */}

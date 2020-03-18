@@ -30,7 +30,8 @@ class EducationInsuranceForm extends React.Component {
       sumAssured: "",
       premium: "",
       frequency: "",
-      targetAmount: undefined
+      targetAmount: undefined,
+      showForm: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -41,13 +42,15 @@ class EducationInsuranceForm extends React.Component {
   handleSubmit() {
     const payload = this.state;
     // post to endpoint
-    postRequest("/policies/education/policy", payload).then(response => {
-      console.log(response);
-      this.props.history.push("/client/notified");
-    }).catch(err=>{
-      // handle err
-      this.props.history.push("/client/notified");
-    })
+    postRequest("/policies/education/policy", payload)
+      .then(response => {
+        console.log(response);
+        this.props.history.push("/client/notified");
+      })
+      .catch(err => {
+        // handle err
+        this.props.history.push("/client/notified");
+      });
   }
 
   render() {
@@ -62,186 +65,228 @@ class EducationInsuranceForm extends React.Component {
         <Container className="mt--7" fluid>
           <Row>
             <Col className="order-xl-1" xl="12">
-              <Card className="bg-secondary shadow">
-                <CardHeader className="bg-white border-0">
-                  <Row className="align-items-center">
-                    <Col xs="8">
-                      <h3 className="mb-0">Education Insurance Details</h3>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <Form>
-                    <h6 className="heading-small text-muted mb-4">Details</h6>
-                    <div className="pl-lg-4">
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              First name
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="firstName"
-                              placeholder=""
-                              type="text"
-                              value={this.state.firstName}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Last name
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="lastName"
-                              placeholder=""
-                              type="text"
-                              value={this.state.lastName}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Date of Birth
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="dob"
-                              placeholder=""
-                              type="date"
-                              value={this.state.dob}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Expected commemcement date
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="expectedCommencementDate"
-                              placeholder=""
-                              type="date"
-                              value={this.state.expectedCommencementDate}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Age of child (Next birthday)
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="ageNextBirthday"
-                              placeholder=""
-                              type="number"
-                              value={this.state.ageNextBirthday}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Policy Term (in years)
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="policyTerm"
-                              placeholder="Policy term"
-                              type="number"
-                              value={this.state.policyTerm}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Sum assured
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="sumAssured"
-                              placeholder=""
-                              type="number"
-                              value={this.state.sumAssured}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Payable premium
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="premium"
-                              placeholder=""
-                              type="number"
-                              value={this.state.premium}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Frequency
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="frequency"
-                              placeholder=""
-                              type="select"
-                              value={this.state.frequency}
-                              onChange={this.handleChange}
-                            >
-                              <option value="monthly">Monthly</option>
-                              <option value="quarterly">Quarterly</option>
-                              <option value="halfAnnually">
-                                Half annually
-                              </option>
-                              <option value="annually">
-                                Annually (Yearly)
-                              </option>
-                            </Input>
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label className="form-control-label">
-                              Target amount
-                            </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="targetAmount"
-                              placeholder=""
-                              type="number"
-                              value={this.state.targetAmount}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </div>
-                    {/* <hr className="my-4" /> */}
-                    {/* Address */}
-                    {/* <h6 className="heading-small text-muted mb-4">
+              {!this.state.showForm && (
+                <Card
+                  className="bg-secondary shadow"
+                  style={{
+                    marginBottom: "8em"
+                  }}
+                >
+                  <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                      <Col xs="8">
+                        <h3 className="mb-0">Policy Description</h3>
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <CardBody>
+                    A good quality education is a necessity in today’s world. It
+                    equips us with everything we need to help us achieve
+                    economic freedom and to make our dreams come true. Your
+                    child’s education is therefore a top priority. However, due
+                    to uncertainties such as the increasing costs of higher
+                    education, insufficient funds or the premature death of one
+                    or both parents, your child may not be able to complete his
+                    education. That is why his future should be anticipated and
+                    planned for today. We have a unique product to help you
+                    finance your child’s educational needs. So, protect your
+                    child’s future. Give him one of life’s greatest gifts, a
+                    good education Kindly provide us the below details to take
+                    the first steps to securing your childs future and we will
+                    reach out to you with a proposed plan
+                  </CardBody>
+                  <div className="text-center">
+                    <Button
+                      className="my-4"
+                      color="primary"
+                      onClick={() => this.setState({ showForm: true })}
+                    >
+                      Continue
+                    </Button>
+                  </div>
+                </Card>
+              )}
+              {this.state.showForm && (
+                <Card className="bg-secondary shadow">
+                  <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                      <Col xs="8">
+                        <h3 className="mb-0">Education Insurance Details</h3>
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <CardBody>
+                    <Form>
+                      <h6 className="heading-small text-muted mb-4">Details</h6>
+                      <div className="pl-lg-4">
+                        <Row>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                First name
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="firstName"
+                                placeholder=""
+                                type="text"
+                                value={this.state.firstName}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Last name
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="lastName"
+                                placeholder=""
+                                type="text"
+                                value={this.state.lastName}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Date of Birth
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="dob"
+                                placeholder=""
+                                type="date"
+                                value={this.state.dob}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Expected commemcement date
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="expectedCommencementDate"
+                                placeholder=""
+                                type="date"
+                                value={this.state.expectedCommencementDate}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Age of child (Next birthday)
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="ageNextBirthday"
+                                placeholder=""
+                                type="number"
+                                value={this.state.ageNextBirthday}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Policy Term (in years)
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="policyTerm"
+                                placeholder="Policy term"
+                                type="number"
+                                value={this.state.policyTerm}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Sum assured
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="sumAssured"
+                                placeholder=""
+                                type="number"
+                                value={this.state.sumAssured}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Payable premium
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="premium"
+                                placeholder=""
+                                type="number"
+                                value={this.state.premium}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Frequency
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="frequency"
+                                placeholder=""
+                                type="select"
+                                value={this.state.frequency}
+                                onChange={this.handleChange}
+                              >
+                                <option value="monthly">Monthly</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="halfAnnually">
+                                  Half annually
+                                </option>
+                                <option value="annually">
+                                  Annually (Yearly)
+                                </option>
+                              </Input>
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Target amount
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="targetAmount"
+                                placeholder=""
+                                type="number"
+                                value={this.state.targetAmount}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                      </div>
+                      {/* <hr className="my-4" /> */}
+                      {/* Address */}
+                      {/* <h6 className="heading-small text-muted mb-4">
                       Riders(Optional)
                     </h6> */}
-                    {/* <div className="pl-lg-4">
+                      {/* <div className="pl-lg-4">
                       <Toggle
                         fieldName="Total and permanent disability"
                         identifier="totalAndPermanentDisability"
@@ -283,20 +328,21 @@ class EducationInsuranceForm extends React.Component {
                         toggleHandler={this.handleToggle}
                       />
                     </div> */}
-                    {/* <hr className="my-4" /> */}
+                      {/* <hr className="my-4" /> */}
 
-                    <div className="text-center">
-                      <Button
-                        className="my-4"
-                        color="primary"
-                        onClick={() => this.handleSubmit()}
-                      >
-                        Submit details
-                      </Button>
-                    </div>
-                  </Form>
-                </CardBody>
-              </Card>
+                      <div className="text-center">
+                        <Button
+                          className="my-4"
+                          color="primary"
+                          onClick={() => this.handleSubmit()}
+                        >
+                          Submit details
+                        </Button>
+                      </div>
+                    </Form>
+                  </CardBody>
+                </Card>
+              )}
             </Col>
           </Row>
         </Container>

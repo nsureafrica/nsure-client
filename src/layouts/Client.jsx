@@ -8,7 +8,7 @@ import AdminFooter from "components/Footers/AdminFooter.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
-import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
+import {PersonalInsuranceRoutes, OtherRoutes} from "../routes/personalInsuranceRoutes";
 import ClientNavbar from "../components/Navbars/ClientNavbar";
 import AdminRoutes from "../routes/adminRoutes";
 
@@ -52,6 +52,7 @@ class Admin extends React.Component {
           {...this.props}
           routes={routes}
           PersonalInsuranceRoutes={PersonalInsuranceRoutes}
+          OtherRoutes = {OtherRoutes}
           AdminRoutes={AdminRoutes}
           logo={{
             innerLink: "/client/index",
@@ -68,6 +69,7 @@ class Admin extends React.Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           /> */}
           <Switch>{this.getRoutes(routes)}</Switch>
+          <Switch>{this.getRoutes(OtherRoutes)}</Switch>
           <Switch>{this.getRoutes(PersonalInsuranceRoutes)}</Switch>
           <Container fluid>
             <AdminFooter />
