@@ -96,7 +96,8 @@ class Sidebar extends React.Component {
       logo,
       PersonalInsuranceRoutes,
       OtherRoutes,
-      AdminRoutes
+      AdminRoutes,
+      AdminManagementRoutes
     } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
@@ -237,6 +238,8 @@ class Sidebar extends React.Component {
               <>
                 <h6 className="navbar-heading text-muted">Admin Panel</h6>
                 <Nav navbar>{this.createLinks(AdminRoutes)}</Nav>
+                <hr className = 'my-3'/>
+                <Nav navbar>{this.createLinks(AdminManagementRoutes)}</Nav>
               </>
             )}
 

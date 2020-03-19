@@ -9,7 +9,7 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
 // import PersonalInsuranceRoutes from "../routes/personalInsuranceRoutes";
-import AdminRoutes from "../routes/adminRoutes";
+import {AdminRoutes, AdminManagementRoutes} from "../routes/adminRoutes";
 import {PersonalInsuranceRoutes} from "../routes/personalInsuranceRoutes";
 
 class Admin extends React.Component {
@@ -54,6 +54,7 @@ class Admin extends React.Component {
           routes={routes}
           PersonalInsuranceRoutes={PersonalInsuranceRoutes}
           AdminRoutes={AdminRoutes}
+          AdminManagementRoutes = {AdminManagementRoutes}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/spire.png"),
@@ -67,6 +68,7 @@ class Admin extends React.Component {
           />
           <Switch>{this.getRoutes(routes)}</Switch>
           <Switch>{this.getRoutes(AdminRoutes)}</Switch>
+          <Switch>{this.getRoutes(AdminManagementRoutes)}</Switch>
           <Container fluid>
             <AdminFooter />
           </Container>

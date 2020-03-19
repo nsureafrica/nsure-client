@@ -94,14 +94,14 @@ class MotorQuote extends React.Component {
                           <tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Basic Premium</td>
                             <td>
-                              {quote.basic.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.basic.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                           {quote.excessProtector > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Excess Protector</td>
                               <td>
-                                {quote.excessProtector.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.excessProtector.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -109,7 +109,7 @@ class MotorQuote extends React.Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Political Violence & Terrorism</td>
                               <td>
-                                {quote.politicalViolenceTerrorism.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.politicalViolenceTerrorism.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -117,7 +117,7 @@ class MotorQuote extends React.Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Passenger Legal Liability</td>
                               <td>
-                                {quote.passengerLegalLiability.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.passengerLegalLiability.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -125,7 +125,7 @@ class MotorQuote extends React.Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Roadside Assistance</td>
                               <td>
-                                {quote.roadsideAssistance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.roadsideAssistance.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -133,20 +133,20 @@ class MotorQuote extends React.Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Courtesy Car Option</td>
                               <td>
-                                {quote.courtesyCar.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.courtesyCar.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
                           <tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Levies</td>
                             <td>
-                              {quote.levies.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.levies.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                           <tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Stamp duty</td>
                             <td>
-                              {quote.stampDuty.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.stampDuty.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                           <tr
@@ -157,7 +157,7 @@ class MotorQuote extends React.Component {
                           >
                             <td>Total Amount</td>
                             <td>
-                              {quote.quoteAmount.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.quoteAmount.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                         </Table>

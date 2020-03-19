@@ -402,7 +402,7 @@ class MotorInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Year of manufacture
+                              Year of manufacture 
                             </label>
                             <Input
                               className="form-control-alternative"

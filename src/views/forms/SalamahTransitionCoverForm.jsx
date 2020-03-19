@@ -85,6 +85,13 @@ class SalamahTransitionCoverForm extends React.Component {
       ]
     }));
   };
+  removeChildren = e => {
+    var children = this.state.children;
+    if (children.length > 0) {
+      children.pop();
+      this.setState({ children });
+    }
+  };
   handleChildrenChange(event, index) {
     console.log(event.target.value);
     const id = event.target.id;
@@ -494,14 +501,16 @@ class SalamahTransitionCoverForm extends React.Component {
                                 </div>
                               );
                             })}
-                            <div
-                              style={{ marginTop: "20px" }}
-                              className="pl-lg-4 text-right"
-                            >
-                              <Button onClick={this.addParent}>
-                                Add Parent
-                              </Button>
-                            </div>
+                            {this.state.parents.length < 4 && (
+                              <div
+                                style={{ marginTop: "20px" }}
+                                className="pl-lg-4 text-right"
+                              >
+                                <Button onClick={this.addParent}>
+                                  Add Parent
+                                </Button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </>
@@ -510,7 +519,7 @@ class SalamahTransitionCoverForm extends React.Component {
                       <>
                         <div className="pl-lg-4">
                           <h6 className="heading-small text-muted mb-4">
-                            Children (Max - 4)
+                            Children
                           </h6>
                           <div className="pl-lg-4">
                             {this.state.children.map((value, index) => {
@@ -604,10 +613,16 @@ class SalamahTransitionCoverForm extends React.Component {
                                 </div>
                               );
                             })}
+
                             <div
                               style={{ marginTop: "20px" }}
                               className="pl-lg-4 text-right"
                             >
+                              {this.state.children.length !== 0 && (
+                                <Button onClick={this.removeChildren}>
+                                  Remove child
+                                </Button>
+                              )}
                               <Button onClick={this.addChildren}>
                                 Add child
                               </Button>

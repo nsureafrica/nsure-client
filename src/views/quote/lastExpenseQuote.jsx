@@ -85,14 +85,14 @@ class LastExpenseQuote extends Component {
                       <tr style={{ color: "black", fontWeight: "400" }}>
                         <td>Principal Per Nuclear Family</td>
                         <td>
-                          {quote.annualPremiumNuclearFamily.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          {quote.annualPremiumNuclearFamily.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </td>
                       </tr>
                       {quote.annualPremiumParents > 0 && (
                         <tr style={{ color: "black", fontWeight: "400" }}>
                           <td>Parents Annual Premium</td>
                           <td>
-                            {quote.annualPremiumParents.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            {quote.annualPremiumParents.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                           </td>
                         </tr>
                       )}
@@ -100,7 +100,7 @@ class LastExpenseQuote extends Component {
                         <tr style={{ color: "black", fontWeight: "400" }}>
                           <td>Annual Premium Extra Child</td>
                           <td>
-                            {quote.annualPremiumExtraChild.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            {quote.annualPremiumExtraChild.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                           </td>
                         </tr>
                       )}
@@ -112,7 +112,7 @@ class LastExpenseQuote extends Component {
                       >
                         <td>Total Amount</td>
                         <td>
-                          {quote.quoteTotal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          {quote.quoteTotal.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </td>
                       </tr>
                     </Table>

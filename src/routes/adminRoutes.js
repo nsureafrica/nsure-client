@@ -5,6 +5,7 @@ import AdminMedicalPolicies from "../views/Admin/Policies/medicalPolicies";
 import AdminLastExpensePolicies from "../views/Admin/Policies/lastExpensePolicies";
 import BlastEmail from "../views/Admin/BlastEmail/blastEmail";
 import Login from "../views/login/login.jsx";
+import Management from "../views/Admin/Management/management";
 
 const AdminRoutes = [
   {
@@ -54,6 +55,16 @@ const AdminRoutes = [
     style: {color: "#8BCCBA"},
     component: BlastEmail,
     layout: "/admin",
+  } 
+];
+const AdminManagementRoutes = [
+  {
+    path: "/management",
+    name: "Management",
+    icon: "ni ni-settings",
+    style: {color: "#8BCCBA"},
+    component: Management,
+    layout: "/admin",
   },
   {
     path: "/login",
@@ -63,46 +74,5 @@ const AdminRoutes = [
     component: Login,
     layout: "/auth",
   }
-  
-//   {
-//     path: "/MotorInsuranceForm",
-//     name: "Motor Insurance",
-//     icon: "fa fa-car",
-//     component: MotorInsuranceForm,
-//     style: {color: "#8BC34A"},
-//     layout: "/client",
-//   },
-//   {
-//     path: "/MedicalPlans",
-//     name: "Medical Insurance",
-//     icon: "fa fa-medkit",
-//     component: MedicalPlans,
-//     style: {color: "#00BCD4"},
-//     layout: "/client",
-//   },
-//   {
-//     path: "/EducationInsuranceForm",
-//     name: "Education Insurance",
-//     icon: "fa fa-graduation-cap",
-//     style: {color: "#F44336"},
-//     component: EducationInsuranceForm,
-//     layout: "/client",
-//   },
-//   {
-//     path: "/TravelInsuranceCoverForm",
-//     name: "Travel Insurance",
-//     icon: "fa fa-globe",
-//     style: {color: "#FF9800"},
-//     component: TravelInsuranceCoverForm,
-//     layout: "/client",
-//   },
-//   {
-//     path: "/SalamahTransitionCoverForm",
-//     name: "Salamah Transition Cover",
-//     icon: "fa fa-thumbs-up",
-//     style: {color: "#9C27B0"},
-//     component: SalamahTransitionCoverForm,
-//     layout: "/client",
-//   },
-];
-export default AdminRoutes;
+]
+export {AdminRoutes, AdminManagementRoutes};

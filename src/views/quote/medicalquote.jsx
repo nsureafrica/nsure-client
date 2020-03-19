@@ -87,14 +87,14 @@ class MedicalQuote extends Component {
                           <tr style={{ color: "black", fontWeight: "400" }}>
                             <td>Principal Basic</td>
                             <td>
-                              {quote.principalRate.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.principalRate.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                           {quote.principalRateOutpatient > 0 && (
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Principal Outpatient</td>
                               <td>
-                                {quote.principalRateOutpatient.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.principalRateOutpatient.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -102,7 +102,7 @@ class MedicalQuote extends Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Spouse Basic</td>
                               <td>
-                                {quote.spouseRate.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.spouseRate.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -110,7 +110,7 @@ class MedicalQuote extends Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Spouse Outpatient</td>
                               <td>
-                                {quote.spouseRateOutpatient.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.spouseRateOutpatient.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -118,7 +118,7 @@ class MedicalQuote extends Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Children Basic</td>
                               <td>
-                                {quote.childrenRate.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.childrenRate.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -126,7 +126,7 @@ class MedicalQuote extends Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Children Outpatient</td>
                               <td>
-                                {quote.childrenRateOutpatient.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.childrenRateOutpatient.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -134,7 +134,7 @@ class MedicalQuote extends Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Levies</td>
                               <td>
-                                {quote.levies.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.levies.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -142,7 +142,7 @@ class MedicalQuote extends Component {
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               <td>Stamp duty</td>
                               <td>
-                                {quote.stampDuty.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                {quote.stampDuty.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                               </td>
                             </tr>
                           )}
@@ -154,7 +154,7 @@ class MedicalQuote extends Component {
                           >
                             <td>Total Amount</td>
                             <td>
-                              {quote.quoteTotal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              {quote.quoteTotal.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>
                           </tr>
                         </Table>
