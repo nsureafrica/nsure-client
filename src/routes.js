@@ -22,6 +22,7 @@ import MedicalInvoice from "./views/invoices/medical_invoice";
 import LastExpenseQuote from "./views/quote/lastExpenseQuote";
 import LastExpenseInvoice from "./views/invoices/last_expense";
 import ManageUnderwriters from "./views/Admin/Management/manage-underwriters";
+import ManageMotorRates from "./views/Admin/Management/motor_rates/manage_motor_rates";
 const routes = [
   {
     path: "/index",
@@ -64,7 +65,7 @@ const routes = [
     component: LastExpenseQuote,
     layout: "/client"
   },
-  
+
 
   // {
   //   path: "/pickup",
@@ -149,7 +150,7 @@ const routes = [
     name: "Policies",
     component: UserPolicies,
     layout: "/client"
-  },{
+  }, {
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
@@ -171,6 +172,12 @@ const routes = [
     path: "/manage-underwriters",
     name: "Manage Underwriters",
     component: ManageUnderwriters,
+    layout: "/admin",
+  },
+  {
+    path: "/manage-motor-rates",
+    name: "Manage Motor Rates",
+    component: ManageMotorRates,
     layout: "/admin",
   },
 ];
