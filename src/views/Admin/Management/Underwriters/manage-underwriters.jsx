@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import { CardHeader, Table, Card, Container } from "reactstrap";
-import { getRequest } from "../../../requests/requests";
+import { CardHeader, Table, Card, Container, Button } from "reactstrap";
+import { getRequest } from "../../../../requests/requests";
 import moment from "moment";
 import lodash from "lodash";
+import UnderwriterManagementModal from "./management-modal";
 
 class ManageUnderwriters extends Component {
   constructor(props) {
     super(props);
-    this.state = { underwriters: [], loading: false };
+    this.state = {
+      underwriters: [],
+      loading: false,
+      openModal: false,
+      createModal: false,
+      selectedUnderwriter: {}
+    };
   }
   componentDidMount() {
     this.setState({ loading: true });
@@ -21,8 +28,22 @@ class ManageUnderwriters extends Component {
         //   notify user of error
       });
   }
-  handleRowClick = () => {
+  handleRowClick = underwriter => {
     // Do something
+    this.setState({ openModal: true, selectedUnderwriter: underwriter });
+  };
+  toggle = () => {
+    this.setState(prevState => ({
+      openModal: !prevState.openModal
+    }));
+  };
+  toggle2 = ()=>{
+    this.setState(prevState => ({
+      createModal: !prevState.createModal
+    }));
+  }
+  openCreateModal = () => {
+    this.setState({ createModal: true, selectedUnderwriter:{}});
   };
   render() {
     return (
@@ -43,11 +64,22 @@ class ManageUnderwriters extends Component {
                 Underwriters
               </h2>
               <Card style={{ padding: "20px" }} className="shadow">
-                <CardHeader className="border-0">
+                {/* <CardHeader className="border-0"> */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    alignItems: "center",
+                    padding: "1rem"
+                  }}
+                >
                   <span style={{ fontSize: ".8rem", color: "orange" }}>
                     Please click on a row to edit
                   </span>
-                </CardHeader>
+                  <Button onClick={this.openCreateModal}>Create new underwriter</Button>
+                </div>
+                {/* </CardHeader> */}
                 <Table className="align-items-center table-flush" responsive>
                   <thead className="thead-light">
                     <tr>
@@ -75,7 +107,7 @@ class ManageUnderwriters extends Component {
                   ) : (
                     this.state.underwriters.map(underwriter => (
                       <tbody>
-                        <tr onClick={this.handleRowClick}>
+                        <tr onClick={() => this.handleRowClick(underwriter)}>
                           <td>{underwriter.name}</td>
                           <td>{underwriter.address}</td>
                           <td>{underwriter.website}</td>
@@ -88,6 +120,22 @@ class ManageUnderwriters extends Component {
               </Card>
             </div>
           </Container>
+          {this.state.openModal && (
+            <UnderwriterManagementModal
+              isOpen={this.state.openModal}
+              create={false}
+              underwriter={this.state.selectedUnderwriter}
+              toggle={this.toggle}
+            />
+          )}
+          {this.state.createModal && (
+            <UnderwriterManagementModal
+              isOpen={this.state.createModal}
+              create={true}
+              underwriter={this.state.selectedUnderwriter}
+              toggle={this.toggle2}
+            />
+          )}
         </div>
       </>
     );
