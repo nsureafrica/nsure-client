@@ -21,6 +21,7 @@ import MedicalQuote from "./views/quote/medicalquote";
 import MedicalInvoice from "./views/invoices/medical_invoice";
 import LastExpenseQuote from "./views/quote/lastExpenseQuote";
 import LastExpenseInvoice from "./views/invoices/last_expense";
+import ManageMotorRates from "./views/Admin/Management/motor_rates/manage_motor_rates";
 import ManageUnderwriters from "./views/Admin/Management/Underwriters/manage-underwriters";
 import ManageMedicalPlans from "./views/Admin/Management/Medical/manage-medical-plans";
 const routes = [
@@ -65,7 +66,7 @@ const routes = [
     component: LastExpenseQuote,
     layout: "/client"
   },
-  
+
 
   // {
   //   path: "/pickup",
@@ -150,7 +151,7 @@ const routes = [
     name: "Policies",
     component: UserPolicies,
     layout: "/client"
-  },{
+  }, {
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
@@ -175,10 +176,18 @@ const routes = [
     layout: "/admin",
   },
   {
+    path: "/manage-motor-rates",
+    name: "Manage Motor Rates",
+    component: ManageMotorRates,
+        layout: "/admin",
+
+  },
+  {
     path: "/manage-medical-plans",
     name: "Manage Underwriters",
     component: ManageMedicalPlans,
-    layout: "/admin",
-  },
+        layout: "/admin",
+
+    },
 ];
 export default routes;

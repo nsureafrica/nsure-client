@@ -71,7 +71,7 @@ class Management extends Component {
                 </a>
               </Col>
               <Col lg="4 " sm="12" xs="12">
-                <a href="MotorInsuranceForm">
+                <a href="manage-motor-rates">
                   <Card
                     className="card-stats mb-4 mb-xl-0"
                     style={{
