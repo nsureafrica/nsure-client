@@ -19,27 +19,35 @@ import Toggle from "../components/toggle";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
 import { postRequest } from "../../requests/requests";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class MedicalInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
+    const optionsSelected = JSON.parse(localStorage.getItem("optionsSelected_Medical"));
     this.state = {
-      principalFirstName: "",
-      principalLastName: "",
-      principalAge: "",
-      principalIdNumber: "",
-      principalKraPin: "",
-      married: false,
-      numberOfChildren: 0,
-      spouseFirstName: "",
-      spouseLastName: "",
-      spouseAge: "",
-      spouseIdNumber: "",
-      spouseKraPin: "",
-      outpatientPerPerson: false,
-      maternityCover: false,
-      dentalCover: false,
-      opticalCover: false
+      principalFirstName: optionsSelected ? optionsSelected.principalFirstName :"",
+      principalLastName: optionsSelected ? optionsSelected.principalLastName :"",
+      principalAge: optionsSelected ? optionsSelected.principalAge :"",
+      principalIdNumber: optionsSelected ? optionsSelected.principalIdNumber :"",
+      principalKraPin: optionsSelected ? optionsSelected.principalKraPin :"",
+      married: optionsSelected ? optionsSelected.married :false,
+      numberOfChildren: optionsSelected ? optionsSelected.numberOfChildren :0,
+      spouseFirstName: optionsSelected ? optionsSelected.spouseFirstName :"",
+      spouseLastName: optionsSelected ? optionsSelected.spouseLastName :"",
+      spouseAge: optionsSelected ? optionsSelected.spouseAge :"",
+      spouseIdNumber: optionsSelected ? optionsSelected.spouseIdNumber :"",
+      spouseKraPin: optionsSelected ? optionsSelected.spouseKraPin :"",
+      outpatientPerPerson: optionsSelected ? optionsSelected.outPatientPerPerson :false,
+      maternityCover: optionsSelected ? optionsSelected.maternityCover :false,
+      dentalCover: optionsSelected ? optionsSelected.dentalCover :false,
+      opticalCover: optionsSelected ? optionsSelected.opticalCover :false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -61,14 +69,93 @@ class MedicalInsuranceForm extends React.Component {
       numberOfChildren: this.state.numberOfChildren
     };
     var selectedOptions_medical = { ...this.state };
-    postRequest("/quotes/medical", payload).then(response => {
-      localStorage.setItem(
-        "optionsSelected_Medical",
-        JSON.stringify(selectedOptions_medical)
+    var errors = [];
+    var currentDate = new Date();
+    if (
+      selectedOptions_medical.principalFirstName === "" ||
+      selectedOptions_medical.principalLastName === ""
+    ) {
+      errors.push("Principal First name & Last name cannot be empty");
+    }
+    if (selectedOptions_medical.principalAge === "") {
+      errors.push("Principal Age cannot be empty");
+    }
+    if (!parseInt(selectedOptions_medical.principalAge)) {
+      errors.push("Principal Age has to be a number");
+    } else if (
+      parseInt(selectedOptions_medical.principalAge) > 65 ||
+      parseInt(selectedOptions_medical.principalAge) < 18
+    ) {
+      errors.push("Principal Age has to be between 18 and 65");
+    }
+    if (selectedOptions_medical.principalIdNumber === "") {
+      errors.push("Principal ID number cannot be empty");
+    }
+    if (selectedOptions_medical.principalKraPin === "") {
+      errors.push("Principal KRA PIN cannot be empty");
+    }
+    if (selectedOptions_medical.married) {
+      if (
+        selectedOptions_medical.spouseFirstName === "" ||
+        selectedOptions_medical.spouseLastName === ""
+      ) {
+        errors.push("Spouse First name & Last name cannot be empty");
+      }
+      if (selectedOptions_medical.spouseAge === "") {
+        errors.push("Spouse Age cannot be empty");
+      }
+      if (!parseInt(selectedOptions_medical.spouseAge)) {
+        errors.push("Spouse Age has to be a number");
+      } else if (
+        parseInt(selectedOptions_medical.spouseAge) > 65 ||
+        parseInt(selectedOptions_medical.spouseAge) < 18
+      ) {
+        errors.push("Spouse Age has to be between 18 and 65");
+      }
+      if (selectedOptions_medical.spouseIdNumber === "") {
+        errors.push("Spouse ID number cannot be empty");
+      }
+      if (selectedOptions_medical.spouseKraPin === "") {
+        errors.push("Spouse KRA PIN cannot be empty");
+      }
+    }
+
+    if (errors.length > 0) {
+      // print errors
+      toaster.notify(
+        <div
+          style={{
+            color: "#F96762",
+            fontSize: "13px",
+            fontWeight: 600,
+            textAlign: "left"
+          }}
+        >
+          Please correct the following errors:
+          {
+            <ol>
+              {errors.map(error => (
+                <li>{error}</li>
+              ))}
+            </ol>
+          }
+        </div>,
+        {
+          duration: 10000
+        }
       );
-      console.log(response);
-      this.props.history.push('/client/medical-quote', {quoteArray:response.data})
-    });
+    } else {
+      postRequest("/quotes/medical", payload).then(response => {
+        localStorage.setItem(
+          "optionsSelected_Medical",
+          JSON.stringify(selectedOptions_medical)
+        );
+        console.log(response);
+        this.props.history.push("/client/medical-quote", {
+          quoteArray: response.data
+        });
+      });
+    }
   }
   render() {
     console.log(this.props);

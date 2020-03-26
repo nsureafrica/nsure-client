@@ -39,7 +39,7 @@ class CreateMotorRatesManagementModal extends Component {
       coverType: "comprehensive",
       natureOfGoods: "",
       levies: "",
-      stampDuty: "",
+      stampDuty: ""
     };
   }
   handleChange = event => {
@@ -293,20 +293,26 @@ class CreateMotorRatesManagementModal extends Component {
                     </Input>
                   </FormGroup>
                 </Col>
-                <Col lg="12">
-                  <FormGroup>
-                    <label className="form-control-label">
-                      Nature of Goods
-                    </label>
-                    <Input
-                      className="form-control-alternative"
-                      id="natureOfGoods"
-                      type="text"
-                      onChange={this.handleChange}
-                      multiple
-                    />
-                  </FormGroup>
-                </Col>
+                {this.state.vehicleType === "commercial" && (
+                  <Col lg="12">
+                    <FormGroup>
+                      <label className="form-control-label">
+                        Nature of Goods
+                      </label>
+                      <Input
+                        className="form-control-alternative"
+                        id="natureOfGoods"
+                        type="select"
+                        onChange={this.handleChange}
+                        value={this.state.natureOfGoods}
+                        multiple
+                      >
+                        <option value="generalCartage">General Cartage</option>
+                        <option value="ownGoods">Own Goods</option>
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                )}
                 <Col lg="12">
                   <FormGroup>
                     <label className="form-control-label">Levis</label>
@@ -339,7 +345,7 @@ class CreateMotorRatesManagementModal extends Component {
           <Button color="primary" onClick={() => this.handleSubmit()}>
             Submit Details
           </Button>
-          <Button color="secondary" onClick={this.handleCancel}>
+          <Button color="secondary" onClick={this.props.toggle}>
             Cancel
           </Button>
         </ModalFooter>

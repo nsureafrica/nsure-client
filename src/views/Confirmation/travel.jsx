@@ -24,7 +24,7 @@ class Notified extends Component {
             <Card style={{ padding: "20px" }}>
               <div style={{ textAlign: "center" }}>
                 <span style={{ display: "block", fontWeight: "600" }}>
-                  The Team at Spire Insurance Brokers have received your request
+                  Well done. We are reviewing your details to tailor make a suitable plan for you.
                 </span>
                 <img
                   style={{
@@ -37,7 +37,7 @@ class Notified extends Component {
                   alt="working"
                 />
                 <span style={{ display: "block", margin: "2rem 0" }}>
-                  You will be contacted shortly
+                  We will get in touch with you shortly
                 </span>
               </div>
             </Card>

@@ -16,6 +16,13 @@ import {
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
 import { postRequest } from "../../requests/requests";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class EducationInsuranceForm extends React.Component {
   constructor(props) {
@@ -27,8 +34,8 @@ class EducationInsuranceForm extends React.Component {
       expectedCommencementDate: Date.now(),
       ageNextBirthday: "",
       policyTerm: "",
-      sumAssured: "",
-      premium: "",
+      sumAssured: undefined,
+      premium: undefined,
       frequency: "",
       targetAmount: undefined,
       showForm: false
@@ -41,16 +48,69 @@ class EducationInsuranceForm extends React.Component {
   }
   handleSubmit() {
     const payload = this.state;
-    // post to endpoint
-    postRequest("/policies/education/policy", payload)
-      .then(response => {
-        console.log(response);
-        this.props.history.push("/client/notified");
-      })
-      .catch(err => {
-        // handle err
-        this.props.history.push("/client/notified");
-      });
+    var errors = [];
+    var currentDate = new Date();
+    if (payload.firstName === "" || payload.lastName === "") {
+      errors.push("First name & Last name cannot be empty");
+    }
+    if (payload.dob === "") {
+      errors.push("Date of birth cannot be empty");
+    }
+    if (payload.expectedCommencementDate === "") {
+      errors.push("Expected commencement date cannot be empty");
+    }
+    if (payload.ageNextBirthday === "") {
+      errors.push("Age of child cannot be empty");
+    }
+    if (!parseInt(payload.policyTerm)) {
+      errors.push("Policy term has to be a number");
+    }
+    if (!parseFloat(payload.sumAssured)) {
+      errors.push("Sum assured has to be a number");
+    }
+    if (!parseFloat(payload.premium)) {
+      errors.push("Payable premium has to be a number");
+    }
+    if (!parseFloat(payload.targetAmount)) {
+      errors.push("Target amount has to be a number");
+    }
+
+    if (errors.length > 0) {
+      // print errors
+      toaster.notify(
+        <div
+          style={{
+            color: "#F96762",
+            fontSize: "13px",
+            fontWeight: 600,
+            textAlign: "left"
+          }}
+        >
+          Please correct the following errors:
+          {
+            <ol>
+              {errors.map(error => (
+                <li>{error}</li>
+              ))}
+            </ol>
+          }
+        </div>,
+        {
+          duration: 10000
+        }
+      );
+    } else {
+      // post to endpoint
+      postRequest("/policies/education/policy", payload)
+        .then(response => {
+          console.log(response);
+          this.props.history.push("/client/notified");
+        })
+        .catch(err => {
+          // handle err
+          this.props.history.push("/client/notified");
+        });
+    }
   }
 
   render() {

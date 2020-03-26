@@ -17,6 +17,13 @@ import {
 import FormHeader from "../../components/Headers/FormHeader";
 import Toggle from "../components/toggle";
 import { postRequest } from "../../requests/requests";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class TravelInsuranceForm extends React.Component {
   constructor(props) {
@@ -28,8 +35,8 @@ class TravelInsuranceForm extends React.Component {
       kraPin: "",
       passportNumber: "",
       destination: "",
-      travelDate: Date.now(),
-      returnDate: Date.now(),
+      travelDate: null,
+      returnDate: null,
       accompaniedByFamilyMember: false,
       medicalExpenses: "",
       medicalEvaluationExpenses: "",
@@ -78,10 +85,58 @@ class TravelInsuranceForm extends React.Component {
       passportNumber: this.state.passportNumber,
       UserId: userData.id
     };
-    postRequest("/policies/travel/policy", payload).then(response => {
-      console.log(response);
-      this.props.history.push("/client/notified");
-    });
+    var optionsSelected = this.state;
+    var errors = [];
+    var currentDate = new Date();
+    if (optionsSelected.firstName === "" || optionsSelected.lastName === "") {
+      errors.push("First name & Last name cannot be empty");
+    }
+    if (optionsSelected.nationalId === "") {
+      errors.push("National ID cannot be empty");
+    }
+    if (optionsSelected.kraPin === "") {
+      errors.push("KRA PIN cannot be empty");
+    }
+    if (optionsSelected.passportNumber === "") {
+      errors.push("Passport Number cannot be empty");
+    }
+    if (optionsSelected.destination === "") {
+      errors.push("Destination cannot be empty");
+    }
+    if (optionsSelected.startDate === null || optionsSelected.endDate === null) {
+      errors.push("Travel and Return dates cannot be empty");
+    }
+
+    if (errors.length > 0) {
+      // print errors
+      toaster.notify(
+        <div
+          style={{
+            color: "#F96762",
+            fontSize: "13px",
+            fontWeight: 600,
+            textAlign: "left"
+          }}
+        >
+          Please correct the following errors:
+          {
+            <ol>
+              {errors.map(error => (
+                <li>{error}</li>
+              ))}
+            </ol>
+          }
+        </div>,
+        {
+          duration: 10000
+        }
+      );
+    } else {
+      postRequest("/policies/travel/policy", payload).then(response => {
+        console.log(response);
+        this.props.history.push("/client/notified");
+      });
+    }
   }
 
   render() {
@@ -96,8 +151,12 @@ class TravelInsuranceForm extends React.Component {
           <Row>
             <Col className="order-xl-1" xl="12">
               {!this.state.showForm && (
-                <Card className="bg-secondary shadow" style={{
-                  marginBottom: "8em"}}>
+                <Card
+                  className="bg-secondary shadow"
+                  style={{
+                    marginBottom: "8em"
+                  }}
+                >
                   <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                       <Col xs="8">

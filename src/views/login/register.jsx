@@ -16,6 +16,13 @@ import {
 } from "reactstrap";
 import { postRequest } from "../../requests/requests";
 import Notifier from "../../notifier";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class Register extends React.Component {
   constructor(props) {
@@ -52,21 +59,32 @@ class Register extends React.Component {
     postRequest("/signup", payload)
       .then(response => {
         console.log(response);
-        var notifyUser = {
-          userCreated: true,
-          message: "User created successfully",
-          showNotification: true
-        };
-        this.props.history.push("/auth/login", notifyUser);
+        toaster.notify(
+          <div
+            style={{
+              color: "#0AA681",
+              fontSize: "13px",
+              fontWeight: "600"
+            }}
+          >
+            <Success style={{ width: "40px" }} /> User created successfully
+          </div>
+        );
+        this.props.history.push("/auth/login");
       })
       .catch(error => {
-        this.setState({
-          userCreated: false,
-          message: error.response.data.message
-            ? error.response.data.message
-            : "Unable to register user",
-          showNotification: true
-        });
+        toaster.notify(
+          <div
+            style={{
+              color: "#F96762",
+              fontSize: "13px",
+              fontWeight: "600"
+            }}
+          >
+            <Error style={{ width: "40px" }} /> Error creating user, please try
+            again
+          </div>
+        );
       });
   }
   render() {

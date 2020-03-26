@@ -95,6 +95,92 @@ class AdminDashboard extends Component {
                 </Col>
               </Row>
               <Row>
+                <Col lg="3">
+                  <Card
+                    style={{ padding: "20px", marginBottom: "20px" }}
+                    className="shadow"
+                  >
+                    <div>
+                      <h3>Motor Quote Total</h3>
+                      <span>
+                        {this.state.dashboardData.sumOfMotorQuoteAmount
+                          ? this.state.dashboardData.sumOfMotorQuoteAmount[0]
+                              .total_amount
+                            ? `KES ${this.state.dashboardData.sumOfMotorQuoteAmount[0].total_amount
+                                .toFixed(0)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+                            : 'KES 0'
+                          : 0}
+                      </span>
+                    </div>
+                  </Card>
+                </Col>
+                <Col lg="3">
+                  <Card
+                    style={{ padding: "20px", marginBottom: "20px" }}
+                    className="shadow"
+                  >
+                    <div>
+                      <h3>Education Quote Total</h3>
+                      <span>
+                        {this.state.dashboardData.sumOfEducationQuoteAmount
+                          ? this.state.dashboardData
+                              .sumOfEducationQuoteAmount[0].total_amount
+                            ? `KES ${this.state.dashboardData.sumOfEducationQuoteAmount[0].total_amount
+                                .toFixed(0)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+                            : 0
+                          : 0}
+                      </span>
+                    </div>
+                  </Card>
+                </Col>
+                <Col lg="3">
+                  <Card
+                    style={{ padding: "20px", marginBottom: "20px" }}
+                    className="shadow"
+                  >
+                    <div>
+                      <h3>Medical Quote Total</h3>
+                      <span>
+                        {this.state.dashboardData.sumOfMedicalQuoteAmount
+                          ? this.state.dashboardData.sumOfMedicalQuoteAmount[0]
+                              .total_amount
+                            ? `KES ${this.state.dashboardData.sumOfMedicalQuoteAmount[0].total_amount
+                                .toFixed(0)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+                            : 0
+                          : 0}
+                      </span>
+                    </div>
+                  </Card>
+                </Col>
+                <Col lg="3">
+                  <Card
+                    style={{ padding: "20px", marginBottom: "20px" }}
+                    className="shadow"
+                  >
+                    <div>
+                      <h3>Travel Quote Total</h3>
+                      <span>
+                        {this.state.dashboardData.sumOfTravelQuoteAmount
+                          ? this.state.dashboardData.sumOfTravelQuoteAmount[0]
+                              .total_amount
+                            ? `KES ${this.state.dashboardData.sumOfTravelQuoteAmount[0].total_amount
+                                .toFixed(0)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+                            : 'KES 0'
+                          : 'KES 0'}
+                      </span>
+                    </div>
+                  </Card>
+                </Col>
+              </Row>
+              <Row>
                 <Col lg="6">
                   <Card
                     style={{ padding: "20px", marginBottom: "20px" }}

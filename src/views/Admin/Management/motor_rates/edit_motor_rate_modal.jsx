@@ -85,29 +85,26 @@ class MotorRatesManagementModal extends Component {
   };
   handleSubmit = () => {
     const payload = {
-      underwriters: this.props.underwriters,
-      motorClasses: this.props.motorClasses,
-      motorRate: this.props.motorRate,
-      basic: this.props.motorRate.basic,
-      excessProtector: this.props.motorRate.excessProtector,
-      politicalViolenceTerrorism: this.props.motorRate
-        .politicalViolenceTerrorism,
-      minimumPremium: this.props.motorRate.minimumPremium,
-      minimumExcess: this.props.motorRate.minimumExcess,
-      minimumPoliticalViolenceTerrorism: this.props.motorRate
-        .minimumPoliticalViolenceTerrorism,
-      passengerLegalLiability: this.props.motorRate.passengerLegalLiability,
-      roadsideAssistance: this.props.motorRate.roadsideAssistance,
-      courtesyCar: this.props.motorRate.courtesyCar,
-      vehicleType: this.props.motorRate.vehicleType,
-      coverType: this.props.motorRate.coverType,
-      natureOfGoods: this.props.motorRate.natureOfGoods,
-      levies: this.props.motorRate.levies,
-      stampDuty: this.props.motorRate.stampDuty,
-      createdAt: this.props.motorRate.createdAt,
-      updatedAt: this.props.motorRate.updatedAt,
-      UnderwriterId: this.props.motorRate.UnderwriterId,
-      VehicleClassId: this.props.motorRate.VehicleClassId
+      underwriters: this.state.underwriters,
+      motorClasses: this.state.motorClasses,
+      basic: this.state.basic,
+      excessProtector: this.state.excessProtector,
+      politicalViolenceTerrorism: this.state.politicalViolenceTerrorism,
+      minimumPremium: this.state.minimumPremium,
+      minimumExcess: this.state.minimumExcess,
+      minimumPoliticalViolenceTerrorism: this.state.minimumPoliticalViolenceTerrorism,
+      passengerLegalLiability: this.state.passengerLegalLiability,
+      roadsideAssistance: this.state.roadsideAssistance,
+      courtesyCar: this.state.courtesyCar,
+      vehicleType: this.state.vehicleType,
+      coverType: this.state.coverType,
+      natureOfGoods: this.state.natureOfGoods,
+      levies: this.state.levies,
+      stampDuty: this.state.stampDuty,
+      createdAt: this.state.createdAt,
+      updatedAt: this.state.updatedAt,
+      UnderwriterId: this.state.UnderwriterId,
+      VehicleClassId: this.state.VehicleClassId
     };
     const requestUrl = `/motorRates/updatemotorratebyid/${this.props.motorRate.id}`;
     putRequest(requestUrl, payload).then(response => {
@@ -116,7 +113,7 @@ class MotorRatesManagementModal extends Component {
   };
   render() {
     console.log(this.state);
-    console.log(this.props.motorRates);
+    console.log(this.props);
     return (
       <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
         <div
@@ -147,8 +144,9 @@ class MotorRatesManagementModal extends Component {
               <Row>
                 <Col lg="12">
                   <FormGroup>
-                    <label className="form-control-label">Underwritter</label>
+                    <label className="form-control-label">Underwriter</label>
                     <Input
+                      disabled={!this.state.edit}
                       type="select"
                       name="select"
                       id="selectedUnderwriterID"
@@ -169,6 +167,7 @@ class MotorRatesManagementModal extends Component {
                       Pick vehicle class
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       type="select"
                       name="select"
                       id="selectedVehicleClassID"
@@ -185,6 +184,7 @@ class MotorRatesManagementModal extends Component {
                   <FormGroup>
                     <label className="form-control-label">Basic</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="basic"
                       type="text"
@@ -200,6 +200,7 @@ class MotorRatesManagementModal extends Component {
                       Excess Protector
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="excessProtector"
                       type="text"
@@ -215,6 +216,7 @@ class MotorRatesManagementModal extends Component {
                       Political Violence Terrorism
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="politicalViolenceTerrorism"
                       type="text"
@@ -230,6 +232,7 @@ class MotorRatesManagementModal extends Component {
                       Minimum Premium
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="minimumPremium"
                       type="text"
@@ -243,6 +246,7 @@ class MotorRatesManagementModal extends Component {
                   <FormGroup>
                     <label className="form-control-label">Minimum Excess</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="minimumExcess"
                       type="text"
@@ -258,6 +262,7 @@ class MotorRatesManagementModal extends Component {
                       Minimum Political Violence Terrorism
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="minimumPoliticalViolenceTerrorism"
                       type="text"
@@ -273,6 +278,7 @@ class MotorRatesManagementModal extends Component {
                       Passenger Legal Liability
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="passengerLegalLiability"
                       type="text"
@@ -288,6 +294,7 @@ class MotorRatesManagementModal extends Component {
                       Roadside Assistance
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="roadsideAssistance"
                       type="text"
@@ -301,6 +308,7 @@ class MotorRatesManagementModal extends Component {
                   <FormGroup>
                     <label className="form-control-label">Courtesy Car</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="courtesyCar"
                       type="text"
@@ -314,6 +322,7 @@ class MotorRatesManagementModal extends Component {
                   <FormGroup>
                     <label className="form-control-label">Vehicle Type</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="vehicleType"
                       type="text"
@@ -327,6 +336,7 @@ class MotorRatesManagementModal extends Component {
                   <FormGroup>
                     <label className="form-control-label">Cover Type</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="coverType"
                       type="text"
@@ -342,6 +352,7 @@ class MotorRatesManagementModal extends Component {
                       Nature of Goods
                     </label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="natureOfGoods"
                       type="text"
@@ -353,13 +364,14 @@ class MotorRatesManagementModal extends Component {
                 </Col>
                 <Col lg="12">
                   <FormGroup>
-                    <label className="form-control-label">Levis</label>
+                    <label className="form-control-label">Levies</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="levies"
                       type="text"
                       onChange={this.handleChange}
-                      value={this.state.levis}
+                      value={this.state.levies}
                       multiple
                     />
                   </FormGroup>
@@ -368,6 +380,7 @@ class MotorRatesManagementModal extends Component {
                   <FormGroup>
                     <label className="form-control-label">Stamp Duty</label>
                     <Input
+                      disabled={!this.state.edit}
                       className="form-control-alternative"
                       id="stampDuty"
                       type="text"

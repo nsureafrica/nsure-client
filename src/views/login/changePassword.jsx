@@ -14,6 +14,13 @@ import {
 } from "reactstrap";
 import Notifier from "../../notifier";
 import { postRequest } from "../../requests/requests";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class ChangePassword extends Component {
   constructor(props) {
@@ -31,14 +38,15 @@ class ChangePassword extends Component {
     this.setState({ [event.target.id]: event.target.value });
   }
   handleChangePassword() {
+    console.log("pressed");
     //   get user information from token. (user must be logged in)
     const jwtDecode = require("jwt-decode");
     const token = localStorage.getItem("token");
     let userData;
-    if (token === "") {
+    if (token !== "") {
       userData = jwtDecode(token);
     } else {
-    //   this.props.history.push("/login");
+      //   this.props.history.push("/login");
     }
 
     // make api call to /changePassword
@@ -49,18 +57,32 @@ class ChangePassword extends Component {
         newPassword: this.state.newPassword
       })
         .then(response => {
-          this.setState({
-            notificationMessage: "Password changed successfully",
-            emailSent: true,
-            showNotification: true
-          });
+          toaster.notify(
+            <div
+              style={{
+                color: "#0AA681",
+                fontSize: "13px",
+                fontWeight: "600"
+              }}
+            >
+              <Success style={{ width: "40px" }} /> Password changed
+              successfully
+            </div>
+          );
+          this.props.history.push("/auth/login");
         })
         .catch(error => {
-          this.setState({
-            notificationMessage: "Password change failed",
-            emailSent: false,
-            showNotification: true
-          });
+          toaster.notify(
+            <div
+              style={{
+                color: "#F96762",
+                fontSize: "13px",
+                fontWeight: 600
+              }}
+            >
+              <Error style={{ width: "40px" }} /> Error changing password, please try again
+            </div>
+          );
         });
     } else {
       this.setState({
@@ -146,8 +168,7 @@ class ChangePassword extends Component {
                     color="primary"
                     type="button"
                     disabled={!this.state.passwordsMatch}
-                    // eslint-disable-next-line react/prop-types
-                    onClick={() => this.handleChangePassword()}
+                    onClick={this.handleChangePassword}
                   >
                     Change Password
                   </Button>

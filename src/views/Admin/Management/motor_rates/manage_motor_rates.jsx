@@ -13,7 +13,8 @@ class ManageMotorRates extends Component {
       motor_rates: [],
       loading: false,
       underwriters: [],
-      motorClasses: []
+      motorClasses: [],
+      selectedMotorRate: {}
     };
   }
 
@@ -23,25 +24,23 @@ class ManageMotorRates extends Component {
       .then(response => {
         console.log(response);
         this.setState({ motor_rates: response.data, loading: false });
+        getRequest("/underwriter/getAllUnderwriters").then(response => {
+          this.setState({ underwriters: response.data });
+        });
+        getRequest("/motorclass/getMotorClasses").then(response => {
+          this.setState({ motorClasses: response.data });
+        });
       })
       .catch(err => {
         console.log(err);
         // notify user of error
       });
-    getRequest("/underwriter/getAllUnderwriters").then(response => {
-      this.setState({ underwriters: response.data });
-    });
-    getRequest("/motorclass/getMotorClasses").then(response => {
-      this.setState({ motorClasses: response.data });
-    });
   }
 
-  handleRowClick = (motorRate, underwriters, motorClasses) => {
+  handleRowClick = motorRate => {
     this.setState({
       openModal: true,
-      selectedmotorRate: motorRate,
-      allUnderwritters: underwriters,
-      allVehicleClasses: motorClasses
+      selectedMotorRate: motorRate
     });
   };
   toggle = () => {
@@ -60,6 +59,26 @@ class ManageMotorRates extends Component {
       allUnderwritters: underwriters,
       allVehicleClasses: motorClasses
     });
+  };
+  getUnderwriterName = underwriterID => {
+    var selectedUnderwriter = "";
+    if (this.state.underwriters.length > 0) {
+      selectedUnderwriter = this.state.underwriters.find(
+        underwriter => underwriter.id === underwriterID
+      );
+    }
+    console.log(selectedUnderwriter);
+    return selectedUnderwriter;
+  };
+  getMotorClassName = motorClassID => {
+    var selectedMotorClass = "";
+    if (this.state.motorClasses.length > 0) {
+      selectedMotorClass = this.state.motorClasses.find(
+        motorClass => motorClass.id === motorClassID
+      );
+    }
+    console.log(selectedMotorClass);
+    return selectedMotorClass;
   };
   render() {
     return (
@@ -102,7 +121,7 @@ class ManageMotorRates extends Component {
                       <th scope="col">Basic</th>
                       <th scope="col">Courtesy Car</th>
                       <th scope="col">Excess Protector</th>
-                      <th scope="col">Levis</th>
+                      <th scope="col">Levies</th>
                       <th scope="col">Minimum Excess</th>
                       <th scope="col">Minimum Political Violence Terrorism</th>
                       <th scope="col">Minimum Premium</th>
@@ -133,20 +152,12 @@ class ManageMotorRates extends Component {
                   ) : (
                     this.state.motor_rates.map(motor_rate => (
                       <tbody>
-                        <tr onClick={this.handleRowClick}>
+                        <tr onClick={() => this.handleRowClick(motor_rate)}>
                           <td>
-                            {this.state.underwriters.length > 0 &&
-                              this.state.underwriters.find(
-                                underwriter =>
-                                  underwriter.id === motor_rate.UnderwriterId
-                              ).name}
+                            {this.getUnderwriterName(motor_rate.UnderwriterId).name}
                           </td>
                           <td>
-                            {this.state.motorClasses.length > 0 &&
-                              this.state.motorClasses.find(
-                                motorClass =>
-                                  motorClass.id === motor_rate.VehicleClassId
-                              ).name}
+                            {this.getMotorClassName(motor_rate.VehicleClassId).name}
                           </td>
                           <td>{motor_rate.coverType}</td>
                           <td>{motor_rate.basic}%</td>
@@ -176,8 +187,7 @@ class ManageMotorRates extends Component {
           {this.state.openModal && (
             <MotorRatesManagementModal
               isOpen={this.state.openModal}
-              create={false}
-              motorRate={this.state.selectedmotorRate}
+              motorRate={this.state.selectedMotorRate}
               underwriters={this.state.underwriters}
               motorClasses={this.state.motorClasses}
               toggle={this.toggle}
@@ -186,7 +196,6 @@ class ManageMotorRates extends Component {
           {this.state.createModal && (
             <CreateMotorRatesManagementModal
               isOpen={this.state.createModal}
-              create={true}
               underwriters={this.state.underwriters}
               motorClasses={this.state.motorClasses}
               toggle={this.toggle2}

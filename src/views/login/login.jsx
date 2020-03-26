@@ -15,6 +15,13 @@ import {
   Col
 } from "reactstrap";
 import Notifier from "../../notifier";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,6 +37,8 @@ class Login extends React.Component {
 
   render() {
     localStorage.removeItem("token");
+
+    localStorage.clear();
     return (
       <>
         <Col lg="5" md="7">
@@ -98,23 +107,36 @@ class Login extends React.Component {
                           console.log(response);
                           localStorage.setItem("token", response.data.token);
                           const jwtDecode = require("jwt-decode");
-                          let userData =jwtDecode(response.data.token);
-                            console.log(userData);
-                          if(userData.UserCategory.name!=='Administrator'){
-                            this.props.history.push("/client/index");
-                          }else{
-                            this.props.history.push("/admin/dashboard");
+                          let userData = jwtDecode(response.data.token);
+                          console.log(userData);
+                          if (userData.tempPassword) {
+                            this.props.history.push("/auth/change-password");
+                          } else {
+                            if (
+                              userData.UserCategory.name !== "Administrator"
+                            ) {
+                              this.props.history.push("/client/index");
+                            } else {
+                              this.props.history.push("/admin/dashboard");
+                            }
                           }
-                          
                         })
                         .catch(err => {
-                          console.log(err);
-                          this.setState({
-                            message:
-                              "Login failed. Please check your credentials and try again.",
-                            variant: "error",
-                            showNotification: true
-                          });
+                          console.log(err.response.status);
+                          toaster.notify(
+                            <div
+                              style={{
+                                color: "#F96762",
+                                fontSize: "13px",
+                                fontWeight: "600"
+                              }}
+                            >
+                              <Error style={{ width: "40px" }} />{" "}
+                              {err.response.status === 401
+                                ? "Incorrect username / password"
+                                : "Network Error, try again later"}
+                            </div>
+                          );
                         })
                     }
                   >
@@ -163,7 +185,11 @@ class Login extends React.Component {
             />
           )}
         {this.state.showNotification && (
-          <Notifier showNotification = {this.state.showNotification} variant={this.state.variant} message={this.state.message} />
+          <Notifier
+            showNotification={this.state.showNotification}
+            variant={this.state.variant}
+            message={this.state.message}
+          />
         )}
       </>
     );
