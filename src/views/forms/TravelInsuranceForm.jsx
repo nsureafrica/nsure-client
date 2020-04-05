@@ -31,15 +31,18 @@ class TravelInsuranceForm extends React.Component {
     this.state = {
       firstName: "",
       lastName: "",
-      nationalId: "",
-      kraPin: "",
-      passportNumber: "",
+      // nationalId: "",
+      // kraPin: "",
+      nationalIdScan: [],
+      KRAPinScan: [],
+      passportScan: [],
+      // passportNumber: "",
       destination: "",
       travelDate: null,
       returnDate: null,
       accompaniedByFamilyMember: false,
-      medicalExpenses: "",
-      medicalEvaluationExpenses: "",
+      medicalExpenses: 0,
+      medicalEvaluationExpenses: 0,
       followUpTreatmentInCountryOfResidence: false,
       repartriationOfMortalRemains: false,
       prematureReturnInCaseOfDeath: false,
@@ -57,6 +60,9 @@ class TravelInsuranceForm extends React.Component {
   handleToggle(identifier) {
     this.setState(state => ({ [identifier]: !state[identifier] }));
   }
+  handleFile = event => {
+    this.setState({ [event.target.id]: event.target.files });
+  };
   submitDetails() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
@@ -72,18 +78,18 @@ class TravelInsuranceForm extends React.Component {
         .followUpTreatmentInCountryOfResidence,
       medicalEvaluationExpenses: this.state.medicalEvaluationExpenses,
       repartriationOfMortalRemains: this.state.repartriationOfMortalRemains,
-      accompaniedByFamilyMember: this.state.accompaniedByFamilyMember,
+      accompanyingFamilyMember: this.state.accompaniedByFamilyMember,
       prematureReturn: this.state.prematureReturnInCaseOfDeath,
       legalAssistance: this.state.legalAssistance,
       lossOrTheft: this.state.lossOrTheft,
       luggageDelay: this.state.luggageDelay,
       destination: this.state.destination,
-      nationalId: this.state.nationalId,
-      kraPin: this.state.kraPin,
+      // nationalId: this.state.nationalId,
+      // kraPin: this.state.kraPin,
       startDate: this.state.travelDate,
-      endDate: this.state.returnDate,
-      passportNumber: this.state.passportNumber,
-      UserId: userData.id
+      endDate: this.state.returnDate
+      // passportNumber: this.state.passportNumber,
+      // UserId: userData.id
     };
     var optionsSelected = this.state;
     var errors = [];
@@ -91,20 +97,55 @@ class TravelInsuranceForm extends React.Component {
     if (optionsSelected.firstName === "" || optionsSelected.lastName === "") {
       errors.push("First name & Last name cannot be empty");
     }
-    if (optionsSelected.nationalId === "") {
-      errors.push("National ID cannot be empty");
+    if (
+      this.state.nationalIdScan.length === 0 ||
+      this.state.nationalIdScan[0] === {}
+    ) {
+      errors.push("National ID missing");
+    } else if (this.state.nationalIdScan[0].size > 2000000) {
+      errors.push("National ID file too large");
     }
-    if (optionsSelected.kraPin === "") {
-      errors.push("KRA PIN cannot be empty");
+
+    if (this.state.KRAPinScan.length === 0 || this.state.KRAPinScan[0] === {}) {
+      errors.push("KRA PIN missing");
+    } else if (this.state.KRAPinScan[0].size > 2000000) {
+      errors.push("KRA PIN file too large");
     }
-    if (optionsSelected.passportNumber === "") {
-      errors.push("Passport Number cannot be empty");
+    if (
+      this.state.passportScan.length === 0 ||
+      this.state.passportScan[0] === {}
+    ) {
+      errors.push("Passport missing");
+    } else if (this.state.passportScan[0].size > 2000000) {
+      errors.push("Passport file too large");
     }
+
+    // if (optionsSelected.passportNumber === "") {
+    //   errors.push("Passport Number cannot be empty");
+    // }
     if (optionsSelected.destination === "") {
       errors.push("Destination cannot be empty");
     }
-    if (optionsSelected.startDate === null || optionsSelected.endDate === null) {
+    if (
+      optionsSelected.startDate === null ||
+      optionsSelected.endDate === null
+    ) {
       errors.push("Travel and Return dates cannot be empty");
+    }
+
+    let finalPayload = new FormData();
+    Object.keys(payload).map(key => {
+      finalPayload.append(key, payload[key]);
+    });
+
+    for (var i = 0; i < this.state.nationalIdScan.length; i++) {
+      finalPayload.append("nationalId", this.state.nationalIdScan[i]);
+    }
+    for (var i = 0; i < this.state.KRAPinScan.length; i++) {
+      finalPayload.append("kraPin", this.state.KRAPinScan[i]);
+    }
+    for (var i = 0; i < this.state.passportScan.length; i++) {
+      finalPayload.append("passport", this.state.passportScan[i]);
     }
 
     if (errors.length > 0) {
@@ -132,7 +173,7 @@ class TravelInsuranceForm extends React.Component {
         }
       );
     } else {
-      postRequest("/policies/travel/policy", payload).then(response => {
+      postRequest("/policies/travel/policy", finalPayload).then(response => {
         console.log(response);
         this.props.history.push("/client/notified");
       });
@@ -140,6 +181,7 @@ class TravelInsuranceForm extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <>
         <FormHeader
@@ -160,14 +202,22 @@ class TravelInsuranceForm extends React.Component {
                   <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                       <Col xs="8">
-                        <h3 className="mb-0">Policy Description</h3>
+                        <h3 className="mb-0" style = {{color:'#11576a', fontWeight:800}}>Policy Description</h3>
                       </Col>
                     </Row>
                   </CardHeader>
                   <CardBody>
-                    This is an insurance plan that Covers insured against
-                    personal accident, medical expenses, travel delay & death or
-                    injuries arising during period of travel.
+                    <p style = {{color:'#f66f31', fontWeight:600}}>
+                      Travelling is generally a fun, heart-warming experience.
+                      However, accidents sometimes do happen. When they do
+                      occur, they can not only ruin your trip, but affect your
+                      finances, protect your trip with travel insurance Spire
+                      Insurance Brokers , you don't have to worry about
+                      unexpected incidents. Whether you experience flight
+                      delays, lose your bags, or you become ill while you’re
+                      away, We can help when you need it most.
+                    </p>
+                    <p style = {{color:'#11576a', fontWeight:800}}>Get Covered the Sure Way</p>
                   </CardBody>
                   <div className="text-center">
                     <Button
@@ -227,6 +277,21 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
+                                Colored National ID. (Size limit 2MB)
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="nationalIdScan"
+                                type="file"
+                                // value={this.state.nationalIdScan}
+                                onChange={this.handleFile}
+                                required
+                              />
+                            </FormGroup>
+                          </Col>
+                          {/* <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
                                 National ID
                               </label>
                               <Input
@@ -237,8 +302,23 @@ class TravelInsuranceForm extends React.Component {
                                 onChange={this.handleChange}
                               />
                             </FormGroup>
-                          </Col>
+                          </Col> */}
                           <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                KRA Pin Certificate (Size limit 2MB)
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="KRAPinScan"
+                                type="file"
+                                // value={this.state.KRAPinScan}
+                                onChange={this.handleFile}
+                                required
+                              />
+                            </FormGroup>
+                          </Col>
+                          {/* <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
                                 KRA Pin
@@ -251,8 +331,23 @@ class TravelInsuranceForm extends React.Component {
                                 onChange={this.handleChange}
                               />
                             </FormGroup>
-                          </Col>
+                          </Col> */}
                           <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Passport (Last Page, Size limit 2MB)
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="passportScan"
+                                type="file"
+                                // value={this.state.KRAPinScan}
+                                onChange={this.handleFile}
+                                required
+                              />
+                            </FormGroup>
+                          </Col>
+                          {/* <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
                                 Passport Number
@@ -265,7 +360,7 @@ class TravelInsuranceForm extends React.Component {
                                 onChange={this.handleChange}
                               />
                             </FormGroup>
-                          </Col>
+                          </Col> */}
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">

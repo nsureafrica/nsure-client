@@ -59,25 +59,24 @@ class MedicalPlans extends Component {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h3 className="mb-0">Policy Description</h3>
+                      <h3 className="mb-0" style = {{color:'#11576a', fontWeight:800}}>Policy Description</h3>
                     </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
-                  A good quality education is a necessity in today’s world. It
-                  equips us with everything we need to help us achieve economic
-                  freedom and to make our dreams come true. Your child’s
-                  education is therefore a top priority. However, due to
-                  uncertainties such as the increasing costs of higher
-                  education, insufficient funds or the premature death of one or
-                  both parents, your child may not be able to complete his
-                  education. That is why his future should be anticipated and
-                  planned for today. We have a unique product to help you
-                  finance your child’s educational needs. So, protect your
-                  child’s future. Give him one of life’s greatest gifts, a good
-                  education Kindly provide us the below details to take the
-                  first steps to securing your childs future and we will reach
-                  out to you with a proposed plan
+                  <p style = {{color:'#f66f31', fontWeight:600}}>
+                    We are here to provide you with Peace of mind that comes
+                    from knowing that you and your loved ones are covered the
+                    sure way. We have partnered with the most reliable ,
+                    affordable and reputable insurance companies to provide
+                    Health insurance options made for you and that suit your
+                    needs. With access to a network of over 500 medical
+                    providers and specialists around the country, Seamless
+                    Emergency Road and air Evacuation our medical insurance
+                    gives you the flexibility to choose where and how to receive
+                    treatment.
+                  </p>
+                  <p style = {{color:'#11576a', fontWeight:800}}>Get Covered the Sure Way</p>
                 </CardBody>
                 <div className="text-center">
                   <Button

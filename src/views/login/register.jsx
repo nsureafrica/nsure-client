@@ -73,6 +73,11 @@ class Register extends React.Component {
         this.props.history.push("/auth/login");
       })
       .catch(error => {
+        console.log(error.response);
+        var errorMessage = "";
+        if (error.response.data.error) {
+          errorMessage = error.response.data.error;
+        }
         toaster.notify(
           <div
             style={{
@@ -81,8 +86,10 @@ class Register extends React.Component {
               fontWeight: "600"
             }}
           >
-            <Error style={{ width: "40px" }} /> Error creating user, please try
-            again
+            <Error style={{ width: "40px" }} />{" "}
+            {errorMessage !== ""
+              ? errorMessage
+              : "Error creating user, please try again"}
           </div>
         );
       });
@@ -94,7 +101,7 @@ class Register extends React.Component {
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Sign up with credentials</small>
+                <small>Fill the form to create an account</small>
               </div>
               <Form role="form">
                 <FormGroup>
@@ -223,9 +230,10 @@ class Register extends React.Component {
                 </Row>
                 <div className="text-center">
                   <Button
-                    className="mt-4"
+                    className="mt-2"
                     color="primary"
                     type="button"
+                    style={{ width: "100%" }}
                     // eslint-disable-next-line react/prop-types
                     onClick={() => this.handleRegister()}
                   >
@@ -233,34 +241,34 @@ class Register extends React.Component {
                   </Button>
                 </div>
               </Form>
+              <Row className="mt-3">
+                <Col xs="6">
+                  <a
+                    // className="text-light"
+                    href="#"
+                    onClick={e =>
+                      e.preventDefault(this.props.history.push("/auth/login"))
+                    }
+                  >
+                    <small>Login</small>
+                  </a>
+                </Col>
+                <Col className="text-right" xs="6">
+                  <a
+                    // className="text-light"
+                    href="#"
+                    onClick={e =>
+                      e.preventDefault(
+                        this.props.history.push("/auth/reset-password")
+                      )
+                    }
+                  >
+                    <small>Forgot Password?</small>
+                  </a>
+                </Col>
+              </Row>
             </CardBody>
           </Card>
-          <Row className="mt-3">
-            <Col xs="6">
-              <a
-                className="text-light"
-                href="#"
-                onClick={e =>
-                  e.preventDefault(this.props.history.push("/auth/login"))
-                }
-              >
-                <small>Login</small>
-              </a>
-            </Col>
-            <Col className="text-right" xs="6">
-              <a
-                className="text-light"
-                href="#"
-                onClick={e =>
-                  e.preventDefault(
-                    this.props.history.push("/auth/reset-password")
-                  )
-                }
-              >
-                <small>Forgot Password?</small>
-              </a>
-            </Col>
-          </Row>
         </Col>
         {this.state.showNotification && (
           <Notifier

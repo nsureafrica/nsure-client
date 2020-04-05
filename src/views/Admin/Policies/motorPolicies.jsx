@@ -61,8 +61,6 @@ class AdminMotorPolicies extends Component {
                       <th scope="col">Email</th>
                       <th scope="col">Cover type</th>
                       <th scope="col">Date</th>
-                      <th scope="col">Amount</th>
-                      <th scope="col">Payment</th>
                       <th scope="col">Status</th>
                     </tr>
                   </thead>
@@ -75,8 +73,6 @@ class AdminMotorPolicies extends Component {
                         <td>
                           {moment(policy.createdAt).format("MMMM Do YYYY")}
                         </td>
-                        <td>{policy.quoteAmount}</td>
-                        <td>{policy.paid ? "Paid" : "Not paid"}</td>
                         <td>{policy.active ? "Active" : "Inactive"}</td>
                       </tr>
                     ))}

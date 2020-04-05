@@ -46,7 +46,7 @@ class SalamahTransitionCoverForm extends React.Component {
       married: false,
       showPlans: false,
       selectedPlan: undefined,
-      showForm:false
+      showForm: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleParentChange = this.handleParentChange.bind(this);
@@ -168,17 +168,17 @@ class SalamahTransitionCoverForm extends React.Component {
     ) {
       errors.push("Principal First name & Last name cannot be empty");
     }
-    if (optionsSelected.principalAge === "") {
-      errors.push("Principal Age cannot be empty");
+    if (optionsSelected.principalDOB === "") {
+      errors.push("Principal DOB cannot be empty");
     }
-    if (!parseInt(optionsSelected.principalAge)) {
-      errors.push("Principal Age has to be a number");
-    } else if (
-      parseInt(optionsSelected.principalAge) > 65 ||
-      parseInt(optionsSelected.principalAge) < 18
-    ) {
-      errors.push("Principal Age has to be between 18 and 65");
-    }
+    // if (!parseInt(optionsSelected.principalAge)) {
+    //   errors.push("Principal Age has to be a number");
+    // } else if (
+    //   parseInt(optionsSelected.principalAge) > 65 ||
+    //   parseInt(optionsSelected.principalAge) < 18
+    // ) {
+    //   errors.push("Principal Age has to be between 18 and 65");
+    // }
     if (optionsSelected.principalIDNumber === "") {
       errors.push("Principal ID number cannot be empty");
     }
@@ -192,17 +192,17 @@ class SalamahTransitionCoverForm extends React.Component {
       ) {
         errors.push("Spouse First name & Last name cannot be empty");
       }
-      if (optionsSelected.spouseAge === "") {
-        errors.push("Spouse Age cannot be empty");
+      if (optionsSelected.spouseDOB === "") {
+        errors.push("Spouse DOB cannot be empty");
       }
-      if (!parseInt(optionsSelected.spouseAge)) {
-        errors.push("Spouse Age has to be a number");
-      } else if (
-        parseInt(optionsSelected.spouseAge) > 65 ||
-        parseInt(optionsSelected.spouseAge) < 18
-      ) {
-        errors.push("Spouse Age has to be between 18 and 65");
-      }
+      // if (!parseInt(optionsSelected.spouseAge)) {
+      //   errors.push("Spouse Age has to be a number");
+      // } else if (
+      //   parseInt(optionsSelected.spouseAge) > 65 ||
+      //   parseInt(optionsSelected.spouseAge) < 18
+      // ) {
+      //   errors.push("Spouse Age has to be between 18 and 65");
+      // }
       if (optionsSelected.spouseIDNumber === "") {
         errors.push("Spouse ID number cannot be empty");
       }
@@ -235,32 +235,32 @@ class SalamahTransitionCoverForm extends React.Component {
         }
       );
     } else {
-    postRequest("/quotes/lastexpense", payloadObject).then(response => {
-      console.log(response);
-      // set options selected
-      localStorage.setItem(
-        "optionsSelected_LastExpense",
-        JSON.stringify(optionsSelected)
-      );
-      // set quote array
-      localStorage.setItem(
-        "quoteArray_LastExpense",
-        JSON.stringify(response.data)
-      );
-      if (response.data.length == 0) {
-        this.setState({
-          message:
-            "We were unable to find underwriters offering the options you selected",
-          showNotification: true,
-          variant: "warning"
-        });
-      } else {
-        this.props.history.push("/client/last-expense-quote", {
-          quote: response.data
-        });
-      }
-    });
-  }
+      postRequest("/quotes/lastexpense", payloadObject).then(response => {
+        console.log(response);
+        // set options selected
+        localStorage.setItem(
+          "optionsSelected_LastExpense",
+          JSON.stringify(optionsSelected)
+        );
+        // set quote array
+        localStorage.setItem(
+          "quoteArray_LastExpense",
+          JSON.stringify(response.data)
+        );
+        if (response.data.length == 0) {
+          this.setState({
+            message:
+              "We were unable to find underwriters offering the options you selected",
+            showNotification: true,
+            variant: "warning"
+          });
+        } else {
+          this.props.history.push("/client/last-expense-quote", {
+            quote: response.data
+          });
+        }
+      });
+    }
   };
   render() {
     const relationships = [
@@ -289,26 +289,23 @@ class SalamahTransitionCoverForm extends React.Component {
                     <CardHeader className="bg-white border-0">
                       <Row className="align-items-center">
                         <Col xs="8">
-                          <h3 className="mb-0">Policy Description</h3>
+                          <h3 className="mb-0" style = {{color:'#11576a', fontWeight:800}}>Policy Description</h3>
                         </Col>
                       </Row>
                     </CardHeader>
                     <CardBody>
-                      A good quality education is a necessity in today’s world.
-                      It equips us with everything we need to help us achieve
-                      economic freedom and to make our dreams come true. Your
-                      child’s education is therefore a top priority. However,
-                      due to uncertainties such as the increasing costs of
-                      higher education, insufficient funds or the premature
-                      death of one or both parents, your child may not be able
-                      to complete his education. That is why his future should
-                      be anticipated and planned for today. We have a unique
-                      product to help you finance your child’s educational
-                      needs. So, protect your child’s future. Give him one of
-                      life’s greatest gifts, a good education Kindly provide us
-                      the below details to take the first steps to securing your
-                      childs future and we will reach out to you with a proposed
-                      plan
+                      <p style = {{color:'#f66f31', fontWeight:600}}>
+                        Losing a loved is heartbreaking and emotionally draining
+                        , it is even harder when the financial obligations begin
+                        to strain those left behind. Our last expense insurance
+                        is designed to cover the bills that your loved ones will
+                        face after your death. These costs will include medical
+                        bills and funeral expenses. Unfortunately, even
+                        bare-bones funerals can cost thousands of Shillings .
+                        And here is where we step in and provide an affordable
+                        last expense solution that will cushion your loved ones.
+                      </p>
+                      <p style = {{color:'#11576a', fontWeight:800}}>Get Covered the Sure Way</p>
                     </CardBody>
                     <div className="text-center">
                       <Button

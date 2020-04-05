@@ -80,7 +80,7 @@ class Login extends React.Component {
                     />
                   </InputGroup>
                 </FormGroup>
-                <div className="custom-control custom-control-alternative custom-checkbox">
+                {/* <div className="custom-control custom-control-alternative custom-checkbox">
                   <input
                     className="custom-control-input"
                     id=" customCheckLogin"
@@ -92,11 +92,12 @@ class Login extends React.Component {
                   >
                     <span className="text-muted">Remember me</span>
                   </label>
-                </div>
+                </div> */}
                 <div className="text-center">
                   <Button
-                    className="my-4"
+                    className="my-2"
                     color="primary"
+                    style = {{width:'100%'}}
                     onClick={() =>
                       handleLogIn(
                         this.state.password,
@@ -144,34 +145,36 @@ class Login extends React.Component {
                   </Button>
                 </div>
               </Form>
+              <Row className="mt-3">
+                <Col xs="6">
+                  <a
+                    // className="text-light"
+                    href="#"
+                    onClick={e =>
+                      e.preventDefault(
+                        this.props.history.push("/auth/reset-password")
+                      )
+                    }
+                  >
+                    <small>Forgot password?</small>
+                  </a>
+                </Col>
+                <Col className="text-right" xs="6">
+                  <a
+                    // className="text-light"
+                    href="#"
+                    onClick={e =>
+                      e.preventDefault(
+                        this.props.history.push("/auth/register")
+                      )
+                    }
+                  >
+                    <small>Create new account</small>
+                  </a>
+                </Col>
+              </Row>
             </CardBody>
           </Card>
-          <Row className="mt-3">
-            <Col xs="6">
-              <a
-                className="text-light"
-                href="#"
-                onClick={e =>
-                  e.preventDefault(
-                    this.props.history.push("/auth/reset-password")
-                  )
-                }
-              >
-                <small>Forgot password?</small>
-              </a>
-            </Col>
-            <Col className="text-right" xs="6">
-              <a
-                className="text-light"
-                href="#"
-                onClick={e =>
-                  e.preventDefault(this.props.history.push("/auth/register"))
-                }
-              >
-                <small>Create new account</small>
-              </a>
-            </Col>
-          </Row>
         </Col>
         {this.props.history.location.state !== undefined &&
           this.props.history.location.state.showNotification && (

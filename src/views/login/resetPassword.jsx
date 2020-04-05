@@ -14,6 +14,13 @@ import {
 } from "reactstrap";
 import Notifier from "../../notifier";
 import { putRequest } from "../../requests/requests";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -36,18 +43,37 @@ class ResetPassword extends Component {
     putRequest("/forgotPassword", payload)
       .then(response => {
         console.log(response);
-        this.setState({
-          notificationMessage: "Password reset successful",
-          emailSent: true,
-          showNotification: true
-        });
+        toaster.notify(
+          <div
+            style={{
+              color: "#0AA681",
+              fontSize: "13px",
+              fontWeight: "600"
+            }}
+          >
+            <Success style={{ width: "40px" }} /> Please check your email.
+          </div>
+        );
+        this.props.history.push('/auth/login')
+        // this.setState({
+        //   notificationMessage: "Password reset successful",
+        //   emailSent: true,
+        //   showNotification: true
+        // });
       })
       .catch(error => {
-        this.setState({
-          notificationMessage: "Password reset failed",
-          emailSent: false,
-          showNotification: true
-        });
+        toaster.notify(
+          <div
+            style={{
+              color: "#F96762",
+              fontSize: "13px",
+              fontWeight: "600"
+            }}
+          >
+            <Error style={{ width: "40px" }} /> An error occurred.
+            again
+          </div>
+        );
       });
   }
   render() {
@@ -79,9 +105,10 @@ class ResetPassword extends Component {
 
                 <div className="text-center">
                   <Button
-                    className="mt-4"
+                    className="mt-2"
                     color="primary"
                     type="button"
+                    style = {{width:'100%'}}
                     // eslint-disable-next-line react/prop-types
                     onClick={() => this.handleForgotPassword()}
                   >
@@ -89,12 +116,10 @@ class ResetPassword extends Component {
                   </Button>
                 </div>
               </Form>
-            </CardBody>
-          </Card>
-          <Row className="mt-3">
+              <Row className="mt-3">
             <Col xs="6">
               <a
-                className="text-light"
+                // className="text-light"
                 href=""
                 onClick={e =>
                   e.preventDefault(this.props.history.push("/auth/login"))
@@ -105,7 +130,7 @@ class ResetPassword extends Component {
             </Col>
             <Col className="text-right" xs="6">
               <a
-                className="text-light"
+                // className="text-light"
                 href=""
                 onClick={e =>
                   e.preventDefault(this.props.history.push("/auth/register"))
@@ -115,6 +140,9 @@ class ResetPassword extends Component {
               </a>
             </Col>
           </Row>
+            </CardBody>
+          </Card>
+          
         </Col>
 
         {this.state.showNotification && (

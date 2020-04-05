@@ -30,7 +30,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col,
+  Col
 } from "reactstrap";
 
 class Login extends React.Component {
@@ -48,7 +48,7 @@ class Login extends React.Component {
                   className="btn-neutral btn-icon"
                   color="default"
                   href="#"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
                     <img
@@ -62,7 +62,7 @@ class Login extends React.Component {
                   className="btn-neutral btn-icon"
                   color="default"
                   href="#"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
                     <img
@@ -118,28 +118,30 @@ class Login extends React.Component {
                   </Button>
                 </div>
               </Form>
+              <Row className="mt-3">
+                <Col xs="6">
+                  <a
+                    className="text-light"
+                    href="#"
+                    onClick={e => e.preventDefault()}
+                  >
+                    <small>Forgot password?</small>
+                  </a>
+                </Col>
+                <Col className="text-right" xs="6">
+                  <a
+                    className="text-light"
+                    href="#"
+                    onClick={e =>
+                      e.preventDefault(this.props.history.push("/register"))
+                    }
+                  >
+                    <small>Create new account</small>
+                  </a>
+                </Col>
+              </Row>
             </CardBody>
           </Card>
-          <Row className="mt-3">
-            <Col xs="6">
-              <a
-                className="text-light"
-                href="#"
-                onClick={(e) => e.preventDefault()}
-              >
-                <small>Forgot password?</small>
-              </a>
-            </Col>
-            <Col className="text-right" xs="6">
-              <a
-                className="text-light"
-                href="#"
-                onClick={(e) => e.preventDefault(this.props.history.push("/register"))}
-              >
-                <small>Create new account</small>
-              </a>
-            </Col>
-          </Row>
         </Col>
       </>
     );
