@@ -44,7 +44,7 @@ class Login extends React.Component {
         <Col lg="5" md="7">
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
-              <div className="text-center text-muted mb-4">
+              <div className="text-center text-darker mb-4">
                 <small>Enter your credentials to sign in</small>
               </div>
               <Form role="form">

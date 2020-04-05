@@ -27,7 +27,7 @@ import ManageMedicalPlans from "./views/Admin/Management/Medical/manage-medical-
 const routes = [
   {
     path: "/index",
-    name: "Business Insuarance",
+    name: "Business Insurance",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/client"

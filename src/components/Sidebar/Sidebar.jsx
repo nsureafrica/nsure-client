@@ -226,7 +226,7 @@ class Sidebar extends React.Component {
             {/* Navigation */}
             {userData.UserCategory.name !== "Administrator" ? (
               <>
-                <h6 className="navbar-heading text-muted">
+                <h6 className="navbar-heading text-darker">
                   Personal Insurance
                 </h6>
                 <Nav navbar>{this.createLinks(PersonalInsuranceRoutes)}</Nav>
