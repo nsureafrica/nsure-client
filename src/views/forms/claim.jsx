@@ -149,7 +149,7 @@ class Claim extends Component {
             <Button color="primary" onClick={() => this.handleSubmit()}>
               Submit Details
             </Button>{" "}
-            <Button color="secondary" onClick={this.props.toggle}>
+            <Button color="warning" onClick={this.props.toggle}>
               Cancel
             </Button>
           </ModalFooter>

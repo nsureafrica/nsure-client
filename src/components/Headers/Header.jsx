@@ -16,7 +16,7 @@ class Header extends React.Component {
                 style={{
                   marginBottom: "1em",
                   textAlign: "center",
-                  color: "#001996",
+                  color: "#285768",
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                 }}
