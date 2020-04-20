@@ -3,14 +3,14 @@ import { CardHeader, Table, Card, Container, Button } from "reactstrap";
 import { getRequest } from "../../../../requests/requests";
 import moment from "moment";
 import lodash from "lodash";
-import MedicalPlansManagementModal from "./medical-plans-modal";
+import LastExpensePlansManagementModal from "./last-expense-plans-modal";
 // import UnderwriterManagementModal from "./management-modal";
 
-class ManageMedicalPlans extends Component {
+class ManageLastExpensePlans extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      medicalPlans: [],
+      lastExpensePlans: [],
       loading: false,
       openModal: false,
       createModal: false,
@@ -19,10 +19,10 @@ class ManageMedicalPlans extends Component {
   }
   componentDidMount() {
     this.setState({ loading: true });
-    getRequest("/medicalPlans/getAllMedicalPlans")
+    getRequest("/lastExpensePlans/getLastExpensePlans")
       .then(response => {
         console.log(response);
-        this.setState({ medicalPlans: response.data, loading: false });
+        this.setState({ lastExpensePlans: response.data, loading: false });
       })
       .catch(err => {
         console.log(err);
@@ -62,7 +62,7 @@ class ManageMedicalPlans extends Component {
                   textTransform: "uppercase"
                 }}
               >
-                Medical plans
+                Last Expense plans
               </h2>
               <Card style={{ padding: "20px" }} className="shadow">
                 {/* <CardHeader className="border-0"> */}
@@ -79,7 +79,7 @@ class ManageMedicalPlans extends Component {
                     Please click on a row to view plan
                   </span>
                   <Button onClick={this.openCreateModal}>
-                    Create new medical plan
+                    Create new last expense plan
                   </Button>
                 </div>
                 {/* </CardHeader> */}
@@ -89,11 +89,8 @@ class ManageMedicalPlans extends Component {
                       {/* <th scope="col">Actions</th> */}
                       <th scope="col">Name</th>
                       <th scope="col">Underwriter</th>
-                      <th scope="col">Inpatient limit</th>
-                      <th scope="col">Outpatient limit</th>
-                      <th scope="col">Chronic case limit</th>
-                      <th scope="col">Manternity limit</th>
-                      <th scope="col">Personal Accident cover</th>
+                      <th scope="col">Annual cover</th>
+                      <th scope="col">Type of claim</th>
                     </tr>
                   </thead>
 
@@ -112,16 +109,13 @@ class ManageMedicalPlans extends Component {
                       />
                     </div>
                   ) : (
-                    this.state.medicalPlans.map(plan => (
+                    this.state.lastExpensePlans.map(plan => (
                       <tbody>
                         <tr onClick={() => this.handleViewEdit(plan)}>
                           <td>{plan.name}</td>
                           <td>{plan.Underwriter.name}</td>
-                          <td>{plan.inpatientCoverLimit}</td>
-                          <td>{plan.outpatientCoverLimit}</td>
-                          <td>{plan.chronicCases}</td>
-                          <td>{plan.maternityCoverLimit}</td>
-                          <td>{plan.personalAccident}</td>
+                          <td>{plan.annualCover}</td>
+                          <td>{plan.typeOfClaim}</td>
                         </tr>
                       </tbody>
                     ))
@@ -131,7 +125,7 @@ class ManageMedicalPlans extends Component {
             </div>
           </Container>
           {this.state.openModal && (
-            <MedicalPlansManagementModal
+            <LastExpensePlansManagementModal
               isOpen={this.state.openModal}
               create={false}
               plan={this.state.selectedPlan}
@@ -145,7 +139,7 @@ class ManageMedicalPlans extends Component {
             // />
           )}
           {this.state.createModal && (
-            <MedicalPlansManagementModal
+            <LastExpensePlansManagementModal
               isOpen={this.state.createModal}
               create={true}
               plan={this.state.selectedPlan}
@@ -164,4 +158,4 @@ class ManageMedicalPlans extends Component {
   }
 }
 
-export default ManageMedicalPlans;
+export default ManageLastExpensePlans;

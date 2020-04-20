@@ -8,11 +8,12 @@ import {
   Container,
   Row,
   Col,
-  Table
+  Table,
+  Button
 } from "reactstrap";
 // core components
 import PageHeader from "../../components/Headers/PageHeader";
-import { getRequest } from "../../requests/requests";
+import { getRequest, getFile } from "../../requests/requests";
 import lodash from "lodash";
 import moment from "moment";
 
@@ -35,22 +36,43 @@ class UserClaims extends Component {
       // this.props.history.push("login");
     }
     if (userData) {
-      getRequest(`/getUserClaims/${userData.id}`).then(response => {
+      getRequest(`/getUserClaims/${userData.id}`).then((response) => {
         console.log(response);
         this.setState({ claims: response.data });
       });
     } else {
     }
   }
+  downloadClaimDocs = (claim) => {
+    getFile(`/download/claims/downloadClaimDocuments?claimId=${claim.id}`).then(
+      (response) => {
+        console.log(response)
+        const downloadUrl = window.URL.createObjectURL(new Blob([(response.data)]));
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.setAttribute('download', 'claim_documents.zip'); //any other extension
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+    );
+  };
   render() {
     return (
       <>
-        <PageHeader image = 'https://expertsystem.com/wp-content/uploads/2019/06/Speed-up-processes-with-automated-insurance-claim-management.jpg' name = "My Claims"/>
+        <PageHeader
+          image="https://expertsystem.com/wp-content/uploads/2019/06/Speed-up-processes-with-automated-insurance-claim-management.jpg"
+          name="My Claims"
+        />
         <Container className="mt--7" fluid>
           <Row>
             <Col className="order-xl-1" xl="12">
-              <Card className="bg-secondary shadow"  style={{
-                marginBottom: "8em"}}>
+              <Card
+                className="bg-secondary shadow"
+                style={{
+                  marginBottom: "8em",
+                }}
+              >
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
@@ -59,15 +81,16 @@ class UserClaims extends Component {
                   </Row>
                 </CardHeader>
                 <CardBody>
-                  <Table>
+                <Table className="align-items-center table-flush" responsive>
                     <thead style={{ color: "black" }}>
                       <td>Policy Type</td>
                       <td>Policy Number</td>
                       <td>Date of Claim</td>
                       <td>Claim description</td>
+                      <td>Claim documents</td>
                     </thead>
                     <tbody style={{ color: "grey" }}>
-                      {this.state.claims.map(claim => (
+                      {this.state.claims.map((claim) => (
                         <tr>
                           <td>
                             {claim.PolicyType
@@ -81,6 +104,13 @@ class UserClaims extends Component {
                             {moment(claim.updatedAt).format("MMM Do YYYY")}
                           </td>
                           <td>{claim.descriptionOfClaim}</td>
+                          <td>
+                            <Button
+                              onClick={() => this.downloadClaimDocs(claim)}
+                            >
+                              Download
+                            </Button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>

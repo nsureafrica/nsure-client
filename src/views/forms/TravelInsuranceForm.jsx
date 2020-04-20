@@ -11,7 +11,7 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -20,7 +20,7 @@ import { postRequest } from "../../requests/requests";
 import {
   ErrorOutline as Error,
   CheckCircleOutline as Success,
-  ErrorRounded
+  ErrorRounded,
 } from "@material-ui/icons";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
@@ -49,7 +49,7 @@ class TravelInsuranceForm extends React.Component {
       legalAssistance: false,
       lossOrTheft: false,
       luggageDelay: false,
-      showForm: false
+      showForm: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -58,9 +58,9 @@ class TravelInsuranceForm extends React.Component {
     this.setState({ [event.target.id]: event.target.value });
   }
   handleToggle(identifier) {
-    this.setState(state => ({ [identifier]: !state[identifier] }));
+    this.setState((state) => ({ [identifier]: !state[identifier] }));
   }
-  handleFile = event => {
+  handleFile = (event) => {
     this.setState({ [event.target.id]: event.target.files });
   };
   submitDetails() {
@@ -87,7 +87,7 @@ class TravelInsuranceForm extends React.Component {
       // nationalId: this.state.nationalId,
       // kraPin: this.state.kraPin,
       startDate: this.state.travelDate,
-      endDate: this.state.returnDate
+      endDate: this.state.returnDate,
       // passportNumber: this.state.passportNumber,
       // UserId: userData.id
     };
@@ -134,7 +134,7 @@ class TravelInsuranceForm extends React.Component {
     }
 
     let finalPayload = new FormData();
-    Object.keys(payload).map(key => {
+    Object.keys(payload).map((key) => {
       finalPayload.append(key, payload[key]);
     });
 
@@ -156,24 +156,24 @@ class TravelInsuranceForm extends React.Component {
             color: "#F96762",
             fontSize: "13px",
             fontWeight: 600,
-            textAlign: "left"
+            textAlign: "left",
           }}
         >
           Please correct the following errors:
           {
             <ol>
-              {errors.map(error => (
+              {errors.map((error) => (
                 <li>{error}</li>
               ))}
             </ol>
           }
         </div>,
         {
-          duration: 10000
+          duration: 10000,
         }
       );
     } else {
-      postRequest("/policies/travel/policy", finalPayload).then(response => {
+      postRequest("/policies/travel/policy", finalPayload).then((response) => {
         console.log(response);
         this.props.history.push("/client/notified");
       });
@@ -196,28 +196,37 @@ class TravelInsuranceForm extends React.Component {
                 <Card
                   className="bg-secondary shadow"
                   style={{
-                    marginBottom: "8em"
+                    marginBottom: "8em",
                   }}
                 >
                   <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                       <Col xs="8">
-                        <h3 className="mb-0" style = {{color:'#11576a', fontWeight:800}}>Policy Description</h3>
+                        <h3
+                          className="mb-0"
+                          style={{ color: "#11576a", fontWeight: 800 }}
+                        >
+                          Policy Description
+                        </h3>
                       </Col>
                     </Row>
                   </CardHeader>
                   <CardBody>
-                    <p style = {{color:'#f66f31', fontWeight:600}}>
+                    <p style={{ color: "#f66f31", fontWeight: 600 }}>
                       Travelling is generally a fun, heart-warming experience.
                       However, accidents sometimes do happen. When they do
                       occur, they can not only ruin your trip, but affect your
-                      finances, protect your trip with travel insurance Spire
-                      Insurance Brokers , you don't have to worry about
-                      unexpected incidents. Whether you experience flight
-                      delays, lose your bags, or you become ill while you’re
-                      away, We can help when you need it most.
+                      finances.
                     </p>
-                    <p style = {{color:'#11576a', fontWeight:800}}>Get Covered the Sure Way</p>
+                    <p style={{ color: "#f66f31", fontWeight: 600 }}>
+                      With travel insurance Spire Insurance Brokers , you don't
+                      have to worry about unexpected incidents. Whether you
+                      experience flight delays, lose your bags, or you become
+                      ill while you’re away, We can help when you need it most.
+                    </p>
+                    <p style={{ color: "#11576a", fontWeight: 800 }}>
+                      Get Covered the Sure Way
+                    </p>
                   </CardBody>
                   <div className="text-center">
                     <Button
@@ -247,7 +256,7 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                First Name
+                                First Name *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -262,7 +271,7 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Last Name
+                                Last Name *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -277,7 +286,7 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Colored National ID. (Size limit 2MB)
+                                Colored National ID. (Size limit 2MB) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -306,7 +315,7 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                KRA Pin Certificate (Size limit 2MB)
+                                KRA Pin Certificate (Size limit 2MB) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -335,7 +344,7 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Passport (Last Page, Size limit 2MB)
+                                Passport (Last Page, Size limit 2MB) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -364,7 +373,7 @@ class TravelInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Destination
+                                Destination *
                               </label>
                               <Input
                                 className="form-control-alternative"

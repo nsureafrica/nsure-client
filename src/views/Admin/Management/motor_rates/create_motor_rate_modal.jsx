@@ -13,10 +13,17 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 import { postRequest } from "../../../../requests/requests";
 import { Alert } from "reactstrap";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded,
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class CreateMotorRatesManagementModal extends Component {
   constructor(props) {
@@ -39,10 +46,10 @@ class CreateMotorRatesManagementModal extends Component {
       coverType: "comprehensive",
       natureOfGoods: "",
       levies: "",
-      stampDuty: ""
+      stampDuty: "",
     };
   }
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
   };
   handleCancel = () => {
@@ -68,12 +75,37 @@ class CreateMotorRatesManagementModal extends Component {
       levies: this.state.levies,
       stampDuty: this.state.stampDuty,
       UnderwriterId: this.state.UnderwriterId,
-      VehicleClassId: this.state.VehicleClassId
+      VehicleClassId: this.state.VehicleClassId,
     };
     const requestUrl = `/motorRates/createMotorRate`;
-    postRequest(requestUrl, payload).then(response => {
-      console.log(response);
-    });
+    postRequest(requestUrl, payload)
+      .then((response) => {
+        console.log(response);
+        toaster.notify(
+          <div
+            style={{
+              color: "#0AA681",
+              fontSize: "13px",
+              fontWeight: "600",
+            }}
+          >
+            <Success style={{ width: "40px" }} /> Success
+          </div>
+        );
+      })
+      .catch((err) => {
+        toaster.notify(
+          <div
+            style={{
+              color: "#F96762",
+              fontSize: "13px",
+              fontWeight: "600",
+            }}
+          >
+            <Error style={{ width: "40px" }} /> An error occurred
+          </div>
+        );
+      });
   };
 
   render() {
@@ -86,7 +118,7 @@ class CreateMotorRatesManagementModal extends Component {
             justifyContent: "space-between",
             width: "100%",
             alignItems: "center",
-            padding: "1rem"
+            padding: "1rem",
           }}
         >
           <span style={{ fontWeight: "600" }}>Create a new motor rate</span>
@@ -98,7 +130,7 @@ class CreateMotorRatesManagementModal extends Component {
                 <Col lg="12">
                   <FormGroup>
                     <label className="form-control-label">
-                      Pick Underwritter
+                      Pick Underwriter
                     </label>
                     <Input
                       type="select"
@@ -107,7 +139,7 @@ class CreateMotorRatesManagementModal extends Component {
                       value={this.state.selectedUnderwriterID}
                       onChange={this.handleChange}
                     >
-                      {this.props.underwriters.map(underwriter => (
+                      {this.props.underwriters.map((underwriter) => (
                         <option value={underwriter.id}>
                           {underwriter.name}
                         </option>
@@ -127,7 +159,7 @@ class CreateMotorRatesManagementModal extends Component {
                       value={this.state.selectedVehicleClassID}
                       onChange={this.handleChange}
                     >
-                      {this.props.motorClasses.map(motorClass => (
+                      {this.props.motorClasses.map((motorClass) => (
                         <option value={motorClass.id}>{motorClass.name}</option>
                       ))}
                     </Input>

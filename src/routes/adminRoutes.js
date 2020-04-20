@@ -6,6 +6,7 @@ import AdminLastExpensePolicies from "../views/Admin/Policies/lastExpensePolicie
 import BlastEmail from "../views/Admin/BlastEmail/blastEmail";
 import Login from "../views/login/login.jsx";
 import Management from "../views/Admin/Management/management";
+import Transactions from "../views/Admin/Transactions/transactions";
 
 const AdminRoutes = [
   {
@@ -46,6 +47,14 @@ const AdminRoutes = [
     icon: "ni ni-archive-2 ",
     style: {color: "#8BCCBA"},
     component: AdminClaims,
+    layout: "/admin",
+  },
+  {
+    path: "/transactions",
+    name: "Transactions",
+    icon: "ni ni-money-coins",
+    style: {color: "#8BCCBA"},
+    component: Transactions,
     layout: "/admin",
   },
   {

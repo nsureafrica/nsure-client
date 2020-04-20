@@ -44,7 +44,7 @@ class MedicalInsuranceForm extends React.Component {
       spouseAge: optionsSelected ? optionsSelected.spouseAge :"",
       spouseIdNumber: optionsSelected ? optionsSelected.spouseIdNumber :"",
       spouseKraPin: optionsSelected ? optionsSelected.spouseKraPin :"",
-      outpatientPerPerson: optionsSelected ? optionsSelected.outPatientPerPerson :false,
+      outpatientPerPerson: optionsSelected ? optionsSelected.outpatientPerPerson :false,
       maternityCover: optionsSelected ? optionsSelected.maternityCover :false,
       dentalCover: optionsSelected ? optionsSelected.dentalCover :false,
       opticalCover: optionsSelected ? optionsSelected.opticalCover :false
@@ -186,7 +186,7 @@ class MedicalInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              First Name
+                              First Name *
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -201,7 +201,7 @@ class MedicalInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Last Name
+                              Last Name *
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -216,7 +216,7 @@ class MedicalInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              Age (18-65 years)
+                              Age (18-65 years) *
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -231,7 +231,7 @@ class MedicalInsuranceForm extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label className="form-control-label">
-                              ID Number
+                              ID Number *
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -290,14 +290,14 @@ class MedicalInsuranceForm extends React.Component {
                       <>
                         <hr className="my-4" />
                         <h6 className="heading-small text-muted mb-4">
-                          Spouse
+                          Spouse *
                         </h6>
                         <div className="pl-lg-4">
                           <Row>
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  First Name
+                                  First Name *
                                 </label>
                                 <Input
                                   className="form-control-alternative"
@@ -312,8 +312,8 @@ class MedicalInsuranceForm extends React.Component {
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  Last Name
-                                </label>
+                                  Last Name *
+                                </label> 
                                 <Input
                                   className="form-control-alternative"
                                   id="spouseLastName"
@@ -327,7 +327,7 @@ class MedicalInsuranceForm extends React.Component {
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  Age (18-65 years)
+                                  Age (18-65 years) *
                                 </label>
                                 <Input
                                   className="form-control-alternative"

@@ -17,6 +17,13 @@ import {
 } from "reactstrap";
 import { putRequest, postRequest } from "../../../../requests/requests";
 import { Alert } from "reactstrap";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class UnderwriterManagementModal extends Component {
   constructor(props) {
@@ -58,6 +65,29 @@ class UnderwriterManagementModal extends Component {
     const requestUrl = `/underwriter/updateunderwiterbyid/${this.props.underwriter.id}`;
     putRequest(requestUrl, payload).then(response => {
       console.log(response);
+      toaster.notify(
+        <div
+          style={{
+            color: "#0AA681",
+            fontSize: "13px",
+            fontWeight: "600",
+          }}
+        >
+          <Success style={{ width: "40px" }} /> Underwriter updated
+        </div>
+      );
+    }).catch(err=>{
+      toaster.notify(
+        <div
+          style={{
+            color: "#F96762",
+            fontSize: "13px",
+            fontWeight: "600"
+          }}
+        >
+          <Error style={{ width: "40px" }} /> An error occurred
+        </div>
+      );
     });
   };
   handleCreate = () => {
@@ -71,6 +101,29 @@ class UnderwriterManagementModal extends Component {
     const requestUrl = `/underwriter/createUnderwriter`;
     postRequest(requestUrl, payload).then(response => {
       console.log(response);
+      toaster.notify(
+        <div
+          style={{
+            color: "#0AA681",
+            fontSize: "13px",
+            fontWeight: "600",
+          }}
+        >
+          <Success style={{ width: "40px" }} /> Underwriter created
+        </div>
+      );
+    }).catch(err=>{
+      toaster.notify(
+        <div
+          style={{
+            color: "#F96762",
+            fontSize: "13px",
+            fontWeight: "600"
+          }}
+        >
+          <Error style={{ width: "40px" }} /> An error occurred
+        </div>
+      );
     });
   };
   render() {

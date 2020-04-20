@@ -29,19 +29,15 @@ import {
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
-class MedicalPlansManagementModal extends Component {
+class LastExpensePlansManagementModal extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
     this.state = {
       name: this.props.plan.name,
       description: this.props.plan.description,
-      inpatientCoverLimit: this.props.plan.inpatientCoverLimit,
-      outpatientCoverLimit: this.props.plan.outpatientCoverLimit,
-      chronicCases: this.props.plan.chronicCases,
-      maternityCoverLimit: this.props.plan.maternityCoverLimit,
-      personalAccident: this.props.plan.personalAccident,
-      generalConditions: this.props.plan.generalConditions,
+      annualCover:this.props.plan.annualCover,
+      typeOfClaim:'single',
       UnderwriterId: this.props.plan.UnderwriterId | 1,
       edit: false,
       underwriters: [],
@@ -72,32 +68,24 @@ class MedicalPlansManagementModal extends Component {
     const payload = {
       name: this.state.name,
       description: this.state.description,
-      inpatientCoverLimit: this.state.inpatientCoverLimit,
-      outpatientCoverLimit: this.state.outpatientCoverLimit,
-      chronicCases: this.state.chronicCases,
-      maternityCoverLimit: this.state.maternityCoverLimit,
-      personalAccident: this.state.personalAccident,
-      generalConditions: this.state.generalConditions,
+      annualCover:this.state.annualCover,
+      typeOfClaim:this.state.typeOfClaim,
       UnderwriterId: this.state.UnderwriterId,
     };
-    const requestUrl = `/plans/medicalPlans/updatemedicalplanbyid/${this.props.plan.id}`;
+    const requestUrl = `/lastExpensePlans/updatelastexpenseplanbyid/${this.props.plan.id}`;
     putRequest(requestUrl, payload).then((response) => {
       console.log(response);
     });
   };
   handleCreate = () => {
     const payload = {
-      name: this.state.name,
-      description: this.state.description,
-      inpatientCoverLimit: this.state.inpatientCoverLimit,
-      outpatientCoverLimit: this.state.outpatientCoverLimit,
-      chronicCases: this.state.chronicCases,
-      maternityCoverLimit: this.state.maternityCoverLimit,
-      personalAccident: this.state.personalAccident,
-      generalConditions: this.state.generalConditions,
-      UnderwriterId: this.state.UnderwriterId,
-    };
-    const requestUrl = `/medicalPlans/createMedicalPlan`;
+        name: this.state.name,
+        description: this.state.description,
+        annualCover:this.state.annualCover,
+        typeOfClaim:this.state.typeOfClaim,
+        UnderwriterId: this.state.UnderwriterId,
+      };
+    const requestUrl = `/lastExpensePlans/createLastExpensePlan`;
     postRequest(requestUrl, payload)
       .then((response) => {
         console.log(response);
@@ -145,7 +133,7 @@ class MedicalPlansManagementModal extends Component {
         >
           <span style={{ fontWeight: "600" }}>
             {this.props.create
-              ? "Please fill the form to create a medical plan"
+              ? "Please fill the form to create a last expense plan"
               : this.props.plan.name}
           </span>
           {!this.state.edit && !this.props.create && (
@@ -211,15 +199,13 @@ class MedicalPlansManagementModal extends Component {
                 </Col>
                 <Col lg="12">
                   <FormGroup>
-                    <label className="form-control-label">
-                      Inpatient Cover Limit
-                    </label>
+                    <label className="form-control-label">Annual cover</label>
                     <Input
                       disabled={this.props.create ? false : !this.state.edit}
                       className="form-control-alternative"
-                      id="inpatientCoverLimit"
+                      id="annualCover"
                       type="text"
-                      value={this.state.inpatientCoverLimit}
+                      value={this.state.annualCover}
                       onChange={this.handleChange}
                       multiple
                     />
@@ -227,80 +213,18 @@ class MedicalPlansManagementModal extends Component {
                 </Col>
                 <Col lg="12">
                   <FormGroup>
-                    <label className="form-control-label">
-                      Outpatient Cover Limit
-                    </label>
+                    <label className="form-control-label">Type of claim</label>
                     <Input
                       disabled={this.props.create ? false : !this.state.edit}
                       className="form-control-alternative"
-                      id="outpatientCoverLimit"
-                      type="text"
-                      value={this.state.outpatientCoverLimit}
+                      id="typeOfClaim"
+                      type="select"
+                      value={this.state.typeOfClaim}
                       onChange={this.handleChange}
-                      multiple
-                    />
-                  </FormGroup>
-                </Col>
-                <Col lg="12">
-                  <FormGroup>
-                    <label className="form-control-label">
-                      Maternity Cover Limit
-                    </label>
-                    <Input
-                      disabled={this.props.create ? false : !this.state.edit}
-                      className="form-control-alternative"
-                      id="maternityCoverLimit"
-                      type="text"
-                      value={this.state.maternityCoverLimit}
-                      onChange={this.handleChange}
-                      multiple
-                    />
-                  </FormGroup>
-                </Col>
-                <Col lg="12">
-                  <FormGroup>
-                    <label className="form-control-label">Chronic Cases</label>
-                    <Input
-                      disabled={this.props.create ? false : !this.state.edit}
-                      className="form-control-alternative"
-                      id="chronicCases"
-                      type="text"
-                      value={this.state.chronicCases}
-                      onChange={this.handleChange}
-                      multiple
-                    />
-                  </FormGroup>
-                </Col>
-                <Col lg="12">
-                  <FormGroup>
-                    <label className="form-control-label">
-                      General Conditions
-                    </label>
-                    <Input
-                      disabled={this.props.create ? false : !this.state.edit}
-                      className="form-control-alternative"
-                      id="generalConditions"
-                      type="text"
-                      value={this.state.generalConditions}
-                      onChange={this.handleChange}
-                      multiple
-                    />
-                  </FormGroup>
-                </Col>
-                <Col lg="12">
-                  <FormGroup>
-                    <label className="form-control-label">
-                      Personal Accident Cover
-                    </label>
-                    <Input
-                      disabled={this.props.create ? false : !this.state.edit}
-                      className="form-control-alternative"
-                      id="personalAccident"
-                      type="text"
-                      value={this.state.personalAccident}
-                      onChange={this.handleChange}
-                      multiple
-                    />
+                    >
+                      <option value="single">Single</option>
+                      <option value="multiple">Multiple</option>
+                    </Input>
                   </FormGroup>
                 </Col>
               </Row>
@@ -334,4 +258,4 @@ class MedicalPlansManagementModal extends Component {
   }
 }
 
-export default MedicalPlansManagementModal;
+export default LastExpensePlansManagementModal;

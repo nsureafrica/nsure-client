@@ -17,6 +17,8 @@ import Travel from "./views/Confirmation/travel";
 import Dashboard from "./views/Dashboard/dashboard";
 import MedicalInsuranceForm from "./views/forms/MedicalInsuranceForm";
 import PolicyDetail from "./views/Admin/Policies/motorPolicyDetail.jsx";
+import MedicalPolicyDetail from "./views/Admin/Policies/medicalPolicyDetail.jsx";
+import LastExpensePolicyDetail from './views/Admin/Policies/lastExpensePolicyDetail';
 import MedicalQuote from "./views/quote/medicalquote";
 import MedicalInvoice from "./views/invoices/medical_invoice";
 import LastExpenseQuote from "./views/quote/lastExpenseQuote";
@@ -24,20 +26,23 @@ import LastExpenseInvoice from "./views/invoices/last_expense";
 import ManageMotorRates from "./views/Admin/Management/motor_rates/manage_motor_rates";
 import ManageUnderwriters from "./views/Admin/Management/Underwriters/manage-underwriters";
 import ManageMedicalPlans from "./views/Admin/Management/Medical/manage-medical-plans";
+import TransactionDetail from "./views/Admin/Transactions/transactionDetail";
+import ManageLastExpensePlans from "./views/Admin/Management/LastExpense/manage-last-expense-plans";
+
 const routes = [
   {
     path: "/index",
     name: "Business Insurance",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/maps",
     name: "Premiums,Policies and Claims",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
-    layout: "/client"
+    layout: "/client",
   },
   // {
   //   path: "/delivery",
@@ -51,22 +56,21 @@ const routes = [
     name: "Motor Quote",
     icon: "ni ni-pin-3 text-orange",
     component: MotorQuote,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/medical-quote",
     name: "Medical Quote",
     icon: "ni ni-pin-3 text-orange",
     component: MedicalQuote,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/last-expense-quote",
     name: "Last Expense Quote",
     component: LastExpenseQuote,
-    layout: "/client"
+    layout: "/client",
   },
-
 
   // {
   //   path: "/pickup",
@@ -80,65 +84,65 @@ const routes = [
     name: "Invoice",
     icon: "ni ni-pin-3 text-orange",
     component: Invoice,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/invoice-medical",
     name: "Medical Invoice",
     icon: "ni ni-pin-3 text-orange",
     component: MedicalInvoice,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/invoice-last-expense",
     name: "Last Expense Invoice",
     icon: "ni ni-pin-3 text-orange",
     component: LastExpenseInvoice,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/confirmation",
     name: "Confirmation",
     icon: "ni ni-pin-3 text-orange",
     component: Confirmation,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/notified",
     name: "travel",
     icon: "ni ni-pin-3 text-orange",
     component: Travel,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/user-profile",
     name: "Profile",
     component: Profile,
-    layout: "/client"
+    layout: "/client",
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
-    layout: "/auth"
+    layout: "/auth",
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
-    layout: "/auth"
+    layout: "/auth",
   },
   {
     path: "/reset-password",
     name: "Reset-password",
     component: ResetPassword,
-    layout: "/auth"
+    layout: "/auth",
   },
   {
     path: "/change-password",
     name: "Change-password",
     component: ChangePassword,
-    layout: "/auth"
+    layout: "/auth",
   },
   // {
   //   path: "/claims",
@@ -150,12 +154,13 @@ const routes = [
     path: "/policies",
     name: "Policies",
     component: UserPolicies,
-    layout: "/client"
-  }, {
+    layout: "/client",
+  },
+  {
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
-    layout: "/auth"
+    layout: "/auth",
   },
   {
     path: "/MedicalInsuranceForm",
@@ -170,6 +175,18 @@ const routes = [
     layout: "/admin",
   },
   {
+    path: "/PolicyDetail_Medical",
+    name: "Medical Policy Detail",
+    component: MedicalPolicyDetail,
+    layout: "/admin",
+  },
+  {
+    path: "/PolicyDetail_LastExpense",
+    name: "Last Expense Policy Detail",
+    component: LastExpensePolicyDetail,
+    layout: "/admin",
+  },
+  {
     path: "/manage-underwriters",
     name: "Manage Underwriters",
     component: ManageUnderwriters,
@@ -179,15 +196,25 @@ const routes = [
     path: "/manage-motor-rates",
     name: "Manage Motor Rates",
     component: ManageMotorRates,
-        layout: "/admin",
-
+    layout: "/admin",
   },
   {
     path: "/manage-medical-plans",
-    name: "Manage Underwriters",
+    name: "Manage Medical Plans",
     component: ManageMedicalPlans,
-        layout: "/admin",
-
-    },
+    layout: "/admin",
+  },
+  {
+    path: "/manage-last-expense-plans",
+    name: "Manage Last Expense Plans",
+    component: ManageLastExpensePlans,
+    layout: "/admin",
+  },
+  {
+    path: "/transaction-detail",
+    name: "TransactionDetail",
+    component: TransactionDetail,
+    layout: "/admin",
+  },
 ];
 export default routes;

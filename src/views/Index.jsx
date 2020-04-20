@@ -17,7 +17,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 
 // core components
@@ -33,13 +33,7 @@ class Index extends React.Component {
     this.state = {
       modal: false,
       userPolicies: [],
-      policyArr: [
-        "motor",
-        "medical",
-        "education",
-        "lastExpense",
-        "travel"
-      ]
+      policyArr: ["motor", "medical", "education", "lastExpense", "travel"],
     };
 
     this.toggle = this.toggle.bind(this);
@@ -47,14 +41,14 @@ class Index extends React.Component {
   state = {
     activeNav: 1,
     chartExample1Data: "data1",
-    open: false
+    open: false,
   };
   toggleNavs = (e, index) => {
     e.preventDefault();
     this.setState({
       activeNav: index,
       chartExample1Data:
-        this.state.chartExample1Data === "data1" ? "data2" : "data1"
+        this.state.chartExample1Data === "data1" ? "data2" : "data1",
     });
     const wow = () => {
       console.log(this.state);
@@ -72,29 +66,23 @@ class Index extends React.Component {
     this.fetchUserPolicies();
   }
   toggle(policyID) {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       modal: !prevState.modal,
-      policyID:policyID
+      policyID: policyID,
     }));
   }
   fetchUserPolicies() {
     // fetch motor policies
     // fetch medical policies
-    var policyArr = [
-      "motor",
-      "medical",
-      "education",
-      "lastExpense",
-      "travel"
-    ];
-    getAllUserPolicies(this.state.policyArr).then(responseArr => {
+    var policyArr = ["motor", "medical", "education", "lastExpense", "travel"];
+    getAllUserPolicies(this.state.policyArr).then((responseArr) => {
       this.setState({
-        userPolicies: responseArr
+        userPolicies: responseArr,
       });
     });
   }
 
-  render() {  
+  render() {
     console.log(this.state.userPolicies);
     return (
       <>
@@ -116,8 +104,7 @@ class Index extends React.Component {
           <Row className="mt-3">
             <Col className="mb-5 mb-xl-0">
               <Card className="shadow">
-                <CardHeader className="border-0">
-                </CardHeader>
+                <CardHeader className="border-0"></CardHeader>
                 <CardBody>
                   <ul className="list-group list-group-flush list my--3">
                     {this.state.policyArr.map(
@@ -133,30 +120,41 @@ class Index extends React.Component {
                                   </a>
                                 </h5>
                                 {this.state.userPolicies[index].data.map(
-                                  policy => (
+                                  (policy) => (
                                     <div
                                       style={{
                                         display: "block",
-                                        padding: "15px 0"
+                                        padding: "15px 0",
                                       }}
                                     >
-                                      <span
-                                        className="text-success"
-                                        style={{ marginRight: "12px" }}
-                                      >
-                                        ●
-                                      </span>
+                                      {policy.active ? (
+                                        <span
+                                          className="text-success"
+                                          style={{ marginRight: "12px" }}
+                                        >
+                                          ●
+                                        </span>
+                                      ) : (
+                                        <span
+                                          className="text-danger"
+                                          style={{ marginRight: "12px" }}
+                                        >
+                                          ●
+                                        </span>
+                                      )}
                                       <span>
                                         {policyType === "motor"
                                           ? policy.registrationNumber
-                                          : null}
-                                        {" "}(Active)
+                                          : null}{" "}
+                                        {policy.active
+                                          ? "(Active)"
+                                          : "(Inactive)"}
                                       </span>
                                       <button
                                         type="button"
                                         className="btn btn-secondary"
                                         style={{ float: "right" }}
-                                        onClick={()=>this.toggle(policy.id)}
+                                        onClick={() => this.toggle(policy.id)}
                                       >
                                         Claim
                                       </button>
@@ -178,7 +176,7 @@ class Index extends React.Component {
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
-          policyID = {this.state.policyID}
+          policyID={this.state.policyID}
         />
         {/* <Modal
           isOpen={this.state.modal}

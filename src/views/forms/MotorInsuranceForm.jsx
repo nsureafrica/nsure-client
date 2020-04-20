@@ -13,7 +13,7 @@ import {
   Container,
   Row,
   Label,
-  Col
+  Col,
 } from "reactstrap";
 import { onlyAllowNNumericalInput } from "../../miscFunctions";
 import { postRequest, getRequest } from "../../requests/requests";
@@ -26,7 +26,7 @@ import { pluginService } from "chart.js";
 import {
   ErrorOutline as Error,
   CheckCircleOutline as Success,
-  ErrorRounded
+  ErrorRounded,
 } from "@material-ui/icons";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
@@ -86,7 +86,7 @@ class MotorInsuranceForm extends React.Component {
       vehicleClasses: [],
       variant: "",
       message: "",
-      showForm: false
+      showForm: false,
     };
 
     this.handleSelect = this.handleSelect.bind(this);
@@ -97,7 +97,7 @@ class MotorInsuranceForm extends React.Component {
   }
 
   getMotorClasses() {
-    getRequest("/motorclass/getMotorClasses").then(response => {
+    getRequest("/motorclass/getMotorClasses").then((response) => {
       this.setState({ vehicleClasses: response.data });
     });
   }
@@ -106,19 +106,19 @@ class MotorInsuranceForm extends React.Component {
     this.setState({ [event.target.id]: event.target.value });
   }
 
-  handleSelect = event => {
+  handleSelect = (event) => {
     this.setState({ [event.target.id]: event.target.value });
     var motorPrivate = this.state.vehicleClasses.find(
-      vehicleClass => vehicleClass.name === "Motor private"
+      (vehicleClass) => vehicleClass.name === "Motor private"
     );
     var motorcycle = this.state.vehicleClasses.find(
-      vehicleClass => vehicleClass.name === "Motorcycle"
+      (vehicleClass) => vehicleClass.name === "Motorcycle"
     );
     var motorCommercial = this.state.vehicleClasses.find(
-      vehicleClass => vehicleClass.name === "Motor commercial"
+      (vehicleClass) => vehicleClass.name === "Motor commercial"
     );
     var psv = this.state.vehicleClasses.find(
-      vehicleClass => vehicleClass.name === "PSV"
+      (vehicleClass) => vehicleClass.name === "PSV"
     );
     console.log(motorCommercial.id, event.target.value);
     if (event.target.id === "vehicleClass") {
@@ -143,7 +143,7 @@ class MotorInsuranceForm extends React.Component {
   };
 
   handleToggle(identifier) {
-    this.setState(state => ({ [identifier]: !state[identifier] }));
+    this.setState((state) => ({ [identifier]: !state[identifier] }));
   }
 
   handleFile(event) {
@@ -164,7 +164,7 @@ class MotorInsuranceForm extends React.Component {
       courtesyCar: this.state.courtesyCar,
       excessProtector: this.state.excessProtector,
       politicalViolenceTerrorism: this.state.politicalViolenceTerrorism,
-      noOfSeats: this.state.numberOfSeats
+      noOfSeats: this.state.numberOfSeats,
     };
 
     var optionsSelected = this.state;
@@ -230,24 +230,24 @@ class MotorInsuranceForm extends React.Component {
             color: "#F96762",
             fontSize: "13px",
             fontWeight: 600,
-            textAlign: "left"
+            textAlign: "left",
           }}
         >
           Please correct the following errors:
           {
             <ol>
-              {errors.map(error => (
+              {errors.map((error) => (
                 <li>{error}</li>
               ))}
             </ol>
           }
         </div>,
         {
-          duration: 10000
+          duration: 10000,
         }
       );
     } else {
-      postRequest("/quotes/motor", payloadObject).then(response => {
+      postRequest("/quotes/motor", payloadObject).then((response) => {
         console.log(response);
         // set options selected
         localStorage.setItem(
@@ -261,14 +261,14 @@ class MotorInsuranceForm extends React.Component {
             message:
               "We were unable to find underwriters offering the options you selected",
             showNotification: true,
-            variant: "warning"
+            variant: "warning",
           });
         } else {
           this.props.history.push("/client/motor-quote", {
             quoteArray: response.data,
             logBook: this.state.logBook,
             nationalIdScan: this.state.nationalIdScan,
-            KRAPinScan: this.state.KRAPinScan
+            KRAPinScan: this.state.KRAPinScan,
           });
         }
       });
@@ -280,13 +280,13 @@ class MotorInsuranceForm extends React.Component {
     var motorCommercial, motorcycle, motorPrivate;
     if (this.state.vehicleClasses.length > 0) {
       motorCommercial = this.state.vehicleClasses.find(
-        vehicleClass => vehicleClass.name === "Motor commercial"
+        (vehicleClass) => vehicleClass.name === "Motor commercial"
       );
       motorcycle = this.state.vehicleClasses.find(
-        vehicleClass => vehicleClass.name === "Motorcycle"
+        (vehicleClass) => vehicleClass.name === "Motorcycle"
       );
       motorPrivate = this.state.vehicleClasses.find(
-        vehicleClass => vehicleClass.name === "Motor private"
+        (vehicleClass) => vehicleClass.name === "Motor private"
       );
     }
     return (
@@ -303,7 +303,7 @@ class MotorInsuranceForm extends React.Component {
                 <Card
                   className="bg-secondary shadow"
                   style={{
-                    marginBottom: "8em"
+                    marginBottom: "8em",
                   }}
                 >
                   <CardHeader className="bg-white border-0">
@@ -323,13 +323,16 @@ class MotorInsuranceForm extends React.Component {
                       The most important coverage has to be the minimum
                       liability coverage through your car Insurance. More than
                       anything else, you need to maintain car insurance to keep
-                      yourself legal to drive. We offer the highest level of
-                      cover you can get. It protects against damage to your own
-                      car as well as accidents involving other people. It can
-                      also include a courtesy car ,Excess protector and
-                      Protection against Political Violence and terrorism, at
-                      3.5% ALL INCLUSIVE.
+                      yourself legal to drive.
                     </p>
+                    <p style={{ color: "#f66f31", fontWeight: 600 }}>
+                      We offer the highest level of cover you can get. It
+                      protects against damage to your own car as well as
+                      accidents involving other people. It can also include a
+                      courtesy car ,Excess protector and Protection against
+                      Political Violence and terrorism, at 3.5% ALL INCLUSIVE.
+                    </p>
+
                     <p style={{ color: "#11576a", fontWeight: 800 }}>
                       Get Covered the Sure Way
                     </p>
@@ -361,14 +364,14 @@ class MotorInsuranceForm extends React.Component {
                         Vehicle information{" "}
                       </h6>
                       <span style={{ fontSize: ".8rem", color: "orange" }}>
-                        Please fill in all the fields *
+                        Please fill in all the marked fields *
                       </span>
                       <div className="pl-lg-4" style={{ marginTop: "1rem" }}>
                         <Row>
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Estimated value (KES)
+                                Estimated value (KES) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -400,7 +403,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <Label className="form-control-label">
-                                Class of Vehicle
+                                Class of Vehicle *
                               </Label>
                               <Input
                                 type="select"
@@ -410,7 +413,7 @@ class MotorInsuranceForm extends React.Component {
                                 onChange={this.handleSelect}
                                 required
                               >
-                                {vehicleClasses.map(vehicleClass => (
+                                {vehicleClasses.map((vehicleClass) => (
                                   <option
                                     key={vehicleClass.id}
                                     value={vehicleClass.id}
@@ -426,7 +429,7 @@ class MotorInsuranceForm extends React.Component {
                               <Col lg="6">
                                 <FormGroup>
                                   <Label className="form-control-label">
-                                    Vehicle Type
+                                    Vehicle Type *
                                   </Label>
                                   <Input
                                     type="select"
@@ -493,7 +496,7 @@ class MotorInsuranceForm extends React.Component {
                                 >
                                   Comprehensive
                                 </option>
-                                <option key="third_party" value="third_party">
+                                <option key="thirdParty" value="thirdParty">
                                   Third Party
                                 </option>
                               </Input>
@@ -502,7 +505,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Vehicle Registration
+                                Vehicle Registration *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -518,7 +521,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Chasis Number
+                                Chasis Number *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -534,7 +537,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Engine Number
+                                Engine Number *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -550,7 +553,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Year of manufacture
+                                Year of manufacture *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -566,7 +569,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Number of Seats
+                                Number of Seats *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -582,7 +585,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Engine Capacity (cc)
+                                Engine Capacity (cc) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -598,7 +601,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Upload Logbook
+                                Upload Logbook *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -689,7 +692,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                National ID. (Colored scanned document)
+                                National ID. (Colored scanned document) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -704,7 +707,7 @@ class MotorInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                KRA Pin Certificate.
+                                KRA Pin Certificate. *
                               </label>
                               <Input
                                 className="form-control-alternative"

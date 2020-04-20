@@ -130,7 +130,7 @@ class Management extends Component {
                           fontSize: "20px"
                         }}
                       >
-                        Medical Rates
+                        Medical Plans
                       </div>
                     </CardBody>
                   </Card>
@@ -138,7 +138,7 @@ class Management extends Component {
               </Col>
             </Row>
             <Row>
-              <Col lg="4 " sm="12" xs="12">
+              {/* <Col lg="4 " sm="12" xs="12">
                 <a href="MotorInsuranceForm">
                   <Card
                     className="card-stats mb-4 mb-xl-0"
@@ -170,8 +170,8 @@ class Management extends Component {
                     </CardBody>
                   </Card>
                 </a>
-              </Col>
-              <Col lg="4 " sm="12" xs="12">
+              </Col> */}
+              {/* <Col lg="4 " sm="12" xs="12">
                 <a href="MotorInsuranceForm">
                   <Card
                     className="card-stats mb-4 mb-xl-0"
@@ -203,9 +203,9 @@ class Management extends Component {
                     </CardBody>
                   </Card>
                 </a>
-              </Col>
+              </Col> */}
               <Col lg="4 " sm="12" xs="12">
-                <a href="MotorInsuranceForm">
+                <a href="manage-last-expense-plans">
                   <Card
                     className="card-stats mb-4 mb-xl-0"
                     style={{
@@ -232,7 +232,7 @@ class Management extends Component {
                           fontSize: "20px"
                         }}
                       >
-                        Last Expense Rates
+                        Last Expense Plans
                       </div>
                     </CardBody>
                   </Card>

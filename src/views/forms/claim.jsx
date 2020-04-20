@@ -13,10 +13,17 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 import { postRequest } from "../../requests/requests";
 import { Alert } from "reactstrap";
+import {
+  ErrorOutline as Error,
+  CheckCircleOutline as Success,
+  ErrorRounded
+} from "@material-ui/icons";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class Claim extends Component {
   constructor(props) {
@@ -25,7 +32,7 @@ class Claim extends Component {
       isOpen: this.props.isOpen,
       claimForms: null,
       claimPhotos: null,
-      descriptionOfClaim: ""
+      descriptionOfClaim: "",
     };
     this.handleFile = this.handleFile.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -60,11 +67,34 @@ class Claim extends Component {
     data.append("policyId", this.props.policyID);
 
     postRequest("/createClaim", data)
-      .then(response => {
+      .then((response) => {
         console.log(response);
+        toaster.notify(
+          <div
+            style={{
+              color: "#0AA681",
+              fontSize: "13px",
+              fontWeight: "600",
+            }}
+          >
+            <Success style={{ width: "40px" }} /> Notification sent. We are
+            reviewing your details and will contact you with further directions.
+          </div>
+        );
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
+        toaster.notify(
+          <div
+            style={{
+              color: "#F96762",
+              fontSize: "13px",
+              fontWeight: "600",
+            }}
+          >
+            <Error style={{ width: "40px" }} /> An error occurred
+          </div>
+        );
       });
   }
 

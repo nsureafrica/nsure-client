@@ -11,7 +11,7 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -19,7 +19,7 @@ import { postRequest } from "../../requests/requests";
 import {
   ErrorOutline as Error,
   CheckCircleOutline as Success,
-  ErrorRounded
+  ErrorRounded,
 } from "@material-ui/icons";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
@@ -36,9 +36,9 @@ class EducationInsuranceForm extends React.Component {
       policyTerm: "",
       sumAssured: undefined,
       premium: undefined,
-      frequency: "",
+      frequency: "monthly",
       targetAmount: undefined,
-      showForm: false
+      showForm: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -83,30 +83,30 @@ class EducationInsuranceForm extends React.Component {
             color: "#F96762",
             fontSize: "13px",
             fontWeight: 600,
-            textAlign: "left"
+            textAlign: "left",
           }}
         >
           Please correct the following errors:
           {
             <ol>
-              {errors.map(error => (
+              {errors.map((error) => (
                 <li>{error}</li>
               ))}
             </ol>
           }
         </div>,
         {
-          duration: 10000
+          duration: 10000,
         }
       );
     } else {
       // post to endpoint
       postRequest("/policies/education/policy", payload)
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.props.history.push("/client/notified");
         })
-        .catch(err => {
+        .catch((err) => {
           // handle err
           this.props.history.push("/client/notified");
         });
@@ -129,7 +129,7 @@ class EducationInsuranceForm extends React.Component {
                 <Card
                   className="bg-secondary shadow"
                   style={{
-                    marginBottom: "8em"
+                    marginBottom: "8em",
                   }}
                 >
                   <CardHeader className="bg-white border-0">
@@ -151,11 +151,13 @@ class EducationInsuranceForm extends React.Component {
                       financial strain on you and your family. That is why it is
                       important to start planning for your child's education as
                       soon as possible, because the earlier you begin, the more
-                      time you allow your money to grow. The education policy
-                      will provide the funds needed by your child to pursue
-                      further education and assures that whatever happens in the
-                      future, your child will still have the means to pursue
-                      some of his/her goals in life.
+                      time you allow your money to grow.
+                    </p>
+                    <p style={{ color: "#f66f31", fontWeight: 600 }}>
+                      The education policy will provide the funds needed by your
+                      child to pursue further education and assures that
+                      whatever happens in the future, your child will still have
+                      the means to pursue some of his/her goals in life.
                     </p>
                     <p style={{ color: "#11576a", fontWeight: 800 }}>
                       Get Covered the Sure Way
@@ -189,7 +191,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                First name
+                                First name *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -204,7 +206,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Last name
+                                Last name *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -219,7 +221,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Date of Birth
+                                Date of Birth *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -249,7 +251,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Age of child (Next birthday)
+                                Age of child (Next birthday) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -264,7 +266,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Policy Term (in years)
+                                Policy Term (in years) *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -279,7 +281,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Sum assured
+                                Sum assured *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -294,7 +296,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Payable premium
+                                Payable premium *
                               </label>
                               <Input
                                 className="form-control-alternative"
@@ -333,7 +335,7 @@ class EducationInsuranceForm extends React.Component {
                           <Col lg="6">
                             <FormGroup>
                               <label className="form-control-label">
-                                Target amount
+                                Target amount *
                               </label>
                               <Input
                                 className="form-control-alternative"

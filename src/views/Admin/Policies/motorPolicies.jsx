@@ -9,7 +9,7 @@ class AdminMotorPolicies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      policies: []
+      policies: [],
     };
     this.handleRowClick = this.handleRowClick.bind(this);
   }
@@ -17,16 +17,16 @@ class AdminMotorPolicies extends Component {
   componentDidMount() {
     // get all motor policies
     getRequest("/policies/getallmotorpolicies")
-      .then(response => {
+      .then((response) => {
         console.log(response);
         if (response.data.length > 0) {
           this.setState({ policies: response.data });
         }
       })
-      .catch(err => {});
+      .catch((err) => {});
   }
 
-  handleRowClick = policyDetails => {
+  handleRowClick = (policyDetails) => {
     console.log(policyDetails);
     this.props.history.push("/admin/PolicyDetail", policyDetails);
   };
@@ -43,7 +43,7 @@ class AdminMotorPolicies extends Component {
                   textAlign: "center",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase"
+                  textTransform: "uppercase",
                 }}
               >
                 User Motor Policies
@@ -60,16 +60,25 @@ class AdminMotorPolicies extends Component {
                       <th scope="col">Policy holder</th>
                       <th scope="col">Email</th>
                       <th scope="col">Cover type</th>
+                      <th scope="col">Amount</th>
                       <th scope="col">Date</th>
                       <th scope="col">Status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.policies.map(policy => (
+                    {this.state.policies.map((policy) => (
                       <tr onClick={() => this.handleRowClick(policy)}>
                         <td>{`${policy.firstName} ${policy.lastName}`}</td>
                         <td>{policy.emailAddress}</td>
                         <td>{lodash.startCase(policy.coverType)}</td>
+                        <td>
+                          Ksh{" "}
+                          {policy.Bill &&
+                            policy.Bill.amount
+                              .toFixed(0)
+                              .toString()
+                              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        </td>
                         <td>
                           {moment(policy.createdAt).format("MMMM Do YYYY")}
                         </td>

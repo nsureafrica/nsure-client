@@ -40,7 +40,7 @@ class ConfirmTransaction extends Component {
   handleSubmit = () => {
     const payload = {
       id: this.props.transaction.id,
-      amount: this.props.verify ? this.state.actualTransactionAmount : 0,
+      amount: this.props.verify ? parseInt(this.state.actualTransactionAmount) : 0,
       verified: this.props.verify
     };
     const requestUrl = `/transactions/confirmtransaction`;

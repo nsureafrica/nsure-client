@@ -11,7 +11,7 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -21,7 +21,7 @@ import { postRequest, getRequest } from "../../requests/requests";
 import {
   ErrorOutline as Error,
   CheckCircleOutline as Success,
-  ErrorRounded
+  ErrorRounded,
 } from "@material-ui/icons";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
@@ -46,7 +46,7 @@ class SalamahTransitionCoverForm extends React.Component {
       married: false,
       showPlans: false,
       selectedPlan: undefined,
-      showForm: false
+      showForm: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleParentChange = this.handleParentChange.bind(this);
@@ -57,15 +57,15 @@ class SalamahTransitionCoverForm extends React.Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
   handleToggle(identifier) {
-    this.setState(state => ({ [identifier]: !state[identifier] }));
+    this.setState((state) => ({ [identifier]: !state[identifier] }));
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     if (["name", "id"].includes(e.target.name)) {
       let additionalMembers = [...this.state.additionalMembers];
       additionalMembers[e.target.dataset.id][
@@ -79,8 +79,8 @@ class SalamahTransitionCoverForm extends React.Component {
     }
   };
 
-  addChildren = e => {
-    this.setState(prevState => ({
+  addChildren = (e) => {
+    this.setState((prevState) => ({
       children: [
         ...prevState.children,
         {
@@ -88,12 +88,12 @@ class SalamahTransitionCoverForm extends React.Component {
           lastName: "",
           DOB: "",
           idNumber: "",
-          relationship: "child"
-        }
-      ]
+          relationship: "child",
+        },
+      ],
     }));
   };
-  removeChildren = e => {
+  removeChildren = (e) => {
     var children = this.state.children;
     if (children.length > 0) {
       children.pop();
@@ -110,12 +110,18 @@ class SalamahTransitionCoverForm extends React.Component {
     children[index] = child;
     this.setState({ children });
   }
-  addParent = e => {
-    this.setState(prevState => ({
+  addParent = (e) => {
+    this.setState((prevState) => ({
       parents: [
         ...prevState.parents,
-        { firstName: "", lastName: "", DOB: "", idNumber: "", relationship: "" }
-      ]
+        {
+          firstName: "",
+          lastName: "",
+          DOB: "",
+          idNumber: "",
+          relationship: "",
+        },
+      ],
     }));
   };
   handleParentChange(event, index) {
@@ -136,13 +142,13 @@ class SalamahTransitionCoverForm extends React.Component {
     parents[index] = parent;
     this.setState({ parents });
   };
-  addAdditionalMember = e => {
-    this.setState(prevState => ({
-      additionalMembers: [...prevState.additionalMembers, { name: "", id: "" }]
+  addAdditionalMember = (e) => {
+    this.setState((prevState) => ({
+      additionalMembers: [...prevState.additionalMembers, { name: "", id: "" }],
     }));
   };
 
-  selectPlan = plan => {
+  selectPlan = (plan) => {
     this.setState({ selectedPlan: plan, showPlans: false });
   };
 
@@ -157,7 +163,7 @@ class SalamahTransitionCoverForm extends React.Component {
         this.state.children.length +
         this.state.parents.length +
         1 +
-        (this.state.married ? 1 : 0)
+        (this.state.married ? 1 : 0),
     };
     var optionsSelected = this.state;
     var errors = [];
@@ -218,24 +224,24 @@ class SalamahTransitionCoverForm extends React.Component {
             color: "#F96762",
             fontSize: "13px",
             fontWeight: 600,
-            textAlign: "left"
+            textAlign: "left",
           }}
         >
           Please correct the following errors:
           {
             <ol>
-              {errors.map(error => (
+              {errors.map((error) => (
                 <li>{error}</li>
               ))}
             </ol>
           }
         </div>,
         {
-          duration: 10000
+          duration: 10000,
         }
       );
     } else {
-      postRequest("/quotes/lastexpense", payloadObject).then(response => {
+      postRequest("/quotes/lastexpense", payloadObject).then((response) => {
         console.log(response);
         // set options selected
         localStorage.setItem(
@@ -252,11 +258,11 @@ class SalamahTransitionCoverForm extends React.Component {
             message:
               "We were unable to find underwriters offering the options you selected",
             showNotification: true,
-            variant: "warning"
+            variant: "warning",
           });
         } else {
           this.props.history.push("/client/last-expense-quote", {
-            quote: response.data
+            quote: response.data,
           });
         }
       });
@@ -267,7 +273,7 @@ class SalamahTransitionCoverForm extends React.Component {
       "Father",
       "Mother",
       "Mother in Law",
-      "Father in Law"
+      "Father in Law",
     ];
     return (
       <>
@@ -283,29 +289,38 @@ class SalamahTransitionCoverForm extends React.Component {
                   <Card
                     className="bg-secondary shadow"
                     style={{
-                      marginBottom: "8em"
+                      marginBottom: "8em",
                     }}
                   >
                     <CardHeader className="bg-white border-0">
                       <Row className="align-items-center">
                         <Col xs="8">
-                          <h3 className="mb-0" style = {{color:'#11576a', fontWeight:800}}>Policy Description</h3>
+                          <h3
+                            className="mb-0"
+                            style={{ color: "#11576a", fontWeight: 800 }}
+                          >
+                            Policy Description
+                          </h3>
                         </Col>
                       </Row>
                     </CardHeader>
                     <CardBody>
-                      <p style = {{color:'#f66f31', fontWeight:600}}>
+                      <p style={{ color: "#f66f31", fontWeight: 600 }}>
                         Losing a loved is heartbreaking and emotionally draining
                         , it is even harder when the financial obligations begin
                         to strain those left behind. Our last expense insurance
                         is designed to cover the bills that your loved ones will
                         face after your death. These costs will include medical
                         bills and funeral expenses. Unfortunately, even
-                        bare-bones funerals can cost thousands of Shillings .
-                        And here is where we step in and provide an affordable
-                        last expense solution that will cushion your loved ones.
+                        bare-bones funerals can cost thousands of Shillings.
                       </p>
-                      <p style = {{color:'#11576a', fontWeight:800}}>Get Covered the Sure Way</p>
+                      <p style={{ color: "#f66f31", fontWeight: 600 }}>
+                        This is where we step in to provide an affordable last
+                        expense solution that will cushion your loved ones.
+                      </p>
+                      <p style={{ color: "#11576a", fontWeight: 800 }}>
+                        Get Covered the Sure Way
+                      </p>
                     </CardBody>
                     <div className="text-center">
                       <Button
@@ -336,7 +351,7 @@ class SalamahTransitionCoverForm extends React.Component {
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  First Name
+                                  First Name *
                                 </label>
                                 <Input
                                   className="form-control-alternative"
@@ -351,7 +366,7 @@ class SalamahTransitionCoverForm extends React.Component {
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  Last Name
+                                  Last Name *
                                 </label>
                                 <Input
                                   className="form-control-alternative"
@@ -366,7 +381,7 @@ class SalamahTransitionCoverForm extends React.Component {
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  Date of birth
+                                  Date of birth *
                                 </label>
                                 <Input
                                   className="form-control-alternative"
@@ -381,7 +396,7 @@ class SalamahTransitionCoverForm extends React.Component {
                             <Col lg="6">
                               <FormGroup>
                                 <label className="form-control-label">
-                                  ID Number
+                                  ID Number *
                                 </label>
                                 <Input
                                   className="form-control-alternative"
@@ -430,7 +445,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                 <Col lg="6">
                                   <FormGroup>
                                     <label className="form-control-label">
-                                      First Name
+                                      First Name *
                                     </label>
                                     <Input
                                       className="form-control-alternative"
@@ -445,7 +460,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                 <Col lg="6">
                                   <FormGroup>
                                     <label className="form-control-label">
-                                      Last Name
+                                      Last Name *
                                     </label>
                                     <Input
                                       className="form-control-alternative"
@@ -460,7 +475,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                 <Col lg="6">
                                   <FormGroup>
                                     <label className="form-control-label">
-                                      Date of birth
+                                      Date of birth *
                                     </label>
                                     <Input
                                       className="form-control-alternative"
@@ -475,7 +490,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                 <Col lg="6">
                                   <FormGroup>
                                     <label className="form-control-label">
-                                      ID Number
+                                      ID Number *
                                     </label>
                                     <Input
                                       className="form-control-alternative"
@@ -510,7 +525,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                       <Col md="6">
                                         <FormGroup>
                                           <label className="form-control-label">
-                                            First Name
+                                            First Name *
                                           </label>
                                           <Input
                                             type="text"
@@ -520,7 +535,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                                 .firstName
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleParentChange(
                                                 event,
                                                 index
@@ -532,7 +547,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                       <Col md="6">
                                         <FormGroup>
                                           <label className="form-control-label">
-                                            Last Name
+                                            Last Name *
                                           </label>
                                           <Input
                                             type="text"
@@ -541,7 +556,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                               this.state.parents[index].lastName
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleParentChange(
                                                 event,
                                                 index
@@ -553,7 +568,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                       <Col md="6">
                                         <FormGroup>
                                           <label className="form-control-label">
-                                            Date of birth
+                                            Date of birth *
                                           </label>
                                           <Input
                                             type="date"
@@ -562,7 +577,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                               this.state.parents[index].DOB
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleParentChange(
                                                 event,
                                                 index
@@ -583,7 +598,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                               this.state.parents[index].idNumber
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleParentChange(
                                                 event,
                                                 index
@@ -605,21 +620,23 @@ class SalamahTransitionCoverForm extends React.Component {
                                                 .relationship
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleRelationshipSelect(
                                                 event,
                                                 index
                                               )
                                             }
                                           >
-                                            {relationships.map(relationship => (
-                                              <option
-                                                key={relationship}
-                                                value={relationship}
-                                              >
-                                                {relationship}
-                                              </option>
-                                            ))}
+                                            {relationships.map(
+                                              (relationship) => (
+                                                <option
+                                                  key={relationship}
+                                                  value={relationship}
+                                                >
+                                                  {relationship}
+                                                </option>
+                                              )
+                                            )}
                                           </Input>
                                         </FormGroup>
                                       </Col>
@@ -656,7 +673,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                       <Col md="6">
                                         <FormGroup>
                                           <label className="form-control-label">
-                                            First Name
+                                            First Name *
                                           </label>
                                           <Input
                                             type="text"
@@ -666,7 +683,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                                 .firstName
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleChildrenChange(
                                                 event,
                                                 index
@@ -678,7 +695,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                       <Col md="6">
                                         <FormGroup>
                                           <label className="form-control-label">
-                                            Last Name
+                                            Last Name *
                                           </label>
                                           <Input
                                             type="text"
@@ -688,7 +705,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                                 .lastName
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleChildrenChange(
                                                 event,
                                                 index
@@ -700,7 +717,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                       <Col md="6">
                                         <FormGroup>
                                           <label className="form-control-label">
-                                            Date of birth
+                                            Date of birth *
                                           </label>
                                           <Input
                                             type="date"
@@ -709,7 +726,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                               this.state.children[index].DOB
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleChildrenChange(
                                                 event,
                                                 index
@@ -731,7 +748,7 @@ class SalamahTransitionCoverForm extends React.Component {
                                                 .idNumber
                                             }
                                             className="form-control-alternative"
-                                            onChange={event =>
+                                            onChange={(event) =>
                                               this.handleChildrenChange(
                                                 event,
                                                 index

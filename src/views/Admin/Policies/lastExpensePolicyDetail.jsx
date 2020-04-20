@@ -5,56 +5,42 @@ import {
   Table,
   Card,
   Container,
-  Button,
+  Button
 } from "reactstrap";
 import moment from "moment";
 import ConfirmTransaction from "./confirmTrasnsaction";
-import { getRequest, putRequest } from "../../../requests/requests";
+import { getRequest, putRequest} from "../../../requests/requests";
 import {
-  ErrorOutline as Error,
-  CheckCircleOutline as Success,
-  ErrorRounded,
-} from "@material-ui/icons";
-import toaster from "toasted-notes";
-import "toasted-notes/src/styles.css";
+    ErrorOutline as Error,
+    CheckCircleOutline as Success,
+    ErrorRounded,
+  } from "@material-ui/icons";
+  import toaster from "toasted-notes";
+  import "toasted-notes/src/styles.css";
 
-class MotorPolicyDetail extends Component {
+class LastExpensePolicyDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       bill: {},
       confirmTransaction: false,
       transactionDetails: {},
-      verify: false,
+      verify:false
     };
   }
 
   componentDidMount() {
     //   fetch bill
     getRequest(`/bill/getbill/${this.props.location.state.BillId}`).then(
-      (response) => {
+      response => {
         console.log(response.data);
         this.setState({ bill: response.data });
       }
     );
   }
-  confirmTransaction = (transactionDetails) => {
-    this.setState({
-      confirmTransaction: true,
-      transactionDetails,
-      verify: true,
-    });
-  };
-  cancelVerification = (transactionDetails) => {
-    this.setState({
-      confirmTransaction: true,
-      transactionDetails,
-      verify: false,
-    });
-  };
   activatePolicy = (policyDetail) => {
     console.log("dfgh");
-    putRequest(`/policies/motor/activateMotorPolicy`, {
+    putRequest(`/policies/lastexpense/activateLastExpensePolicy`, {
       id: policyDetail.id,
       coverStart: moment().endOf("day"),
       coverEnd: moment().endOf("day").add(1, "year"),
@@ -72,7 +58,7 @@ class MotorPolicyDetail extends Component {
             <Success style={{ width: "40px" }} /> Success
           </div>
         );
-        this.props.history.push("motor-policies");
+        this.props.history.push("medical-policies");
       })
       .catch((err) => {
         console.log(err);
@@ -90,7 +76,7 @@ class MotorPolicyDetail extends Component {
       });
   };
   deactivatePolicy = (policyDetail) => {
-    putRequest(`/policies/motor/activateMotorPolicy`, {
+    putRequest(`/policies/lastexpense/activateLastExpensePolicy`, {
       id: policyDetail.id,
       coverStart: moment().endOf("day"),
       coverEnd: moment().endOf("day").add(1, "year"),
@@ -108,7 +94,7 @@ class MotorPolicyDetail extends Component {
             <Success style={{ width: "40px" }} /> Success
           </div>
         );
-        this.props.history.push("motor-policies");
+        this.props.history.push("medical-policies");
       })
       .catch((err) => {
         toaster.notify(
@@ -124,9 +110,15 @@ class MotorPolicyDetail extends Component {
         );
       });
   };
+  confirmTransaction = transactionDetails => {
+    this.setState({ confirmTransaction: true, transactionDetails, verify:true});
+  };
+  cancelVerification = transactionDetails => {
+    this.setState({ confirmTransaction: true, transactionDetails, verify:false });
+  };
   toggle = () => {
-    this.setState((prevState) => ({
-      confirmTransaction: !prevState.confirmTransaction,
+    this.setState(prevState => ({
+      confirmTransaction: !prevState.confirmTransaction
     }));
     this.props.history.go();
   };
@@ -145,17 +137,16 @@ class MotorPolicyDetail extends Component {
                   textAlign: "center",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase",
+                  textTransform: "uppercase"
                 }}
               >
-                Motor Policy
+                Last Expense Policy
               </h2>
               <Card style={{ padding: "20px" }} className="shadow">
                 <CardHeader className="border-0">
-                  <Button
-                    color="secondary"
+                  <Button color="secondary"
                     onClick={() =>
-                      this.props.history.push("/admin/motor-policies")
+                      this.props.history.push("/admin/lastExpense-policies")
                     }
                   >
                     Back
@@ -164,7 +155,7 @@ class MotorPolicyDetail extends Component {
                 <CardBody
                   style={{
                     textAlign: "left",
-                    color: "rgb(181, 0, 50)",
+                    color: "rgb(181, 0, 50)"
                   }}
                 >
                   <div
@@ -174,7 +165,7 @@ class MotorPolicyDetail extends Component {
                       textAlign: "left",
                       marginTop: "7px",
                       fontWeight: "bold",
-                      fontSize: "12px",
+                      fontSize: "12px"
                     }}
                   >
                     <Table>
@@ -253,7 +244,7 @@ class MotorPolicyDetail extends Component {
                 <CardBody
                   style={{
                     textAlign: "left",
-                    color: "rgb(181, 0, 50)",
+                    color: "rgb(181, 0, 50)"
                   }}
                 >
                   <div
@@ -263,13 +254,13 @@ class MotorPolicyDetail extends Component {
                       textAlign: "left",
                       marginTop: "7px",
                       fontWeight: "bold",
-                      fontSize: "12px",
+                      fontSize: "12px"
                     }}
                   >
                     <Table>
                       POLICY TRANSACTIONS
                       {this.state.bill.Transactions &&
-                        this.state.bill.Transactions.map((transaction) => (
+                        this.state.bill.Transactions.map(transaction => (
                           <>
                             <tr style={{ color: "black", fontWeight: "400" }}>
                               {/* <td>TransactionID: {transaction.id}</td> */}
@@ -306,20 +297,7 @@ class MotorPolicyDetail extends Component {
                               {/* <td /> */}
                               <td>Status</td>
                               <td>
-                                {transaction.verified ? (
-                                  <div style={{ display: "flex" }}>
-                                    Verified{" "}
-                                    <img
-                                      style={{
-                                        width: "1rem",
-                                        marginLeft: "5px",
-                                      }}
-                                      src="/check-circle-solid.svg"
-                                    />
-                                  </div>
-                                ) : (
-                                  "Not Verified"
-                                )}
+                               {transaction.verified?<div style = {{display:'flex'}}>Verified{' '} <img style = {{width:'1rem', marginLeft:'5px'}} src = '/check-circle-solid.svg'/></div>:"Not Verified"}
                               </td>
                             </tr>
                             <tr style={{ color: "black", fontWeight: "400" }}>
@@ -329,9 +307,7 @@ class MotorPolicyDetail extends Component {
                                   <Button
                                     color="secondary"
                                     style={{ width: "100%" }}
-                                    onClick={() =>
-                                      this.cancelVerification(transaction)
-                                    }
+                                    onClick={()=>this.cancelVerification(transaction)}
                                   >
                                     Cancel verification
                                   </Button>
@@ -364,7 +340,7 @@ class MotorPolicyDetail extends Component {
             isOpen={this.state.confirmTransaction}
             transaction={this.state.transactionDetails}
             toggle={this.toggle}
-            verify={this.state.verify}
+            verify = {this.state.verify}
           />
         )}
       </>
@@ -372,4 +348,4 @@ class MotorPolicyDetail extends Component {
   }
 }
 
-export default MotorPolicyDetail;
+export default LastExpensePolicyDetail;

@@ -14,71 +14,73 @@ class ManageMotorRates extends Component {
       loading: false,
       underwriters: [],
       motorClasses: [],
-      selectedMotorRate: {}
+      selectedMotorRate: {},
     };
+    this.getMotorClassName = this.getMotorClassName.bind(this);
   }
 
   componentDidMount() {
     this.setState({ loading: true });
     getRequest("/motorRates/getAllMotorRates")
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.setState({ motor_rates: response.data, loading: false });
-        getRequest("/underwriter/getAllUnderwriters").then(response => {
+        getRequest("/underwriter/getAllUnderwriters").then((response) => {
           this.setState({ underwriters: response.data });
         });
-        getRequest("/motorclass/getMotorClasses").then(response => {
+        getRequest("/motorclass/getMotorClasses").then((response) => {
           this.setState({ motorClasses: response.data });
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         // notify user of error
       });
   }
 
-  handleRowClick = motorRate => {
+  handleRowClick = (motorRate) => {
     this.setState({
       openModal: true,
-      selectedMotorRate: motorRate
+      selectedMotorRate: motorRate,
     });
   };
   toggle = () => {
-    this.setState(prevState => ({
-      openModal: !prevState.openModal
+    this.setState((prevState) => ({
+      openModal: !prevState.openModal,
     }));
   };
   toggle2 = () => {
-    this.setState(prevState => ({
-      createModal: !prevState.createModal
+    this.setState((prevState) => ({
+      createModal: !prevState.createModal,
     }));
   };
-  openCreateModal = (underwriters, motorClasses) => {
+  openCreateModal = () => {
     this.setState({
-      createModal: true,
-      allUnderwritters: underwriters,
-      allVehicleClasses: motorClasses
+      createModal: true
     });
   };
-  getUnderwriterName = underwriterID => {
+  getUnderwriterName = (underwriterID) => {
+    console.log(underwriterID);
     var selectedUnderwriter = "";
     if (this.state.underwriters.length > 0) {
       selectedUnderwriter = this.state.underwriters.find(
-        underwriter => underwriter.id === underwriterID
+        (underwriter) => underwriter.id === underwriterID
       );
     }
-    console.log(selectedUnderwriter);
-    return selectedUnderwriter;
+    let name = underwriterID ? selectedUnderwriter.name : "";
+    return name;
   };
-  getMotorClassName = motorClassID => {
+  getMotorClassName = (motorClassID) => {
     var selectedMotorClass = "";
+    console.log(this.state.motorClasses);
     if (this.state.motorClasses.length > 0) {
       selectedMotorClass = this.state.motorClasses.find(
-        motorClass => motorClass.id === motorClassID
+        (motorClass) => motorClass.id === motorClassID
       );
     }
-    console.log(selectedMotorClass);
-    return selectedMotorClass;
+    console.log(motorClassID);
+    var name = motorClassID ? selectedMotorClass.name : "";
+    return name;
   };
   render() {
     return (
@@ -93,7 +95,7 @@ class ManageMotorRates extends Component {
                   textAlign: "left",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase"
+                  textTransform: "uppercase",
                 }}
               >
                 Motor Rates
@@ -101,7 +103,7 @@ class ManageMotorRates extends Component {
               <Card style={{ padding: "20px" }} className="shadow">
                 <CardHeader className="border-0">
                   <span style={{ fontSize: ".8rem", color: "orange" }}>
-                    Please click on a row to edit
+                    Please click on a row to view rate
                   </span>
                   <span>
                     <Button
@@ -115,7 +117,7 @@ class ManageMotorRates extends Component {
                 <Table className="align-items-center table-flush" responsive>
                   <thead className="thead-light">
                     <tr>
-                      <th scope="col">Underwritter</th>
+                      <th scope="col">Underwriter</th>
                       <th scope="col">Vehicle Class</th>
                       <th scope="col">Cover Type</th>
                       <th scope="col">Basic</th>
@@ -140,7 +142,7 @@ class ManageMotorRates extends Component {
                       style={{
                         width: "100%",
                         textAlign: "center",
-                        marginLeft: "50%"
+                        marginLeft: "50%",
                       }}
                     >
                       <img
@@ -150,14 +152,18 @@ class ManageMotorRates extends Component {
                       />
                     </div>
                   ) : (
-                    this.state.motor_rates.map(motor_rate => (
+                    this.state.motor_rates.map((motor_rate) => (
                       <tbody>
                         <tr onClick={() => this.handleRowClick(motor_rate)}>
                           <td>
-                            {this.getUnderwriterName(motor_rate.UnderwriterId).name}
+                            {motor_rate.UnderwriterId !== undefined
+                              ? this.getUnderwriterName(
+                                  motor_rate.UnderwriterId
+                                )
+                              : ""}
                           </td>
                           <td>
-                            {this.getMotorClassName(motor_rate.VehicleClassId).name}
+                            {this.getMotorClassName(motor_rate.VehicleClassId)}
                           </td>
                           <td>{motor_rate.coverType}</td>
                           <td>{motor_rate.basic}%</td>

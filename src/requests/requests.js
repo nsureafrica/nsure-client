@@ -5,20 +5,31 @@ import axios from "axios";
 const baseURL = "http://34.67.92.190:3030";
 
 var options = {
-  headers: { "x-access-token": localStorage.getItem("token") }
+  headers: { "x-access-token": localStorage.getItem("token") },
 };
 
 function getRequest(endpoint) {
   var options = {
-    headers: { "x-access-token": localStorage.getItem("token") }
+    headers: { "x-access-token": localStorage.getItem("token") },
   };
   const requestUrl = baseURL + endpoint;
-  return axios.get(requestUrl,options);
+  return axios.get(requestUrl, options);
+}
+
+function getFile(endpoint) {
+  var options = {
+    responseType: "arraybuffer",
+    headers: {
+      "x-access-token": localStorage.getItem("token"),
+    },
+  };
+  const requestUrl = baseURL + endpoint;
+  return axios.get(requestUrl, options);
 }
 
 function postRequest(endpoint, payload) {
   var options = {
-    headers: { "x-access-token": localStorage.getItem("token") }
+    headers: { "x-access-token": localStorage.getItem("token") },
   };
   const requestUrl = baseURL + endpoint;
   return axios.post(requestUrl, payload, options);
@@ -26,7 +37,7 @@ function postRequest(endpoint, payload) {
 
 function putRequest(endpoint, payload) {
   var options = {
-    headers: { "x-access-token": localStorage.getItem("token") }
+    headers: { "x-access-token": localStorage.getItem("token") },
   };
   const requestUrl = baseURL + endpoint;
   return axios.put(requestUrl, payload, options);
@@ -42,7 +53,7 @@ function getAllUserPolicies(policies) {
     // this.props.history.push("login");
   }
   var options = {
-    headers: { "x-access-token": token }
+    headers: { "x-access-token": token },
   };
   var policyRequests = [];
   for (var i = 0; i < policies.length; i++) {
@@ -52,4 +63,4 @@ function getAllUserPolicies(policies) {
   }
   return axios.all(policyRequests);
 }
-export { getRequest, postRequest, getAllUserPolicies, putRequest };
+export { getRequest, postRequest, getAllUserPolicies, putRequest, getFile };

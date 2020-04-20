@@ -83,7 +83,7 @@ class MotorQuote extends React.Component {
                               fontSize: "1rem"
                             }}
                           >
-                            {quote.underwriter.name}
+                            Underwriter: {quote.underwriter.name}
                             <button
                               className="select_underwriter"
                               onClick={() => this.buyPolicy(quote)}
