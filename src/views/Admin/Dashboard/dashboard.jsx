@@ -1,26 +1,59 @@
 import React, { Component } from "react";
-import { CardHeader, Table, Card, Container, Row, Col } from "reactstrap";
+import {
+  CardHeader,
+  Table,
+  Card,
+  Container,
+  Row,
+  Col,
+  FormGroup,
+  Input,
+  Button,
+} from "reactstrap";
 import FormHeader from "../../../components/Headers/FormHeader";
 import { getRequest } from "../../../requests/requests";
 import { Doughnut } from "react-chartjs-2";
+import moment from "moment";
 
 class AdminDashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = { dashboardData: {} };
+    this.state = {
+      dashboardData: {},
+      startDate: moment().startOf("day").subtract(7, "day").toDate(),
+      endDate: moment().endOf("day").toDate(),
+    };
   }
   componentDidMount() {
-    getRequest("/dashboard/getdashboarddata").then(response => {
+    this.fetchDashboardData();
+  }
+  fetchDashboardData = () => {
+    getRequest(
+      `/dashboard/getDashboardData?startDate=${this.state.startDate.toISOString()}&endDate=${this.state.endDate.toISOString()}`
+    ).then((response) => {
       this.setState({ dashboardData: response.data });
     });
-  }
+  };
+  handleChange = (event) => {
+    if (event.target.id === "startDate") {
+      this.setState({
+        startDate: moment(event.target.value).startOf("day").toDate(),
+      });
+    } else if (event.target.id === "endDate") {
+      this.setState({
+        endDate: moment(event.target.value).endOf("day").toDate(),
+      });
+    }
+  };
   render() {
+    console.log(moment(this.state.startDate).toDate());
+    console.log(new Date());
     const policiesCountData = {
       labels: [
         "Motor Policies",
         "Education Policies",
         "Medical Policies",
-        "Travel Policies"
+        "Travel Policies",
       ],
       datasets: [
         {
@@ -28,18 +61,53 @@ class AdminDashboard extends Component {
             this.state.dashboardData.numberOfMotorPolicies,
             this.state.dashboardData.numberOfEducationPolicies,
             this.state.dashboardData.numberOfMedicalPolicies,
-            this.state.dashboardData.numberOfTravelPolicies
+            this.state.dashboardData.numberOfTravelPolicies,
           ],
           backgroundColor: ["#8BC34A", "#F44336", "#00BCD4", "#FF9800"],
-          hoverBackgroundColor: ["#8BC34A", "#F44336", "#00BCD4", "#FF9800"]
-        }
-      ]
+          hoverBackgroundColor: ["#8BC34A", "#F44336", "#00BCD4", "#FF9800"],
+        },
+      ],
     };
     return (
       <>
         <div className="header pb-8 pt-5 pt-md-8">
           <Container fluid>
             <div className="header-body">
+              <Row style = {{display:'flex', alignItems:'center'}}>
+                <Col lg="3">
+                  <FormGroup>
+                    <label className="form-control-label">Start date</label>
+                    <Input
+                      className="form-control-alternative"
+                      // placeholder="Vehicle's estimated value (KES)"
+                      type="date"
+                      value={this.state.startDate.toISOString().substr(0, 10)}
+                      onChange={this.handleChange}
+                      id="startDate"
+                      required
+                    />
+                  </FormGroup>
+                </Col>
+                <Col lg="3">
+                  <FormGroup>
+                    <label className="form-control-label">End date</label>
+                    <Input
+                      className="form-control-alternative"
+                      // placeholder="Vehicle's estimated value (KES)"
+                      type="date"
+                      value={this.state.endDate.toISOString().substr(0, 10)}
+                      onChange={this.handleChange}
+                      id="endDate"
+                      required
+                    />
+                  </FormGroup>
+                </Col>
+                <Col lg="3">
+                  <Button onClick={this.fetchDashboardData}>
+                    Apply filter
+                  </Button>
+                </Col>
+              </Row>
               <Row>
                 <Col lg="3">
                   <Card
@@ -110,7 +178,7 @@ class AdminDashboard extends Component {
                                 .toFixed(0)
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-                            : 'KES 0'
+                            : "KES 0"
                           : 0}
                       </span>
                     </div>
@@ -173,8 +241,8 @@ class AdminDashboard extends Component {
                                 .toFixed(0)
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-                            : 'KES 0'
-                          : 'KES 0'}
+                            : "KES 0"
+                          : "KES 0"}
                       </span>
                     </div>
                   </Card>
@@ -192,8 +260,8 @@ class AdminDashboard extends Component {
                         data={policiesCountData}
                         options={{
                           legend: {
-                            display: true
-                          }
+                            display: true,
+                          },
                         }}
                       />
                     </div>

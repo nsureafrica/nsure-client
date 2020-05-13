@@ -1,7 +1,4 @@
-import React from "react";
-
-// reactstrap components
-// import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import React, { Component } from "react";
 import {
   Button,
   Card,
@@ -13,13 +10,11 @@ import {
   Container,
   Row,
   Label,
-  Col,
+  Col
 } from "reactstrap";
-import Maps from "views/examples/Maps.jsx";
-import PickUpPoints from "views/delivery/pickup.jsx";
-import { postRequest, iPayPost } from "../../requests/requests";
+import { postRequest } from "../../requests/requests";
 
-class Invoice extends React.Component {
+class HomeCareInvoice extends Component {
   constructor(props) {
     super(props);
     this.state = { payNow: false, confirmationNumber: "", policyDetails: {} };
@@ -28,62 +23,12 @@ class Invoice extends React.Component {
     this.handlePayment = this.handlePayment.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
+
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
   handlePayNow() {
     this.setState({ payNow: true });
-  }
-  handleIPay() {
-    // "oid"=> "112",
-    //                 "inv"=> "112020102292999",
-    //                 "ttl"=> "900",
-    //                 "tel"=> "256712375678",
-    //                 "eml"=> "kajuej@gmailo.com",
-    //                 "vid"=> "demo",
-    //                 "curr"=> "KES",
-    //                 "p1"=> "airtel",
-    //                 "p2"=> "020102292999",
-    //                 "p3"=> "",
-    //                 "p4"=> "900",
-    //                 "cbk"=> $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"],
-    //                 "cst"=> "1",
-    //                 "crl"=> "2"
-    let dataObject = {
-      live: 0,
-      oid: "0001",
-      inv: "0001",
-      ttl: "900",
-      tel: "0793720223",
-      eml: "nyaranam@gmail.com",
-      vid: "nsure",
-      curr: "KES",
-      p1: "",
-      p2: "",
-      p3: "",
-      p4: "",
-      cbk: "http://34.67.92.190:8080/client/confirmation",
-      lbk: "http://34.67.92.190:8080/client/invoice",
-      cst: 1,
-      crl: 0,
-    };
-    let dataString =
-      dataObject.live +
-      dataObject.oid +
-      dataObject.inv +
-      dataObject.ttl +
-      dataObject.tel +
-      dataObject.eml +
-      dataObject.vid +
-      dataObject.curr +
-      dataObject.p1 +
-      dataObject.p2 +
-      dataObject.p3 +
-      dataObject.p4 +
-      dataObject.cbk +
-      dataObject.cst +
-      dataObject.crl;
-    iPayPost(dataObject, dataString);
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -96,57 +41,15 @@ class Invoice extends React.Component {
     }
     console.log(this.props.location);
     // create policy
-    const optionsSelected = JSON.parse(localStorage.getItem("optionsSelected"));
-    const payloadObject = {
-      vehicleEstimatedValue: optionsSelected.estimatedValue,
-      vehicleModelAndMake: optionsSelected.make_model,
-      vehicleType: optionsSelected.vehicleType,
-      coverType: optionsSelected.coverType,
-      courtesyCarOption: optionsSelected.courtesyCar,
-      registrationNumber: optionsSelected.registrationNumber,
-      chasisNumber: optionsSelected.chasisNumber,
-      engineNumber: optionsSelected.engineNumber,
-      firstName: optionsSelected.firstName,
-      lastName: optionsSelected.lastName,
-      address: optionsSelected.address,
-      emailAddress: optionsSelected.emailAddress,
-      city: optionsSelected.city,
-      country: optionsSelected.country,
-      postalCode: optionsSelected.postalCode,
-      UserId: userData.id,
-      yearOfManufacture: optionsSelected.yearOfManufacture,
-      numberOfSeats: optionsSelected.numberOfSeats,
-      engineCapacity: optionsSelected.engineCapacity,
-      // kraPin: optionsSelected.KRAPin,
-      politicalViolenceTerrorism: optionsSelected.politicalViolenceTerrorism,
-      excessProtector: optionsSelected.excessProtector,
-      roadsideAssistance: optionsSelected.roadsideAssistance,
-      quoteAmount: this.props.location.state.quote.quoteAmount,
-      // idNumber: optionsSelected.IDNumber,
-      underWriter: this.props.location.state.quote.underwriter.id,
-      vehicleClass: optionsSelected.vehicleClass,
-    };
-    const logBook = this.props.location.state.logBook;
-    const nationalIdScan = this.props.location.state.nationalIdScan;
-    const KRAPinScan = this.props.location.state.KRAPinScan;
-
-    let payload = new FormData();
-    Object.keys(payloadObject).map((key) => {
-      payload.append(key, payloadObject[key]);
-    });
-    for (var i = 0; i < logBook.length; i++) {
-      payload.append("logbook", logBook[i]);
-    }
-    for (var i = 0; i < nationalIdScan.length; i++) {
-      payload.append("nationalID", nationalIdScan[i]);
-    }
-    for (var i = 0; i < KRAPinScan.length; i++) {
-      payload.append("kraPin", KRAPinScan[i]);
-    }
-    postRequest("/policies/motor/policy", payload).then((response) => {
-      console.log(response);
-      this.setState({ policyDetails: response.data });
-    });
+    const optionsSelected = JSON.parse(
+      localStorage.getItem("optionsSelected_homeCare")
+    );
+    postRequest("/policies/domestic/createPolicy", optionsSelected).then(        
+      response => {
+        console.log(response);
+        this.setState({ policyDetails: response.data });
+      }
+    );
   }
   handlePayment() {
     console.log(this.state.policyDetails);
@@ -156,12 +59,12 @@ class Invoice extends React.Component {
         transactionType: "MPESA",
         transactionRef: this.state.confirmationNumber,
         amount: 0,
-        BillId: this.state.policyDetails.BillId,
+        BillId: this.state.policyDetails.BillId
       };
       postRequest("/transactions/createTransactions", transactionPayload).then(
-        (response) => {
+        response => {
           console.log(response);
-          this.props.history.push("/client/confirmation", { motor: true });
+          this.props.history.push("/client/confirmation", { motor: false });
         }
       );
     } else {
@@ -171,6 +74,7 @@ class Invoice extends React.Component {
   handleCancel() {
     this.setState({ payNow: false });
   }
+
   render() {
     const token = localStorage.getItem("token");
     const jwtDecode = require("jwt-decode");
@@ -193,7 +97,7 @@ class Invoice extends React.Component {
                   textAlign: "center",
                   color: "#001996",
                   letterSpacing: "3px",
-                  textTransform: "uppercase",
+                  textTransform: "uppercase"
                 }}
               >
                 INVOICE
@@ -204,7 +108,7 @@ class Invoice extends React.Component {
                     textAlign: "right",
                     color: "#333",
                     borderBottom: "2px dotted",
-                    marginBottom: "20px",
+                    marginBottom: "20px"
                   }}
                 >
                   <h5>
@@ -219,7 +123,7 @@ class Invoice extends React.Component {
                     marginBottom: "10px",
                     fontWeight: "bold",
                     textAlign: "lwft",
-                    color: "rgb(0, 43, 170)",
+                    color: "rgb(0, 43, 170)"
                   }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
@@ -242,7 +146,7 @@ class Invoice extends React.Component {
                   style={{ fontSize: "13px", textAlign: "left", color: "#333" }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
-                    Motor Insurance Policy
+                    Last Expense Insurance Policy
                   </Col>
 
                   <Col
@@ -283,7 +187,7 @@ class Invoice extends React.Component {
                     fontWeight: "bold",
                     fontSize: "15px",
                     textAlign: "lwft",
-                    color: "#333",
+                    color: "#333"
                   }}
                 >
                   <Col lg="7" xl="7" sm="7" xs="7">
@@ -317,26 +221,11 @@ class Invoice extends React.Component {
                         textTransform: "uppercase",
                         borderRadius: "26px",
                         letterSpacing: "2px",
-                        border: "none",
+                        border: "none"
                       }}
                       onClick={() => this.handlePayNow()}
                     >
                       Pay Now
-                    </button>
-                    <button
-                      style={{
-                        padding: "11px 35px",
-                        background: "linear-gradient(101deg, #ff4b4b, #5b33f9)",
-                        fontWeight: "bold",
-                        color: "white",
-                        textTransform: "uppercase",
-                        borderRadius: "26px",
-                        letterSpacing: "2px",
-                        border: "none",
-                      }}
-                      onClick={() => this.handleIPay()}
-                    >
-                      Pay with Ipay
                     </button>
                   </div>
                 ) : (
@@ -344,7 +233,7 @@ class Invoice extends React.Component {
                     style={{
                       justifyContent: "left",
                       textAlign: "left",
-                      marginTop: "30px",
+                      marginTop: "30px"
                       // maxWidth:'30rem'
                     }}
                   >
@@ -394,7 +283,7 @@ class Invoice extends React.Component {
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "space-between"
                       }}
                     >
                       <button onClick={() => this.handleCancel()}>
@@ -415,4 +304,4 @@ class Invoice extends React.Component {
   }
 }
 
-export default Invoice;
+export default HomeCareInvoice;

@@ -25,8 +25,9 @@ import {
 } from "@material-ui/icons";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
+import TermsAndConditions from "../termsandconditions/termsandconditions";
 
-class SalamahTransitionCoverForm extends React.Component {
+class LastExpenseCoverForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,6 +48,9 @@ class SalamahTransitionCoverForm extends React.Component {
       showPlans: false,
       selectedPlan: undefined,
       showForm: false,
+      openTermsAndConditionsModal: false,
+      payload:{},
+      optionsSelected:{}
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleParentChange = this.handleParentChange.bind(this);
@@ -152,7 +156,7 @@ class SalamahTransitionCoverForm extends React.Component {
     this.setState({ selectedPlan: plan, showPlans: false });
   };
 
-  getQuote = () => {
+  validate = () => {
     // validate fields
     console.log(this.state);
     const payloadObject = {
@@ -241,32 +245,44 @@ class SalamahTransitionCoverForm extends React.Component {
         }
       );
     } else {
-      postRequest("/quotes/lastexpense", payloadObject).then((response) => {
-        console.log(response);
-        // set options selected
-        localStorage.setItem(
-          "optionsSelected_LastExpense",
-          JSON.stringify(optionsSelected)
-        );
-        // set quote array
-        localStorage.setItem(
-          "quoteArray_LastExpense",
-          JSON.stringify(response.data)
-        );
-        if (response.data.length == 0) {
-          this.setState({
-            message:
-              "We were unable to find underwriters offering the options you selected",
-            showNotification: true,
-            variant: "warning",
-          });
-        } else {
-          this.props.history.push("/client/last-expense-quote", {
-            quote: response.data,
-          });
-        }
-      });
+      this.setState({ payload:payloadObject, optionsSelected });
+      this.confirmTermsAndConditions();
     }
+  };
+  getQuote = () => {
+    postRequest("/quotes/lastexpense", this.state.payload).then((response) => {
+      console.log(response);
+      // set options selected
+      localStorage.setItem(
+        "optionsSelected_LastExpense",
+        JSON.stringify(this.state.optionsSelected)
+      );
+      // set quote array
+      localStorage.setItem(
+        "quoteArray_LastExpense",
+        JSON.stringify(response.data)
+      );
+      if (response.data.length == 0) {
+        this.setState({
+          message:
+            "We were unable to find underwriters offering the options you selected",
+          showNotification: true,
+          variant: "warning",
+        });
+      } else {
+        this.props.history.push("/client/last-expense-quote", {
+          quote: response.data,
+        });
+      }
+    });
+  };
+  confirmTermsAndConditions = () => {
+    this.setState({ openTermsAndConditionsModal: true });
+  };
+  toggleTermsandConditions = () => {
+    this.setState((prevState) => ({
+      openTermsAndConditionsModal: !prevState.openTermsAndConditionsModal,
+    }));
   };
   render() {
     const relationships = [
@@ -807,7 +823,7 @@ class SalamahTransitionCoverForm extends React.Component {
                             <Button
                               className="my-4"
                               color="primary"
-                              onClick={this.getQuote}
+                              onClick={this.validate}
                             >
                               Get Quote
                             </Button>
@@ -823,9 +839,15 @@ class SalamahTransitionCoverForm extends React.Component {
             </Col>
           </Row>
         </Container>
+        <TermsAndConditions
+          open={this.state.openTermsAndConditionsModal}
+          toggle={this.toggleTermsandConditions}
+          policy="lastExpense"
+          continue={this.getQuote}
+        />
       </>
     );
   }
 }
 
-export default SalamahTransitionCoverForm;
+export default LastExpenseCoverForm;

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const baseURL = "http://34.67.92.190:3030";
-// const baseURL = "http://34.67.92.190:3030";
 const baseURL = "http://34.67.92.190:3030";
+// const baseURL = "https://0c67609e.ngrok.io";
 
 var options = {
   headers: { "x-access-token": localStorage.getItem("token") },
@@ -58,9 +58,40 @@ function getAllUserPolicies(policies) {
   var policyRequests = [];
   for (var i = 0; i < policies.length; i++) {
     policyRequests.push(
-      axios.get(`${baseURL}/policies/${policies[i]}/${userData.id}`, options)
+      axios.get(`${baseURL}/policies/${policies[i]}/getUserPolicies`, options)
     );
   }
   return axios.all(policyRequests);
 }
-export { getRequest, postRequest, getAllUserPolicies, putRequest, getFile };
+
+function iPayPost(dataObject, dataString) {
+  var hashkey = "54sdlhcdf5drihdfd";
+  console.log(hashkey);
+  console.log(dataObject);
+  var CryptoJS = require("crypto-js");
+  var hashid = CryptoJS.HmacSHA1(dataString, hashkey);
+  dataObject.hsh = hashid;
+  dataObject.cbk = encodeURI(dataObject.cbk);
+  dataObject.lbk = encodeURI(dataObject.lbk);
+  console.log(dataObject);
+  axios
+    .post("https://payments.ipayafrica.com/v3/ke", dataObject, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+export {
+  getRequest,
+  postRequest,
+  getAllUserPolicies,
+  putRequest,
+  getFile,
+  iPayPost,
+};

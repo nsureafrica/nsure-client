@@ -2,11 +2,13 @@ import Index from "../views/Index.jsx";
 import MotorInsuranceForm from "../views/forms/MotorInsuranceForm";
 // import MedicalInsuranceForm from "../views/forms/MedicalInsuranceForm";
 import EducationInsuranceForm from "../views/forms/EducationInsuranceForm";
-import SalamahTransitionCoverForm from "../views/forms/SalamahTransitionCoverForm";
-import TravelInsuranceCoverForm from "../views/forms/TravelInsuranceForm";
+import LastExpenseCoverForm from "../views/forms/LastExpenseCoverForm";
+// import TravelInsuranceCoverForm from "../views/forms/TravelInsuranceForm";
 import MedicalPlans from "./../views/Plans/medicalPlans"
+import TravelPlans from "./../views/Plans/travelPlans"
 import UserClaims from "../views/userclaims/userclaims.jsx";
 import Login from "../views/login/login.jsx";
+import HomeCareForm from "../views/forms/HomeCareForm.jsx";
 
 const PersonalInsuranceRoutes = [
   {
@@ -42,19 +44,27 @@ const PersonalInsuranceRoutes = [
     layout: "/client",
   },
   {
-    path: "/TravelInsuranceCoverForm",
+    path: "/TravelPlans",
     name: "Travel Insurance",
     icon: "fa fa-globe",
     style: {color: "#FF9800"},
-    component: TravelInsuranceCoverForm,
+    component: TravelPlans,
     layout: "/client",
   },
   {
-    path: "/SalamahTransitionCoverForm",
+    path: "/LastExpenseCoverForm",
     name: "Last Expense",
-    icon: "fa fa-thumbs-up",
+    icon: "fa fa-monument",
     style: {color: "#9C27B0"},
-    component: SalamahTransitionCoverForm,
+    component: LastExpenseCoverForm,
+    layout: "/client",
+  },
+  {
+    path: "/HomeCareForm",
+    name: "Home Care",
+    icon: "fa fa-home",
+    style: {color: ""},
+    component: HomeCareForm,
     layout: "/client",
   }
 ];

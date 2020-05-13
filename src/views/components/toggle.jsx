@@ -18,21 +18,22 @@ class Toggle extends React.Component {
         </Col>
         <Col lg="6">
           <ToggleButton
-            style={{ float: "right", textTransform: "capitalize" }}
+            thumbStyle={{ float: "right", textTransform: "capitalize" }}
+            // style={{ float: "right", textTransform: "capitalize" }}
             inactiveLabel="No"
             activeLabel="Yes"
             trackStyle={{
-              height: 20
+              height: 20,
             }}
             colors={{
               active: {
                 base: "rgb(207,221,245)",
-                hover: "rgb(177, 191, 215)"
+                hover: "rgb(177, 191, 215)",
               },
               inactive: {
                 base: "rgb(65,66,68)",
-                hover: "rgb(95,96,98)"
-              }
+                hover: "rgb(95,96,98)",
+              },
             }}
             value={this.props.toggleValue}
             onToggle={() => this.props.toggleHandler(this.props.identifier)}

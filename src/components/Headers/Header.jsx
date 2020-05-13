@@ -170,7 +170,7 @@ class Header extends React.Component {
                 </Col>
 
                 <Col lg="2" xl="2" sm="12" xs="12">
-                  <a href="SalamahTransitionCoverForm">
+                  <a href="LastExpenseCoverForm">
                     <Card
                       className="card-stats mb-4 mb-xl-0"
                       style={{

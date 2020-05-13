@@ -18,6 +18,7 @@ import {
 import { onlyAllowNNumericalInput } from "../../miscFunctions";
 import { postRequest, getRequest } from "../../requests/requests";
 import Toggle from "../components/toggle";
+import TermsAndConditions from "../termsandconditions/termsandconditions";
 
 // core components
 import FormHeader from "../../components/Headers/FormHeader";
@@ -87,6 +88,9 @@ class MotorInsuranceForm extends React.Component {
       variant: "",
       message: "",
       showForm: false,
+      openTermsAndConditionsModal: false,
+      payload: {},
+      optionsSelected: {},
     };
 
     this.handleSelect = this.handleSelect.bind(this);
@@ -95,7 +99,14 @@ class MotorInsuranceForm extends React.Component {
     this.getQuote = this.getQuote.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
-
+  confirmTermsAndConditions = () => {
+    this.setState({ openTermsAndConditionsModal: true });
+  };
+  toggleTermsandConditions = () => {
+    this.setState((prevState) => ({
+      openTermsAndConditionsModal: !prevState.openTermsAndConditionsModal,
+    }));
+  };
   getMotorClasses() {
     getRequest("/motorclass/getMotorClasses").then((response) => {
       this.setState({ vehicleClasses: response.data });
@@ -151,7 +162,7 @@ class MotorInsuranceForm extends React.Component {
   }
   handleValidation() {}
 
-  getQuote() {
+  validate = ()=> {
     // validate fields
     console.log(this.state);
     const payloadObject = {
@@ -243,36 +254,42 @@ class MotorInsuranceForm extends React.Component {
           }
         </div>,
         {
-          duration: 10000,
+          duration: 5000,
         }
       );
     } else {
-      postRequest("/quotes/motor", payloadObject).then((response) => {
-        console.log(response);
-        // set options selected
-        localStorage.setItem(
-          "optionsSelected",
-          JSON.stringify(optionsSelected)
-        );
-        // set quote array
-        localStorage.setItem("quoteArray", JSON.stringify(response.data));
-        if (response.data.length == 0) {
-          this.setState({
-            message:
-              "We were unable to find underwriters offering the options you selected",
-            showNotification: true,
-            variant: "warning",
-          });
-        } else {
-          this.props.history.push("/client/motor-quote", {
-            quoteArray: response.data,
-            logBook: this.state.logBook,
-            nationalIdScan: this.state.nationalIdScan,
-            KRAPinScan: this.state.KRAPinScan,
-          });
-        }
-      });
+      this.setState({ payload:payloadObject, optionsSelected });
+      this.confirmTermsAndConditions();
     }
+  }
+  getQuote=()=>{
+    
+    postRequest("/quotes/motor", this.state.payload).then((response) => {
+      console.log(response);
+      // set options selected
+      localStorage.setItem(
+        "optionsSelected",
+        JSON.stringify(this.state.optionsSelected)
+      );
+      // set quote array
+      localStorage.setItem("quoteArray", JSON.stringify(response.data));
+      if (response.data.length == 0) {
+        this.setState({
+          message:
+            "We were unable to find underwriters offering the options you selected",
+          showNotification: true,
+          variant: "warning",
+        });
+      } else {
+        this.props.history.push("/client/motor-quote", {
+          quoteArray: response.data,
+          logBook: this.state.logBook,
+          nationalIdScan: this.state.nationalIdScan,
+          KRAPinScan: this.state.KRAPinScan,
+        });
+      }
+    });
+
   }
 
   render() {
@@ -359,7 +376,7 @@ class MotorInsuranceForm extends React.Component {
                   </CardHeader>
 
                   <CardBody>
-                    <Form onSubmit={() => this.getQuote()}>
+                    <Form onSubmit={() => this.validate()}>
                       <h6 className="heading-small text-muted mb-4">
                         Vehicle information{" "}
                       </h6>
@@ -802,7 +819,7 @@ class MotorInsuranceForm extends React.Component {
                         <Button
                           className="my-4"
                           color="primary"
-                          onClick={this.getQuote}
+                          onClick={this.validate}
                         >
                           Get Quote
                         </Button>
@@ -821,6 +838,12 @@ class MotorInsuranceForm extends React.Component {
             message={this.state.message}
           />
         )}
+        <TermsAndConditions
+          open={this.state.openTermsAndConditionsModal}
+          toggle={this.toggleTermsandConditions}
+          policy="motor"
+          continue={this.getQuote}
+        />
       </>
     );
   }

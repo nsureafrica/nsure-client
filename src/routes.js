@@ -28,6 +28,9 @@ import ManageUnderwriters from "./views/Admin/Management/Underwriters/manage-und
 import ManageMedicalPlans from "./views/Admin/Management/Medical/manage-medical-plans";
 import TransactionDetail from "./views/Admin/Transactions/transactionDetail";
 import ManageLastExpensePlans from "./views/Admin/Management/LastExpense/manage-last-expense-plans";
+import TravelInsuranceForm from "./views/forms/TravelInsuranceForm";
+import HomeCareQuote from "./views/quote/homeCareQuote";
+import HomeCareInvoice from "./views/invoices/home_care";
 
 const routes = [
   {
@@ -71,6 +74,12 @@ const routes = [
     component: LastExpenseQuote,
     layout: "/client",
   },
+  {
+    path: "/home-care-quote",
+    name: "Home Care Quote",
+    component: HomeCareQuote,
+    layout: "/client",
+  },
 
   // {
   //   path: "/pickup",
@@ -93,11 +102,19 @@ const routes = [
     component: MedicalInvoice,
     layout: "/client",
   },
+  
   {
     path: "/invoice-last-expense",
     name: "Last Expense Invoice",
     icon: "ni ni-pin-3 text-orange",
     component: LastExpenseInvoice,
+    layout: "/client",
+  },
+  {
+    path: "/invoice-home-care",
+    name: "Last Expense Invoice",
+    icon: "ni ni-pin-3 text-orange",
+    component: HomeCareInvoice,
     layout: "/client",
   },
   {
@@ -166,6 +183,12 @@ const routes = [
     path: "/MedicalInsuranceForm",
     name: "Medical Insurance",
     component: MedicalInsuranceForm,
+    layout: "/client",
+  },
+  {
+    path: "/TravelInsuranceForm",
+    name: "Travel Insurance",
+    component: TravelInsuranceForm,
     layout: "/client",
   },
   {

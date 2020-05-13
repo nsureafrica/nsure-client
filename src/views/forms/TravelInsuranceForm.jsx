@@ -49,7 +49,7 @@ class TravelInsuranceForm extends React.Component {
       legalAssistance: false,
       lossOrTheft: false,
       luggageDelay: false,
-      showForm: false,
+      showForm: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -88,6 +88,7 @@ class TravelInsuranceForm extends React.Component {
       // kraPin: this.state.kraPin,
       startDate: this.state.travelDate,
       endDate: this.state.returnDate,
+      dateOfBirth:''
       // passportNumber: this.state.passportNumber,
       // UserId: userData.id
     };
@@ -96,6 +97,9 @@ class TravelInsuranceForm extends React.Component {
     var currentDate = new Date();
     if (optionsSelected.firstName === "" || optionsSelected.lastName === "") {
       errors.push("First name & Last name cannot be empty");
+    }
+    if (optionsSelected.dateOfBirth === "" ) {
+      errors.push("Date of birth cannot be empty");
     }
     if (
       this.state.nationalIdScan.length === 0 ||
@@ -279,6 +283,20 @@ class TravelInsuranceForm extends React.Component {
                                 placeholder="Last name"
                                 type="text"
                                 value={this.state.lastName}
+                                onChange={this.handleChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label className="form-control-label">
+                                Date of birth *
+                              </label>
+                              <Input
+                                className="form-control-alternative"
+                                id="dateOfbirth"
+                                type="date"
+                                value={this.state.dateOfBirth}
                                 onChange={this.handleChange}
                               />
                             </FormGroup>

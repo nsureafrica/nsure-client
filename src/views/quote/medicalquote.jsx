@@ -85,7 +85,7 @@ class MedicalQuote extends Component {
                             </button>
                           </tr>
                           <tr style={{ color: "black", fontWeight: "400" }}>
-                            <td>Principal Basic</td>
+                            <td>Principal Inpatient</td>
                             <td>
                               {quote.principalRate.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </td>

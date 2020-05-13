@@ -12,7 +12,7 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 import Toggle from "../components/toggle";
 
@@ -22,32 +22,46 @@ import { postRequest } from "../../requests/requests";
 import {
   ErrorOutline as Error,
   CheckCircleOutline as Success,
-  ErrorRounded
+  ErrorRounded,
 } from "@material-ui/icons";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
+import TermsAndConditions from "../termsandconditions/termsandconditions";
 
 class MedicalInsuranceForm extends React.Component {
   constructor(props) {
     super(props);
-    const optionsSelected = JSON.parse(localStorage.getItem("optionsSelected_Medical"));
+    const optionsSelected = JSON.parse(
+      localStorage.getItem("optionsSelected_Medical")
+    );
     this.state = {
-      principalFirstName: optionsSelected ? optionsSelected.principalFirstName :"",
-      principalLastName: optionsSelected ? optionsSelected.principalLastName :"",
-      principalAge: optionsSelected ? optionsSelected.principalAge :"",
-      principalIdNumber: optionsSelected ? optionsSelected.principalIdNumber :"",
-      principalKraPin: optionsSelected ? optionsSelected.principalKraPin :"",
-      married: optionsSelected ? optionsSelected.married :false,
-      numberOfChildren: optionsSelected ? optionsSelected.numberOfChildren :0,
-      spouseFirstName: optionsSelected ? optionsSelected.spouseFirstName :"",
-      spouseLastName: optionsSelected ? optionsSelected.spouseLastName :"",
-      spouseAge: optionsSelected ? optionsSelected.spouseAge :"",
-      spouseIdNumber: optionsSelected ? optionsSelected.spouseIdNumber :"",
-      spouseKraPin: optionsSelected ? optionsSelected.spouseKraPin :"",
-      outpatientPerPerson: optionsSelected ? optionsSelected.outpatientPerPerson :false,
-      maternityCover: optionsSelected ? optionsSelected.maternityCover :false,
-      dentalCover: optionsSelected ? optionsSelected.dentalCover :false,
-      opticalCover: optionsSelected ? optionsSelected.opticalCover :false
+      principalFirstName: optionsSelected
+        ? optionsSelected.principalFirstName
+        : "",
+      principalLastName: optionsSelected
+        ? optionsSelected.principalLastName
+        : "",
+      principalAge: optionsSelected ? optionsSelected.principalAge : "",
+      principalIdNumber: optionsSelected
+        ? optionsSelected.principalIdNumber
+        : "",
+      principalKraPin: optionsSelected ? optionsSelected.principalKraPin : "",
+      married: optionsSelected ? optionsSelected.married : false,
+      numberOfChildren: optionsSelected ? optionsSelected.numberOfChildren : 0,
+      spouseFirstName: optionsSelected ? optionsSelected.spouseFirstName : "",
+      spouseLastName: optionsSelected ? optionsSelected.spouseLastName : "",
+      spouseAge: optionsSelected ? optionsSelected.spouseAge : "",
+      spouseIdNumber: optionsSelected ? optionsSelected.spouseIdNumber : "",
+      spouseKraPin: optionsSelected ? optionsSelected.spouseKraPin : "",
+      outpatientPerPerson: optionsSelected
+        ? optionsSelected.outpatientPerPerson
+        : false,
+      maternityCover: optionsSelected ? optionsSelected.maternityCover : false,
+      dentalCover: optionsSelected ? optionsSelected.dentalCover : false,
+      opticalCover: optionsSelected ? optionsSelected.opticalCover : false,
+      openTermsAndConditionsModal: false,
+      payload: {},
+      selectedOptions_medical: {},
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -58,15 +72,20 @@ class MedicalInsuranceForm extends React.Component {
   }
 
   handleToggle(identifier) {
-    this.setState(state => ({ [identifier]: !state[identifier] }));
+    this.setState((state) => ({ [identifier]: !state[identifier] }));
   }
-  getQuote() {
+  toggleTermsandConditions = () => {
+    this.setState((prevState) => ({
+      openTermsAndConditionsModal: !prevState.openTermsAndConditionsModal,
+    }));
+  };
+  validate = () => {
     const payload = {
       medicalPlanId: this.props.location.state.plan.id,
       outPatientPerPerson: this.state.outpatientPerPerson,
       principalAge: this.state.principalAge,
       spouseAge: this.state.spouseAge,
-      numberOfChildren: this.state.numberOfChildren
+      numberOfChildren: this.state.numberOfChildren,
     };
     var selectedOptions_medical = { ...this.state };
     var errors = [];
@@ -128,35 +147,44 @@ class MedicalInsuranceForm extends React.Component {
             color: "#F96762",
             fontSize: "13px",
             fontWeight: 600,
-            textAlign: "left"
+            textAlign: "left",
           }}
         >
           Please correct the following errors:
           {
             <ol>
-              {errors.map(error => (
+              {errors.map((error) => (
                 <li>{error}</li>
               ))}
             </ol>
           }
         </div>,
         {
-          duration: 10000
+          duration: 10000,
         }
       );
     } else {
-      postRequest("/quotes/medical", payload).then(response => {
-        localStorage.setItem(
-          "optionsSelected_Medical",
-          JSON.stringify(selectedOptions_medical)
-        );
-        console.log(response);
-        this.props.history.push("/client/medical-quote", {
-          quoteArray: response.data
-        });
-      });
+      this.setState({ payload, selectedOptions_medical });
+      this.confirmTermsAndConditions();
     }
-  }
+  };
+  confirmTermsAndConditions = () => {
+    this.setState({ openTermsAndConditionsModal: true });
+  };
+
+  getQuote = () => {
+    postRequest("/quotes/medical", this.state.payload).then((response) => {
+      localStorage.setItem(
+        "optionsSelected_Medical",
+        JSON.stringify(this.state.selectedOptions_medical)
+      );
+      console.log(response);
+      this.props.history.push("/client/medical-quote", {
+        quoteArray: response.data,
+      });
+    });
+  };
+
   render() {
     console.log(this.props);
     console.log(this.state);
@@ -313,7 +341,7 @@ class MedicalInsuranceForm extends React.Component {
                               <FormGroup>
                                 <label className="form-control-label">
                                   Last Name *
-                                </label> 
+                                </label>
                                 <Input
                                   className="form-control-alternative"
                                   id="spouseLastName"
@@ -491,7 +519,8 @@ class MedicalInsuranceForm extends React.Component {
                       <Button
                         className="my-4"
                         color="primary"
-                        onClick={() => this.getQuote()}
+                        onClick={() => this.validate()}
+                        // onClick = {()=>this.setState({openTermsAndConditionsModal:true})}
                       >
                         Submit details
                       </Button>
@@ -502,6 +531,12 @@ class MedicalInsuranceForm extends React.Component {
             </Col>
           </Row>
         </Container>
+        <TermsAndConditions
+          open={this.state.openTermsAndConditionsModal}
+          toggle={this.toggleTermsandConditions}
+          policy="medical"
+          continue={this.getQuote}
+        />
       </>
     );
   }
